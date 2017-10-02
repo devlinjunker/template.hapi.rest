@@ -27,7 +27,7 @@
     "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
     "clean": "rm -rf ./dist/",
     "lint": "./node_modules/.bin/eslint src",
-    "flow": "./node_modules/flow",
+    "flow": "./node_modules/.bin/flow",
     "build":
       "npm run flow && npm run lint && ./node_modules/.bin/babel src -d dist",
     "start": "node ./dist/index.js",
