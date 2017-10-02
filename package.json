@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "Template for Linted and Documented Flow/Node Project",
   "main": "dist/index.js",
-  "keywords": ["flow", "eslint", "esdoc", "template", "node"],
+  "keywords": [
+    "flow",
+    "eslint",
+    "esdoc",
+    "template",
+    "node"
+  ],
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
   "devDependencies": {
@@ -17,14 +23,17 @@
     "eslint": "^4.8.0",
     "flow-bin": "^0.56.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha",
     "clean": "rm -rf ./dist/",
     "lint": "./node_modules/.bin/eslint src",
     "flow": "./node_modules/flow",
-    "build":
-      "npm run flow && npm run lint && ./node_modules/.bin/babel src -d dist",
+    "build": "npm run flow && npm run lint && ./node_modules/.bin/babel src -d dist",
     "start": "node ./dist/index.js",
     "doc": "./node_modules/.bin/esdoc"
   }

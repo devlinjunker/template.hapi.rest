@@ -5,7 +5,7 @@
  * @param  {number} b second number
  * @return {number}   numbers added together
  */
-function sum(a: number, b: number): number {
+export function sum(a: number, b: number): number {
   return a + b;
 }
 
