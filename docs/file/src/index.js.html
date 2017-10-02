@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/index.js | node.lint.doc</title>
+  <title data-ice="title">src/index.js | node.lint.doc.flow</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="Template for Linted and Documented Node Project"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="node.lint.doc"><meta property="twitter:description" content="Template for Linted and Documented Node Project"></head>
+<meta name="description" content="Template for Linted and Documented Flow/Node Project"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="node.lint.doc.flow"><meta property="twitter:description" content="Template for Linted and Documented Flow/Node Project"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -34,17 +34,18 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">//@flow
+/**
  * A function that adds two numbers
  * @param  {number} a first number
  * @param  {number} b second number
  * @return {number}   numbers added together
  */
-function sum(a, b) {
+function sum(a: number, b: number): number {
   return a + b;
 }
 
-console.log(sum(1, 2));
+console.log(sum(3, 2));
 </code></pre>
 
 </div>

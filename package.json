@@ -1,18 +1,27 @@
 {
-  "name": "node.lint.doc",
+  "name": "node.lint.doc.flow",
   "version": "1.0.0",
-  "description": "Template for Linted and Documented Node Project",
+  "description": "Template for Linted and Documented Flow/Node Project",
   "main": "dist/index.js",
-  "keywords": ["eslint", "esdoc", "template", "node"],
+  "keywords": [
+    "flow",
+    "eslint",
+    "esdoc",
+    "template",
+    "node"
+  ],
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
     "esdoc": "^1.0.3",
+    "esdoc-flow-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.8.0"
+    "eslint": "^4.8.0",
+    "flow-bin": "^0.56.0"
   },
   "dependencies": {},
   "scripts": {

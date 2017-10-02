@@ -567,9 +567,9 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/index.js",
-    "content": "/**\n * A function that adds two numbers\n * @param  {number} a first number\n * @param  {number} b second number\n * @return {number}   numbers added together\n */\nfunction sum(a, b) {\n  return a + b;\n}\n\nconsole.log(sum(1, 2));\n",
+    "content": "//@flow\n/**\n * A function that adds two numbers\n * @param  {number} a first number\n * @param  {number} b second number\n * @return {number}   numbers added together\n */\nfunction sum(a: number, b: number): number {\n  return a + b;\n}\n\nconsole.log(sum(3, 2));\n",
     "static": true,
-    "longname": "/Users/djunker/js/template/node.lint.doc/src/index.js",
+    "longname": "/Users/djunker/js/template/node.lint.doc.flow/src/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -585,10 +585,10 @@
     "longname": "src/index.js~sum",
     "access": "public",
     "export": false,
-    "importPath": "node.lint.doc/src/index.js",
+    "importPath": "node.lint.doc.flow/src/index.js",
     "importStyle": null,
     "description": "A function that adds two numbers",
-    "lineNumber": 7,
+    "lineNumber": 8,
     "params": [
       {
         "nullable": null,
@@ -624,15 +624,15 @@
   {
     "kind": "index",
     "content": "# Template EsLint, EsDoc Node Project\n",
-    "longname": "/Users/djunker/js/template/node.lint.doc/README.md",
+    "longname": "/Users/djunker/js/template/node.lint.doc.flow/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"node.lint.doc\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Linted and Documented Node Project\",\n  \"main\": \"dist/index.js\",\n  \"keywords\": [\"eslint\", \"esdoc\", \"template\", \"node\"],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-eslint\": \"^8.0.1\",\n    \"babel-preset-env\": \"^1.6.0\",\n    \"esdoc\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.8.0\"\n  },\n  \"dependencies\": {},\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"clean\": \"rm -rf ./dist/\",\n    \"lint\": \"./node_modules/.bin/eslint src\",\n    \"build\": \"npm run lint && ./node_modules/.bin/babel src -d dist\",\n    \"start\": \"node ./dist/index.js\",\n    \"doc\": \"./node_modules/.bin/esdoc\"\n  }\n}\n",
-    "longname": "/Users/djunker/js/template/node.lint.doc/package.json",
+    "content": "{\n  \"name\": \"node.lint.doc.flow\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Linted and Documented Flow/Node Project\",\n  \"main\": \"dist/index.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-eslint\": \"^8.0.1\",\n    \"babel-preset-env\": \"^1.6.0\",\n    \"babel-preset-flow\": \"^6.23.0\",\n    \"esdoc\": \"^1.0.3\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.8.0\",\n    \"flow-bin\": \"^0.56.0\"\n  },\n  \"dependencies\": {},\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"clean\": \"rm -rf ./dist/\",\n    \"lint\": \"./node_modules/.bin/eslint src\",\n    \"build\": \"npm run lint && ./node_modules/.bin/babel src -d dist\",\n    \"start\": \"node ./dist/index.js\",\n    \"doc\": \"./node_modules/.bin/esdoc\"\n  }\n}\n",
+    "longname": "/Users/djunker/js/template/node.lint.doc.flow/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
