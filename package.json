@@ -1,0 +1,26 @@
+{
+  "name": "node.lint.doc",
+  "version": "1.0.0",
+  "description": "Template for Linted and Documented Node Project",
+  "main": "dist/index.js",
+  "keywords": ["eslint", "esdoc", "template", "node"],
+  "author": "djunker <devlin.junker@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-env": "^1.6.0",
+    "esdoc": "^1.0.3",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^4.8.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf ./dist/",
+    "lint": "./node_modules/.bin/eslint src",
+    "build": "npm run lint && ./node_modules/.bin/babel src -d dist",
+    "start": "node ./dist/index.js",
+    "doc": "./node_modules/.bin/esdoc"
+  }
+}
