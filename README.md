@@ -1,1 +1,1 @@
-# Template EsLint, EsDoc Node Project
+# Template EsLint, EsDoc Flow/Node Project
