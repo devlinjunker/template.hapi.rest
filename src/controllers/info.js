@@ -1,10 +1,13 @@
 //@flow
-import server from "../server.js";
 
-server.addEndpoint({
-  path: "/info",
-  method: "GET",
-  controller: () => {
-    return server.getInfo();
+function controller(request: any) {
+  return request.server.info;
+}
+
+export default [
+  {
+    path: "/info",
+    method: "GET",
+    controller
   }
-});
+];

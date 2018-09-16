@@ -5,19 +5,6 @@ require("babel-polyfill");
 const Pino = require("hapi-pino");
 const Hapi = require("hapi");
 
-/**
- * Server Info Object containing useful information about the running server
- */
-interface ServerInfo {
-  created: number;
-  started: number;
-  host: string;
-  port: string;
-  protocol: string;
-  id: string;
-  uri: string;
-  address: string;
-}
 
 interface Endpoint {
   method: string;
@@ -28,7 +15,7 @@ interface Endpoint {
 /**
  * Server class that starts and initializes Hapi server
  */
-export class Server {
+export default class Server {
   server: any;
 
   constructor() {
@@ -44,7 +31,7 @@ export class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write("Server started on " + this.getInfo().port);
+    process.stdout.write("Server started on " + this.server.info.port);
 
     await this.server.register({
       plugin: Pino,
@@ -71,22 +58,12 @@ export class Server {
   }
 
   /**
-   * Returns the server information provided by Hapi
-   * @type {Server} information provided by Hapi
+   * Adds the endpoints given to the server
+   * @param {Array<Endpoint>} routes Routes to add to the server
    */
-  getInfo() : ServerInfo {
-    return this.server.info;
+  addEndpoints(routes: Array<Endpoint>) {
+    for(var i = 0; i < routes.length; i++) {
+      this.addEndpoint(routes[i]);
+    }
   }
 }
-
-const server = new Server();
-
-server.run();
-
-process.on("unhandledRejection", (err) => {
-  process.stdout.write(err);
-  process.exit(1);
-});
-
-
-export default server;
