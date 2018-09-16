@@ -1,3 +1,3 @@
-# Template EsLint, EsDoc Flow/Node Project
+# Template Hapi Server Project
 
-Node Project setup using Flow Static Typing, EsLint for Linting, EsDoc for documentation, and Mocha+Chai+NYC for testing
+Node Project setup using Hapi to handle requests on a port to endpoints 
