@@ -1,5 +1,8 @@
+import Server from "./base/server.js";
 
-import Server from "./server.js";
+/**
+ * Entry point that loads all routes for the server
+ */
 
 const server = new Server();
 

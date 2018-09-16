@@ -12,7 +12,7 @@ describe("HelloWorld", () => {
     });
   });
 
-  describe("name", () => {
+  describe("name()", () => {
     it("returns 'Hello {request.params.name}!'", () => {
       let request = {
         params: {
