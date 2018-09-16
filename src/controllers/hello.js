@@ -18,7 +18,10 @@ export class HelloWorld {
    * @return {String}         Customized Hello Message
    */
   static name(request: any) {
-    return "Hello " + request.params.name + "!";
+
+    let name = request.params.name;
+
+    return name + " says: " + Math.random() + "!";
   }
 }
 

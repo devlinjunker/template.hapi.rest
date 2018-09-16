@@ -53,7 +53,10 @@ export default class Server {
     this.server.route({
       method,
       path,
-      handler: controller
+      handler: controller,
+      options: {
+        cors: true
+      }
     });
   }
 
