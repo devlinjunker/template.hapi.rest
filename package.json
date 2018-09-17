@@ -2,7 +2,7 @@
   "name": "HapiServer",
   "version": "1.0.0",
   "description": "Template for Hapi Server",
-  "main": "dist/index.js",
+  "main": "dist/entry.js",
   "keywords": [
     "flow",
     "eslint",
