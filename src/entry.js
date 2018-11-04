@@ -1,3 +1,5 @@
+//@flow
+
 import Server from "./base/server.js";
 
 /**
@@ -19,3 +21,6 @@ import helloRoutes from "./controllers/hello.js";
 let routes = infoRoutes.concat(helloRoutes);
 
 server.addEndpoints(routes);
+
+// auto detect routes
+// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express

@@ -1,0 +1,1063 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/base/server.js",
+    "content": "//@flow\nrequire(\"babel-core/register\");\nrequire(\"babel-polyfill\");\nconst Pino = require(\"hapi-pino\");\nconst Hapi = require(\"hapi\");\n\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when \n * the path is hit\n */\ninterface Endpoint {\n  method: string;\n  path: string;\n  controller: Function;\n}\n\n/**\n * Server class that starts and initializes Hapi server\n */\nexport default class Server {\n  server: any;\n\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: \"localhost\"\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write(\"Server started on \" + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: [\"response\"]\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n   * @param {string} path       URL path of endpoint\n   * @param {Function} controller Handler function that is triggered when endpoint is hit\n   */\n  addEndpoint({ method, path, controller}: Endpoint) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   */\n  addEndpoints(routes: Array<Endpoint>) {\n    for(var i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/base/server.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "name": "Pino",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Pino",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "name": "Hapi",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Hapi",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "class",
+    "name": "Server",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Server",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": "Server",
+    "description": "Server class that starts and initializes Hapi server",
+    "lineNumber": 15,
+    "interface": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "server",
+    "memberof": "src/base/server.js~Server",
+    "static": false,
+    "longname": "src/base/server.js~Server#server",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "run",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/base/server.js~Server#run",
+    "access": "public",
+    "description": "Starts the server and registers any plugins",
+    "lineNumber": 28,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": "Resolves once server has started"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "addEndpoint",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#addEndpoint",
+    "access": "public",
+    "description": "Adds an endpoint at the path given handled by the controller",
+    "lineNumber": 47,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "method",
+        "description": "HTTP method the endpoint must be called with to trigger controller"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "path",
+        "description": "URL path of endpoint"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "controller",
+        "description": "Handler function that is triggered when endpoint is hit"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "addEndpoints",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#addEndpoints",
+    "access": "public",
+    "description": "Adds the endpoints given to the server",
+    "lineNumber": 62,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<Endpoint>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "routes",
+        "description": "Routes to add to the server"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 57,
+    "kind": "file",
+    "name": "src/controllers/hello.js",
+    "content": "//@flow\n\n/**\n * Note from Walmart interview: instantiating classes would be bad, these static functions are\n *    alright, but really could be pure functions as no state is needed\n *\n * Controllers for Hello World\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic() {\n    return \"Hello World!\";\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {RequestParams} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: any) {\n\n    let name = request.params.name;\n\n    return name + \" says: \" + Math.random() + \"!\";\n  }\n}\n\nexport default [\n  {\n    path: \"/hello\",\n    method: \"GET\",\n    controller: HelloWorld.basic\n  },\n  {\n    path: \"/{name}\",\n    method: \"GET\",\n    controller: HelloWorld.name\n  }\n];\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/hello.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 58,
+    "kind": "class",
+    "name": "HelloWorld",
+    "memberof": "src/controllers/hello.js",
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/controllers/hello.js",
+    "importStyle": "{HelloWorld}",
+    "description": "Note from Walmart interview: instantiating classes would be bad, these static functions are\n   alright, but really could be pure functions as no state is needed\n\nControllers for Hello World",
+    "lineNumber": 9,
+    "interface": false
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "basic",
+    "memberof": "src/controllers/hello.js~HelloWorld",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld.basic",
+    "access": "public",
+    "description": "Returns 'Hello World!'",
+    "lineNumber": 14,
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "Hello World!"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "name",
+    "memberof": "src/controllers/hello.js~HelloWorld",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld.name",
+    "access": "public",
+    "description": "Returns a customized Hello Message",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "RequestParams"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "request",
+        "description": "Request Parameters"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "Customized Hello Message"
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/controllers/hello.spec.js",
+    "content": "import { HelloWorld } from \"./hello.js\";\n\nimport { describe, it } from \"mocha\";\nimport { expect } from \"chai\";\n\n/** @test {HelloWorld} */\ndescribe(\"HelloWorld\", () => {\n  /** @test {HelloWorld.basic} */\n  describe(\"basic()\", () => {\n    it(\"returns 'Hello World!'\", () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal(\"Hello World!\");\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe(\"name()\", () => {\n    it(\"returns '{request.params.name} says:'\", () => {\n      let request = {\n        params: {\n          name: \"Devlin\"\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Devlin says\")).to.be.true;\n\n      request.params.name = \"Michelle\";\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Michelle says\")).to.be.true;\n    });\n  });\n});\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/hello.spec.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "file",
+    "name": "src/controllers/info.js",
+    "content": "//@flow\n\n/**\n * Basic Controller for returning server information\n * @param  {RequestParams} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: any) {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: \"/info\",\n    method: \"GET\",\n    controller\n  }\n];\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/info.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "controller",
+    "memberof": "src/controllers/info.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/info.js~controller",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/controllers/info.js",
+    "importStyle": null,
+    "description": "Basic Controller for returning server information",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "RequestParams"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "request",
+        "description": "Request Parameters"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "Server information Object"
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 64,
+    "kind": "file",
+    "name": "src/entry.js",
+    "content": "//@flow\n\nimport Server from \"./base/server.js\";\n\n/**\n * Entry point that loads all routes for the server\n */\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on(\"unhandledRejection\", (err) => {\n  process.stdout.write(err);\n  process.exit(1);\n});\n\nimport infoRoutes from \"./controllers/info.js\";\nimport helloRoutes from \"./controllers/hello.js\";\n\nlet routes = infoRoutes.concat(helloRoutes);\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/entry.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 65,
+    "kind": "variable",
+    "name": "server",
+    "memberof": "src/entry.js",
+    "static": true,
+    "longname": "src/entry.js~server",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/entry.js",
+    "importStyle": null,
+    "description": "Entry point that loads all routes for the server",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "src/base/server.js~Server"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "variable",
+    "name": "routes",
+    "memberof": "src/entry.js",
+    "static": true,
+    "longname": "src/entry.js~routes",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/entry.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "kind": "index",
+    "content": "# Template Hapi Server Project\n\nNode Project setup using Hapi to handle requests on a port to endpoints\n\n`base/server` does all of the Hapi Server configuration and startup, and contains methods for adding the endpoints  \n`controllers` files declare the endpoints and functions that are called.  \n`entry.js` references these controller files and passes them to the server object that is instantiated in the same file  \n\n\nTo compile to output directory `./dist/`, use `npm run build`  \nTo clean up and delete the output directory, use `npm run clean`  \n\nTo start the server, use `npm run start`  \n\n### Babel\nBabel is used to ensure ECMA2015 standards can be used in the javascript files\n (let/const, destructuring, default params, restParams [...args], templates).\nAlso has a babel preset for flow so that it works correctly\n\nTODO: Look into stage-0, seems like we should remove it\n\n### Flow\nStatic Type Checking with Flow, runs through type checking on any file with `//@flow` comment at beginning\n\nRead more at https://flow.org/docs/usage/ about how to use flow or https://flow.org/en/docs/ for more documentation\n\nRun with `npm run flow` to check if any flow errors\n\n### Linting\nESLint for code linting to ensure consistent coding conventions are met.\n\nRun with `npm run lint` to check if any files with unmatched code conventions.  \nCan also fix with `npm run lintfix` to automatically attempt to fix the linting errors in the code files.\n\n`.eslintrc.json` contains the rules for the code conventions\n\n##### Code Conventions:\n- Indent 2 spaces  \n- Unix Linebreak  \n- Double Quotes  \n- Require Semi-colons\n- Warn of console.log statements  \n[ ] TODO: Single Quote?  \n[ ] TODO: No Trailing space  \n[ ] TODO: No Trailing Lines  \n[ ] TODO: No Double Empty Lines  \n\n### Testing\nMocha + Chai for assertions are used as the testing framework in this example. Mocha is stripped down\nand we need to add things like chai assertions and sinon back to the mix to get full features. Run with\n`npm run test` or `npm test`\n\nNYC is used for coverage reports, use `npm run test-report` to see the coverage report for unit tests\n\nTODO: Include Sinon for stubbing/spying in tests\n\n### Documentation\nDocumentation with esdoc, goes through javascript files and builds javadoc type html documentation for\neach Class in the source code. Can also link test files with classes for reference. This is output as\nhtml in the `./doc/` directory and can be viewed by opening the index.html file\n\nUpdate documentation with `npm run doc`\n\n#### Things to do:\n1 [ ] Webpack  \n1 [ ] Run only affected tests on file save  \n1 [ ] Chai as promised and sinon-chai  \n1 [ ] Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n2 [ ] Automatically find controller files in entry rather than need to reference  \n2 [ ] Add logging with Winston  \n2 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n2 [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n2 [ ] Githooks for generating reports/linting  \n3 [ ] Review/Add More Linting Rules (linewrap, length, etc)  \n3 [ ] ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n3 [ ] Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n3 [ ] Test coverage saved in spec files  \n3 [ ] Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/\n3 [ ] Authorized vs Unauthorized endpoints\n\n#### Later:\n[ ] SSO Server (multiple servers connecting to one authorization server)\n\n",
+    "longname": "/Users/djunker/js/template/node.hapi/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-eslint\": \"^8.2.6\",\n    \"babel-polyfill\": \"^6.26.0\",\n    \"babel-preset-env\": \"^1.7.0\",\n    \"babel-preset-es2015\": \"^6.24.1\",\n    \"babel-preset-flow\": \"^6.23.0\",\n    \"babel-preset-stage-0\": \"^6.24.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"flow-bin\": \"^0.56.0\",\n    \"mocha\": \"^5.2.0\",\n    \"nyc\": \"^13.1.0\"\n  },\n  \"dependencies\": {\n    \"babel-core\": \"^6.26.3\",\n    \"chai\": \"^4.1.2\",\n    \"hapi\": \"^17.5.4\",\n    \"hapi-pino\": \"^5.1.0\"\n  },\n  \"scripts\": {\n    \"test\": \"./node_modules/.bin/nyc ./node_modules/.bin/mocha\",\n    \"test-report\": \"./node_modules/.bin/nyc report\",\n    \"clean\": \"rm -rf ./dist/\",\n    \"lint\": \"./node_modules/.bin/eslint src\",\n    \"lintfix\": \"./node_modules/.bin/eslint src --fix\",\n    \"flow\": \"./node_modules/.bin/flow\",\n    \"build\": \"npm run flow && npm run lint && ./node_modules/.bin/babel src -d dist\",\n    \"start\": \"node ./dist/entry.js\",\n    \"doc\": \"./node_modules/.bin/esdoc\"\n  }\n}\n",
+    "longname": "/Users/djunker/js/template/node.hapi/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "__docId__": 67,
+    "kind": "testFile",
+    "name": "node.hapi/dist/controllers/hello.spec.js",
+    "content": "\"use strict\";\n\nvar _hello = require(\"./hello.js\");\n\nvar _mocha = require(\"mocha\");\n\nvar _chai = require(\"chai\");\n\n(0, _mocha.describe)(\"HelloWorld\", function () {\n  (0, _mocha.describe)(\"basic()\", function () {\n    (0, _mocha.it)(\"returns 'Hello World!'\", function () {\n      var returned = _hello.HelloWorld.basic();\n\n      (0, _chai.expect)(returned).to.equal(\"Hello World!\");\n    });\n  });\n\n  (0, _mocha.describe)(\"name()\", function () {\n    (0, _mocha.it)(\"returns 'Hello {request.params.name}!'\", function () {\n      var request = {\n        params: {\n          name: \"Devlin\"\n        }\n      };\n\n      var returned = _hello.HelloWorld.name(request);\n      (0, _chai.expect)(returned).to.equal(\"Hello Devlin!\");\n\n      request.params.name = \"Michelle\";\n\n      returned = _hello.HelloWorld.name(request);\n      (0, _chai.expect)(returned).to.equal(\"Hello Michelle!\");\n    });\n  });\n});",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/dist/controllers/hello.spec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "testFile",
+    "name": "node.hapi/src/controllers/hello.spec.js",
+    "content": "import { HelloWorld } from \"./hello.js\";\n\nimport { describe, it } from \"mocha\";\nimport { expect } from \"chai\";\n\n/** @test {HelloWorld} */\ndescribe(\"HelloWorld\", () => {\n  /** @test {HelloWorld.basic} */\n  describe(\"basic()\", () => {\n    it(\"returns 'Hello World!'\", () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal(\"Hello World!\");\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe(\"name()\", () => {\n    it(\"returns '{request.params.name} says:'\", () => {\n      let request = {\n        params: {\n          name: \"Devlin\"\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Devlin says\")).to.be.true;\n\n      request.params.name = \"Michelle\";\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Michelle says\")).to.be.true;\n    });\n  });\n});\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/hello.spec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 69,
+    "kind": "test",
+    "name": "describe0",
+    "testId": 0,
+    "memberof": "node.hapi/src/controllers/hello.spec.js",
+    "testDepth": 0,
+    "static": true,
+    "longname": "node.hapi/src/controllers/hello.spec.js~describe0",
+    "access": null,
+    "description": "HelloWorld",
+    "lineNumber": 7,
+    "testTargets": [
+      "HelloWorld"
+    ]
+  },
+  {
+    "__docId__": 70,
+    "kind": "test",
+    "name": "describe1",
+    "testId": 1,
+    "memberof": "node.hapi/src/controllers/hello.spec.js~describe0",
+    "testDepth": 1,
+    "static": true,
+    "longname": "node.hapi/src/controllers/hello.spec.js~describe0.describe1",
+    "access": null,
+    "description": "basic()",
+    "lineNumber": 9,
+    "testTargets": [
+      "HelloWorld.basic"
+    ]
+  },
+  {
+    "__docId__": 71,
+    "kind": "test",
+    "name": "it2",
+    "testId": 2,
+    "memberof": "node.hapi/src/controllers/hello.spec.js~describe0.describe1",
+    "testDepth": 2,
+    "static": true,
+    "longname": "node.hapi/src/controllers/hello.spec.js~describe0.describe1.it2",
+    "access": null,
+    "description": "returns 'Hello World!'",
+    "lineNumber": 10
+  },
+  {
+    "__docId__": 72,
+    "kind": "test",
+    "name": "describe3",
+    "testId": 3,
+    "memberof": "node.hapi/src/controllers/hello.spec.js~describe0",
+    "testDepth": 1,
+    "static": true,
+    "longname": "node.hapi/src/controllers/hello.spec.js~describe0.describe3",
+    "access": null,
+    "description": "name()",
+    "lineNumber": 18,
+    "testTargets": [
+      "HelloWorld.name"
+    ]
+  },
+  {
+    "__docId__": 73,
+    "kind": "test",
+    "name": "it4",
+    "testId": 4,
+    "memberof": "node.hapi/src/controllers/hello.spec.js~describe0.describe3",
+    "testDepth": 2,
+    "static": true,
+    "longname": "node.hapi/src/controllers/hello.spec.js~describe0.describe3.it4",
+    "access": null,
+    "description": "returns '{request.params.name} says:'",
+    "lineNumber": 19
+  }
+]

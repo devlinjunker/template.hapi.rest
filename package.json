@@ -38,8 +38,10 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
+    "test-report": "./node_modules/.bin/nyc report",
     "clean": "rm -rf ./dist/",
     "lint": "./node_modules/.bin/eslint src",
+    "lintfix": "./node_modules/.bin/eslint src --fix",
     "flow": "./node_modules/.bin/flow",
     "build": "npm run flow && npm run lint && ./node_modules/.bin/babel src -d dist",
     "start": "node ./dist/entry.js",

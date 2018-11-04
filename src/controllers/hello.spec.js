@@ -3,7 +3,9 @@ import { HelloWorld } from "./hello.js";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
+/** @test {HelloWorld} */
 describe("HelloWorld", () => {
+  /** @test {HelloWorld.basic} */
   describe("basic()", () => {
     it("returns 'Hello World!'", () => {
       const returned = HelloWorld.basic();
@@ -12,8 +14,9 @@ describe("HelloWorld", () => {
     });
   });
 
+  /** @test {HelloWorld.name} */
   describe("name()", () => {
-    it("returns 'Hello {request.params.name}!'", () => {
+    it("returns '{request.params.name} says:'", () => {
       let request = {
         params: {
           name: "Devlin"
@@ -21,12 +24,12 @@ describe("HelloWorld", () => {
       };
 
       let returned = HelloWorld.name(request);
-      expect(returned).to.equal("Hello Devlin!");
+      expect(returned.startsWith("Devlin says")).to.be.true;
 
       request.params.name = "Michelle";
 
       returned = HelloWorld.name(request);
-      expect(returned).to.equal("Hello Michelle!");
+      expect(returned.startsWith("Michelle says")).to.be.true;
     });
   });
 });

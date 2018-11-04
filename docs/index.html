@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | HapiServer</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Template for Hapi Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiServer"><meta property="twitter:description" content="Template for Hapi Server"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.js~HelloWorld.html">HelloWorld</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="template-hapi-server-project">Template Hapi Server Project</h1><p>Node Project setup using Hapi to handle requests on a port to endpoints</p>
+<p><code>base/server</code> does all of the Hapi Server configuration and startup, and contains methods for adding the endpoints<br><code>controllers</code> files declare the endpoints and functions that are called.<br><code>entry.js</code> references these controller files and passes them to the server object that is instantiated in the same file  </p>
+<p>To compile to output directory <code>./dist/</code>, use <code>npm run build</code><br>To clean up and delete the output directory, use <code>npm run clean</code>  </p>
+<p>To start the server, use <code>npm run start</code>  </p>
+<h3 id="babel">Babel</h3><p>Babel is used to ensure ECMA2015 standards can be used in the javascript files
+ (let/const, destructuring, default params, restParams [...args], templates).
+Also has a babel preset for flow so that it works correctly</p>
+<p>TODO: Look into stage-0, seems like we should remove it</p>
+<h3 id="flow">Flow</h3><p>Static Type Checking with Flow, runs through type checking on any file with <code>//@flow</code> comment at beginning</p>
+<p>Read more at <a href="https://flow.org/docs/usage/">https://flow.org/docs/usage/</a> about how to use flow or <a href="https://flow.org/en/docs/">https://flow.org/en/docs/</a> for more documentation</p>
+<p>Run with <code>npm run flow</code> to check if any flow errors</p>
+<h3 id="linting">Linting</h3><p>ESLint for code linting to ensure consistent coding conventions are met.</p>
+<p>Run with <code>npm run lint</code> to check if any files with unmatched code conventions.<br>Can also fix with <code>npm run lintfix</code> to automatically attempt to fix the linting errors in the code files.</p>
+<p><code>.eslintrc.json</code> contains the rules for the code conventions</p>
+<h5 id="code-conventions-">Code Conventions:</h5><ul>
+<li>Indent 2 spaces  </li>
+<li>Unix Linebreak  </li>
+<li>Double Quotes  </li>
+<li>Require Semi-colons</li>
+<li>Warn of console.log statements<br>[ ] TODO: Single Quote?<br>[ ] TODO: No Trailing space<br>[ ] TODO: No Trailing Lines<br>[ ] TODO: No Double Empty Lines  </li>
+</ul>
+<h3 id="testing">Testing</h3><p>Mocha + Chai for assertions are used as the testing framework in this example. Mocha is stripped down
+and we need to add things like chai assertions and sinon back to the mix to get full features. Run with
+<code>npm run test</code> or <code>npm test</code></p>
+<p>NYC is used for coverage reports, use <code>npm run test-report</code> to see the coverage report for unit tests</p>
+<p>TODO: Include Sinon for stubbing/spying in tests</p>
+<h3 id="documentation">Documentation</h3><p>Documentation with esdoc, goes through javascript files and builds javadoc type html documentation for
+each Class in the source code. Can also link test files with classes for reference. This is output as
+html in the <code>./doc/</code> directory and can be viewed by opening the index.html file</p>
+<p>Update documentation with <code>npm run doc</code></p>
+<h4 id="things-to-do-">Things to do:</h4><p>1 [ ] Webpack<br>1 [ ] Run only affected tests on file save<br>1 [ ] Chai as promised and sinon-chai<br>1 [ ] Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a><br>2 [ ] Automatically find controller files in entry rather than need to reference<br>2 [ ] Add logging with Winston<br>2 [ ] ESLint ensuring files start with a comment <a href="https://github.com/Stuk/eslint-plugin-header">https://github.com/Stuk/eslint-plugin-header</a><br>2 [ ] Require Comments <a href="https://eslint.org/docs/rules/require-jsdoc">https://eslint.org/docs/rules/require-jsdoc</a> and valid <a href="https://eslint.org/docs/rules/valid-jsdoc">https://eslint.org/docs/rules/valid-jsdoc</a><br>2 [ ] Githooks for generating reports/linting<br>3 [ ] Review/Add More Linting Rules (linewrap, length, etc)<br>3 [ ] ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a><br>3 [ ] Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a><br>3 [ ] Test coverage saved in spec files<br>3 [ ] Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a><br>3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>
+3 [ ] Authorized vs Unauthorized endpoints</p>
+<h4 id="later-">Later:</h4><p>[ ] SSO Server (multiple servers connecting to one authorization server)</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
