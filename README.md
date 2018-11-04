@@ -62,22 +62,25 @@ html in the `./doc/` directory and can be viewed by opening the index.html file
 Update documentation with `npm run doc`
 
 #### Things to do:
-1 [ ] Webpack  
-1 [ ] Run only affected tests on file save  
-1 [ ] Chai as promised and sinon-chai  
-1 [ ] Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
-2 [ ] Automatically find controller files in entry rather than need to reference  
-2 [ ] Add logging with Winston  
-2 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
-2 [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-2 [ ] Githooks for generating reports/linting  
-3 [ ] Review/Add More Linting Rules (linewrap, length, etc)  
-3 [ ] ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
-3 [ ] Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
-3 [ ] Test coverage saved in spec files  
-3 [ ] Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
-3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/
-3 [ ] Authorized vs Unauthorized endpoints
+
+1 2 [ ] Webpack  
+1 2 [ ] Run only affected tests on file save  
+1 1 [ ] Chai as promised and sinon-chai  
+1 1 [ ] Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
+2 2 [ ] Automatically find controller files in entry rather than need to reference  
+2 2 [ ] Add logging with Winston  
+2 1 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+2 1 [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+2 3 [ ] Githooks for generating reports/linting  
+3 2 [ ] Review/Add More Linting Rules (linewrap, length, etc)  
+3 3 [ ] ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
+3 3 [ ] Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
+3 2 [ ] Test coverage saved in spec files  
+3 3 [ ] Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
+3 3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
+3 3 [ ] Authorized vs Unauthorized endpoints  
+3 1 [ ] ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
+3 3 [ ] Docsify?  
 
 #### Later:
 [ ] SSO Server (multiple servers connecting to one authorization server)
