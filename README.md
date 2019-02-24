@@ -67,7 +67,7 @@ Update documentation with `npm run doc`
 1 2 [ ] Run only affected tests on file save  
 1 1 [ ] Chai as promised and sinon-chai  
 1 1 [ ] Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
-1 3 [ ] OpenAPI
+1 3 [ ] OpenAPI   
 2 2 [ ] Automatically find controller files in entry rather than need to reference  
 2 2 [ ] Add logging with Winston  
 2 1 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
@@ -80,8 +80,8 @@ Update documentation with `npm run doc`
 3 3 [ ] Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
 3 3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
 3 3 [ ] Authorized vs Unauthorized endpoints  
-3 1 [ ] ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
-3 3 [ ] Docsify?  
+3 1 [x] ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
+3 3 ~~[ ] Docsify?~~  
 
 #### Later:
 [ ] SSO Server (multiple servers connecting to one authorization server)
