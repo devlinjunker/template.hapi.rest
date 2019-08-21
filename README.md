@@ -66,8 +66,8 @@ Update documentation with `npm run doc`
 1 2 [ ] Webpack  
 1 1 [ ] Chai as promised and sinon-chai  
 1 3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
-1 2 [ ] OpenAPI Validation 
-1 3 [ ] Simple MongoDB endpoint
+1 2 [ ] OpenAPI Validation  
+1 3 [ ] Simple MongoDB endpoint  
 2 1 [ ] Review/Add More Linting Rules (linewrap, length, etc)  
 2 1 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
 2 1 [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
