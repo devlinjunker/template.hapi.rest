@@ -1,12 +1,10 @@
 //@flow
-require("babel-core/register");
-require("babel-polyfill");
 const Pino = require("hapi-pino");
-const Hapi = require("hapi");
+const Hapi = require("@hapi/hapi");
 
 
 /**
- * Endpoint that can be created, should have a http method, path and controller that resolves when 
+ * Endpoint that can be created, should have a http method, path and controller that resolves when
  * the path is hit
  */
 interface Endpoint {

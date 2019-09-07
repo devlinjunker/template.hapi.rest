@@ -15,15 +15,26 @@
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "esdoc": "^1.1.0",
     "esdoc-flow-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^6.3.0",
+    "eslint-loader": "^3.0.0",
     "flow-bin": "^0.107.0",
     "mocha": "^6.2.0",
-    "webpack": "^4.39.3"
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@hapi/hapi": "^18.3.2",
+    "hapi-pino": "^6.1.0"
+  },
   "scripts": {
     "start-watch": "node_modules/karma/bin/karma start",
     "test-watch": "node_modules/karma/bin/karma start",
