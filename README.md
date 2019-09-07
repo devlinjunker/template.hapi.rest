@@ -1,89 +1,65 @@
-# Template Hapi Server Project
+# Basic Webpack Server App
 
-Node Project setup using Hapi to handle requests on a port to endpoints
+This is meant to be an example/template of how to use Webpack in the Backend for rapid development.
 
-`base/server` does all of the Hapi Server configuration and startup, and contains methods for adding the endpoints  
-`controllers` files declare the endpoints and functions that are called.  
-`entry.js` references these controller files and passes them to the server object that is instantiated in the same file  
+Simple endpoints that store and retrieve values
 
 
-To compile to output directory `./dist/`, use `npm run build`  
-To clean up and delete the output directory, use `npm run clean`  
+## Dependencies
 
-To start the server, use `npm run start`  
 
-### Babel
-Babel is used to ensure ECMA2015 standards can be used in the javascript files
- (let/const, destructuring, default params, restParams [...args], templates).
-Also has a babel preset for flow so that it works correctly
+## Development
 
-TODO: Look into stage-0, seems like we should remove it
+How to use this template to create a quick HTTP REST server.
 
-### Flow
-Static Type Checking with Flow, runs through type checking on any file with `//@flow` comment at beginning
+### Tests/Running
 
-Read more at https://flow.org/docs/usage/ about how to use flow or https://flow.org/en/docs/ for more documentation
+`npm run start-watch` to run Karma + Mocha and watch for changes while also opening the server. Webpack will recompile the project and restart the server when it is done
 
-Run with `npm run flow` to check if any flow errors
+`npm run test-watch` TODO: to run Karma + Mocha and all of the tests associated with the project and watch for changes on the files to re-run the tests
 
-### Linting
-ESLint for code linting to ensure consistent coding conventions are met.
+`npm run dev-watch` to run the only webpack and watch for changes on the files to recompile and reload the server
 
-Run with `npm run lint` to check if any files with unmatched code conventions.  
-Can also fix with `npm run lintfix` to automatically attempt to fix the linting errors in the code files.
+`npm run test-dev` ??
 
-`.eslintrc.json` contains the rules for the code conventions
+`npm run test` to run all of the unit tests for the application one time
 
-##### Code Conventions:
-- Indent 2 spaces  
-- Unix Linebreak  
-- Double Quotes  
-- Require Semi-colons
-- Warn of console.log statements  
-[ ] TODO: Single Quote?  
-[ ] TODO: No Trailing space  
-[ ] TODO: No Trailing Lines  
-[ ] TODO: No Double Empty Lines  
+`npm run dev` ?? to run a development version of the application
 
-### Testing
-Mocha + Chai for assertions are used as the testing framework in this example. Mocha is stripped down
-and we need to add things like chai assertions and sinon back to the mix to get full features. Run with
-`npm run test` or `npm test`
+`npm run doc` to generate static documentation in the doc folder
 
-NYC is used for coverage reports, use `npm run test-report` to see the coverage report for unit tests
+**TODO**
 
-TODO: Include Sinon for stubbing/spying in tests
+`npm run build` ... TODO: compile application to production version
 
-### Documentation
-Documentation with esdoc, goes through javascript files and builds javadoc type html documentation for
-each Class in the source code. Can also link test files with classes for reference. This is output as
-html in the `./doc/` directory and can be viewed by opening the index.html file
+`npm run clean` ... TODO: clean the workspace
 
-Update documentation with `npm run doc`
 
-#### Things to do:
 
-1 2 [ ] Webpack  
-1 1 [ ] Chai as promised and sinon-chai  
-1 3 [ ] OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
-1 2 [ ] OpenAPI Validation  
-1 3 [ ] Simple MongoDB endpoint  
-2 1 [ ] Review/Add More Linting Rules (linewrap, length, etc)  
-2 1 [ ] ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
-2 1 [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-2 2 [ ] Automatically find controller files in entry rather than need to reference  
-2 2 [ ] Add logging with Winston  
-2 3 [ ] Headers  
-2 2 [ ] Run only affected tests on file save  
-2 3 [ ] Githooks for generating reports/linting  
-3 3 [ ] ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
-3 3 [ ] Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
-3 2 [ ] Test coverage saved in spec files  
-3 1 [ ] Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
-3 2 [ ] Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
-3 3 [ ] Authorized vs Unauthorized endpoints  
-3 1 [x] ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
-3 3 ~~[ ] Docsify?~~  
+### TODO
 
-#### Later:
-[ ] SSO Server (multiple servers connecting to one authorization server)
+ - [..] (^) Webpack  
+    - [ ] babel/flow  
+    - [ ] eslint  
+    - [ ] tests  
+    - [ ] (v) production vs dev https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
+ - [ ] (^) Chai as promised and sinon-chai  
+ - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
+ - [ ] (^) OpenAPI Validation  
+ - [ ] (^) Simple MongoDB endpoint  
+ - [ ] (-) Review/Add More Linting Rules (linewrap, length, etc)  
+ - [ ] (-) ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+ - [ ] (-) Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+ - [ ] (-) Automatically find controller files in entry rather than need to reference  
+ - [ ] (-) Add logging with Winston/Bunyon  
+ - [ ] (-) Headers  
+ - [ ] (-) Run only affected tests on file save  
+ - [ ] (-) Githooks for generating reports/linting  
+ - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
+ - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
+ - [ ] (v) Test coverage saved in spec files  
+ - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
+ - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
+ - [ ] (v) Authorized vs Unauthorized endpoints  
+ - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
+ - ~~[ ] Docsify?~~  
