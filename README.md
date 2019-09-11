@@ -6,11 +6,22 @@ Simple endpoints that store and retrieve values
 
 
 ## Dependencies
+Node v8 and npm
 
+See [package.json](https://github.com/devlinjunker/basic.webpack/blob/master/package.json) for full list of current dependencies
+ - Hapi v18
+ - Webpack + Loaders
+ - Babel
+ - FlowJS
+ - ESLint
+ - Mocha ~~Chai, Sinon~~
+ - EsDoc
 
 ## Development
 
-How to use this template to create a quick HTTP REST server.
+How to use this template to create a quick HTTP REST server:
+
+1. Download and update dependencies
 
 ### Tests/Running
 
@@ -38,21 +49,30 @@ How to use this template to create a quick HTTP REST server.
 
 ### TODO
 
+ - [..] (^) require node 8
  - [..] (^) Webpack  
     - [ ] babel/flow  
+      - [x] sourcemap support
+    - [ ] nodemon
     - [ ] eslint  
     - [ ] tests  
-    - [ ] (v) production vs dev https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
+    - [ ] (v) production vs dev
+      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
+      - https://www.npmjs.com/package/babel-plugin-source-map-support#description
+ - [ ] (^) Update Node Version to v10
  - [ ] (^) Chai as promised and sinon-chai  
  - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
  - [ ] (^) OpenAPI Validation  
  - [ ] (^) Simple MongoDB endpoint  
- - [ ] (-) Review/Add More Linting Rules (linewrap, length, etc)  
- - [ ] (-) ESLint ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
- - [ ] (-) Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+ - [ ] (^) Env config file
+     - [ ] port
+     - [ ] other services/apis later?
+ - [ ] (^) Update Linting Rules (linewrap, length, etc)  
+    - [ ] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+    - [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+    - [ ] Headers  
  - [ ] (-) Automatically find controller files in entry rather than need to reference  
  - [ ] (-) Add logging with Winston/Bunyon  
- - [ ] (-) Headers  
  - [ ] (-) Run only affected tests on file save  
  - [ ] (-) Githooks for generating reports/linting  
  - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  

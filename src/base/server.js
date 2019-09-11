@@ -1,4 +1,7 @@
 //@flow
+require("source-map-support/register");
+require("@babel/register");
+require("@babel/polyfill");
 const Pino = require("hapi-pino");
 const Hapi = require("@hapi/hapi");
 

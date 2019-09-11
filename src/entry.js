@@ -10,8 +10,8 @@ const server = new Server();
 
 server.run();
 
-process.on("unhandledRejection", (err) => {
-  process.stdout.write(err);
+process.on("unhandledRejection", (err, err2) => {
+  process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });
 

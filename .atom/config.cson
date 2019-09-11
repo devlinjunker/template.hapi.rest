@@ -1,0 +1,30 @@
+"atom-ide-ui": ""
+
+"ide-css": ""
+
+"ide-html": ""
+
+"ide-flowtype": ""
+
+"linter-eslint":
+  "autofix":
+    "fixOnSave": true
+
+"language-babel": ""
+
+"hyperclick": ""
+
+"js-hyperclick": ""
+
+"hyperlink-hyperclick": ""
+
+"javascript-refactor": ""
+
+"highlight-selected": ""
+
+"docblockr": ""
+
+"todo":
+  "a_pattern":"(?:(TODO|IDEA|Q):.+|- \\[(\\.\\.| |\\?)\\] .+)"
+
+"pigments": ""

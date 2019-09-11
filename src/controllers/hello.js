@@ -24,7 +24,7 @@ export class HelloWorld {
 
     let name = request.params.name;
 
-    return name + " says: " + Math.random() + "!";
+    return name + " says: " + Math.random() + "!!!!";
   }
 }
 
