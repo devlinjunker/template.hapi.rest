@@ -51,26 +51,27 @@ How to use this template to create a quick HTTP REST server:
 
  - [..] (^) require node 8
  - [..] (^) Webpack  
-    - [ ] babel/flow  
+    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
+    - [x] babel
       - [x] sourcemap support
-    - [ ] nodemon
-    - [ ] eslint  
-    - [ ] tests  
-    - [ ] (v) production vs dev
-      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
       - https://www.npmjs.com/package/babel-plugin-source-map-support#description
+    - [x] flow webpack plugin - typechecking each compilation
+    - [x] eslinting  
+    - [ ] tests with karma
+    - [ ] nodemon to run server
+    - [ ] (v) production vs dev
+ - [ ] (^) Update Linting Rules (linewrap, length, etc)  
+    - [ ] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+    - [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+    - [ ] Headers  
  - [ ] (^) Update Node Version to v10
  - [ ] (^) Chai as promised and sinon-chai  
  - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
  - [ ] (^) OpenAPI Validation  
  - [ ] (^) Simple MongoDB endpoint  
- - [ ] (^) Env config file
+ - [ ] (^) Cofig.yaml and Env config file
      - [ ] port
      - [ ] other services/apis later?
- - [ ] (^) Update Linting Rules (linewrap, length, etc)  
-    - [ ] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
-    - [ ] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-    - [ ] Headers  
  - [ ] (-) Automatically find controller files in entry rather than need to reference  
  - [ ] (-) Add logging with Winston/Bunyon  
  - [ ] (-) Run only affected tests on file save  

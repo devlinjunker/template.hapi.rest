@@ -10,7 +10,7 @@ const server = new Server();
 
 server.run();
 
-process.on("unhandledRejection", (err, err2) => {
+process.on("unhandledRejection", (err) => {
   process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });
@@ -19,6 +19,8 @@ import infoRoutes from "./controllers/info.js";
 import helloRoutes from "./controllers/hello.js";
 
 let routes = infoRoutes.concat(helloRoutes);
+
+
 
 server.addEndpoints(routes);
 

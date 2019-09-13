@@ -31,6 +31,7 @@
     "eslint": "^6.3.0",
     "eslint-loader": "^3.0.0",
     "flow-bin": "^0.107.0",
+    "flow-webpack-plugin": "^1.2.0",
     "mocha": "^6.2.0",
     "source-map-support": "^0.5.13",
     "webpack": "^4.39.3",
