@@ -25,6 +25,8 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-source-map-support": "^2.1.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "esdoc": "^1.1.0",
     "esdoc-flow-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
@@ -32,24 +34,31 @@
     "eslint-loader": "^3.0.0",
     "flow-bin": "^0.107.0",
     "flow-webpack-plugin": "^1.2.0",
+    "karma-chrome-launcher": "^3.1.0",
     "mocha": "^6.2.0",
+    "mocha-loader": "^3.0.0",
+    "nodemon": "^1.19.2",
+    "require-context": "^1.1.0",
+    "sinon": "^7.4.2",
+    "sinon-chai": "^3.3.0",
     "source-map-support": "^0.5.13",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0"
   },
   "dependencies": {
     "@hapi/hapi": "^18.3.2",
     "hapi-pino": "^6.1.0"
   },
   "scripts": {
-    "start-watch": "node_modules/karma/bin/karma start",
-    "test-watch": "node_modules/karma/bin/karma start",
+    "start-watch": "./node_modules/.bin/webpack --watch & nodemon dist/server.bundle.js",
+    "test-watch": "node_modules/.bin/mocha --watch",
     "dev-watch": "./node_modules/.bin/webpack --watch",
-    "test": "node_modules/karma/bin/karma start --single-run",
-    "dev": " ## TODO",
+    "test": "node_modules/.bin/mocha",
     "doc": "./node_modules/.bin/esdoc",
+    "dev": " ## TODO",
     "build": "./node_modules/.bin/webpack",
     "clean": " ## TODO: clean up project files"
   }

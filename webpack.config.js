@@ -2,13 +2,15 @@ const path = require("path");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const FlowWebpackPlugin = require("flow-webpack-plugin");
+const WebpackShellPlugin = require("webpack-shell-plugin");
 
 const config =  {
   mode: "development",
   // Each entry will be loaded into webpage via <script> tags
   entry: {
     polyfill: "@babel/polyfill",
-    server: path.resolve(path.join(__dirname, "src/entry.js"))
+    server: path.resolve(path.join(__dirname, "src/entry.js")),
+    test: path.resolve(path.join(__dirname, "test/test.bootstrap.js"))
   },
 
   output: {
@@ -18,7 +20,7 @@ const config =  {
   },
   // Q: useful on server?
   devtool: "inline-source-map",
-  watch: true,
+  watch: false,
 
   target: "node",
   externals: [nodeExternals()],
@@ -37,6 +39,10 @@ const config =  {
       failOnErrorWatch: false,
       reportingSeverity: "error"
     }),
+
+    new WebpackShellPlugin({
+      onBuildExit: "mocha ./dist/test.bundle.js"
+    }),
   ],
 
   module: {
@@ -52,6 +58,16 @@ const config =  {
           {
             loader: "eslint-loader"
           }
+        ]
+      },
+      {
+        test: /\.spec\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+          // Run tests on compile
+            loader: "mocha-loader",
+          },
         ]
       },
     ]
