@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "name": "Server#addEndpoint",
+    "filePath": "src/base/server.js",
+    "lines": [
+      {
+        "lineNumber": 41,
+        "line": "      options: {"
+      },
+      {
+        "lineNumber": 42,
+        "line": "        prettyPrint: false,"
+      },
+      {
+        "lineNumber": 43,
+        "line": "        logEvents: [\"response\"]"
+      },
+      {
+        "lineNumber": 44,
+        "line": "      }"
+      },
+      {
+        "lineNumber": 45,
+        "line": "    });"
+      },
+      {
+        "lineNumber": 46,
+        "line": "  }"
+      },
+      {
+        "lineNumber": 47,
+        "line": ""
+      }
+    ],
+    "codeParams": [
+      "*"
+    ],
+    "docParams": [
+      "method",
+      "path",
+      "controller"
+    ]
+  }
+]

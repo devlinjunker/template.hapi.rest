@@ -1,12 +1,24 @@
 window.esdocSearchIndex = [
   [
-    "helloworld helloworld,helloworld",
+    "hapiserver/src/controllers/hello.js~helloworld",
+    "class/src/controllers/hello.js~HelloWorld.html",
+    "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/hello.js</span>",
+    "class"
+  ],
+  [
+    "hapiserver/src/base/server.js~server",
+    "class/src/base/server.js~Server.html",
+    "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
+    "class"
+  ],
+  [
+    "helloworld src/controllers/hello.js~helloworld,helloworld",
     "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber7",
     "HelloWorld",
     "test"
   ],
   [
-    "helloworld.basic helloworld.basic,helloworld.basic",
+    "helloworld.basic src/controllers/hello.js~helloworld.basic,helloworld.basic",
     "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber9",
     "HelloWorld basic()",
     "test"
@@ -18,7 +30,7 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "helloworld.name helloworld.name,helloworld.name",
+    "helloworld.name src/controllers/hello.js~helloworld.name,helloworld.name",
     "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber18",
     "HelloWorld name()",
     "test"
@@ -318,9 +330,69 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/base/server.js",
+    "file/src/base/server.js.html",
+    "src/base/server.js",
+    "file"
+  ],
+  [
+    "src/base/server.js~server#addendpoint",
+    "class/src/base/server.js~Server.html#instance-method-addEndpoint",
+    "src/base/server.js~Server#addEndpoint",
+    "method"
+  ],
+  [
+    "src/base/server.js~server#addendpoints",
+    "class/src/base/server.js~Server.html#instance-method-addEndpoints",
+    "src/base/server.js~Server#addEndpoints",
+    "method"
+  ],
+  [
+    "src/base/server.js~server#constructor",
+    "class/src/base/server.js~Server.html#instance-constructor-constructor",
+    "src/base/server.js~Server#constructor",
+    "method"
+  ],
+  [
+    "src/base/server.js~server#run",
+    "class/src/base/server.js~Server.html#instance-method-run",
+    "src/base/server.js~Server#run",
+    "method"
+  ],
+  [
+    "src/base/server.js~server#server",
+    "class/src/base/server.js~Server.html#instance-member-server",
+    "src/base/server.js~Server#server",
+    "member"
+  ],
+  [
+    "src/controllers/hello.js",
+    "file/src/controllers/hello.js.html",
+    "src/controllers/hello.js",
+    "file"
+  ],
+  [
+    "src/controllers/hello.js~helloworld.basic",
+    "class/src/controllers/hello.js~HelloWorld.html#static-method-basic",
+    "src/controllers/hello.js~HelloWorld.basic",
+    "method"
+  ],
+  [
+    "src/controllers/hello.js~helloworld.name",
+    "class/src/controllers/hello.js~HelloWorld.html#static-method-name",
+    "src/controllers/hello.js~HelloWorld.name",
+    "method"
+  ],
+  [
     "src/controllers/hello.spec.js",
     "file/src/controllers/hello.spec.js.html",
     "src/controllers/hello.spec.js",
+    "file"
+  ],
+  [
+    "src/controllers/info.js",
+    "file/src/controllers/info.js.html",
+    "src/controllers/info.js",
     "file"
   ],
   [

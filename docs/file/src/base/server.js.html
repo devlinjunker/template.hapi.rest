@@ -37,14 +37,15 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/base/server.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">//@flow
-require(&quot;babel-core/register&quot;);
-require(&quot;babel-polyfill&quot;);
+require(&quot;source-map-support/register&quot;);
+require(&quot;@babel/register&quot;);
+require(&quot;@babel/polyfill&quot;);
 const Pino = require(&quot;hapi-pino&quot;);
-const Hapi = require(&quot;hapi&quot;);
+const Hapi = require(&quot;@hapi/hapi&quot;);
 
 
 /**
- * Endpoint that can be created, should have a http method, path and controller that resolves when 
+ * Endpoint that can be created, should have a http method, path and controller that resolves when
  * the path is hit
  */
 interface Endpoint {

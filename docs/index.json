@@ -566,6 +566,280 @@
   {
     "__docId__": 48,
     "kind": "file",
+    "name": "src/base/server.js",
+    "content": "//@flow\nrequire(\"source-map-support/register\");\nrequire(\"@babel/register\");\nrequire(\"@babel/polyfill\");\nconst Pino = require(\"hapi-pino\");\nconst Hapi = require(\"@hapi/hapi\");\n\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n */\ninterface Endpoint {\n  method: string;\n  path: string;\n  controller: Function;\n}\n\n/**\n * Server class that starts and initializes Hapi server\n */\nexport default class Server {\n  server: any;\n\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: \"localhost\"\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write(\"Server started on \" + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: [\"response\"]\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n   * @param {string} path       URL path of endpoint\n   * @param {Function} controller Handler function that is triggered when endpoint is hit\n   */\n  addEndpoint({ method, path, controller}: Endpoint) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   */\n  addEndpoints(routes: Array<Endpoint>) {\n    for(var i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/base/server.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "name": "Pino",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Pino",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "name": "Hapi",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Hapi",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "class",
+    "name": "Server",
+    "memberof": "src/base/server.js",
+    "static": true,
+    "longname": "src/base/server.js~Server",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/base/server.js",
+    "importStyle": "Server",
+    "description": "Server class that starts and initializes Hapi server",
+    "lineNumber": 16,
+    "interface": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "server",
+    "memberof": "src/base/server.js~Server",
+    "static": false,
+    "longname": "src/base/server.js~Server#server",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "run",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/base/server.js~Server#run",
+    "access": "public",
+    "description": "Starts the server and registers any plugins",
+    "lineNumber": 29,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": "Resolves once server has started"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "addEndpoint",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#addEndpoint",
+    "access": "public",
+    "description": "Adds an endpoint at the path given handled by the controller",
+    "lineNumber": 48,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "method",
+        "description": "HTTP method the endpoint must be called with to trigger controller"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "path",
+        "description": "URL path of endpoint"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "controller",
+        "description": "Handler function that is triggered when endpoint is hit"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "addEndpoints",
+    "memberof": "src/base/server.js~Server",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/base/server.js~Server#addEndpoints",
+    "access": "public",
+    "description": "Adds the endpoints given to the server",
+    "lineNumber": 63,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<Endpoint>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "routes",
+        "description": "Routes to add to the server"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 57,
+    "kind": "file",
+    "name": "src/controllers/hello.js",
+    "content": "//@flow\n\n/**\n * NOTE: from Walmart interview: instantiating classes would be bad, these static functions are\n *    alright, but really could be pure functions as no state is needed\n *\n * Controllers for Hello World\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic() {\n    return \"Hello World!\";\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {RequestParams} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: any) {\n\n    let name = request.params.name;\n\n    return name + \" says: \" + Math.random() + \"!!!!\";\n  }\n}\n\nexport default [\n  {\n    path: \"/hello\",\n    method: \"GET\",\n    controller: HelloWorld.basic\n  },\n  {\n    path: \"/{name}\",\n    method: \"GET\",\n    controller: HelloWorld.name\n  }\n];\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/hello.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 58,
+    "kind": "class",
+    "name": "HelloWorld",
+    "memberof": "src/controllers/hello.js",
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/controllers/hello.js",
+    "importStyle": "{HelloWorld}",
+    "description": "NOTE: from Walmart interview: instantiating classes would be bad, these static functions are\n   alright, but really could be pure functions as no state is needed\n\nControllers for Hello World",
+    "lineNumber": 9,
+    "interface": false
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "basic",
+    "memberof": "src/controllers/hello.js~HelloWorld",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld.basic",
+    "access": "public",
+    "description": "Returns 'Hello World!'",
+    "lineNumber": 14,
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "Hello World!"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "name",
+    "memberof": "src/controllers/hello.js~HelloWorld",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/hello.js~HelloWorld.name",
+    "access": "public",
+    "description": "Returns a customized Hello Message",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "RequestParams"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "request",
+        "description": "Request Parameters"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "Customized Hello Message"
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
     "name": "src/controllers/hello.spec.js",
     "content": "import { HelloWorld } from \"./hello.js\";\n\nimport { describe, it } from \"mocha\";\nimport { expect } from \"chai\";\n\n/** @test {HelloWorld} */\ndescribe(\"HelloWorld\", () => {\n  /** @test {HelloWorld.basic} */\n  describe(\"basic()\", () => {\n    it(\"returns 'Hello World!'\", () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal(\"Hello World!\");\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe(\"name()\", () => {\n    it(\"returns '{request.params.name} says:'\", () => {\n      let request = {\n        params: {\n          name: \"Devlin\"\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Devlin says\")).to.be.true;\n\n      request.params.name = \"Michelle\";\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Michelle says\")).to.be.true;\n    });\n  });\n});\n",
     "static": true,
@@ -575,7 +849,55 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 49,
+    "__docId__": 62,
+    "kind": "file",
+    "name": "src/controllers/info.js",
+    "content": "//@flow\n\n/**\n * Basic Controller for returning server information\n * @param  {RequestParams} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: any) {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: \"/info\",\n    method: \"GET\",\n    controller\n  }\n];\n",
+    "static": true,
+    "longname": "/Users/djunker/js/template/node.hapi/src/controllers/info.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "controller",
+    "memberof": "src/controllers/info.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/info.js~controller",
+    "access": "public",
+    "export": false,
+    "importPath": "HapiServer/src/controllers/info.js",
+    "importStyle": null,
+    "description": "Basic Controller for returning server information",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "RequestParams"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "request",
+        "description": "Request Parameters"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "Server information Object"
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 64,
     "kind": "file",
     "name": "src/entry.js",
     "content": "//@flow\n\nimport Server from \"./base/server.js\";\n\n/**\n * Entry point that loads all routes for the server\n */\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on(\"unhandledRejection\", (err) => {\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from \"./controllers/info.js\";\nimport helloRoutes from \"./controllers/hello.js\";\n\nlet routes = infoRoutes.concat(helloRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
@@ -586,7 +908,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 50,
+    "__docId__": 65,
     "kind": "variable",
     "name": "server",
     "memberof": "src/entry.js",
@@ -597,16 +919,16 @@
     "importPath": "HapiServer/src/entry.js",
     "importStyle": null,
     "description": "Entry point that loads all routes for the server",
-    "lineNumber": 9,
+    "lineNumber": 7,
     "type": {
       "types": [
-        "*"
+        "src/base/server.js~Server"
       ]
     },
     "ignore": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 66,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -617,7 +939,7 @@
     "importPath": "HapiServer/src/entry.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -636,14 +958,14 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.0\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.3.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.39.3\",\n    \"webpack-cli\": \"^3.3.8\",\n    \"webpack-dev-server\": \"^3.8.0\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.3.2\",\n    \"hapi-pino\": \"^6.1.0\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.0\",\n    \"@babel/plugin-transform-flow-strip-types\": \"^7.4.4\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"babel-plugin-transform-flow-strip-types\": \"^6.22.0\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.4.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.40.2\",\n    \"webpack-cli\": \"^3.3.9\",\n    \"webpack-dev-server\": \"^3.8.1\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.4.0\",\n    \"hapi-pino\": \"^6.1.0\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
     "longname": "/Users/djunker/js/template/node.hapi/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
   },
   {
-    "__docId__": 52,
+    "__docId__": 67,
     "kind": "testFile",
     "name": "node.hapi/src/controllers/hello.spec.js",
     "content": "import { HelloWorld } from \"./hello.js\";\n\nimport { describe, it } from \"mocha\";\nimport { expect } from \"chai\";\n\n/** @test {HelloWorld} */\ndescribe(\"HelloWorld\", () => {\n  /** @test {HelloWorld.basic} */\n  describe(\"basic()\", () => {\n    it(\"returns 'Hello World!'\", () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal(\"Hello World!\");\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe(\"name()\", () => {\n    it(\"returns '{request.params.name} says:'\", () => {\n      let request = {\n        params: {\n          name: \"Devlin\"\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Devlin says\")).to.be.true;\n\n      request.params.name = \"Michelle\";\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith(\"Michelle says\")).to.be.true;\n    });\n  });\n});\n",
@@ -654,7 +976,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 53,
+    "__docId__": 68,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -670,7 +992,7 @@
     ]
   },
   {
-    "__docId__": 54,
+    "__docId__": 69,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -686,7 +1008,7 @@
     ]
   },
   {
-    "__docId__": 55,
+    "__docId__": 70,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -699,7 +1021,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 56,
+    "__docId__": 71,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -715,7 +1037,7 @@
     ]
   },
   {
-    "__docId__": 57,
+    "__docId__": 72,
     "kind": "test",
     "name": "it4",
     "testId": 4,
