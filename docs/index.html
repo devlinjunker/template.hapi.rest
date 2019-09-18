@@ -36,7 +36,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="basic-webpack-server-app">Basic Webpack Server App</h1><p>This is meant to be an example/template of how to use Webpack in the Backend for rapid development.</p>
-<p>Simple endpoints that store and retrieve values</p>
+<p>TODO: Simple endpoints that store and retrieve values</p>
 <h2 id="dependencies">Dependencies</h2><p>Node v8+ and npm
   (tested with node v8.12.0 and v10.15.1)</p>
 <p>See <a href="https://github.com/devlinjunker/basic.webpack/blob/master/package.json">package.json</a> for full list of current dependencies</p>
@@ -52,6 +52,12 @@
 <h2 id="development">Development</h2><p>How to use this template to create a quick HTTP REST server:</p>
 <ol>
 <li>Download and update dependencies</li>
+<li>Add Tests and Controller Files to <code>src/controllers/</code><ul>
+<li>For now, add reference to controller in <code>src/entry.js</code></li>
+</ul>
+</li>
+<li>Run <code>npm run start-watch</code> to compile and run server + tests in watch mode</li>
+<li>Navigate to <a href="http://localhost:3333/your_new_endpoint">http://localhost:3333/your_new_endpoint</a> to make a request and see the response</li>
 </ol>
 <h3 id="tests-running">Tests/Running</h3><p><code>npm run start-watch</code> to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done</p>
 <p><code>npm run test-watch</code> to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests</p>
@@ -93,9 +99,16 @@
 <li>Headers  </li>
 </ul>
 </li>
-<li>[ ] (^) Simple MongoDB endpoint  </li>
-<li>[ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  </li>
-<li>[ ] (^) OpenAPI Validation  </li>
+<li>[ ] (^) Simple DB endpoint  <ul>
+<li>MongoDB</li>
+<li>PostgreSQL</li>
+<li>ElasticSearch?</li>
+</ul>
+</li>
+<li>[ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
+<li>OpenAPI Validation  </li>
+</ul>
+</li>
 <li>[..] (^) Chai as promised and sinon-chai  </li>
 <li>[ ] (^) Config.yaml and Env config file<ul>
 <li>port</li>

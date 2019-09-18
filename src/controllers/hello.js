@@ -1,10 +1,7 @@
 //@flow
 
 /**
- * NOTE: from Walmart interview: instantiating classes would be bad, these static functions are
- *    alright, but really could be pure functions as no state is needed
- *
- * Controllers for Hello World
+ * Controllers for Basic "Hello World" Functions
  */
 export class HelloWorld {
   /**

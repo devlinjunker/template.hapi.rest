@@ -6,7 +6,7 @@ const WebpackShellPlugin = require("webpack-shell-plugin");
 
 const config =  {
   mode: "development",
-  // Each entry will be loaded into webpage via <script> tags
+  // Each entry will be compiled into dist/ directory
   entry: {
     polyfill: "@babel/polyfill",
     server: path.resolve(path.join(__dirname, "src/entry.js")),
@@ -18,7 +18,7 @@ const config =  {
     // Need to do this because path must be absolute
     path: path.resolve(__dirname, "dist")
   },
-  
+
   devtool: "inline-source-map",
   watch: false,
 

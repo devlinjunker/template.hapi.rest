@@ -2,7 +2,7 @@
 
 This is meant to be an example/template of how to use Webpack in the Backend for rapid development.
 
-Simple endpoints that store and retrieve values
+TODO: Simple endpoints that store and retrieve values
 
 
 ## Dependencies
@@ -23,6 +23,10 @@ See [package.json](https://github.com/devlinjunker/basic.webpack/blob/master/pac
 How to use this template to create a quick HTTP REST server:
 
 1. Download and update dependencies
+2. Add Tests and Controller Files to `src/controllers/`
+  - For now, add reference to controller in `src/entry.js`
+3. Run `npm run start-watch` to compile and run server + tests in watch mode
+4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response
 
 ### Tests/Running
 
@@ -75,9 +79,12 @@ How to use this template to create a quick HTTP REST server:
       - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
       - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
       - Headers  
- - [ ] (^) Simple MongoDB endpoint  
+ - [ ] (^) Simple DB endpoint  
+      - MongoDB
+      - PostgreSQL
+      - ElasticSearch?
  - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
- - [ ] (^) OpenAPI Validation  
+      - OpenAPI Validation  
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
