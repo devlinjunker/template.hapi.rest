@@ -26,5 +26,6 @@
 
 "todo":
   "a_pattern":"(?:(TODO|IDEA|Q):.+|- \\[(\\.\\.| |\\?)\\] .+)"
+  "c_ignorePaths": [ "docs" ]
 
 "pigments": ""

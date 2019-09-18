@@ -3,8 +3,15 @@
 How to run
 
 1. Ensure using Node v8
-2. `npm install -D`
-3. `npm run build`
-4. `npm run ..`
-     `start-watch` for server + unit tests in background
+2. Install Development Dependencies:
+    \033[1m npm install -D \033[0m
+3. Compile server files:
+    \033[1m npm run build \033[0m
+4. Run Server:
+    \033[1m npm run .. \033[0m
+      \033[1m start-watch \033[0m for hot reload server + unit tests in background
+      \033[1m test-watch \033[0m to run continuous unit tests in background ONLY
+      \033[1m dev-watch \033[0m to run hot reload server ONLY
+      \033[1m test \033[0m to run unit tests once
+      \033[1m dev \033[0m to run server in "development" mode
  

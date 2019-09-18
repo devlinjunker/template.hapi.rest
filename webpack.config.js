@@ -18,7 +18,7 @@ const config =  {
     // Need to do this because path must be absolute
     path: path.resolve(__dirname, "dist")
   },
-  // Q: useful on server?
+  
   devtool: "inline-source-map",
   watch: false,
 

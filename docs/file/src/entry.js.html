@@ -29,9 +29,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.js~HelloWorld.html">HelloWorld</a></span></span></li>
-</ul>
+  </ul>
 </div>
 </nav>
 
@@ -49,7 +47,7 @@ const server = new Server();
 server.run();
 
 process.on(&quot;unhandledRejection&quot;, (err) =&gt; {
-  process.stdout.write(err);
+  process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });
 
@@ -57,6 +55,8 @@ import infoRoutes from &quot;./controllers/info.js&quot;;
 import helloRoutes from &quot;./controllers/hello.js&quot;;
 
 let routes = infoRoutes.concat(helloRoutes);
+
+
 
 server.addEndpoints(routes);
 
