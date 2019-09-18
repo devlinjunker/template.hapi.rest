@@ -1,0 +1,10 @@
+\033[1mTemplate for Webpack built Hapi JS Server\033[0m
+
+How to run
+
+1. Ensure using Node v8
+2. `npm install -D`
+3. `npm run build`
+4. `npm run ..`
+     `start-watch` for server + unit tests in background
+ 

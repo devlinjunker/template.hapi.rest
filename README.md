@@ -43,6 +43,12 @@ How to use this template to create a quick HTTP REST server:
 
 `npm run clean` ... TODO: clean the workspace
 
+`npm start` .. TODO: start Server
+
+`npm stop` .. TODO: stop Server
+
+`npm restart` will restart once start/stop completed
+
 
 
 ### TODO
@@ -84,3 +90,33 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (v) Authorized vs Unauthorized endpoints  
  - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
+
+
+## Issues
+
+```
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: spawn mocha ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)
+    at onErrorNT (internal/child_process.js:362:16)
+    at _combinedTickCallback (internal/process/next_tick.js:139:11)
+    at process._tickCallback (internal/process/next_tick.js:181:9)
+```
+
+- Made sure using node v8 and re-ran `npm install -D`
+
+
+```
+module.js:550
+    throw err;
+    ^
+
+Error: Cannot find module 'babel-polyfill'
+```
+
+- Commented out line `polyfill: "@babel/polyfill",` in webpack.config.js
+- re-ran webpack `npm run build`
+- then uncommented line and ran `npm run start-watch`

@@ -58,8 +58,9 @@
     "dev-watch": "./node_modules/.bin/webpack --watch",
     "test": "node_modules/.bin/mocha",
     "doc": "./node_modules/.bin/esdoc",
-    "dev": " ## TODO",
+    "dev": " ## TODO build and run server",
     "build": "./node_modules/.bin/webpack",
-    "clean": " ## TODO: clean up project files"
+    "clean": " ## TODO: clean up project files",
+    "help": "echo \"$(cat help.txt)\""
   }
 }
