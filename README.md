@@ -9,7 +9,7 @@ TODO: Simple endpoints that store and retrieve values
 Node v8+ and npm
   (tested with node v8.12.0 and v10.15.1)
 
-See [package.json](https://github.com/devlinjunker/basic.webpack/blob/master/package.json) for full list of current dependencies
+See [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies
  - Hapi v18
  - Webpack + Loaders
  - Babel
@@ -89,6 +89,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
+ - [ ] (-) Headers
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
  - [ ] (-) Automatically find controller files in entry rather than need to reference  
@@ -101,10 +102,13 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
- - [ ] (v) Authorized vs Unauthorized endpoints  
  - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
 
+**Application**
+
+ - [ ] GET/POST/PUT/DELETE Note endpoints
+ - [ ] Authorized vs Unauthorized endpoints
 
 ## Issues
 
@@ -134,3 +138,8 @@ Error: Cannot find module 'babel-polyfill'
 - Commented out line `polyfill: "@babel/polyfill",` in webpack.config.js
 - re-ran webpack `npm run build`
 - then uncommented line and ran `npm run start-watch`
+
+
+## Notes/Ideas
+
+- OPTIONS requests?

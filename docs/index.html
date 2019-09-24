@@ -39,7 +39,7 @@
 <p>TODO: Simple endpoints that store and retrieve values</p>
 <h2 id="dependencies">Dependencies</h2><p>Node v8+ and npm
   (tested with node v8.12.0 and v10.15.1)</p>
-<p>See <a href="https://github.com/devlinjunker/basic.webpack/blob/master/package.json">package.json</a> for full list of current dependencies</p>
+<p>See <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json">package.json</a> for full list of current dependencies</p>
 <ul>
 <li>Hapi v18</li>
 <li>Webpack + Loaders</li>
@@ -115,6 +115,7 @@
 <li>other services/apis later?</li>
 </ul>
 </li>
+<li>[ ] (-) Headers</li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
 <li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
 <li>[ ] (-) Automatically find controller files in entry rather than need to reference  </li>
@@ -129,9 +130,13 @@
 <li>[ ] (v) Test coverage saved in spec files  </li>
 <li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
 <li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  </li>
-<li>[ ] (v) Authorized vs Unauthorized endpoints  </li>
 <li>[x] (v) ESDoc Manual <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
 <li><del>[ ] Docsify?</del>  </li>
+</ul>
+<p><strong>Application</strong></p>
+<ul>
+<li>[ ] GET/POST/PUT/DELETE Note endpoints</li>
+<li>[ ] Authorized vs Unauthorized endpoints</li>
 </ul>
 <h2 id="issues">Issues</h2><pre><code><code class="source-code prettyprint">events.js:183
       throw er; // Unhandled &apos;error&apos; event
@@ -154,6 +159,9 @@ Error: Cannot find module &apos;babel-polyfill&apos;</code>
 <li>Commented out line <code>polyfill: &quot;@babel/polyfill&quot;,</code> in webpack.config.js</li>
 <li>re-ran webpack <code>npm run build</code></li>
 <li>then uncommented line and ran <code>npm run start-watch</code></li>
+</ul>
+<h2 id="notes-ideas">Notes/Ideas</h2><ul>
+<li>OPTIONS requests?</li>
 </ul>
 </div>
 </div>

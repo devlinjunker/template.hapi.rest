@@ -13,39 +13,33 @@ window.esdocSearchIndex = [
   ],
   [
     "helloworld src/controllers/hello.js~helloworld,helloworld",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber7",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber7",
     "HelloWorld",
     "test"
   ],
   [
     "helloworld.basic src/controllers/hello.js~helloworld.basic,helloworld.basic",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber9",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber9",
     "HelloWorld basic()",
     "test"
   ],
   [
     "",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber10",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber10",
     "HelloWorld basic() returns 'Hello World!'",
     "test"
   ],
   [
     "helloworld.name src/controllers/hello.js~helloworld.name,helloworld.name",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber18",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber18",
     "HelloWorld name()",
     "test"
   ],
   [
     "",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html#lineNumber19",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber19",
     "HelloWorld name() returns '{request.params.name} says:'",
     "test"
-  ],
-  [
-    "node.hapi/src/controllers/hello.spec.js",
-    "test-file/node.hapi/src/controllers/hello.spec.js.html",
-    "node.hapi/src/controllers/hello.spec.js",
-    "testFile"
   ],
   [
     "src/.external-ecmascript.js~array",
@@ -400,5 +394,11 @@ window.esdocSearchIndex = [
     "file/src/entry.js.html",
     "src/entry.js",
     "file"
+  ],
+  [
+    "template.node.hapi/src/controllers/hello.spec.js",
+    "test-file/template.node.hapi/src/controllers/hello.spec.js.html",
+    "template.node.hapi/src/controllers/hello.spec.js",
+    "testFile"
   ]
 ]
