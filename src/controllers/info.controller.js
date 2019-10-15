@@ -1,11 +1,13 @@
-// @flow
+/**
+ * @flow
+ */
 
 /**
  * Basic Controller for returning server information
  * @param  {HapiRequest} request Request Parameters
  * @return {Object}         Server information Object
  */
-function controller(request: any) {
+function controller(request: any): any {
   return request.server.info;
 }
 

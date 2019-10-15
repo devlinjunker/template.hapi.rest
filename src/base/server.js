@@ -1,4 +1,8 @@
-// @flow
+/**
+ * @flow
+ *
+ * @type Server class
+ */
 require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');

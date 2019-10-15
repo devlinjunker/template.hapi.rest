@@ -28,6 +28,11 @@ const config =  {
   resolve: {
     extensions: ['.js'],
     modules: ['node_modules'],
+    alias: {
+      // `app/controllers/hello.controller.js` transforms to
+      //  `<PROJECT_ROOT>/src/controllers/hello.controller.js`
+      app: path.resolve(__dirname, './src')
+    }
   },
 
   plugins: [

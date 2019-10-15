@@ -1,4 +1,8 @@
-// @flow
+/**
+ * @flow
+ *
+ * @type HelloWorldController
+ */
 
 /**
  * Controllers for Basic "Hello World" Functions
@@ -10,7 +14,7 @@ export class HelloWorld {
    * Returns 'Hello World!'
    * @return {String} Hello World!
    */
-  static basic() {
+  static basic(): string {
     return 'Hello World!';
   }
 
@@ -19,7 +23,7 @@ export class HelloWorld {
    * @param  {HapiRequest} request Request Parameters
    * @return {String}         Customized Hello Message
    */
-  static name(request: any) {
+  static name(request: any): string {
 
     const name = request.params.name;
 

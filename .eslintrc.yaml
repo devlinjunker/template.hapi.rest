@@ -19,6 +19,7 @@ plugins:
   - prettier
   - flowtype
   - header
+  - flowtype-errors
 
 extends:
   - eslint:recommended
@@ -33,8 +34,10 @@ globals:
 # Rules for only some file locations/paths (globs)
 overrides:
   - files:
-    - src/*.js
-    excludedFiles: spec/*.js
+    - src/**/*.js
+    excludedFiles:
+      - test/*.js
+      - ./**/*.spec.js
     rules:
       header/header:
         - error
@@ -52,6 +55,10 @@ overrides:
       flowtype/require-parameter-type:
         - warn
       flowtype/no-weak-types:
+        - warn
+      flowtype-errors/show-errors:
+        - error
+      flowtype-errors/show-warnings:
         - warn
 
 # Custom Rules Below
