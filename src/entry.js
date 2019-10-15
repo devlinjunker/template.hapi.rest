@@ -18,8 +18,9 @@ process.on('unhandledRejection', (err) => {
 
 import infoRoutes from './controllers/info.controller.js';
 import helloRoutes from './controllers/hello.controller.js';
+import noteRoutes from './controllers/note.controller.js';
 
-const routes = infoRoutes.concat(helloRoutes);
+const routes = infoRoutes.concat(helloRoutes, noteRoutes);
 
 
 

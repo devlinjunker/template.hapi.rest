@@ -59,6 +59,9 @@ How to use this template to create a quick HTTP REST server:
 `npm restart` will restart once start/stop completed
 
 
+## Notes/Ideas
+
+ - OPTIONS requests?
 
 ### TODO
 
@@ -89,6 +92,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
+     -overrides
  - [ ] (-) Headers
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
@@ -105,13 +109,15 @@ How to use this template to create a quick HTTP REST server:
  - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
 
-**Application**
+### Application
 
  - [ ] GET/POST/PUT/DELETE Note endpoints
  - [ ] Garbage UPC (External API) endpoint
     - Map to information/notes?
  - [ ] Connect to Google Drive/Oauth
  - [ ] Authorized vs Unauthorized endpoints
+ - [ ] SSO Server
+
 
 ## Issues
 
@@ -141,8 +147,3 @@ Error: Cannot find module 'babel-polyfill'
 - Commented out line `polyfill: "@babel/polyfill",` in webpack.config.js
 - re-ran webpack `npm run build`
 - then uncommented line and ran `npm run start-watch`
-
-
-## Notes/Ideas
-
-- OPTIONS requests?

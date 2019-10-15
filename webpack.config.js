@@ -1,33 +1,33 @@
-const path = require("path");
-const webpack = require("webpack");
-const nodeExternals = require("webpack-node-externals");
-const FlowWebpackPlugin = require("flow-webpack-plugin");
-const WebpackShellPlugin = require("webpack-shell-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const FlowWebpackPlugin = require('flow-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const config =  {
-  mode: "development",
+  mode: 'development',
   // Each entry will be compiled into dist/ directory
   entry: {
-    polyfill: "@babel/polyfill",
-    server: path.resolve(path.join(__dirname, "src/entry.js")),
-    test: path.resolve(path.join(__dirname, "test/test.bootstrap.js"))
+    polyfill: '@babel/polyfill',
+    server: path.resolve(path.join(__dirname, 'src/entry.js')),
+    test: path.resolve(path.join(__dirname, 'test/test.bootstrap.js'))
   },
 
   output: {
-    filename: "[name].bundle.js",
+    filename: '[name].bundle.js',
     // Need to do this because path must be absolute
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, 'dist')
   },
 
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   watch: false,
 
-  target: "node",
+  target: 'node',
   externals: [nodeExternals()],
 
   resolve: {
-    extensions: [".js"],
-    modules: ["node_modules"],
+    extensions: ['.js'],
+    modules: ['node_modules'],
   },
 
   plugins: [
@@ -37,11 +37,11 @@ const config =  {
     new FlowWebpackPlugin({
       failOnError: false,
       failOnErrorWatch: false,
-      reportingSeverity: "error"
+      reportingSeverity: 'error'
     }),
 
     new WebpackShellPlugin({
-      onBuildExit: "mocha ./dist/test.bundle.js"
+      onBuildExit: 'mocha ./dist/test.bundle.js'
     }),
   ],
 
@@ -53,10 +53,10 @@ const config =  {
         use: [
           {
           // Use Babel to get ES6 syntax
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
           {
-            loader: "eslint-loader"
+            loader: 'eslint-loader'
           }
         ]
       },
@@ -66,7 +66,7 @@ const config =  {
         use: [
           {
           // Run tests on compile
-            loader: "mocha-loader",
+            loader: 'mocha-loader',
           },
         ]
       },

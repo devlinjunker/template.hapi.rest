@@ -2,7 +2,7 @@
 
 /**
  * Basic Controller for returning server information
- * @param  {RequestParams} request Request Parameters
+ * @param  {HapiRequest} request Request Parameters
  * @return {Object}         Server information Object
  */
 function controller(request: any) {

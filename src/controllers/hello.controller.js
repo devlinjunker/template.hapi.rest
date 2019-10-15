@@ -2,6 +2,8 @@
 
 /**
  * Controllers for Basic "Hello World" Functions
+ *
+ * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition
  */
 export class HelloWorld {
   /**
@@ -14,7 +16,7 @@ export class HelloWorld {
 
   /**
    * Returns a customized Hello Message
-   * @param  {RequestParams} request Request Parameters
+   * @param  {HapiRequest} request Request Parameters
    * @return {String}         Customized Hello Message
    */
   static name(request: any) {
