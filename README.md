@@ -75,14 +75,14 @@ How to use this template to create a quick HTTP REST server:
       - [ ] (v) production vs dev
         - pm2 for production
         - proper logging
- - [ ] (^) Update Linting Rules (linewrap, length, etc)  
+ - [x] (^) Update Linting Rules (linewrap, length, etc)  
       - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
       - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
       - Headers  
  - [ ] (^) Simple DB endpoint  
       - MongoDB
-      - PostgreSQL
-      - ElasticSearch?
+      - PostgreSQL or MariaDB
+      - ElasticSearch? for search endpoint
  - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
       - OpenAPI Validation  
  - [..] (^) Chai as promised and sinon-chai  
@@ -108,6 +108,9 @@ How to use this template to create a quick HTTP REST server:
 **Application**
 
  - [ ] GET/POST/PUT/DELETE Note endpoints
+ - [ ] Garbage UPC (External API) endpoint
+    - Map to information/notes?
+ - [ ] Connect to Google Drive/Oauth
  - [ ] Authorized vs Unauthorized endpoints
 
 ## Issues

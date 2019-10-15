@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 /**
  * Basic Controller for returning server information
@@ -11,8 +11,8 @@ function controller(request: any) {
 
 export default [
   {
-    path: "/info",
-    method: "GET",
+    path: '/info',
+    method: 'GET',
     controller
   }
 ];

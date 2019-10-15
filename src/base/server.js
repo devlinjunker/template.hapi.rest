@@ -1,9 +1,9 @@
-//@flow
-require("source-map-support/register");
-require("@babel/register");
-require("@babel/polyfill");
-const Pino = require("hapi-pino");
-const Hapi = require("@hapi/hapi");
+// @flow
+require('source-map-support/register');
+require('@babel/register');
+require('@babel/polyfill');
+const Pino = require('hapi-pino');
+const Hapi = require('@hapi/hapi');
 
 
 /**
@@ -22,10 +22,13 @@ interface Endpoint {
 export default class Server {
   server: any;
 
+  /**
+   * Server Constructor
+   */
   constructor() {
     this.server = Hapi.server({
       port: 3333,
-      host: "localhost"
+      host: 'localhost'
     });
   }
 
@@ -35,13 +38,13 @@ export default class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write("Server started on " + this.server.info.port);
+    process.stdout.write('Server started on ' + this.server.info.port);
 
     await this.server.register({
       plugin: Pino,
       options: {
         prettyPrint: false,
-        logEvents: ["response"]
+        logEvents: ['response']
       }
     });
   }
@@ -52,8 +55,9 @@ export default class Server {
    * @param {string} method     HTTP method the endpoint must be called with to trigger controller
    * @param {string} path       URL path of endpoint
    * @param {Function} controller Handler function that is triggered when endpoint is hit
+   * @return {undefined}
    */
-  addEndpoint({ method, path, controller}: Endpoint) {
+  addEndpoint({ method, path, controller }: Endpoint) {
     this.server.route({
       method,
       path,
@@ -67,9 +71,10 @@ export default class Server {
   /**
    * Adds the endpoints given to the server
    * @param {Array<Endpoint>} routes Routes to add to the server
+   * @returns {undefined}
    */
   addEndpoints(routes: Array<Endpoint>) {
-    for(var i = 0; i < routes.length; i++) {
+    for (let i = 0; i < routes.length; i++) {
       this.addEndpoint(routes[i]);
     }
   }
