@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/entry.js | HapiServer</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">template.node.hapi/src/controllers/hello.controller.spec.js | HapiServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -35,37 +35,42 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/entry.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @flow
- *
- * Entry point that loads all routes for the server
- */
+<div class="content" data-ice="content"><h1 data-ice="title">template.node.hapi/src/controllers/hello.controller.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { HelloWorld } from &apos;./hello.controller.js&apos;;
 
-import Server from &apos;./base/server.js&apos;;
+import { describe, it } from &apos;mocha&apos;;
+import { expect } from &apos;chai&apos;;
 
+/** @test {HelloWorld} */
+describe(&apos;HelloWorld&apos;, () =&gt; {
+  /** @test {HelloWorld.basic} */
+  describe(&apos;basic()&apos;, () =&gt; {
+    it(&apos;returns \&apos;Hello World!\&apos;&apos;, () =&gt; {
+      const returned = HelloWorld.basic();
 
-const server = new Server();
+      expect(returned).to.equal(&apos;Hello World!&apos;);
+    });
+  });
 
-server.run();
+  /** @test {HelloWorld.name} */
+  describe(&apos;name()&apos;, () =&gt; {
+    it(&apos;returns \&apos;{request.params.name} says:\&apos;&apos;, () =&gt; {
+      const request = {
+        params: {
+          name: &apos;Devlin&apos;
+        }
+      };
 
-process.on(&apos;unhandledRejection&apos;, (err) =&gt; {
-  process.stdout.write(JSON.stringify(err));
-  process.exit(1);
+      let returned = HelloWorld.name(request);
+      expect(returned.startsWith(&apos;Devlin says&apos;)).to.be.true;
+
+      request.params.name = &apos;Michelle&apos;;
+
+      returned = HelloWorld.name(request);
+      expect(returned.startsWith(&apos;Michelle says&apos;)).to.be.true;
+    });
+  });
 });
-
-import infoRoutes from &apos;./controllers/info.controller.js&apos;;
-import helloRoutes from &apos;./controllers/hello.controller.js&apos;;
-import noteRoutes from &apos;./controllers/note.controller.js&apos;;
-
-const routes = infoRoutes.concat(helloRoutes, noteRoutes);
-
-
-
-server.addEndpoints(routes);
-
-// auto detect routes
-// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
 </code></pre>
 
 </div>

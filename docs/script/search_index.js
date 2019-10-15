@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "hapiserver/src/controllers/hello.js~helloworld",
-    "class/src/controllers/hello.js~HelloWorld.html",
-    "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/hello.js</span>",
+    "hapiserver/src/controllers/hello.controller.js~helloworld",
+    "class/src/controllers/hello.controller.js~HelloWorld.html",
+    "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/hello.controller.js</span>",
     "class"
   ],
   [
@@ -12,32 +12,32 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "helloworld src/controllers/hello.js~helloworld,helloworld",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber7",
+    "helloworld src/controllers/hello.controller.js~helloworld,helloworld",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber7",
     "HelloWorld",
     "test"
   ],
   [
-    "helloworld.basic src/controllers/hello.js~helloworld.basic,helloworld.basic",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber9",
+    "helloworld.basic src/controllers/hello.controller.js~helloworld.basic,helloworld.basic",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber9",
     "HelloWorld basic()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber10",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber10",
     "HelloWorld basic() returns 'Hello World!'",
     "test"
   ],
   [
-    "helloworld.name src/controllers/hello.js~helloworld.name,helloworld.name",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber18",
+    "helloworld.name src/controllers/hello.controller.js~helloworld.name,helloworld.name",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber18",
     "HelloWorld name()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html#lineNumber19",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber19",
     "HelloWorld name() returns '{request.params.name} says:'",
     "test"
   ],
@@ -360,33 +360,39 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/controllers/hello.js",
-    "file/src/controllers/hello.js.html",
-    "src/controllers/hello.js",
+    "src/controllers/hello.controller.js",
+    "file/src/controllers/hello.controller.js.html",
+    "src/controllers/hello.controller.js",
     "file"
   ],
   [
-    "src/controllers/hello.js~helloworld.basic",
-    "class/src/controllers/hello.js~HelloWorld.html#static-method-basic",
-    "src/controllers/hello.js~HelloWorld.basic",
+    "src/controllers/hello.controller.js~helloworld.basic",
+    "class/src/controllers/hello.controller.js~HelloWorld.html#static-method-basic",
+    "src/controllers/hello.controller.js~HelloWorld.basic",
     "method"
   ],
   [
-    "src/controllers/hello.js~helloworld.name",
-    "class/src/controllers/hello.js~HelloWorld.html#static-method-name",
-    "src/controllers/hello.js~HelloWorld.name",
+    "src/controllers/hello.controller.js~helloworld.name",
+    "class/src/controllers/hello.controller.js~HelloWorld.html#static-method-name",
+    "src/controllers/hello.controller.js~HelloWorld.name",
     "method"
   ],
   [
-    "src/controllers/hello.spec.js",
-    "file/src/controllers/hello.spec.js.html",
-    "src/controllers/hello.spec.js",
+    "src/controllers/hello.controller.spec.js",
+    "file/src/controllers/hello.controller.spec.js.html",
+    "src/controllers/hello.controller.spec.js",
     "file"
   ],
   [
-    "src/controllers/info.js",
-    "file/src/controllers/info.js.html",
-    "src/controllers/info.js",
+    "src/controllers/info.controller.js",
+    "file/src/controllers/info.controller.js.html",
+    "src/controllers/info.controller.js",
+    "file"
+  ],
+  [
+    "src/controllers/note.controller.js",
+    "file/src/controllers/note.controller.js.html",
+    "src/controllers/note.controller.js",
     "file"
   ],
   [
@@ -396,9 +402,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "template.node.hapi/src/controllers/hello.spec.js",
-    "test-file/template.node.hapi/src/controllers/hello.spec.js.html",
-    "template.node.hapi/src/controllers/hello.spec.js",
+    "template.node.hapi/src/controllers/hello.controller.spec.js",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html",
+    "template.node.hapi/src/controllers/hello.controller.spec.js",
     "testFile"
   ]
 ]

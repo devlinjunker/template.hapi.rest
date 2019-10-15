@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/base/server.js | HapiServer</title>
+  <title data-ice="title">src/controllers/info.controller.js | HapiServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -35,88 +35,25 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/base/server.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/controllers/info.controller.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// @flow
-require(&apos;source-map-support/register&apos;);
-require(&apos;@babel/register&apos;);
-require(&apos;@babel/polyfill&apos;);
-const Pino = require(&apos;hapi-pino&apos;);
-const Hapi = require(&apos;@hapi/hapi&apos;);
-
 
 /**
- * Endpoint that can be created, should have a http method, path and controller that resolves when
- * the path is hit
+ * Basic Controller for returning server information
+ * @param  {HapiRequest} request Request Parameters
+ * @return {Object}         Server information Object
  */
-interface Endpoint {
-  method: string;
-  path: string;
-  controller: Function;
+function controller(request: any) {
+  return request.server.info;
 }
 
-/**
- * Server class that starts and initializes Hapi server
- */
-export default class Server {
-  server: any;
-
-  /**
-   * Server Constructor
-   */
-  constructor() {
-    this.server = Hapi.server({
-      port: 3333,
-      host: &apos;localhost&apos;
-    });
+export default [
+  {
+    path: &apos;/info&apos;,
+    method: &apos;GET&apos;,
+    controller
   }
-
-  /**
-   * Starts the server and registers any plugins
-   * @return {Promise} Resolves once server has started
-   */
-  async run() {
-    await this.server.start();
-    process.stdout.write(&apos;Server started on &apos; + this.server.info.port);
-
-    await this.server.register({
-      plugin: Pino,
-      options: {
-        prettyPrint: false,
-        logEvents: [&apos;response&apos;]
-      }
-    });
-  }
-
-
-  /**
-   * Adds an endpoint at the path given handled by the controller
-   * @param {string} method     HTTP method the endpoint must be called with to trigger controller
-   * @param {string} path       URL path of endpoint
-   * @param {Function} controller Handler function that is triggered when endpoint is hit
-   * @return {undefined}
-   */
-  addEndpoint({ method, path, controller }: Endpoint) {
-    this.server.route({
-      method,
-      path,
-      handler: controller,
-      options: {
-        cors: true
-      }
-    });
-  }
-
-  /**
-   * Adds the endpoints given to the server
-   * @param {Array&lt;Endpoint&gt;} routes Routes to add to the server
-   * @returns {undefined}
-   */
-  addEndpoints(routes: Array&lt;Endpoint&gt;) {
-    for (let i = 0; i &lt; routes.length; i++) {
-      this.addEndpoint(routes[i]);
-    }
-  }
-}
+];
 </code></pre>
 
 </div>

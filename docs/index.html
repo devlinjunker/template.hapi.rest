@@ -30,7 +30,7 @@
   <ul>
     
   <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.js~HelloWorld.html">HelloWorld</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -73,6 +73,9 @@
 <p><code>npm start</code> .. TODO: start production Server</p>
 <p><code>npm stop</code> .. TODO: stop production Server</p>
 <p><code>npm restart</code> will restart once start/stop completed</p>
+<h2 id="notes-ideas">Notes/Ideas</h2><ul>
+<li>OPTIONS requests?</li>
+</ul>
 <h3 id="todo">TODO</h3><ul>
 <li>[x] (^) Node 8</li>
 <li>[x] (^) Webpack  <ul>
@@ -93,7 +96,7 @@
 </li>
 </ul>
 </li>
-<li>[ ] (^) Update Linting Rules (linewrap, length, etc)  <ul>
+<li>[x] (^) Update Linting Rules (linewrap, length, etc)  <ul>
 <li>ensuring files start with a comment <a href="https://github.com/Stuk/eslint-plugin-header">https://github.com/Stuk/eslint-plugin-header</a>  </li>
 <li>Require Comments <a href="https://eslint.org/docs/rules/require-jsdoc">https://eslint.org/docs/rules/require-jsdoc</a> and valid <a href="https://eslint.org/docs/rules/valid-jsdoc">https://eslint.org/docs/rules/valid-jsdoc</a>  </li>
 <li>Headers  </li>
@@ -101,8 +104,8 @@
 </li>
 <li>[ ] (^) Simple DB endpoint  <ul>
 <li>MongoDB</li>
-<li>PostgreSQL</li>
-<li>ElasticSearch?</li>
+<li>PostgreSQL or MariaDB</li>
+<li>ElasticSearch? for search endpoint</li>
 </ul>
 </li>
 <li>[ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
@@ -112,7 +115,8 @@
 <li>[..] (^) Chai as promised and sinon-chai  </li>
 <li>[ ] (^) Config.yaml and Env config file<ul>
 <li>port</li>
-<li>other services/apis later?</li>
+<li>other services/apis later?
+-overrides</li>
 </ul>
 </li>
 <li>[ ] (-) Headers</li>
@@ -133,10 +137,15 @@
 <li>[x] (v) ESDoc Manual <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
 <li><del>[ ] Docsify?</del>  </li>
 </ul>
-<p><strong>Application</strong></p>
-<ul>
+<h3 id="application">Application</h3><ul>
 <li>[ ] GET/POST/PUT/DELETE Note endpoints</li>
+<li>[ ] Garbage UPC (External API) endpoint<ul>
+<li>Map to information/notes?</li>
+</ul>
+</li>
+<li>[ ] Connect to Google Drive/Oauth</li>
 <li>[ ] Authorized vs Unauthorized endpoints</li>
+<li>[ ] SSO Server</li>
 </ul>
 <h2 id="issues">Issues</h2><pre><code><code class="source-code prettyprint">events.js:183
       throw er; // Unhandled &apos;error&apos; event
@@ -159,9 +168,6 @@ Error: Cannot find module &apos;babel-polyfill&apos;</code>
 <li>Commented out line <code>polyfill: &quot;@babel/polyfill&quot;,</code> in webpack.config.js</li>
 <li>re-ran webpack <code>npm run build</code></li>
 <li>then uncommented line and ran <code>npm run start-watch</code></li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>OPTIONS requests?</li>
 </ul>
 </div>
 </div>
