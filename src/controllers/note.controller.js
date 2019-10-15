@@ -1,10 +1,12 @@
 /**
  * @flow
+ *
+ * @type NoteController
  */
 // // TODO: Remove this
 /* eslint-disable no-unused-vars */
 
-import NoteDataservice from 'app/dataservice/note.service.js';
+import NoteDataservice from 'app/dataservices/note.service.js';
 
 /**
  * Container Controller for Note CRUD Functions
