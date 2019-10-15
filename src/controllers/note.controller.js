@@ -28,7 +28,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {Note}        [description]
    */
-  static createNote({ params }) {
+  static createNote({ params }: any) {
 
   }
 
@@ -37,7 +37,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {Note}        [description]
    */
-  static updateNote({ params }) {
+  static updateNote({ params }: any) {
 
   }
 
@@ -46,7 +46,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {boolean}        [description]
    */
-  static deleteNote({ params }) {
+  static deleteNote({ params }: any) {
 
   }
 }

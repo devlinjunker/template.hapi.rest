@@ -13,7 +13,7 @@ class NoteDataservice {
    * @param  {number} id  ID number of the Note to retrieve
    * @return {Note}       Note object
    */
-  getNote({ id }): any {
+  getNote({ id }: any): any {
     return this.datastore.get(id);
   }
 }
