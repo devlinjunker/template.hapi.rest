@@ -31,12 +31,18 @@
     
   <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-noteDataservice">noteDataservice</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/controllers/hello.controller.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// @flow
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @flow
+ *
+ * @type HelloWorldController
+ */
 
 /**
  * Controllers for Basic &quot;Hello World&quot; Functions
@@ -48,7 +54,7 @@ export class HelloWorld {
    * Returns &apos;Hello World!&apos;
    * @return {String} Hello World!
    */
-  static basic() {
+  static basic(): string {
     return &apos;Hello World!&apos;;
   }
 
@@ -57,7 +63,7 @@ export class HelloWorld {
    * @param  {HapiRequest} request Request Parameters
    * @return {String}         Customized Hello Message
    */
-  static name(request: any) {
+  static name(request: any): string {
 
     const name = request.params.name;
 

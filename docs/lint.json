@@ -4,36 +4,36 @@
     "filePath": "src/base/server.js",
     "lines": [
       {
-        "lineNumber": 44,
-        "line": "      options: {"
-      },
-      {
-        "lineNumber": 45,
+        "lineNumber": 49,
         "line": "        prettyPrint: false,"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 50,
         "line": "        logEvents: ['response']"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 51,
         "line": "      }"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 52,
         "line": "    });"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 53,
         "line": "  }"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 54,
         "line": ""
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 55,
         "line": ""
+      },
+      {
+        "lineNumber": 56,
+        "line": "  /**"
       }
     ],
     "codeParams": [

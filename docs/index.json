@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/base/server.js",
-    "content": "// @flow\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nconst Pino = require('hapi-pino');\nconst Hapi = require('@hapi/hapi');\n\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n */\ninterface Endpoint {\n  method: string;\n  path: string;\n  controller: Function;\n}\n\n/**\n * Server class that starts and initializes Hapi server\n */\nexport default class Server {\n  server: any;\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n   * @param {string} path       URL path of endpoint\n   * @param {Function} controller Handler function that is triggered when endpoint is hit\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: Endpoint) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<Endpoint>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "content": "/**\n * @flow\n *\n * @type Server class\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nconst Pino = require('hapi-pino');\nconst Hapi = require('@hapi/hapi');\n\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n */\ninterface Endpoint {\n  method: string;\n  path: string;\n  controller: Function;\n}\n\n/**\n * Server class that starts and initializes Hapi server\n */\nexport default class Server {\n  server: any;\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n   * @param {string} path       URL path of endpoint\n   * @param {Function} controller Handler function that is triggered when endpoint is hit\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: Endpoint) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<Endpoint>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/base/server.js",
     "access": "public",
@@ -586,7 +586,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 9,
     "undocument": true,
     "type": {
       "types": [
@@ -607,7 +607,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
@@ -628,7 +628,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": "Server",
     "description": "Server class that starts and initializes Hapi server",
-    "lineNumber": 16,
+    "lineNumber": 21,
     "interface": false
   },
   {
@@ -642,7 +642,7 @@
     "longname": "src/base/server.js~Server#constructor",
     "access": "public",
     "description": "Server Constructor",
-    "lineNumber": 21
+    "lineNumber": 26
   },
   {
     "__docId__": 53,
@@ -653,7 +653,7 @@
     "longname": "src/base/server.js~Server#server",
     "access": "public",
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -672,7 +672,7 @@
     "longname": "src/base/server.js~Server#run",
     "access": "public",
     "description": "Starts the server and registers any plugins",
-    "lineNumber": 32,
+    "lineNumber": 37,
     "return": {
       "nullable": null,
       "types": [
@@ -694,7 +694,7 @@
     "longname": "src/base/server.js~Server#addEndpoint",
     "access": "public",
     "description": "Adds an endpoint at the path given handled by the controller",
-    "lineNumber": 52,
+    "lineNumber": 57,
     "params": [
       {
         "nullable": null,
@@ -747,7 +747,7 @@
     "longname": "src/base/server.js~Server#addEndpoints",
     "access": "public",
     "description": "Adds the endpoints given to the server",
-    "lineNumber": 68,
+    "lineNumber": 73,
     "unknown": [
       {
         "tagName": "@returns",
@@ -779,7 +779,7 @@
     "__docId__": 57,
     "kind": "file",
     "name": "src/controllers/hello.controller.js",
-    "content": "// @flow\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic() {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: any) {\n\n    const name = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
+    "content": "/**\n * @flow\n *\n * @type HelloWorldController\n */\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic(): string {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: any): string {\n\n    const name = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/hello.controller.js",
     "access": "public",
@@ -798,7 +798,7 @@
     "importPath": "HapiServer/src/controllers/hello.controller.js",
     "importStyle": "{HelloWorld}",
     "description": "Controllers for Basic \"Hello World\" Functions\n\nSee https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition",
-    "lineNumber": 8,
+    "lineNumber": 12,
     "interface": false
   },
   {
@@ -812,7 +812,7 @@
     "longname": "src/controllers/hello.controller.js~HelloWorld.basic",
     "access": "public",
     "description": "Returns 'Hello World!'",
-    "lineNumber": 13,
+    "lineNumber": 17,
     "return": {
       "nullable": null,
       "types": [
@@ -834,7 +834,7 @@
     "longname": "src/controllers/hello.controller.js~HelloWorld.name",
     "access": "public",
     "description": "Returns a customized Hello Message",
-    "lineNumber": 22,
+    "lineNumber": 26,
     "params": [
       {
         "nullable": null,
@@ -871,7 +871,7 @@
     "__docId__": 62,
     "kind": "file",
     "name": "src/controllers/info.controller.js",
-    "content": "// @flow\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: any) {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
+    "content": "/**\n * @flow\n */\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: any): any {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/info.controller.js",
     "access": "public",
@@ -919,7 +919,7 @@
     "__docId__": 64,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
-    "content": "// @flow\n\n/**\n * Container Controller for Note CRUD Functions\n */\nclass NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request [description]\n   * @return {boolean}         [description]\n   */\n  static getNoteById({ params }: { params: any }) {\n    console.log(params);\n\n    return true;\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  }\n];\n",
+    "content": "/**\n * @flow\n *\n * @type NoteController\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\n\nimport NoteDataservice from 'app/dataservice/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nclass NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request [description]\n   * @return {Note}         [description]\n   */\n  static getNoteById({ params }: { params: any }): boolean {\n    console.log(params);\n\n    return true;\n  }\n\n  /**\n   * Create a new Note\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static createNote({ params }) {\n\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.js",
     "access": "public",
@@ -938,7 +938,7 @@
     "importPath": "HapiServer/src/controllers/note.controller.js",
     "importStyle": null,
     "description": "Container Controller for Note CRUD Functions",
-    "lineNumber": 6,
+    "lineNumber": 14,
     "interface": false,
     "ignore": true
   },
@@ -953,7 +953,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.getNoteById",
     "access": "public",
     "description": "Returns a note, specified by Id",
-    "lineNumber": 12,
+    "lineNumber": 20,
     "params": [
       {
         "nullable": null,
@@ -969,7 +969,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "boolean"
+        "Note"
       ],
       "spread": false,
       "description": "[description]"
@@ -977,6 +977,185 @@
   },
   {
     "__docId__": 67,
+    "kind": "method",
+    "name": "createNote",
+    "memberof": "src/controllers/note.controller.js~NoteController",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/note.controller.js~NoteController.createNote",
+    "access": "public",
+    "description": "Create a new Note",
+    "lineNumber": 31,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "[type]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "params",
+        "description": "[description]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Note"
+      ],
+      "spread": false,
+      "description": "[description]"
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "updateNote",
+    "memberof": "src/controllers/note.controller.js~NoteController",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/note.controller.js~NoteController.updateNote",
+    "access": "public",
+    "description": "Update a note, specified by id",
+    "lineNumber": 38,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "[type]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "params",
+        "description": "[description]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Note"
+      ],
+      "spread": false,
+      "description": "[description]"
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "deleteNote",
+    "memberof": "src/controllers/note.controller.js~NoteController",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/note.controller.js~NoteController.deleteNote",
+    "access": "public",
+    "description": "Delete a note, specified by id",
+    "lineNumber": 45,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "[type]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "params",
+        "description": "[description]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": "[description]"
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "src/dataservices/note.service.js",
+    "content": "/**\n * @flow\n */\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nclass NoteDataservice {\n  datastore: any;\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number} id  ID number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  getNote({ id }): any {\n    return this.datastore.get(id);\n  }\n}\n\n\nexport default new NoteDataservice();\n",
+    "static": true,
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "class",
+    "name": "NoteDataservice",
+    "memberof": "src/dataservices/note.service.js",
+    "static": true,
+    "longname": "src/dataservices/note.service.js~NoteDataservice",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/dataservices/note.service.js",
+    "importStyle": null,
+    "description": "Note Dataservice for interacting with the storage system for saving notes",
+    "lineNumber": 6,
+    "pseudoExport": true,
+    "interface": false
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "getNote",
+    "memberof": "src/dataservices/note.service.js~NoteDataservice",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/dataservices/note.service.js~NoteDataservice#getNote",
+    "access": "public",
+    "description": "Returns a note, specified by the caller by id",
+    "lineNumber": 13,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "id",
+        "description": "ID number of the Note to retrieve"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Note"
+      ],
+      "spread": false,
+      "description": "Note object"
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "variable",
+    "name": "noteDataservice",
+    "memberof": "src/dataservices/note.service.js",
+    "static": true,
+    "longname": "src/dataservices/note.service.js~noteDataservice",
+    "access": "public",
+    "export": true,
+    "importPath": "HapiServer/src/dataservices/note.service.js",
+    "importStyle": "noteDataservice",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/dataservices/note.service.js~NoteDataservice"
+      ]
+    }
+  },
+  {
+    "__docId__": 74,
     "kind": "file",
     "name": "src/entry.js",
     "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport Server from './base/server.js';\n\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on('unhandledRejection', (err) => {\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
@@ -987,7 +1166,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 68,
+    "__docId__": 75,
     "kind": "variable",
     "name": "server",
     "memberof": "src/entry.js",
@@ -1008,7 +1187,7 @@
     "ignore": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 76,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1038,14 +1217,14 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.0\",\n    \"@babel/plugin-transform-flow-strip-types\": \"^7.4.4\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"babel-plugin-transform-flow-strip-types\": \"^6.22.0\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.4.0\",\n    \"eslint-config-prettier\": \"^6.4.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"eslint-plugin-flowtype\": \"^4.3.0\",\n    \"eslint-plugin-header\": \"^3.0.0\",\n    \"eslint-plugin-prettier\": \"^3.1.1\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"prettier\": \"^1.18.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.40.2\",\n    \"webpack-cli\": \"^3.3.9\",\n    \"webpack-dev-server\": \"^3.8.1\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.4.0\",\n    \"hapi-pino\": \"^6.1.0\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.0\",\n    \"@babel/plugin-transform-flow-strip-types\": \"^7.4.4\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"babel-plugin-transform-flow-strip-types\": \"^6.22.0\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.4.0\",\n    \"eslint-config-prettier\": \"^6.4.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"eslint-plugin-flowtype\": \"^4.3.0\",\n    \"eslint-plugin-flowtype-errors\": \"^4.1.0\",\n    \"eslint-plugin-header\": \"^3.0.0\",\n    \"eslint-plugin-prettier\": \"^3.1.1\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"prettier\": \"^1.18.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.40.2\",\n    \"webpack-cli\": \"^3.3.9\",\n    \"webpack-dev-server\": \"^3.8.1\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.4.0\",\n    \"hapi-pino\": \"^6.1.0\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
   },
   {
-    "__docId__": 70,
+    "__docId__": 77,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1056,7 +1235,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 71,
+    "__docId__": 78,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1072,7 +1251,7 @@
     ]
   },
   {
-    "__docId__": 72,
+    "__docId__": 79,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1088,7 +1267,7 @@
     ]
   },
   {
-    "__docId__": 73,
+    "__docId__": 80,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1101,7 +1280,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 74,
+    "__docId__": 81,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1117,7 +1296,7 @@
     ]
   },
   {
-    "__docId__": 75,
+    "__docId__": 82,
     "kind": "test",
     "name": "it4",
     "testId": 4,

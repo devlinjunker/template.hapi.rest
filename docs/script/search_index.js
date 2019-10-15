@@ -6,10 +6,22 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "hapiserver/src/dataservices/note.service.js~notedataservice",
+    "class/src/dataservices/note.service.js~NoteDataservice.html",
+    "<span>NoteDataservice</span> <span class=\"search-result-import-path\">HapiServer/src/dataservices/note.service.js</span>",
+    "class"
+  ],
+  [
     "hapiserver/src/base/server.js~server",
     "class/src/base/server.js~Server.html",
     "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
     "class"
+  ],
+  [
+    "hapiserver/src/dataservices/note.service.js~notedataservice",
+    "variable/index.html#static-variable-noteDataservice",
+    "<span>noteDataservice</span> <span class=\"search-result-import-path\">HapiServer/src/dataservices/note.service.js</span>",
+    "variable"
   ],
   [
     "helloworld src/controllers/hello.controller.js~helloworld,helloworld",
@@ -394,6 +406,18 @@ window.esdocSearchIndex = [
     "file/src/controllers/note.controller.js.html",
     "src/controllers/note.controller.js",
     "file"
+  ],
+  [
+    "src/dataservices/note.service.js",
+    "file/src/dataservices/note.service.js.html",
+    "src/dataservices/note.service.js",
+    "file"
+  ],
+  [
+    "src/dataservices/note.service.js~notedataservice#getnote",
+    "class/src/dataservices/note.service.js~NoteDataservice.html#instance-method-getNote",
+    "src/dataservices/note.service.js~NoteDataservice#getNote",
+    "method"
   ],
   [
     "src/entry.js",

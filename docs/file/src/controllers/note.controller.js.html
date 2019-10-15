@@ -31,12 +31,22 @@
     
   <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-noteDataservice">noteDataservice</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/controllers/note.controller.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// @flow
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @flow
+ *
+ * @type NoteController
+ */
+// // TODO: Remove this
+/* eslint-disable no-unused-vars */
+
+import NoteDataservice from &apos;app/dataservice/note.service.js&apos;;
 
 /**
  * Container Controller for Note CRUD Functions
@@ -45,12 +55,39 @@ class NoteController {
   /**
    * Returns a note, specified by Id
    * @param  {HapiRequest} request [description]
-   * @return {boolean}         [description]
+   * @return {Note}         [description]
    */
-  static getNoteById({ params }: { params: any }) {
+  static getNoteById({ params }: { params: any }): boolean {
     console.log(params);
 
     return true;
+  }
+
+  /**
+   * Create a new Note
+   * @param  {[type]} params [description]
+   * @return {Note}        [description]
+   */
+  static createNote({ params }) {
+
+  }
+
+  /**
+   * Update a note, specified by id
+   * @param  {[type]} params [description]
+   * @return {Note}        [description]
+   */
+  static updateNote({ params }) {
+
+  }
+
+  /**
+   * Delete a note, specified by id
+   * @param  {[type]} params [description]
+   * @return {boolean}        [description]
+   */
+  static deleteNote({ params }) {
+
   }
 }
 
@@ -59,6 +96,21 @@ export default [
     path: &apos;/note/{id}&apos;,
     method: &apos;GET&apos;,
     controller: NoteController.getNoteById
+  },
+  {
+    path: &apos;/note&apos;,
+    method: &apos;POST&apos;,
+    controller: NoteController.createNote
+  },
+  {
+    path: &apos;/note/{id?}&apos;,
+    method: &apos;PUT&apos;,
+    controller: NoteController.updateNote
+  },
+  {
+    path: &apos;/note/{id}&apos;,
+    method: &apos;DELETE&apos;,
+    controller: NoteController.deleteNote
   }
 ];
 </code></pre>
