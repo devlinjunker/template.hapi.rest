@@ -58,7 +58,8 @@
   },
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
-    "hapi-pino": "^6.1.0"
+    "hapi-pino": "^6.1.0",
+    "mariadb": "^2.1.1"
   },
   "scripts": {
     "start-watch": "./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js)",

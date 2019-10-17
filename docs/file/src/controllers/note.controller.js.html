@@ -44,7 +44,7 @@
 // // TODO: Remove this
 /* eslint-disable no-unused-vars */
 import { HapiRequest } from &apos;app/base/server.js&apos;;
-import NoteDataservice from &apos;app/dataservices/note.service.js&apos;;
+import { NoteDataservice, Note } from &apos;app/dataservices/note.service.js&apos;;
 
 /**
  * Container Controller for Note CRUD Functions
@@ -55,10 +55,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}         Note corresponding to Id passed in
    */
-  static getNoteById({ params }: HapiRequest): boolean {
+  static getNoteById({ params }: HapiRequest): Promise&lt;Note&gt; {
     console.log(params);
 
-    return true;
+    return NoteDataservice.getNote({ id: params.id });
   }
 
   /**
