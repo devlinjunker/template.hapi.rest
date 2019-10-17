@@ -25,9 +25,9 @@ export interface EndpointConfig {
  * from https://github.com/hapijs/hapi/blob/master/API.md#request
  */
 export interface HapiRequest {
-  params: any;
-  headers: any;
-  server: any;
+  params: any; // eslint-disable-line
+  headers: any; // eslint-disable-line
+  server: any; // eslint-disable-line
 };
 
 

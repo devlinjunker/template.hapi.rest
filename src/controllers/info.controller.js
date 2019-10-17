@@ -10,7 +10,7 @@ import { HapiRequest } from 'app/base/server.js';
  * @param  {HapiRequest} request Request Parameters
  * @return {Object}         Server information Object
  */
-function controller(request: HapiRequest): any {
+function controller(request: HapiRequest): any { // eslint-disable-line
   return request.server.info;
 }
 
