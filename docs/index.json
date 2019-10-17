@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/base/server.js",
-    "content": "/**\n * @flow\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller: Function; // eslint-disable-line\n}\n\n/**\n * Request Object that is passed to the controller as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n */\nexport interface HapiRequest {\n  params: any;\n  headers: any;\n  server: any;\n};\n\n\n/**\n * Abstraction to manage running the server. Instantiate on application server start up\n * inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server} class\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {Endpoint} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "content": "/**\n * @flow\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller: Function; // eslint-disable-line\n}\n\n/**\n * Request Object that is passed to the controller as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n */\nexport interface HapiRequest {\n  params: any;\n  headers: any;\n  server: any;\n};\n\n\n/**\n * Abstraction to manage running the server. Instantiate on application server start up\n * inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server} class\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {EndpointConfig} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<EndpointConfig>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/base/server.js",
     "access": "public",
@@ -665,7 +665,7 @@
       {
         "nullable": null,
         "types": [
-          "Endpoint"
+          "EndpointConfig"
         ],
         "spread": false,
         "optional": false,
@@ -704,7 +704,7 @@
       {
         "nullable": null,
         "types": [
-          "Array<Endpoint>"
+          "Array<EndpointConfig>"
         ],
         "spread": false,
         "optional": false,
@@ -865,7 +865,7 @@
     "__docId__": 62,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
-    "content": "/**\n * @flow\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\nimport { HapiRequest } from 'app/base/server.js';\nimport NoteDataservice from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): boolean {\n    console.log(params);\n\n    return true;\n  }\n\n  /**\n   * Create a new Note\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static createNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
+    "content": "/**\n * @flow\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\nimport { HapiRequest } from 'app/base/server.js';\nimport NoteDataservice from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): boolean {\n    console.log(params);\n\n    return true;\n  }\n\n  /**\n   * Create a new Note\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static createNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.js",
     "access": "public",
@@ -936,12 +936,12 @@
       {
         "nullable": null,
         "types": [
-          "[type]"
+          "HapiRequest"
         ],
         "spread": false,
         "optional": false,
-        "name": "params",
-        "description": "[description]"
+        "name": "request",
+        "description": "RequestObject"
       }
     ],
     "return": {
@@ -969,12 +969,12 @@
       {
         "nullable": null,
         "types": [
-          "[type]"
+          "HapiRequest"
         ],
         "spread": false,
         "optional": false,
-        "name": "params",
-        "description": "[description]"
+        "name": "request",
+        "description": "RequestObject"
       }
     ],
     "return": {
@@ -1002,12 +1002,12 @@
       {
         "nullable": null,
         "types": [
-          "[type]"
+          "HapiRequest"
         ],
         "spread": false,
         "optional": false,
-        "name": "params",
-        "description": "[description]"
+        "name": "request",
+        "description": "RequestObject"
       }
     ],
     "return": {

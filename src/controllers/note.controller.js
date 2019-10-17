@@ -23,7 +23,7 @@ export class NoteController {
 
   /**
    * Create a new Note
-   * @param  {[type]} params [description]
+   * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
   static createNote({ params }: HapiRequest) {
@@ -32,7 +32,7 @@ export class NoteController {
 
   /**
    * Update a note, specified by id
-   * @param  {[type]} params [description]
+   * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
   static updateNote({ params }: HapiRequest) {
@@ -41,7 +41,7 @@ export class NoteController {
 
   /**
    * Delete a note, specified by id
-   * @param  {[type]} params [description]
+   * @param  {HapiRequest} request RequestObject
    * @return {boolean}        [description]
    */
   static deleteNote({ params }: HapiRequest) {

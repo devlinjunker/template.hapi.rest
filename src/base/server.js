@@ -70,7 +70,7 @@ export class Server {
 
   /**
    * Adds an endpoint at the path given handled by the controller
-   * @param {Endpoint} endpoint configuration
+   * @param {EndpointConfig} endpoint configuration
    * @return {undefined}
    */
   addEndpoint({ method, path, controller }: EndpointConfig) {
@@ -86,7 +86,7 @@ export class Server {
 
   /**
    * Adds the endpoints given to the server
-   * @param {Array<Endpoint>} routes Routes to add to the server
+   * @param {Array<EndpointConfig>} routes Routes to add to the server
    * @returns {undefined}
    */
   addEndpoints(routes: Array<EndpointConfig>) {
