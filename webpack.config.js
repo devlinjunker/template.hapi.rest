@@ -31,7 +31,7 @@ const config =  {
     alias: {
       // `app/controllers/hello.controller.js` transforms to
       //  `<PROJECT_ROOT>/src/controllers/hello.controller.js`
-      app: path.resolve(__dirname, './src')
+      app: path.resolve(__dirname, './src/')
     }
   },
 

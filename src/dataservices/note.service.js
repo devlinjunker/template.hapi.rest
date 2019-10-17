@@ -5,18 +5,15 @@
 /**
  * Note Dataservice for interacting with the storage system for saving notes
  */
-class NoteDataservice {
-  datastore: any;
+export default class NoteDataservice {
+  static datastore: any;
 
   /**
    * Returns a note, specified by the caller by id
-   * @param  {number} id  ID number of the Note to retrieve
+   * @param  {number|string} id  ID number of the Note to retrieve
    * @return {Note}       Note object
    */
-  getNote({ id }: any): any {
-    return this.datastore.get(id);
+  static getNote({ id }: { id: number | string }): any {
+    return NoteDataservice.datastore.get(id);
   }
 }
-
-
-export default new NoteDataservice();

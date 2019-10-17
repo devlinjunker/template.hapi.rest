@@ -1,8 +1,8 @@
 /**
  * @flow
- *
- * @type HelloWorldController
  */
+// For some reason this can't use the `app` alias but can do relative pathing here... :/
+import { HapiRequest } from '../base/server.js';
 
 /**
  * Controllers for Basic "Hello World" Functions
@@ -23,7 +23,7 @@ export class HelloWorld {
    * @param  {HapiRequest} request Request Parameters
    * @return {String}         Customized Hello Message
    */
-  static name(request: any): string {
+  static name(request: HapiRequest): string {
 
     const name = request.params.name;
 

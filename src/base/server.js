@@ -1,30 +1,44 @@
 /**
  * @flow
- *
- * @type Server class
  */
 require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');
-const Pino = require('hapi-pino');
-const Hapi = require('@hapi/hapi');
-
+import Pino from 'hapi-pino';
+import Hapi from '@hapi/hapi';
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
  * the path is hit
+ * @param {string} method     HTTP method the endpoint must be called with to trigger controller
+ * @param {string} path       URL path of endpoint
+ * @param {Function} controller Handler function that is triggered when endpoint is hit
  */
-interface Endpoint {
+export interface EndpointConfig {
   method: string;
   path: string;
-  controller: Function;
+  controller: Function; // eslint-disable-line
 }
 
 /**
- * Server class that starts and initializes Hapi server
+ * Request Object that is passed to the controller as the first parameter
+ * from https://github.com/hapijs/hapi/blob/master/API.md#request
  */
-export default class Server {
+export interface HapiRequest {
+  params: any;
+  headers: any;
   server: any;
+};
+
+
+/**
+ * Abstraction to manage running the server. Instantiate on application server start up
+ * inside `entry.js` file or wherever the intial "main" script is
+ *
+ * @type {Server} class
+ */
+export class Server {
+  server: any; // eslint-disable-line
 
   /**
    * Server Constructor
@@ -56,12 +70,10 @@ export default class Server {
 
   /**
    * Adds an endpoint at the path given handled by the controller
-   * @param {string} method     HTTP method the endpoint must be called with to trigger controller
-   * @param {string} path       URL path of endpoint
-   * @param {Function} controller Handler function that is triggered when endpoint is hit
+   * @param {Endpoint} endpoint configuration
    * @return {undefined}
    */
-  addEndpoint({ method, path, controller }: Endpoint) {
+  addEndpoint({ method, path, controller }: EndpointConfig) {
     this.server.route({
       method,
       path,
@@ -77,7 +89,7 @@ export default class Server {
    * @param {Array<Endpoint>} routes Routes to add to the server
    * @returns {undefined}
    */
-  addEndpoints(routes: Array<Endpoint>) {
+  addEndpoints(routes: Array<EndpointConfig>) {
     for (let i = 0; i < routes.length; i++) {
       this.addEndpoint(routes[i]);
     }

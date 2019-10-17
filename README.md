@@ -82,7 +82,7 @@ How to use this template to create a quick HTTP REST server:
       - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
       - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
       - Headers  
- - [ ] (^) Simple DB endpoint  
+ - [..] (^) Simple DB endpoint  
       - MongoDB
       - PostgreSQL or MariaDB
       - ElasticSearch? for search endpoint
@@ -111,7 +111,7 @@ How to use this template to create a quick HTTP REST server:
 
 ### Application
 
- - [ ] GET/POST/PUT/DELETE Note endpoints
+ - [..] GET/POST/PUT/DELETE Note endpoints
  - [ ] Garbage UPC (External API) endpoint
     - Map to information/notes?
  - [ ] Connect to Google Drive/Oauth

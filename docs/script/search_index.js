@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "hapiserver/src/controllers/note.controller.js~notecontroller",
+    "class/src/controllers/note.controller.js~NoteController.html",
+    "<span>NoteController</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/note.controller.js</span>",
+    "class"
+  ],
+  [
     "hapiserver/src/dataservices/note.service.js~notedataservice",
     "class/src/dataservices/note.service.js~NoteDataservice.html",
     "<span>NoteDataservice</span> <span class=\"search-result-import-path\">HapiServer/src/dataservices/note.service.js</span>",
@@ -16,12 +22,6 @@ window.esdocSearchIndex = [
     "class/src/base/server.js~Server.html",
     "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
     "class"
-  ],
-  [
-    "hapiserver/src/dataservices/note.service.js~notedataservice",
-    "variable/index.html#static-variable-noteDataservice",
-    "<span>noteDataservice</span> <span class=\"search-result-import-path\">HapiServer/src/dataservices/note.service.js</span>",
-    "variable"
   ],
   [
     "helloworld src/controllers/hello.controller.js~helloworld,helloworld",
@@ -408,15 +408,39 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/controllers/note.controller.js~notecontroller.createnote",
+    "class/src/controllers/note.controller.js~NoteController.html#static-method-createNote",
+    "src/controllers/note.controller.js~NoteController.createNote",
+    "method"
+  ],
+  [
+    "src/controllers/note.controller.js~notecontroller.deletenote",
+    "class/src/controllers/note.controller.js~NoteController.html#static-method-deleteNote",
+    "src/controllers/note.controller.js~NoteController.deleteNote",
+    "method"
+  ],
+  [
+    "src/controllers/note.controller.js~notecontroller.getnotebyid",
+    "class/src/controllers/note.controller.js~NoteController.html#static-method-getNoteById",
+    "src/controllers/note.controller.js~NoteController.getNoteById",
+    "method"
+  ],
+  [
+    "src/controllers/note.controller.js~notecontroller.updatenote",
+    "class/src/controllers/note.controller.js~NoteController.html#static-method-updateNote",
+    "src/controllers/note.controller.js~NoteController.updateNote",
+    "method"
+  ],
+  [
     "src/dataservices/note.service.js",
     "file/src/dataservices/note.service.js.html",
     "src/dataservices/note.service.js",
     "file"
   ],
   [
-    "src/dataservices/note.service.js~notedataservice#getnote",
-    "class/src/dataservices/note.service.js~NoteDataservice.html#instance-method-getNote",
-    "src/dataservices/note.service.js~NoteDataservice#getNote",
+    "src/dataservices/note.service.js~notedataservice.getnote",
+    "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-getNote",
+    "src/dataservices/note.service.js~NoteDataservice.getNote",
     "method"
   ],
   [

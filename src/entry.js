@@ -4,14 +4,14 @@
  * Entry point that loads all routes for the server
  */
 
-import Server from './base/server.js';
+import { Server } from './base/server.js';
 
 
 const server = new Server();
 
 server.run();
 
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', (err) => { // eslint-disable-line
   process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });

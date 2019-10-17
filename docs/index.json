@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/base/server.js",
-    "content": "/**\n * @flow\n *\n * @type Server class\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nconst Pino = require('hapi-pino');\nconst Hapi = require('@hapi/hapi');\n\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n */\ninterface Endpoint {\n  method: string;\n  path: string;\n  controller: Function;\n}\n\n/**\n * Server class that starts and initializes Hapi server\n */\nexport default class Server {\n  server: any;\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n   * @param {string} path       URL path of endpoint\n   * @param {Function} controller Handler function that is triggered when endpoint is hit\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: Endpoint) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<Endpoint>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "content": "/**\n * @flow\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller: Function; // eslint-disable-line\n}\n\n/**\n * Request Object that is passed to the controller as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n */\nexport interface HapiRequest {\n  params: any;\n  headers: any;\n  server: any;\n};\n\n\n/**\n * Abstraction to manage running the server. Instantiate on application server start up\n * inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server} class\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost'\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {Endpoint} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<Endpoint>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/base/server.js",
     "access": "public",
@@ -576,48 +576,6 @@
   },
   {
     "__docId__": 49,
-    "kind": "variable",
-    "name": "Pino",
-    "memberof": "src/base/server.js",
-    "static": true,
-    "longname": "src/base/server.js~Pino",
-    "access": "public",
-    "export": false,
-    "importPath": "HapiServer/src/base/server.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 50,
-    "kind": "variable",
-    "name": "Hapi",
-    "memberof": "src/base/server.js",
-    "static": true,
-    "longname": "src/base/server.js~Hapi",
-    "access": "public",
-    "export": false,
-    "importPath": "HapiServer/src/base/server.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 51,
     "kind": "class",
     "name": "Server",
     "memberof": "src/base/server.js",
@@ -626,13 +584,21 @@
     "access": "public",
     "export": true,
     "importPath": "HapiServer/src/base/server.js",
-    "importStyle": "Server",
-    "description": "Server class that starts and initializes Hapi server",
-    "lineNumber": 21,
+    "importStyle": "{Server}",
+    "description": "Abstraction to manage running the server. Instantiate on application server start up\ninside `entry.js` file or wherever the intial \"main\" script is",
+    "lineNumber": 28,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Server"
+      ],
+      "spread": false,
+      "description": null
+    },
     "interface": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 50,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/base/server.js~Server",
@@ -642,10 +608,10 @@
     "longname": "src/base/server.js~Server#constructor",
     "access": "public",
     "description": "Server Constructor",
-    "lineNumber": 26
+    "lineNumber": 34
   },
   {
-    "__docId__": 53,
+    "__docId__": 51,
     "kind": "member",
     "name": "server",
     "memberof": "src/base/server.js~Server",
@@ -653,7 +619,7 @@
     "longname": "src/base/server.js~Server#server",
     "access": "public",
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 35,
     "undocument": true,
     "type": {
       "types": [
@@ -662,7 +628,7 @@
     }
   },
   {
-    "__docId__": 54,
+    "__docId__": 52,
     "kind": "method",
     "name": "run",
     "memberof": "src/base/server.js~Server",
@@ -672,7 +638,7 @@
     "longname": "src/base/server.js~Server#run",
     "access": "public",
     "description": "Starts the server and registers any plugins",
-    "lineNumber": 37,
+    "lineNumber": 45,
     "return": {
       "nullable": null,
       "types": [
@@ -684,7 +650,7 @@
     "params": []
   },
   {
-    "__docId__": 55,
+    "__docId__": 53,
     "kind": "method",
     "name": "addEndpoint",
     "memberof": "src/base/server.js~Server",
@@ -694,37 +660,17 @@
     "longname": "src/base/server.js~Server#addEndpoint",
     "access": "public",
     "description": "Adds an endpoint at the path given handled by the controller",
-    "lineNumber": 57,
+    "lineNumber": 63,
     "params": [
       {
         "nullable": null,
         "types": [
-          "string"
+          "Endpoint"
         ],
         "spread": false,
         "optional": false,
-        "name": "method",
-        "description": "HTTP method the endpoint must be called with to trigger controller"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "string"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "path",
-        "description": "URL path of endpoint"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "controller",
-        "description": "Handler function that is triggered when endpoint is hit"
+        "name": "endpoint",
+        "description": "configuration"
       }
     ],
     "return": {
@@ -737,7 +683,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 54,
     "kind": "method",
     "name": "addEndpoints",
     "memberof": "src/base/server.js~Server",
@@ -747,7 +693,7 @@
     "longname": "src/base/server.js~Server#addEndpoints",
     "access": "public",
     "description": "Adds the endpoints given to the server",
-    "lineNumber": 73,
+    "lineNumber": 79,
     "unknown": [
       {
         "tagName": "@returns",
@@ -776,10 +722,10 @@
     }
   },
   {
-    "__docId__": 57,
+    "__docId__": 55,
     "kind": "file",
     "name": "src/controllers/hello.controller.js",
-    "content": "/**\n * @flow\n *\n * @type HelloWorldController\n */\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic(): string {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: any): string {\n\n    const name = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
+    "content": "/**\n * @flow\n */\n// For some reason this can't use the `app` alias but can do relative pathing here... :/\nimport { HapiRequest } from '../base/server.js';\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic(): string {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: HapiRequest): string {\n\n    const name = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/hello.controller.js",
     "access": "public",
@@ -787,7 +733,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 58,
+    "__docId__": 56,
     "kind": "class",
     "name": "HelloWorld",
     "memberof": "src/controllers/hello.controller.js",
@@ -798,11 +744,11 @@
     "importPath": "HapiServer/src/controllers/hello.controller.js",
     "importStyle": "{HelloWorld}",
     "description": "Controllers for Basic \"Hello World\" Functions\n\nSee https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition",
-    "lineNumber": 12,
+    "lineNumber": 10,
     "interface": false
   },
   {
-    "__docId__": 59,
+    "__docId__": 57,
     "kind": "method",
     "name": "basic",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -812,7 +758,7 @@
     "longname": "src/controllers/hello.controller.js~HelloWorld.basic",
     "access": "public",
     "description": "Returns 'Hello World!'",
-    "lineNumber": 17,
+    "lineNumber": 15,
     "return": {
       "nullable": null,
       "types": [
@@ -824,7 +770,7 @@
     "params": []
   },
   {
-    "__docId__": 60,
+    "__docId__": 58,
     "kind": "method",
     "name": "name",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -834,7 +780,7 @@
     "longname": "src/controllers/hello.controller.js~HelloWorld.name",
     "access": "public",
     "description": "Returns a customized Hello Message",
-    "lineNumber": 26,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -857,7 +803,7 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 59,
     "kind": "file",
     "name": "src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -868,10 +814,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 62,
+    "__docId__": 60,
     "kind": "file",
     "name": "src/controllers/info.controller.js",
-    "content": "/**\n * @flow\n */\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: any): any {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
+    "content": "/**\n * @flow\n *\n * NOTE: This file will not be included in the esdoc list because it doesn't export any identifiers\n */\nimport { HapiRequest } from 'app/base/server.js';\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: HapiRequest): any {\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/info.controller.js",
     "access": "public",
@@ -879,7 +825,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 63,
+    "__docId__": 61,
     "kind": "function",
     "name": "controller",
     "memberof": "src/controllers/info.controller.js",
@@ -892,7 +838,7 @@
     "importPath": "HapiServer/src/controllers/info.controller.js",
     "importStyle": null,
     "description": "Basic Controller for returning server information",
-    "lineNumber": 8,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -916,10 +862,10 @@
     "ignore": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 62,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
-    "content": "/**\n * @flow\n *\n * @type NoteController\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\n\nimport NoteDataservice from 'app/dataservice/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nclass NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request [description]\n   * @return {Note}         [description]\n   */\n  static getNoteById({ params }: { params: any }): boolean {\n    console.log(params);\n\n    return true;\n  }\n\n  /**\n   * Create a new Note\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static createNote({ params }) {\n\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
+    "content": "/**\n * @flow\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\nimport { HapiRequest } from 'app/base/server.js';\nimport NoteDataservice from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): boolean {\n    console.log(params);\n\n    return true;\n  }\n\n  /**\n   * Create a new Note\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static createNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {[type]} params [description]\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.js",
     "access": "public",
@@ -927,23 +873,22 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 63,
     "kind": "class",
     "name": "NoteController",
     "memberof": "src/controllers/note.controller.js",
     "static": true,
     "longname": "src/controllers/note.controller.js~NoteController",
     "access": "public",
-    "export": false,
+    "export": true,
     "importPath": "HapiServer/src/controllers/note.controller.js",
-    "importStyle": null,
+    "importStyle": "{NoteController}",
     "description": "Container Controller for Note CRUD Functions",
-    "lineNumber": 14,
-    "interface": false,
-    "ignore": true
+    "lineNumber": 10,
+    "interface": false
   },
   {
-    "__docId__": 66,
+    "__docId__": 64,
     "kind": "method",
     "name": "getNoteById",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -953,7 +898,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.getNoteById",
     "access": "public",
     "description": "Returns a note, specified by Id",
-    "lineNumber": 20,
+    "lineNumber": 16,
     "params": [
       {
         "nullable": null,
@@ -963,6 +908,72 @@
         "spread": false,
         "optional": false,
         "name": "request",
+        "description": "RequestObject"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Note"
+      ],
+      "spread": false,
+      "description": "Note corresponding to Id passed in"
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "createNote",
+    "memberof": "src/controllers/note.controller.js~NoteController",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/note.controller.js~NoteController.createNote",
+    "access": "public",
+    "description": "Create a new Note",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "[type]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "params",
+        "description": "[description]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Note"
+      ],
+      "spread": false,
+      "description": "[description]"
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "updateNote",
+    "memberof": "src/controllers/note.controller.js~NoteController",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/controllers/note.controller.js~NoteController.updateNote",
+    "access": "public",
+    "description": "Update a note, specified by id",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "[type]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "params",
         "description": "[description]"
       }
     ],
@@ -978,72 +989,6 @@
   {
     "__docId__": 67,
     "kind": "method",
-    "name": "createNote",
-    "memberof": "src/controllers/note.controller.js~NoteController",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/controllers/note.controller.js~NoteController.createNote",
-    "access": "public",
-    "description": "Create a new Note",
-    "lineNumber": 31,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "[type]"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "params",
-        "description": "[description]"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Note"
-      ],
-      "spread": false,
-      "description": "[description]"
-    }
-  },
-  {
-    "__docId__": 68,
-    "kind": "method",
-    "name": "updateNote",
-    "memberof": "src/controllers/note.controller.js~NoteController",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/controllers/note.controller.js~NoteController.updateNote",
-    "access": "public",
-    "description": "Update a note, specified by id",
-    "lineNumber": 38,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "[type]"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "params",
-        "description": "[description]"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Note"
-      ],
-      "spread": false,
-      "description": "[description]"
-    }
-  },
-  {
-    "__docId__": 69,
-    "kind": "method",
     "name": "deleteNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
     "generator": false,
@@ -1052,7 +997,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.deleteNote",
     "access": "public",
     "description": "Delete a note, specified by id",
-    "lineNumber": 45,
+    "lineNumber": 41,
     "params": [
       {
         "nullable": null,
@@ -1075,10 +1020,10 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 68,
     "kind": "file",
     "name": "src/dataservices/note.service.js",
-    "content": "/**\n * @flow\n */\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nclass NoteDataservice {\n  datastore: any;\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number} id  ID number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  getNote({ id }): any {\n    return this.datastore.get(id);\n  }\n}\n\n\nexport default new NoteDataservice();\n",
+    "content": "/**\n * @flow\n */\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport default class NoteDataservice {\n  static datastore: any;\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  ID number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static getNote({ id }: { id: number | string }): any {\n    return NoteDataservice.datastore.get(id);\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.js",
     "access": "public",
@@ -1086,7 +1031,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 71,
+    "__docId__": 69,
     "kind": "class",
     "name": "NoteDataservice",
     "memberof": "src/dataservices/note.service.js",
@@ -1095,21 +1040,20 @@
     "access": "public",
     "export": true,
     "importPath": "HapiServer/src/dataservices/note.service.js",
-    "importStyle": null,
+    "importStyle": "NoteDataservice",
     "description": "Note Dataservice for interacting with the storage system for saving notes",
     "lineNumber": 6,
-    "pseudoExport": true,
     "interface": false
   },
   {
-    "__docId__": 72,
+    "__docId__": 70,
     "kind": "method",
     "name": "getNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
     "generator": false,
     "async": false,
-    "static": false,
-    "longname": "src/dataservices/note.service.js~NoteDataservice#getNote",
+    "static": true,
+    "longname": "src/dataservices/note.service.js~NoteDataservice.getNote",
     "access": "public",
     "description": "Returns a note, specified by the caller by id",
     "lineNumber": 13,
@@ -1117,7 +1061,8 @@
       {
         "nullable": null,
         "types": [
-          "number"
+          "number",
+          "string"
         ],
         "spread": false,
         "optional": false,
@@ -1135,30 +1080,10 @@
     }
   },
   {
-    "__docId__": 73,
-    "kind": "variable",
-    "name": "noteDataservice",
-    "memberof": "src/dataservices/note.service.js",
-    "static": true,
-    "longname": "src/dataservices/note.service.js~noteDataservice",
-    "access": "public",
-    "export": true,
-    "importPath": "HapiServer/src/dataservices/note.service.js",
-    "importStyle": "noteDataservice",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "type": {
-      "types": [
-        "src/dataservices/note.service.js~NoteDataservice"
-      ]
-    }
-  },
-  {
-    "__docId__": 74,
+    "__docId__": 71,
     "kind": "file",
     "name": "src/entry.js",
-    "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport Server from './base/server.js';\n\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on('unhandledRejection', (err) => {\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
+    "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport { Server } from './base/server.js';\n\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/entry.js",
     "access": "public",
@@ -1166,7 +1091,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 72,
     "kind": "variable",
     "name": "server",
     "memberof": "src/entry.js",
@@ -1187,7 +1112,7 @@
     "ignore": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 73,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1198,7 +1123,7 @@
     "importPath": "HapiServer/src/entry.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 23,
     "undocument": true,
     "type": {
       "types": [
@@ -1209,7 +1134,7 @@
   },
   {
     "kind": "index",
-    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add Tests and Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js`\n3. Run `npm run start-watch` to compile and run server + tests in watch mode\n4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n      - [x] babel\n        - [x] sourcemap support\n        - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n      - [x] flow webpack plugin - typechecking each compilation\n      - [x] eslinting  \n      - [x] test with mocha\n      - [x] nodemon to run server\n      - [ ] (v) production vs dev\n        - pm2 for production\n        - proper logging\n - [x] (^) Update Linting Rules (linewrap, length, etc)  \n      - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n      - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n      - Headers  \n - [ ] (^) Simple DB endpoint  \n      - MongoDB\n      - PostgreSQL or MariaDB\n      - ElasticSearch? for search endpoint\n - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n      - OpenAPI Validation  \n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     -overrides\n - [ ] (-) Headers\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [ ] (-) Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Add logging with Winston/Bunyon\n    - pino logs to file too?\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [ ] GET/POST/PUT/DELETE Note endpoints\n - [ ] Garbage UPC (External API) endpoint\n    - Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
+    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add Tests and Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js`\n3. Run `npm run start-watch` to compile and run server + tests in watch mode\n4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n      - [x] babel\n        - [x] sourcemap support\n        - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n      - [x] flow webpack plugin - typechecking each compilation\n      - [x] eslinting  \n      - [x] test with mocha\n      - [x] nodemon to run server\n      - [ ] (v) production vs dev\n        - pm2 for production\n        - proper logging\n - [x] (^) Update Linting Rules (linewrap, length, etc)  \n      - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n      - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n      - Headers  \n - [..] (^) Simple DB endpoint  \n      - MongoDB\n      - PostgreSQL or MariaDB\n      - ElasticSearch? for search endpoint\n - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n      - OpenAPI Validation  \n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     -overrides\n - [ ] (-) Headers\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [ ] (-) Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Add logging with Winston/Bunyon\n    - pino logs to file too?\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [ ] Garbage UPC (External API) endpoint\n    - Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/README.md",
     "name": "./README.md",
     "static": true,
@@ -1224,7 +1149,7 @@
     "access": "public"
   },
   {
-    "__docId__": 77,
+    "__docId__": 74,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1235,7 +1160,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 75,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1251,7 +1176,7 @@
     ]
   },
   {
-    "__docId__": 79,
+    "__docId__": 76,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1267,7 +1192,7 @@
     ]
   },
   {
-    "__docId__": 80,
+    "__docId__": 77,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1280,7 +1205,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 81,
+    "__docId__": 78,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1296,7 +1221,7 @@
     ]
   },
   {
-    "__docId__": 82,
+    "__docId__": 79,
     "kind": "test",
     "name": "it4",
     "testId": 4,

@@ -1,23 +1,21 @@
 /**
  * @flow
- *
- * @type NoteController
  */
 // // TODO: Remove this
 /* eslint-disable no-unused-vars */
-
+import { HapiRequest } from 'app/base/server.js';
 import NoteDataservice from 'app/dataservices/note.service.js';
 
 /**
  * Container Controller for Note CRUD Functions
  */
-class NoteController {
+export class NoteController {
   /**
    * Returns a note, specified by Id
-   * @param  {HapiRequest} request [description]
-   * @return {Note}         [description]
+   * @param  {HapiRequest} request RequestObject
+   * @return {Note}         Note corresponding to Id passed in
    */
-  static getNoteById({ params }: { params: any }): boolean {
+  static getNoteById({ params }: HapiRequest): boolean {
     console.log(params);
 
     return true;
@@ -28,7 +26,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {Note}        [description]
    */
-  static createNote({ params }: any) {
+  static createNote({ params }: HapiRequest) {
 
   }
 
@@ -37,7 +35,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {Note}        [description]
    */
-  static updateNote({ params }: any) {
+  static updateNote({ params }: HapiRequest) {
 
   }
 
@@ -46,7 +44,7 @@ class NoteController {
    * @param  {[type]} params [description]
    * @return {boolean}        [description]
    */
-  static deleteNote({ params }: any) {
+  static deleteNote({ params }: HapiRequest) {
 
   }
 }

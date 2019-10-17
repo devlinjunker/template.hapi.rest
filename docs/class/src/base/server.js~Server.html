@@ -31,20 +31,20 @@
     
   <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-noteDataservice">noteDataservice</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Server from &apos;<span><a href="file/src/base/server.js.html#lineNumber21">HapiServer/src/base/server.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Server} from &apos;<span><a href="file/src/base/server.js.html#lineNumber28">HapiServer/src/base/server.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/base/server.js.html#lineNumber21">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/base/server.js.html#lineNumber28">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -64,7 +64,8 @@
 
   
   
-  <div class="description" data-ice="description"><p>Server class that starts and initializes Hapi server</p>
+  <div class="description" data-ice="description"><p>Abstraction to manage running the server. Instantiate on application server start up
+inside <code>entry.js</code> file or wherever the intial &quot;main&quot; script is</p>
 </div>
   
 
@@ -168,7 +169,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-addEndpoint">addEndpoint</a></span></span><span class="code" data-ice="signature">(method: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, path: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, controller: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-addEndpoint">addEndpoint</a></span></span><span class="code" data-ice="signature">(endpoint: <span>Endpoint</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
         </p>
       </div>
       <div>
@@ -263,7 +264,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber26">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -310,7 +311,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
@@ -352,11 +353,11 @@
     
     
     
-    <span class="code" data-ice="name">addEndpoint</span><span class="code" data-ice="signature">(method: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, path: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, controller: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+    <span class="code" data-ice="name">addEndpoint</span><span class="code" data-ice="signature">(endpoint: <span>Endpoint</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber57">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber63">source</a></span></span>
     </span>
   </h3>
 
@@ -377,24 +378,10 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">method</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="name" class="code" data-depth="0">endpoint</td>
+      <td data-ice="type" class="code"><span>Endpoint</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>HTTP method the endpoint must be called with to trigger controller</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">path</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>URL path of endpoint</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">controller</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Handler function that is triggered when endpoint is hit</p>
+      <td data-ice="description"><p>configuration</p>
 </td>
     </tr>
 </tbody>
@@ -443,7 +430,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
@@ -516,7 +503,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
