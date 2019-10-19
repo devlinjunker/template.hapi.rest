@@ -86,8 +86,9 @@ How to use this template to create a quick HTTP REST server:
       - MongoDB
       - PostgreSQL or MariaDB
       - ElasticSearch? for search endpoint
- - [ ] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
+ - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
       - OpenAPI Validation  
+ - [  ] (^) Debugging while running
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
@@ -100,6 +101,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Add logging with Winston/Bunyon
     - pino logs to file too?
  - [ ] (-) Run only affected tests on file save  
+ - [ ] (-) Complain when missing unit tests
  - [ ] (-) Githooks for generating reports/linting  
  - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  

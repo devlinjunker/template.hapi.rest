@@ -15,7 +15,7 @@
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.6.4",
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
