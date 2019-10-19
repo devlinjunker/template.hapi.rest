@@ -36,7 +36,7 @@ export class NoteDataservice {
 
   /**
    * Returns a note, specified by the caller by id
-   * @param  {number|string} id  ID number of the Note to retrieve
+   * @param  {number|string} id  `id` number of the Note to retrieve
    * @return {Note}       Note object
    */
   static async getNote({ id }: { id: number | string }): Promise<Note> {
@@ -44,7 +44,7 @@ export class NoteDataservice {
     try {
       connection = await NoteDataservice.dbPool.getConnection();
 
-      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);
+      const rows = await connection.query('SELECT * FROM test.notes WHERE id=(?)', id);
 
       return rows;
     } catch (err) {
@@ -56,5 +56,29 @@ export class NoteDataservice {
       }
     }
   }
+
+  /**
+   * Creates a new note with a name
+   * TODO: change to data?
+   * @param  {String}  name name of note
+   * @return {Note}      Note Object
+   */
+  static async createNote({ name }: { name: string }): Promise<Note> {
+    let connection;
+    try {
+      connection = await NoteDataservice.dbPool.getConnection();
+
+      const rows = connection.query('INSERT INTO test.notes (name) VALUES (?)', name);
+      return rows[0];
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } finally {
+      if (connection) {
+        connection.end();
+      }
+    }
+  }
 }
+// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it
 NoteDataservice.constructor();
