@@ -88,6 +88,7 @@ How to use this template to create a quick HTTP REST server:
       - ElasticSearch? for search endpoint
  - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
       - OpenAPI Validation  
+      - Swagger UI in Docs
  - [  ] (^) Debugging while running
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file

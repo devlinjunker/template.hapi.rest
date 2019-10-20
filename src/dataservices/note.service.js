@@ -3,6 +3,13 @@
  */
 import mariadb from 'mariadb';
 
+// From MariaDB
+interface InsertMariaDBResponse {
+  affectedRows: number;
+  insertId: number;
+  warningStatus: number;
+}
+
 /**
  * Note object with name and id
  * @type {Note}
@@ -44,9 +51,9 @@ export class NoteDataservice {
     try {
       connection = await NoteDataservice.dbPool.getConnection();
 
-      const rows = await connection.query('SELECT * FROM test.notes WHERE id=(?)', id);
+      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      return rows;
+      return rows[0];
     } catch (err) {
       console.log(err);
       throw err;
@@ -68,8 +75,15 @@ export class NoteDataservice {
     try {
       connection = await NoteDataservice.dbPool.getConnection();
 
-      const rows = connection.query('INSERT INTO test.notes (name) VALUES (?)', name);
-      return rows[0];
+      const response: InsertMariaDBResponse = await connection.query(
+        'INSERT INTO test.notes (name) VALUES (?)',
+        name
+      );
+
+      // TODO: Figure out how to debug with atom
+      console.log(response);
+
+      return await NoteDataservice.getNote({ id: response.insertId });
     } catch (err) {
       console.log(err);
       throw err;

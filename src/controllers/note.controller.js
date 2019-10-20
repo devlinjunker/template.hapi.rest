@@ -26,8 +26,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static createNote({ params }: HapiRequest): Promise<Note> {
-    return NoteDataservice.createNote({ name: params.name });
+  static createNote({ params, payload }: HapiRequest): Promise<Note> {
+    // TODO: Debug this?
+    console.log(payload);
+    return NoteDataservice.createNote({ name: payload.name });
   }
 
   /**
