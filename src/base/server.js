@@ -6,6 +6,9 @@ require('@babel/register');
 require('@babel/polyfill');
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
+import Inert from '@hapi/inert';
+
+const pathToSwaggerUi = require('swagger-ui-dist').absolutePath();
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
@@ -49,7 +52,7 @@ export class Server {
   constructor() {
     this.server = Hapi.server({
       port: 3333,
-      host: 'localhost'
+      host: 'localhost',
     });
   }
 
@@ -66,6 +69,29 @@ export class Server {
       options: {
         prettyPrint: false,
         logEvents: ['response']
+      }
+    });
+
+    // Configure OpenAPI and Swagger UI
+    // visit at http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml
+    await this.server.register({
+      plugin: Inert
+    });
+    this.server.route({
+      method: 'GET',
+      path: '/openapi/{param}',
+      handler: {
+        directory: {
+          path: pathToSwaggerUi,
+          index: true,
+        }
+      }
+    });
+    this.server.route({
+      method: 'GET',
+      path: '/openapi.yaml',
+      handler: {
+        file: 'openapi.yaml'
       }
     });
   }

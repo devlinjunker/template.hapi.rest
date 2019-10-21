@@ -74,7 +74,7 @@ const config =  {
             loader: 'mocha-loader',
           },
         ]
-      },
+      }
     ]
   }
 };

@@ -87,8 +87,9 @@ How to use this template to create a quick HTTP REST server:
       - PostgreSQL or MariaDB
       - ElasticSearch? for search endpoint
  - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
-      - OpenAPI Validation  
-      - Swagger UI in Docs
+      - [ ] OpenAPI Validation  
+      - [x] Swagger UI
+        - in Docs
  - [  ] (^) Debugging while running
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
