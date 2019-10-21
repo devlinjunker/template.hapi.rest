@@ -7,8 +7,7 @@ require('@babel/polyfill');
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
-
-const pathToSwaggerUi = require('swagger-ui-dist').absolutePath();
+// import Path from 'path';
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
@@ -72,26 +71,29 @@ export class Server {
       }
     });
 
-    // Configure OpenAPI and Swagger UI
-    // visit at http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml
+    // Serve Docs with OpenAPI and Swagger UI
+    // visit at http://localhost:3333/docs/swagger/index.html
     await this.server.register({
       plugin: Inert
-    });
-    this.server.route({
-      method: 'GET',
-      path: '/openapi/{param}',
-      handler: {
-        directory: {
-          path: pathToSwaggerUi,
-          index: true,
-        }
-      }
     });
     this.server.route({
       method: 'GET',
       path: '/openapi.yaml',
       handler: {
         file: 'openapi.yaml'
+      }
+    });
+
+    this.server.route({
+      method: 'GET',
+      path: '/docs/{param*}',
+      handler: {
+        directory: {
+          // TODO: Fix this
+          path: '/Users/junkerd/Programming/js/template.node.hapi/docs',
+          index: true,
+          redirectToSlash: true
+        }
       }
     });
   }
