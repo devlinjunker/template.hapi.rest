@@ -17,13 +17,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
+  <a href="swagger/index.html">API</a>
 </header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -42,6 +36,13 @@
  * @flow
  */
 import mariadb from &apos;mariadb&apos;;
+
+// From MariaDB
+interface InsertMariaDBResponse {
+  affectedRows: number;
+  insertId: number;
+  warningStatus: number;
+}
 
 /**
  * Note object with name and id
@@ -76,7 +77,7 @@ export class NoteDataservice {
 
   /**
    * Returns a note, specified by the caller by id
-   * @param  {number|string} id  ID number of the Note to retrieve
+   * @param  {number|string} id  `id` number of the Note to retrieve
    * @return {Note}       Note object
    */
   static async getNote({ id }: { id: number | string }): Promise&lt;Note&gt; {
@@ -86,7 +87,37 @@ export class NoteDataservice {
 
       const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      return rows;
+      return rows[0];
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } finally {
+      if (connection) {
+        connection.end();
+      }
+    }
+  }
+
+  /**
+   * Creates a new note with a name
+   * TODO: change to data?
+   * @param  {String}  name name of note
+   * @return {Note}      Note Object
+   */
+  static async createNote({ name }: { name: string }): Promise&lt;Note&gt; {
+    let connection;
+    try {
+      connection = await NoteDataservice.dbPool.getConnection();
+
+      const response: InsertMariaDBResponse = await connection.query(
+        &apos;INSERT INTO test.notes (name) VALUES (?)&apos;,
+        name
+      );
+
+      // TODO: Figure out how to debug with atom
+      console.log(response);
+
+      return await NoteDataservice.getNote({ id: response.insertId });
     } catch (err) {
       console.log(err);
       throw err;
@@ -97,6 +128,7 @@ export class NoteDataservice {
     }
   }
 }
+// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it
 NoteDataservice.constructor();
 </code></pre>
 

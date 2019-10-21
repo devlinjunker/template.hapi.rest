@@ -444,6 +444,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/dataservices/note.service.js~notedataservice.createnote",
+    "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-createNote",
+    "src/dataservices/note.service.js~NoteDataservice.createNote",
+    "method"
+  ],
+  [
     "src/dataservices/note.service.js~notedataservice.getnote",
     "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-getNote",
     "src/dataservices/note.service.js~NoteDataservice.getNote",

@@ -48,6 +48,10 @@ const config =  {
     new WebpackShellPlugin({
       onBuildExit: 'mocha ./dist/test.bundle.js'
     }),
+
+    new WebpackShellPlugin({
+      onBuildExit: 'cp ./openapi.yaml ./docs/swagger/openapi.yaml'
+    }),
   ],
 
   module: {

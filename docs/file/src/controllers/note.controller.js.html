@@ -17,13 +17,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
+  <a href="swagger/index.html">API</a>
 </header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -66,8 +60,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static createNote({ params }: HapiRequest) {
-
+  static createNote({ params, payload }: HapiRequest): Promise&lt;Note&gt; {
+    // TODO: Debug this?
+    console.log(payload);
+    return NoteDataservice.createNote({ name: payload.name });
   }
 
   /**

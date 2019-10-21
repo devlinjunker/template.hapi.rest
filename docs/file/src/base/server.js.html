@@ -17,13 +17,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
+  <a href="swagger/index.html">API</a>
 </header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -46,6 +40,9 @@ require(&apos;@babel/register&apos;);
 require(&apos;@babel/polyfill&apos;);
 import Pino from &apos;hapi-pino&apos;;
 import Hapi from &apos;@hapi/hapi&apos;;
+import Inert from &apos;@hapi/inert&apos;;
+
+const pathToSwaggerUi = require(&apos;swagger-ui-dist&apos;).absolutePath();
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
@@ -65,9 +62,12 @@ export interface EndpointConfig {
  * from https://github.com/hapijs/hapi/blob/master/API.md#request
  */
 export interface HapiRequest {
-  params: any; // eslint-disable-line
-  headers: any; // eslint-disable-line
   server: any; // eslint-disable-line
+  headers: any; // eslint-disable-line
+  // from path
+  params: any; // eslint-disable-line
+  // Body of a POST request
+  payload: any; // eslint-disable-line
 };
 
 
@@ -86,7 +86,7 @@ export class Server {
   constructor() {
     this.server = Hapi.server({
       port: 3333,
-      host: &apos;localhost&apos;
+      host: &apos;localhost&apos;,
     });
   }
 
@@ -103,6 +103,29 @@ export class Server {
       options: {
         prettyPrint: false,
         logEvents: [&apos;response&apos;]
+      }
+    });
+
+    // Configure OpenAPI and Swagger UI
+    // visit at http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml
+    await this.server.register({
+      plugin: Inert
+    });
+    this.server.route({
+      method: &apos;GET&apos;,
+      path: &apos;/openapi/{param}&apos;,
+      handler: {
+        directory: {
+          path: pathToSwaggerUi,
+          index: true,
+        }
+      }
+    });
+    this.server.route({
+      method: &apos;GET&apos;,
+      path: &apos;/openapi.yaml&apos;,
+      handler: {
+        file: &apos;openapi.yaml&apos;
       }
     });
   }
