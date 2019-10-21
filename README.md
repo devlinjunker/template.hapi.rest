@@ -75,9 +75,6 @@ How to use this template to create a quick HTTP REST server:
       - [x] eslinting  
       - [x] test with mocha
       - [x] nodemon to run server
-      - [ ] (v) production vs dev
-        - pm2 for production
-        - proper logging
  - [x] (^) Update Linting Rules (linewrap, length, etc)  
       - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
       - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
@@ -89,14 +86,30 @@ How to use this template to create a quick HTTP REST server:
  - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
       - [ ] OpenAPI Validation  
       - [x] Swagger UI
-        - in Docs
- - [  ] (^) Debugging while running
+        - [..] in Docs
+ - [ ] (^) Debugging while running
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
      -overrides
  - [ ] (-) Headers
+ - [ ] (-) Cookies?
+ - [ ] (-) Request Performance
+ - [ ] (-) Helpers
+      - mysql
+      - external-service request (with performance monitoring/caching?)
+      - Logging/GELF/Kibana?
+      - SendEmail
+      - Cron?
+      - Authentication?
+ - [ ] (-) Request Details Model attached to handler parameters
+ - [ ] (-) Compression of responses
+ - [ ] (-) production vs dev
+      - webpack/build
+      - pm2 for production
+      - config
+      - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
  - [ ] (-) Automatically find controller files in entry rather than need to reference  
@@ -105,7 +118,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Run only affected tests on file save  
  - [ ] (-) Complain when missing unit tests
  - [ ] (-) Githooks for generating reports/linting  
- - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
+ - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
@@ -116,6 +129,8 @@ How to use this template to create a quick HTTP REST server:
 ### Application
 
  - [..] GET/POST/PUT/DELETE Note endpoints
+ - [..] Serve Docs
+    - only in development
  - [ ] Garbage UPC (External API) endpoint
     - Map to information/notes?
  - [ ] Connect to Google Drive/Oauth
