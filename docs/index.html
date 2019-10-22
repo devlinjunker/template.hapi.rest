@@ -48,12 +48,14 @@
 <h2 id="development">Development</h2><p>How to use this template to create a quick HTTP REST server:</p>
 <ol>
 <li>Download and update dependencies</li>
-<li>Add Tests and Controller Files to <code>src/controllers/</code><ul>
-<li>For now, add reference to controller in <code>src/entry.js</code></li>
+<li>Add new OpenAPI endpoint to <code>openapi.yaml</code></li>
+<li>Add Unit tests in <code>src/controllers/</code> (Test Driven Development)</li>
+<li>Add Controller Files to <code>src/controllers/</code><ul>
+<li>For now, add reference to controller in <code>src/entry.js</code> (with other controllers)</li>
 </ul>
 </li>
 <li>Run <code>npm run start-watch</code> to compile and run server + tests in watch mode</li>
-<li>Navigate to <a href="http://localhost:3333/your_new_endpoint">http://localhost:3333/your_new_endpoint</a> to make a request and see the response</li>
+<li>Navigate to <a href="http://localhost:3333/docs/swagger/index.html">http://localhost:3333/docs/swagger/index.html</a> to see swagger-ui with your new endpoint</li>
 </ol>
 <h3 id="tests-running">Tests/Running</h3><p><code>npm run start-watch</code> to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done</p>
 <p><code>npm run test-watch</code> to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests</p>

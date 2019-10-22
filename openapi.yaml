@@ -61,6 +61,8 @@ paths:
           description: 'TODO: Note with specified id is not available'
         default:
           description: Unexpected Error
+
+        
 components:
   schemas:
     Note:

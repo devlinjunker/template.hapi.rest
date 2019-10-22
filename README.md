@@ -23,10 +23,12 @@ See [package.json](https://github.com/devlinjunker/template.node.hapi/blob/maste
 How to use this template to create a quick HTTP REST server:
 
 1. Download and update dependencies
-2. Add Tests and Controller Files to `src/controllers/`
-  - For now, add reference to controller in `src/entry.js`
-3. Run `npm run start-watch` to compile and run server + tests in watch mode
-4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response
+2. Add new OpenAPI endpoint to `openapi.yaml`
+3. Add Unit tests in `src/controllers/` (Test Driven Development)
+4. Add Controller Files to `src/controllers/`
+  - For now, add reference to controller in `src/entry.js` (with other controllers)
+5. Run `npm run start-watch` to compile and run server + tests in watch mode
+6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint
 
 ### Tests/Running
 
