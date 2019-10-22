@@ -1,14 +1,13 @@
 {
-  "coverage": "81.81%",
-  "expectCount": 22,
+  "coverage": "85.71%",
+  "expectCount": 21,
   "actualCount": 18,
   "files": {
     "src/base/server.js": {
-      "expectCount": 7,
+      "expectCount": 6,
       "actualCount": 5,
       "undocumentLines": [
-        8,
-        39
+        38
       ]
     },
     "src/controllers/hello.controller.js": {

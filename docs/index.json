@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/base/server.js",
-    "content": "/**\n * @flow\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\nimport Inert from '@hapi/inert';\n\nconst pathToSwaggerUi = require('swagger-ui-dist').absolutePath();\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller: Function; // eslint-disable-line\n}\n\n/**\n * Request Object that is passed to the controller as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n */\nexport interface HapiRequest {\n  server: any; // eslint-disable-line\n  headers: any; // eslint-disable-line\n  // from path\n  params: any; // eslint-disable-line\n  // Body of a POST request\n  payload: any; // eslint-disable-line\n};\n\n\n/**\n * Abstraction to manage running the server. Instantiate on application server start up\n * inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server} class\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost',\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n\n    // Configure OpenAPI and Swagger UI\n    // visit at http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml\n    await this.server.register({\n      plugin: Inert\n    });\n    this.server.route({\n      method: 'GET',\n      path: '/openapi/{param}',\n      handler: {\n        directory: {\n          path: pathToSwaggerUi,\n          index: true,\n        }\n      }\n    });\n    this.server.route({\n      method: 'GET',\n      path: '/openapi.yaml',\n      handler: {\n        file: 'openapi.yaml'\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {EndpointConfig} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<EndpointConfig>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "content": "/**\n * @flow\n */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\nimport Inert from '@hapi/inert';\n// import Path from 'path';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller: Function; // eslint-disable-line\n}\n\n/**\n * Request Object that is passed to the controller as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n */\nexport interface HapiRequest {\n  server: any; // eslint-disable-line\n  headers: any; // eslint-disable-line\n  // from path\n  params: any; // eslint-disable-line\n  // Body of a POST request\n  payload: any; // eslint-disable-line\n};\n\n\n/**\n * Abstraction to manage running the server. Instantiate on application server start up\n * inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server} class\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: 3333,\n      host: 'localhost',\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('Server started on ' + this.server.info.port);\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n\n    // Serve Docs with OpenAPI and Swagger UI\n    // visit at http://localhost:3333/docs/swagger/index.html\n    await this.server.register({\n      plugin: Inert\n    });\n    this.server.route({\n      method: 'GET',\n      path: '/openapi.yaml',\n      handler: {\n        file: 'openapi.yaml'\n      }\n    });\n\n    this.server.route({\n      method: 'GET',\n      path: '/docs/{param*}',\n      handler: {\n        directory: {\n          // TODO: Fix this\n          path: '/Users/junkerd/Programming/js/template.node.hapi/docs',\n          index: true,\n          redirectToSlash: true\n        }\n      }\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {EndpointConfig} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<EndpointConfig>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/base/server.js",
     "access": "public",
@@ -576,27 +576,6 @@
   },
   {
     "__docId__": 49,
-    "kind": "variable",
-    "name": "pathToSwaggerUi",
-    "memberof": "src/base/server.js",
-    "static": true,
-    "longname": "src/base/server.js~pathToSwaggerUi",
-    "access": "public",
-    "export": false,
-    "importPath": "HapiServer/src/base/server.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 50,
     "kind": "class",
     "name": "Server",
     "memberof": "src/base/server.js",
@@ -607,7 +586,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": "{Server}",
     "description": "Abstraction to manage running the server. Instantiate on application server start up\ninside `entry.js` file or wherever the intial \"main\" script is",
-    "lineNumber": 32,
+    "lineNumber": 31,
     "type": {
       "nullable": null,
       "types": [
@@ -619,7 +598,7 @@
     "interface": false
   },
   {
-    "__docId__": 51,
+    "__docId__": 50,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/base/server.js~Server",
@@ -629,10 +608,10 @@
     "longname": "src/base/server.js~Server#constructor",
     "access": "public",
     "description": "Server Constructor",
-    "lineNumber": 38
+    "lineNumber": 37
   },
   {
-    "__docId__": 52,
+    "__docId__": 51,
     "kind": "member",
     "name": "server",
     "memberof": "src/base/server.js~Server",
@@ -640,7 +619,7 @@
     "longname": "src/base/server.js~Server#server",
     "access": "public",
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 38,
     "undocument": true,
     "type": {
       "types": [
@@ -649,7 +628,7 @@
     }
   },
   {
-    "__docId__": 53,
+    "__docId__": 52,
     "kind": "method",
     "name": "run",
     "memberof": "src/base/server.js~Server",
@@ -659,7 +638,7 @@
     "longname": "src/base/server.js~Server#run",
     "access": "public",
     "description": "Starts the server and registers any plugins",
-    "lineNumber": 49,
+    "lineNumber": 48,
     "return": {
       "nullable": null,
       "types": [
@@ -671,7 +650,7 @@
     "params": []
   },
   {
-    "__docId__": 54,
+    "__docId__": 53,
     "kind": "method",
     "name": "addEndpoint",
     "memberof": "src/base/server.js~Server",
@@ -681,7 +660,7 @@
     "longname": "src/base/server.js~Server#addEndpoint",
     "access": "public",
     "description": "Adds an endpoint at the path given handled by the controller",
-    "lineNumber": 90,
+    "lineNumber": 92,
     "params": [
       {
         "nullable": null,
@@ -704,7 +683,7 @@
     }
   },
   {
-    "__docId__": 55,
+    "__docId__": 54,
     "kind": "method",
     "name": "addEndpoints",
     "memberof": "src/base/server.js~Server",
@@ -714,7 +693,7 @@
     "longname": "src/base/server.js~Server#addEndpoints",
     "access": "public",
     "description": "Adds the endpoints given to the server",
-    "lineNumber": 106,
+    "lineNumber": 108,
     "unknown": [
       {
         "tagName": "@returns",
@@ -743,7 +722,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 55,
     "kind": "file",
     "name": "src/controllers/hello.controller.js",
     "content": "/**\n * @flow\n */\n// For some reason this can't use the `app` alias but can do relative pathing here... :/\nimport { HapiRequest } from '../base/server.js';\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic(): string {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: HapiRequest): string {\n\n    const name = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
@@ -754,7 +733,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 57,
+    "__docId__": 56,
     "kind": "class",
     "name": "HelloWorld",
     "memberof": "src/controllers/hello.controller.js",
@@ -769,7 +748,7 @@
     "interface": false
   },
   {
-    "__docId__": 58,
+    "__docId__": 57,
     "kind": "method",
     "name": "basic",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -791,7 +770,7 @@
     "params": []
   },
   {
-    "__docId__": 59,
+    "__docId__": 58,
     "kind": "method",
     "name": "name",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -824,7 +803,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 59,
     "kind": "file",
     "name": "src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -835,7 +814,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 61,
+    "__docId__": 60,
     "kind": "file",
     "name": "src/controllers/info.controller.js",
     "content": "/**\n * @flow\n *\n * NOTE: This file will not be included in the esdoc list because it doesn't export any identifiers\n */\nimport { HapiRequest } from 'app/base/server.js';\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: HapiRequest): any { // eslint-disable-line\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
@@ -846,7 +825,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 62,
+    "__docId__": 61,
     "kind": "function",
     "name": "controller",
     "memberof": "src/controllers/info.controller.js",
@@ -883,7 +862,7 @@
     "ignore": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 62,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
     "content": "/**\n * @flow\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\nimport { HapiRequest } from 'app/base/server.js';\nimport { NoteDataservice, Note } from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): Promise<Note> {\n    console.log(params);\n\n    return NoteDataservice.getNote({ id: params.id });\n  }\n\n  /**\n   * Create a new Note\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static createNote({ params, payload }: HapiRequest): Promise<Note> {\n    // TODO: Debug this?\n    console.log(payload);\n    return NoteDataservice.createNote({ name: payload.name });\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
@@ -894,7 +873,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 64,
+    "__docId__": 63,
     "kind": "class",
     "name": "NoteController",
     "memberof": "src/controllers/note.controller.js",
@@ -909,7 +888,7 @@
     "interface": false
   },
   {
-    "__docId__": 65,
+    "__docId__": 64,
     "kind": "method",
     "name": "getNoteById",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -942,7 +921,7 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 65,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -975,7 +954,7 @@
     }
   },
   {
-    "__docId__": 67,
+    "__docId__": 66,
     "kind": "method",
     "name": "updateNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1008,7 +987,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 67,
     "kind": "method",
     "name": "deleteNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1041,7 +1020,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 68,
     "kind": "file",
     "name": "src/dataservices/note.service.js",
     "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\n\n// From MariaDB\ninterface InsertMariaDBResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  static dbPool: any;\n\n  /**\n   * Static Constructor to create database connection\n   * @returns {undefined}\n   */\n  static constructor() {\n    if (NoteDataservice.dbPool === undefined) {\n      // TODO: Configuration from file\n      NoteDataservice.dbPool = mariadb.createPool({\n        host: 'localhost',\n        user: 'root',\n        password: 'root',\n        connectionLimit: 5\n      });\n    }\n  }\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: change to data?\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const response: InsertMariaDBResponse = await connection.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n}\n// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it\nNoteDataservice.constructor();\n",
@@ -1052,7 +1031,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 70,
+    "__docId__": 69,
     "kind": "class",
     "name": "NoteDataservice",
     "memberof": "src/dataservices/note.service.js",
@@ -1067,7 +1046,7 @@
     "interface": false
   },
   {
-    "__docId__": 71,
+    "__docId__": 70,
     "kind": "method",
     "name": "constructor",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1095,7 +1074,7 @@
     "params": []
   },
   {
-    "__docId__": 72,
+    "__docId__": 71,
     "kind": "method",
     "name": "getNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1129,7 +1108,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1162,7 +1141,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "file",
     "name": "src/entry.js",
     "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport { Server } from './base/server.js';\n\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
@@ -1173,7 +1152,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 74,
     "kind": "variable",
     "name": "server",
     "memberof": "src/entry.js",
@@ -1194,7 +1173,7 @@
     "ignore": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 75,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1216,7 +1195,7 @@
   },
   {
     "kind": "index",
-    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add Tests and Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js`\n3. Run `npm run start-watch` to compile and run server + tests in watch mode\n4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n      - [x] babel\n        - [x] sourcemap support\n        - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n      - [x] flow webpack plugin - typechecking each compilation\n      - [x] eslinting  \n      - [x] test with mocha\n      - [x] nodemon to run server\n      - [ ] (v) production vs dev\n        - pm2 for production\n        - proper logging\n - [x] (^) Update Linting Rules (linewrap, length, etc)  \n      - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n      - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n      - Headers  \n - [..] (^) Simple DB endpoint  \n      - MongoDB\n      - PostgreSQL or MariaDB\n      - ElasticSearch? for search endpoint\n - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n      - [ ] OpenAPI Validation  \n      - [x] Swagger UI\n        - in Docs\n - [  ] (^) Debugging while running\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     -overrides\n - [ ] (-) Headers\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [ ] (-) Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Add logging with Winston/Bunyon\n    - pino logs to file too?\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Complain when missing unit tests\n - [ ] (-) Githooks for generating reports/linting  \n - [ ] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [ ] Garbage UPC (External API) endpoint\n    - Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
+    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add Tests and Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js`\n3. Run `npm run start-watch` to compile and run server + tests in watch mode\n4. Navigate to http://localhost:3333/your_new_endpoint to make a request and see the response\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n      - [x] babel\n        - [x] sourcemap support\n        - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n      - [x] flow webpack plugin - typechecking each compilation\n      - [x] eslinting  \n      - [x] test with mocha\n      - [x] nodemon to run server\n - [x] (^) Update Linting Rules (linewrap, length, etc)  \n      - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n      - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n      - Headers  \n - [..] (^) Simple DB endpoint  \n      - MongoDB\n      - PostgreSQL or MariaDB\n      - ElasticSearch? for search endpoint\n - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n      - [ ] OpenAPI Validation  \n      - [x] Swagger UI\n        - [..] in Docs\n - [ ] (^) Debugging while running\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     -overrides\n - [ ] (-) Headers\n - [ ] (-) Cookies?\n - [ ] (-) Request Performance\n - [ ] (-) Helpers\n      - mysql\n      - external-service request (with performance monitoring/caching?)\n      - Logging/GELF/Kibana?\n      - SendEmail\n      - Cron?\n      - Authentication?\n - [ ] (-) Request Details Model attached to handler parameters\n - [ ] (-) Compression of responses\n - [ ] (-) production vs dev\n      - webpack/build\n      - pm2 for production\n      - config\n      - proper logging\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [ ] (-) Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Add logging with Winston/Bunyon\n    - pino logs to file too?\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Complain when missing unit tests\n - [ ] (-) Githooks for generating reports/linting  \n - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [..] Serve Docs\n    - only in development\n - [ ] Garbage UPC (External API) endpoint\n    - Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/README.md",
     "name": "./README.md",
     "static": true,
@@ -1224,14 +1203,14 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.4\",\n    \"@babel/plugin-transform-flow-strip-types\": \"^7.4.4\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"babel-plugin-transform-flow-strip-types\": \"^6.22.0\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.4.0\",\n    \"eslint-config-prettier\": \"^6.4.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"eslint-plugin-flowtype\": \"^4.3.0\",\n    \"eslint-plugin-flowtype-errors\": \"^4.1.0\",\n    \"eslint-plugin-header\": \"^3.0.0\",\n    \"eslint-plugin-prettier\": \"^3.1.1\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"prettier\": \"^1.18.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.40.2\",\n    \"webpack-cli\": \"^3.3.9\",\n    \"webpack-dev-server\": \"^3.8.2\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.4.0\",\n    \"@hapi/inert\": \"^5.2.2\",\n    \"hapi-pino\": \"^6.1.0\",\n    \"mariadb\": \"^2.1.1\",\n    \"swagger-ui-dist\": \"^3.24.0\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js) & (sleep 10s && open http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"HapiServer\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Template for Hapi Server\",\n  \"main\": \"dist/entry.js\",\n  \"keywords\": [\n    \"flow\",\n    \"eslint\",\n    \"esdoc\",\n    \"template\",\n    \"node\",\n    \"hapi\",\n    \"server\"\n  ],\n  \"author\": \"djunker <devlin.junker@gmail.com>\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.6.4\",\n    \"@babel/plugin-transform-flow-strip-types\": \"^7.4.4\",\n    \"@babel/polyfill\": \"^7.6.0\",\n    \"@babel/preset-env\": \"^7.6.0\",\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\n    \"@babel/preset-flow\": \"^7.0.0\",\n    \"@babel/preset-stage-0\": \"^7.0.0\",\n    \"@babel/register\": \"^7.6.0\",\n    \"babel-eslint\": \"^10.0.3\",\n    \"babel-loader\": \"^8.0.6\",\n    \"babel-plugin-source-map-support\": \"^2.1.1\",\n    \"babel-plugin-transform-flow-strip-types\": \"^6.22.0\",\n    \"chai\": \"^4.2.0\",\n    \"chai-as-promised\": \"^7.1.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-flow-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.4.0\",\n    \"eslint-config-prettier\": \"^6.4.0\",\n    \"eslint-loader\": \"^3.0.0\",\n    \"eslint-plugin-flowtype\": \"^4.3.0\",\n    \"eslint-plugin-flowtype-errors\": \"^4.1.0\",\n    \"eslint-plugin-header\": \"^3.0.0\",\n    \"eslint-plugin-prettier\": \"^3.1.1\",\n    \"flow-bin\": \"^0.107.0\",\n    \"flow-webpack-plugin\": \"^1.2.0\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"mocha\": \"^6.2.0\",\n    \"mocha-loader\": \"^3.0.0\",\n    \"nodemon\": \"^1.19.2\",\n    \"prettier\": \"^1.18.2\",\n    \"require-context\": \"^1.1.0\",\n    \"sinon\": \"^7.4.2\",\n    \"sinon-chai\": \"^3.3.0\",\n    \"source-map-support\": \"^0.5.13\",\n    \"webpack\": \"^4.40.2\",\n    \"webpack-cli\": \"^3.3.9\",\n    \"webpack-dev-server\": \"^3.8.2\",\n    \"webpack-node-externals\": \"^1.7.2\",\n    \"webpack-shell-plugin\": \"^0.5.0\"\n  },\n  \"dependencies\": {\n    \"@hapi/hapi\": \"^18.4.0\",\n    \"@hapi/inert\": \"^5.2.2\",\n    \"hapi-pino\": \"^6.1.0\",\n    \"mariadb\": \"^2.1.1\"\n  },\n  \"scripts\": {\n    \"start-watch\": \"./node_modules/.bin/webpack --watch & (sleep 7s && nodemon dist/server.bundle.js) & (sleep 10s && open http://localhost:3333/openapi/index.html?url=http://localhost:3333/openapi.yaml)\",\n    \"test-watch\": \"node_modules/.bin/mocha --watch\",\n    \"dev-watch\": \"./node_modules/.bin/webpack --watch\",\n    \"test\": \"node_modules/.bin/mocha\",\n    \"doc\": \"./node_modules/.bin/esdoc\",\n    \"dev\": \"npm run build && node dist/server.bundle.js\",\n    \"build\": \"./node_modules/.bin/webpack\",\n    \"clean\": \"rm -rf ./dist\",\n    \"help\": \"echo \\\"$(cat help.txt)\\\"\"\n  }\n}\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
   },
   {
-    "__docId__": 77,
+    "__docId__": 76,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1242,7 +1221,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 77,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1258,7 +1237,7 @@
     ]
   },
   {
-    "__docId__": 79,
+    "__docId__": 78,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1274,7 +1253,7 @@
     ]
   },
   {
-    "__docId__": 80,
+    "__docId__": 79,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1287,7 +1266,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 81,
+    "__docId__": 80,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1303,7 +1282,7 @@
     ]
   },
   {
-    "__docId__": 82,
+    "__docId__": 81,
     "kind": "test",
     "name": "it4",
     "testId": 4,

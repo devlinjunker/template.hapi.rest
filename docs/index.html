@@ -85,11 +85,6 @@
 <li>[x] eslinting  </li>
 <li>[x] test with mocha</li>
 <li>[x] nodemon to run server</li>
-<li>[ ] (v) production vs dev<ul>
-<li>pm2 for production</li>
-<li>proper logging</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>[x] (^) Update Linting Rules (linewrap, length, etc)  <ul>
@@ -107,12 +102,12 @@
 <li>[..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
 <li>[ ] OpenAPI Validation  </li>
 <li>[x] Swagger UI<ul>
-<li>in Docs</li>
+<li>[..] in Docs</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>[  ] (^) Debugging while running</li>
+<li>[ ] (^) Debugging while running</li>
 <li>[..] (^) Chai as promised and sinon-chai  </li>
 <li>[ ] (^) Config.yaml and Env config file<ul>
 <li>port</li>
@@ -121,6 +116,26 @@
 </ul>
 </li>
 <li>[ ] (-) Headers</li>
+<li>[ ] (-) Cookies?</li>
+<li>[ ] (-) Request Performance</li>
+<li>[ ] (-) Helpers<ul>
+<li>mysql</li>
+<li>external-service request (with performance monitoring/caching?)</li>
+<li>Logging/GELF/Kibana?</li>
+<li>SendEmail</li>
+<li>Cron?</li>
+<li>Authentication?</li>
+</ul>
+</li>
+<li>[ ] (-) Request Details Model attached to handler parameters</li>
+<li>[ ] (-) Compression of responses</li>
+<li>[ ] (-) production vs dev<ul>
+<li>webpack/build</li>
+<li>pm2 for production</li>
+<li>config</li>
+<li>proper logging</li>
+</ul>
+</li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
 <li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
 <li>[ ] (-) Automatically find controller files in entry rather than need to reference  </li>
@@ -131,7 +146,7 @@
 <li>[ ] (-) Run only affected tests on file save  </li>
 <li>[ ] (-) Complain when missing unit tests</li>
 <li>[ ] (-) Githooks for generating reports/linting  </li>
-<li>[ ] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
+<li>[..] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
 <li>[ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a>  </li>
 <li>[ ] (v) Test coverage saved in spec files  </li>
 <li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
@@ -141,6 +156,10 @@
 </ul>
 <h3 id="application">Application</h3><ul>
 <li>[..] GET/POST/PUT/DELETE Note endpoints</li>
+<li>[..] Serve Docs<ul>
+<li>only in development</li>
+</ul>
+</li>
 <li>[ ] Garbage UPC (External API) endpoint<ul>
 <li>Map to information/notes?</li>
 </ul>
