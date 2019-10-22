@@ -432,6 +432,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/controllers/note.controller.spec.js",
+    "file/src/controllers/note.controller.spec.js.html",
+    "src/controllers/note.controller.spec.js",
+    "file"
+  ],
+  [
     "src/dataservices/note.service.js",
     "file/src/dataservices/note.service.js.html",
     "src/dataservices/note.service.js",
@@ -456,6 +462,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/dataservices/note.service.spec.js",
+    "file/src/dataservices/note.service.spec.js.html",
+    "src/dataservices/note.service.spec.js",
+    "file"
+  ],
+  [
     "src/entry.js",
     "file/src/entry.js.html",
     "src/entry.js",
@@ -465,6 +477,18 @@ window.esdocSearchIndex = [
     "template.node.hapi/src/controllers/hello.controller.spec.js",
     "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html",
     "template.node.hapi/src/controllers/hello.controller.spec.js",
+    "testFile"
+  ],
+  [
+    "template.node.hapi/src/controllers/note.controller.spec.js",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html",
+    "template.node.hapi/src/controllers/note.controller.spec.js",
+    "testFile"
+  ],
+  [
+    "template.node.hapi/src/dataservices/note.service.spec.js",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html",
+    "template.node.hapi/src/dataservices/note.service.spec.js",
     "testFile"
   ]
 ]

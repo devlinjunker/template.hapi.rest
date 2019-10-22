@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/controllers/note.controller.js | HapiServer</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">template.node.hapi/src/controllers/note.controller.spec.js | HapiServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -31,82 +31,9 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/controllers/note.controller.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @flow
- */
-import { HapiRequest } from &apos;app/base/server.js&apos;;
-import { NoteDataservice, Note } from &apos;app/dataservices/note.service.js&apos;;
-
-/**
- * Container Controller for Note CRUD Functions
- */
-export class NoteController {
-  /**
-   * Returns a note, specified by Id
-   * @param  {HapiRequest} request RequestObject
-   * @return {Note}         Note corresponding to Id passed in
-   */
-  static getNoteById({ params }: HapiRequest): Promise&lt;Note&gt; {
-    console.log(params);
-
-    return NoteDataservice.getNote({ id: params.id });
-  }
-
-  /**
-   * Create a new Note
-   * @param  {HapiRequest} request RequestObject
-   * @return {Note}        [description]
-   */
-  static createNote({ payload }: HapiRequest): Promise&lt;Note&gt; {
-    // TODO: Debug this?
-    console.log(payload);
-    return NoteDataservice.createNote({ name: payload.name });
-  }
-
-  /**
-   * Update a note, specified by id
-   * @param  {HapiRequest} request RequestObject
-   * @return {Note}        [description]
-   */
-  static updateNote({ payload }: HapiRequest) {
-    console.log(payload);
-  }
-
-  /**
-   * Delete a note, specified by id
-   * @param  {HapiRequest} request RequestObject
-   * @return {boolean}        [description]
-   */
-  static deleteNote({ params }: HapiRequest) {
-    console.log(params);
-  }
-}
-
-export default [
-  {
-    path: &apos;/note/{id}&apos;,
-    method: &apos;GET&apos;,
-    controller: NoteController.getNoteById
-  },
-  {
-    path: &apos;/note&apos;,
-    method: &apos;POST&apos;,
-    controller: NoteController.createNote
-  },
-  {
-    path: &apos;/note/{id?}&apos;,
-    method: &apos;PUT&apos;,
-    controller: NoteController.updateNote
-  },
-  {
-    path: &apos;/note/{id}&apos;,
-    method: &apos;DELETE&apos;,
-    controller: NoteController.deleteNote
-  }
-];
-</code></pre>
-
+<div class="content" data-ice="content"><h1 data-ice="title">template.node.hapi/src/controllers/note.controller.spec.js</h1>
+<pre class="source-code line-number raw-source-code"></pre>
+<p data-ice="emptySourceCode">Sorry, this documentation does not provide source code.</p>
 </div>
 
 <footer class="footer">

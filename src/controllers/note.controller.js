@@ -1,8 +1,6 @@
 /**
  * @flow
  */
-// // TODO: Remove this
-/* eslint-disable no-unused-vars */
 import { HapiRequest } from 'app/base/server.js';
 import { NoteDataservice, Note } from 'app/dataservices/note.service.js';
 
@@ -26,7 +24,7 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static createNote({ params, payload }: HapiRequest): Promise<Note> {
+  static createNote({ payload }: HapiRequest): Promise<Note> {
     // TODO: Debug this?
     console.log(payload);
     return NoteDataservice.createNote({ name: payload.name });
@@ -37,8 +35,8 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static updateNote({ params }: HapiRequest) {
-
+  static updateNote({ payload }: HapiRequest) {
+    console.log(payload);
   }
 
   /**
@@ -47,7 +45,7 @@ export class NoteController {
    * @return {boolean}        [description]
    */
   static deleteNote({ params }: HapiRequest) {
-
+    console.log(params);
   }
 }
 

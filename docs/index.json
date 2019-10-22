@@ -865,7 +865,7 @@
     "__docId__": 62,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
-    "content": "/**\n * @flow\n */\n// // TODO: Remove this\n/* eslint-disable no-unused-vars */\nimport { HapiRequest } from 'app/base/server.js';\nimport { NoteDataservice, Note } from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): Promise<Note> {\n    console.log(params);\n\n    return NoteDataservice.getNote({ id: params.id });\n  }\n\n  /**\n   * Create a new Note\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static createNote({ params, payload }: HapiRequest): Promise<Note> {\n    // TODO: Debug this?\n    console.log(payload);\n    return NoteDataservice.createNote({ name: payload.name });\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static updateNote({ params }: HapiRequest) {\n\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
+    "content": "/**\n * @flow\n */\nimport { HapiRequest } from 'app/base/server.js';\nimport { NoteDataservice, Note } from 'app/dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static getNoteById({ params }: HapiRequest): Promise<Note> {\n    console.log(params);\n\n    return NoteDataservice.getNote({ id: params.id });\n  }\n\n  /**\n   * Create a new Note\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static createNote({ payload }: HapiRequest): Promise<Note> {\n    // TODO: Debug this?\n    console.log(payload);\n    return NoteDataservice.createNote({ name: payload.name });\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static updateNote({ payload }: HapiRequest) {\n    console.log(payload);\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n    console.log(params);\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.js",
     "access": "public",
@@ -884,7 +884,7 @@
     "importPath": "HapiServer/src/controllers/note.controller.js",
     "importStyle": "{NoteController}",
     "description": "Container Controller for Note CRUD Functions",
-    "lineNumber": 10,
+    "lineNumber": 7,
     "interface": false
   },
   {
@@ -898,7 +898,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.getNoteById",
     "access": "public",
     "description": "Returns a note, specified by Id",
-    "lineNumber": 16,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -931,7 +931,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.createNote",
     "access": "public",
     "description": "Create a new Note",
-    "lineNumber": 27,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -964,7 +964,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.updateNote",
     "access": "public",
     "description": "Update a note, specified by id",
-    "lineNumber": 38,
+    "lineNumber": 35,
     "params": [
       {
         "nullable": null,
@@ -997,7 +997,7 @@
     "longname": "src/controllers/note.controller.js~NoteController.deleteNote",
     "access": "public",
     "description": "Delete a note, specified by id",
-    "lineNumber": 45,
+    "lineNumber": 44,
     "params": [
       {
         "nullable": null,
@@ -1022,6 +1022,17 @@
   {
     "__docId__": 68,
     "kind": "file",
+    "name": "src/controllers/note.controller.spec.js",
+    "content": "",
+    "static": true,
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 69,
+    "kind": "file",
     "name": "src/dataservices/note.service.js",
     "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\n\n// From MariaDB\ninterface InsertMariaDBResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  static dbPool: any;\n\n  /**\n   * Static Constructor to create database connection\n   * @returns {undefined}\n   */\n  static constructor() {\n    if (NoteDataservice.dbPool === undefined) {\n      // TODO: Configuration from file\n      NoteDataservice.dbPool = mariadb.createPool({\n        host: 'localhost',\n        user: 'root',\n        password: 'root',\n        connectionLimit: 5\n      });\n    }\n  }\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: change to data?\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const response: InsertMariaDBResponse = await connection.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n}\n// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it\nNoteDataservice.constructor();\n",
     "static": true,
@@ -1031,7 +1042,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "class",
     "name": "NoteDataservice",
     "memberof": "src/dataservices/note.service.js",
@@ -1046,7 +1057,7 @@
     "interface": false
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "method",
     "name": "constructor",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1074,7 +1085,7 @@
     "params": []
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "method",
     "name": "getNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1108,7 +1119,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1141,7 +1152,18 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
+    "kind": "file",
+    "name": "src/dataservices/note.service.spec.js",
+    "content": "",
+    "static": true,
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 75,
     "kind": "file",
     "name": "src/entry.js",
     "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport { Server } from './base/server.js';\n\n\nconst server = new Server();\n\nserver.run();\n\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n\n\nserver.addEndpoints(routes);\n\n// auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\n",
@@ -1152,7 +1174,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 74,
+    "__docId__": 76,
     "kind": "variable",
     "name": "server",
     "memberof": "src/entry.js",
@@ -1173,7 +1195,7 @@
     "ignore": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 77,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1210,7 +1232,7 @@
     "access": "public"
   },
   {
-    "__docId__": 76,
+    "__docId__": 78,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1221,7 +1243,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 77,
+    "__docId__": 79,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1237,7 +1259,7 @@
     ]
   },
   {
-    "__docId__": 78,
+    "__docId__": 80,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1253,7 +1275,7 @@
     ]
   },
   {
-    "__docId__": 79,
+    "__docId__": 81,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1266,7 +1288,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 80,
+    "__docId__": 82,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1282,7 +1304,7 @@
     ]
   },
   {
-    "__docId__": 81,
+    "__docId__": 83,
     "kind": "test",
     "name": "it4",
     "testId": 4,
@@ -1293,5 +1315,27 @@
     "access": null,
     "description": "returns '{request.params.name} says:'",
     "lineNumber": 19
+  },
+  {
+    "__docId__": 84,
+    "kind": "testFile",
+    "name": "template.node.hapi/src/controllers/note.controller.spec.js",
+    "content": "",
+    "static": true,
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 85,
+    "kind": "testFile",
+    "name": "template.node.hapi/src/dataservices/note.service.spec.js",
+    "content": "",
+    "static": true,
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
   }
 ]
