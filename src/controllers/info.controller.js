@@ -3,7 +3,7 @@
  *
  * NOTE: This file will not be included in the esdoc list because it doesn't export any identifiers
  */
-import { HapiRequest } from 'app/base/server.js';
+import { HapiRequest } from '../base/server.js';
 
 /**
  * Basic Controller for returning server information

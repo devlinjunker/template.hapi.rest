@@ -85,8 +85,12 @@ How to use this template to create a quick HTTP REST server:
       - MongoDB
       - PostgreSQL or MariaDB
       - ElasticSearch? for search endpoint
- - [..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
-      - [ ] OpenAPI Validation  
+ - [?] (^) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+ - [..] (^) Fix watch commands so that tests can run and output errors without breaking
+      - mocha doesn't stop the process
+      - tests don't run again on changes with webpack
+ - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
+      - [v] OpenAPI Validation  
       - [x] Swagger UI
         - [..] in Docs
  - [ ] (^) Debugging while running
@@ -95,16 +99,23 @@ How to use this template to create a quick HTTP REST server:
      - port
      - other services/apis later?
      -overrides
- - [ ] (-) Headers
- - [ ] (-) Cookies?
+ - [ ] (^) Typescript/Express router
+    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
+      - Headers
+      - Cookies?
+    - [ ] OpenApi Decorators for spec generation https://github.com/epiphone/routing-controllers-openapi
+    - [ ] Automatically find controller files in entry rather than need to reference  
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
-      - mysql
-      - external-service request (with performance monitoring/caching?)
-      - Logging/GELF/Kibana?
-      - SendEmail
-      - Cron?
-      - Authentication?
+      - [ ] mysql
+      - [ ] external-service request (with performance monitoring/caching?)
+      - [ ] Logging
+        - GELF/Kibana?
+        - Winston/Bunyon
+        - Pino logs to file
+      - [ ] SendEmail
+      - [ ] Cron?
+      - [ ] Authentication?
  - [ ] (-) Request Details Model attached to handler parameters
  - [ ] (-) Compression of responses
  - [ ] (-) production vs dev
@@ -114,9 +125,6 @@ How to use this template to create a quick HTTP REST server:
       - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
- - [ ] (-) Automatically find controller files in entry rather than need to reference  
- - [ ] (-) Add logging with Winston/Bunyon
-    - pino logs to file too?
  - [ ] (-) Run only affected tests on file save  
  - [ ] (-) Complain when missing unit tests
  - [ ] (-) Githooks for generating reports/linting  

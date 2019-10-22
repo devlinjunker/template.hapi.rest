@@ -29,9 +29,7 @@ const config =  {
     extensions: ['.js'],
     modules: ['node_modules'],
     alias: {
-      // `app/controllers/hello.controller.js` transforms to
-      //  `<PROJECT_ROOT>/src/controllers/hello.controller.js`
-      app: path.resolve(__dirname, './src/')
+
     }
   },
 
@@ -45,12 +43,9 @@ const config =  {
       reportingSeverity: 'error'
     }),
 
+    // TODO: Fix so this runs every time we build
     new WebpackShellPlugin({
       onBuildExit: 'mocha ./dist/test.bundle.js'
-    }),
-
-    new WebpackShellPlugin({
-      onBuildExit: 'cp ./openapi.yaml ./docs/swagger/openapi.yaml'
     }),
   ],
 

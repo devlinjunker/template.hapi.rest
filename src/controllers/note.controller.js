@@ -1,8 +1,8 @@
 /**
  * @flow
  */
-import { HapiRequest } from 'app/base/server.js';
-import { NoteDataservice, Note } from 'app/dataservices/note.service.js';
+import { HapiRequest } from '../base/server.js';
+import { NoteDataservice, Note } from '../dataservices/note.service.js';
 
 /**
  * Container Controller for Note CRUD Functions
@@ -14,8 +14,6 @@ export class NoteController {
    * @return {Note}         Note corresponding to Id passed in
    */
   static getNoteById({ params }: HapiRequest): Promise<Note> {
-    console.log(params);
-
     return NoteDataservice.getNote({ id: params.id });
   }
 

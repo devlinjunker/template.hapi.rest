@@ -7,5 +7,4 @@
 [lints]
 
 [options]
-module.name_mapper='^app/\(.*\)' -> '<PROJECT_ROOT>/src/\1'
 include_warnings=true
