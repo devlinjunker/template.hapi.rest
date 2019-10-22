@@ -1,8 +1,5 @@
 import { HelloWorld } from './hello.controller.js';
 
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
-
 /** @test {HelloWorld} */
 describe('HelloWorld', () => {
   /** @test {HelloWorld.basic} */

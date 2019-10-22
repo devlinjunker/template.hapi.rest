@@ -806,7 +806,7 @@
     "__docId__": 59,
     "kind": "file",
     "name": "src/controllers/hello.controller.spec.js",
-    "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
+    "content": "import { HelloWorld } from './hello.controller.js';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/hello.controller.spec.js",
     "access": "public",
@@ -1023,7 +1023,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\nimport sinon from 'sinon';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  const sinonSandbox = sinon.sandbox.create();\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": "public",
@@ -1155,7 +1155,7 @@
     "__docId__": 74,
     "kind": "file",
     "name": "src/dataservices/note.service.spec.js",
-    "content": "",
+    "content": "\n\n/** @test {NoteController} */\ndescribe('NoteDataservice', () => {\n\n  describe('getNote()', () => {\n\n  });\n\n  describe('createNote()', () => {\n\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": "public",
@@ -1235,7 +1235,7 @@
     "__docId__": 78,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
-    "content": "import { HelloWorld } from './hello.controller.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
+    "content": "import { HelloWorld } from './hello.controller.js';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/hello.controller.spec.js",
     "access": null,
@@ -1253,7 +1253,7 @@
     "longname": "template.node.hapi/src/controllers/hello.controller.spec.js~describe0",
     "access": null,
     "description": "HelloWorld",
-    "lineNumber": 7,
+    "lineNumber": 4,
     "testTargets": [
       "HelloWorld"
     ]
@@ -1269,7 +1269,7 @@
     "longname": "template.node.hapi/src/controllers/hello.controller.spec.js~describe0.describe1",
     "access": null,
     "description": "basic()",
-    "lineNumber": 9,
+    "lineNumber": 6,
     "testTargets": [
       "HelloWorld.basic"
     ]
@@ -1285,7 +1285,7 @@
     "longname": "template.node.hapi/src/controllers/hello.controller.spec.js~describe0.describe1.it2",
     "access": null,
     "description": "returns 'Hello World!'",
-    "lineNumber": 10
+    "lineNumber": 7
   },
   {
     "__docId__": 82,
@@ -1298,7 +1298,7 @@
     "longname": "template.node.hapi/src/controllers/hello.controller.spec.js~describe0.describe3",
     "access": null,
     "description": "name()",
-    "lineNumber": 18,
+    "lineNumber": 15,
     "testTargets": [
       "HelloWorld.name"
     ]
@@ -1314,13 +1314,13 @@
     "longname": "template.node.hapi/src/controllers/hello.controller.spec.js~describe0.describe3.it4",
     "access": null,
     "description": "returns '{request.params.name} says:'",
-    "lineNumber": 19
+    "lineNumber": 16
   },
   {
     "__docId__": 84,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\nimport sinon from 'sinon';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  const sinonSandbox = sinon.sandbox.create();\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": null,
@@ -1338,7 +1338,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
     "access": null,
     "description": "NoteController",
-    "lineNumber": 9,
+    "lineNumber": 5,
     "testTargets": [
       "NoteController"
     ]
@@ -1354,7 +1354,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
     "access": null,
     "description": "getNoteById()",
-    "lineNumber": 12
+    "lineNumber": 7
   },
   {
     "__docId__": 87,
@@ -1367,7 +1367,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it7",
     "access": null,
     "description": "should return a Note with id given",
-    "lineNumber": 13
+    "lineNumber": 8
   },
   {
     "__docId__": 88,
@@ -1380,7 +1380,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe8",
     "access": null,
     "description": "createNote()",
-    "lineNumber": 25
+    "lineNumber": 20
   },
   {
     "__docId__": 89,
@@ -1393,7 +1393,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe9",
     "access": null,
     "description": "updateNote()",
-    "lineNumber": 27
+    "lineNumber": 22
   },
   {
     "__docId__": 90,
@@ -1406,17 +1406,59 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe10",
     "access": null,
     "description": "deleteNote()",
-    "lineNumber": 29
+    "lineNumber": 24
   },
   {
     "__docId__": 91,
     "kind": "testFile",
     "name": "template.node.hapi/src/dataservices/note.service.spec.js",
-    "content": "",
+    "content": "\n\n/** @test {NoteController} */\ndescribe('NoteDataservice', () => {\n\n  describe('getNote()', () => {\n\n  });\n\n  describe('createNote()', () => {\n\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": null,
     "description": null,
     "lineNumber": 1
+  },
+  {
+    "__docId__": 92,
+    "kind": "test",
+    "name": "describe11",
+    "testId": 11,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js",
+    "testDepth": 0,
+    "static": true,
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "access": null,
+    "description": "NoteDataservice",
+    "lineNumber": 4,
+    "testTargets": [
+      "NoteController"
+    ]
+  },
+  {
+    "__docId__": 93,
+    "kind": "test",
+    "name": "describe12",
+    "testId": 12,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "testDepth": 1,
+    "static": true,
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe12",
+    "access": null,
+    "description": "getNote()",
+    "lineNumber": 6
+  },
+  {
+    "__docId__": 94,
+    "kind": "test",
+    "name": "describe13",
+    "testId": 13,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "testDepth": 1,
+    "static": true,
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe13",
+    "access": null,
+    "description": "createNote()",
+    "lineNumber": 8
   }
 ]

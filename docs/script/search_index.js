@@ -25,68 +25,86 @@ window.esdocSearchIndex = [
   ],
   [
     "helloworld src/controllers/hello.controller.js~helloworld,helloworld",
-    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber7",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber4",
     "HelloWorld",
     "test"
   ],
   [
     "helloworld.basic src/controllers/hello.controller.js~helloworld.basic,helloworld.basic",
-    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber9",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber6",
     "HelloWorld basic()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber10",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber7",
     "HelloWorld basic() returns 'Hello World!'",
     "test"
   ],
   [
     "helloworld.name src/controllers/hello.controller.js~helloworld.name,helloworld.name",
-    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber18",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber15",
     "HelloWorld name()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber19",
+    "test-file/template.node.hapi/src/controllers/hello.controller.spec.js.html#lineNumber16",
     "HelloWorld name() returns '{request.params.name} says:'",
     "test"
   ],
   [
     "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber9",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber5",
     "NoteController",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber25",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber20",
     "NoteController createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber29",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber24",
     "NoteController deleteNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber12",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber7",
     "NoteController getNoteById()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber8",
     "NoteController getNoteById() should return a Note with id given",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber27",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber22",
     "NoteController updateNote()",
+    "test"
+  ],
+  [
+    "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber4",
+    "NoteDataservice",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber8",
+    "NoteDataservice createNote()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber6",
+    "NoteDataservice getNote()",
     "test"
   ],
   [
