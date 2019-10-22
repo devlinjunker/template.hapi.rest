@@ -35,8 +35,8 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * @flow
  */
-import { HapiRequest } from &apos;app/base/server.js&apos;;
-import { NoteDataservice, Note } from &apos;app/dataservices/note.service.js&apos;;
+import { HapiRequest } from &apos;../base/server.js&apos;;
+import { NoteDataservice, Note } from &apos;../dataservices/note.service.js&apos;;
 
 /**
  * Container Controller for Note CRUD Functions
@@ -48,8 +48,6 @@ export class NoteController {
    * @return {Note}         Note corresponding to Id passed in
    */
   static getNoteById({ params }: HapiRequest): Promise&lt;Note&gt; {
-    console.log(params);
-
     return NoteDataservice.getNote({ id: params.id });
   }
 

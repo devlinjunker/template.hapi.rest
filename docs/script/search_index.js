@@ -54,6 +54,42 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber9",
+    "NoteController",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber25",
+    "NoteController createNote()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber29",
+    "NoteController deleteNote()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber12",
+    "NoteController getNoteById()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13",
+    "NoteController getNoteById() should return a Note with id given",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber27",
+    "NoteController updateNote()",
+    "test"
+  ],
+  [
     "src/.external-ecmascript.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "src/.external-ecmascript.js~Array",

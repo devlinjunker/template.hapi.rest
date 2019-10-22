@@ -101,8 +101,14 @@
 <li>ElasticSearch? for search endpoint</li>
 </ul>
 </li>
-<li>[..] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
-<li>[ ] OpenAPI Validation  </li>
+<li>[?] (^) Absolute Paths: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
+<li>[..] (^) Fix watch commands so that tests can run and output errors without breaking<ul>
+<li>mocha doesn&apos;t stop the process</li>
+<li>tests don&apos;t run again on changes with webpack</li>
+</ul>
+</li>
+<li>[x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
+<li>[v] OpenAPI Validation  </li>
 <li>[x] Swagger UI<ul>
 <li>[..] in Docs</li>
 </ul>
@@ -117,16 +123,29 @@
 -overrides</li>
 </ul>
 </li>
-<li>[ ] (-) Headers</li>
-<li>[ ] (-) Cookies?</li>
+<li>[ ] (^) Typescript/Express router<ul>
+<li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
+<li>Headers</li>
+<li>Cookies?</li>
+</ul>
+</li>
+<li>[ ] OpenApi Decorators for spec generation <a href="https://github.com/epiphone/routing-controllers-openapi">https://github.com/epiphone/routing-controllers-openapi</a></li>
+<li>[ ] Automatically find controller files in entry rather than need to reference  </li>
+</ul>
+</li>
 <li>[ ] (-) Request Performance</li>
 <li>[ ] (-) Helpers<ul>
-<li>mysql</li>
-<li>external-service request (with performance monitoring/caching?)</li>
-<li>Logging/GELF/Kibana?</li>
-<li>SendEmail</li>
-<li>Cron?</li>
-<li>Authentication?</li>
+<li>[ ] mysql</li>
+<li>[ ] external-service request (with performance monitoring/caching?)</li>
+<li>[ ] Logging<ul>
+<li>GELF/Kibana?</li>
+<li>Winston/Bunyon</li>
+<li>Pino logs to file</li>
+</ul>
+</li>
+<li>[ ] SendEmail</li>
+<li>[ ] Cron?</li>
+<li>[ ] Authentication?</li>
 </ul>
 </li>
 <li>[ ] (-) Request Details Model attached to handler parameters</li>
@@ -140,11 +159,6 @@
 </li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
 <li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
-<li>[ ] (-) Automatically find controller files in entry rather than need to reference  </li>
-<li>[ ] (-) Add logging with Winston/Bunyon<ul>
-<li>pino logs to file too?</li>
-</ul>
-</li>
 <li>[ ] (-) Run only affected tests on file save  </li>
 <li>[ ] (-) Complain when missing unit tests</li>
 <li>[ ] (-) Githooks for generating reports/linting  </li>

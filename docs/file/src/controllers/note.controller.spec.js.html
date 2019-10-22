@@ -32,8 +32,44 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/controllers/note.controller.spec.js</h1>
-<pre class="source-code line-number raw-source-code"></pre>
-<p data-ice="emptySourceCode">Sorry, this documentation does not provide source code.</p>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { NoteController } from &apos;./note.controller.js&apos;;
+import { NoteDataservice } from &apos;../dataservices/note.service.js&apos;;
+
+import { describe, it } from &apos;mocha&apos;;
+import { expect } from &apos;chai&apos;;
+import sinon from &apos;sinon&apos;;
+
+/** @test {NoteController} */
+describe(&apos;NoteController&apos;, () =&gt; {
+  const sinonSandbox = sinon.sandbox.create();
+
+  describe(&apos;getNoteById()&apos;, () =&gt; {
+    it(&apos;should return a Note with id given&apos;, () =&gt; {
+      const id = 1;
+      sinonSandbox.stub(NoteDataservice, &apos;getNote&apos;).returns({
+        id
+      });
+
+      const note = NoteController.getNoteById({ params: { id } });
+
+      expect(note).to.contain({ id });
+    });
+  });
+
+  describe(&apos;createNote()&apos;, () =&gt; {
+
+  });
+
+  describe(&apos;updateNote()&apos;, () =&gt; {
+
+  });
+
+  describe(&apos;deleteNote()&apos;, () =&gt; {
+
+  });
+});
+</code></pre>
+
 </div>
 
 <footer class="footer">
