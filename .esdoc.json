@@ -10,6 +10,9 @@
           "interfaces": ["describe", "it", "context", "suite", "test"],
           "includes": ["(spec|Spec|test|Test)\\.js$"],
           "excludes": ["\\.config\\.js$", "node_modules"]
+        },
+        "brand": {
+          "repository": "https://github.com/devlinjunker/template.node.hapi"
         }
       }
     },
