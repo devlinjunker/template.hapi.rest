@@ -1,8 +1,7 @@
 {
-  "name": "HapiServer",
   "version": "1.0.0",
+  "name": "HapiServer",
   "description": "Template for Hapi Server",
-  "main": "dist/entry.js",
   "keywords": [
     "flow",
     "eslint",
@@ -14,6 +13,24 @@
   ],
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
+  "main": "dist/entry.js",
+  "scripts": {
+    "start-watch": "./node_modules/.bin/webpack --watch & (sleep 10s && nodemon dist/server.bundle.js)",
+    "test-watch": "node_modules/.bin/mocha --watch",
+    "dev-watch": "./node_modules/.bin/webpack --watch",
+    "test": "node_modules/.bin/mocha",
+    "doc": "./node_modules/.bin/esdoc",
+    "dev": "npm run build && node dist/server.bundle.js",
+    "build": "./node_modules/.bin/webpack",
+    "clean": "rm -rf ./dist",
+    "help": "echo \"$(cat help.txt)\""
+  },
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/inert": "^5.2.2",
+    "hapi-pino": "^6.1.0",
+    "mariadb": "^2.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
@@ -55,22 +72,5 @@
     "webpack-dev-server": "^3.8.2",
     "webpack-node-externals": "^1.7.2",
     "webpack-shell-plugin": "^0.5.0"
-  },
-  "dependencies": {
-    "@hapi/hapi": "^18.4.0",
-    "@hapi/inert": "^5.2.2",
-    "hapi-pino": "^6.1.0",
-    "mariadb": "^2.1.1"
-  },
-  "scripts": {
-    "start-watch": "./node_modules/.bin/webpack --watch & (sleep 10s && nodemon dist/server.bundle.js)",
-    "test-watch": "node_modules/.bin/mocha --watch",
-    "dev-watch": "./node_modules/.bin/webpack --watch",
-    "test": "node_modules/.bin/mocha",
-    "doc": "./node_modules/.bin/esdoc",
-    "dev": "npm run build && node dist/server.bundle.js",
-    "build": "./node_modules/.bin/webpack",
-    "clean": "rm -rf ./dist",
-    "help": "echo \"$(cat help.txt)\""
   }
 }
