@@ -55,24 +55,72 @@ window.esdocSearchIndex = [
   ],
   [
     "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber9",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber6",
     "NoteController",
     "test"
   ],
   [
-    "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber25",
+    "notecontroller.createnote src/controllers/note.controller.js~notecontroller.createnote,notecontroller.createnote",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber41",
     "NoteController createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber29",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber42",
+    "NoteController createNote() should call DataService.createNote (with newName?)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber70",
+    "NoteController createNote() should return error if note name is empty",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber72",
+    "NoteController createNote() should return error message if error creating note",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber52",
+    "NoteController createNote() should return note with name passed and new id",
+    "test"
+  ],
+  [
+    "notecontroller.deletenote src/controllers/note.controller.js~notecontroller.deletenote,notecontroller.deletenote",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber87",
     "NoteController deleteNote()",
     "test"
   ],
   [
     "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber88",
+    "NoteController deleteNote() should call NoteDataservice.deleteNote (with id)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber94",
+    "NoteController deleteNote() should return error message if error deleting note",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber92",
+    "NoteController deleteNote() should return error message if id is invalid",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber90",
+    "NoteController deleteNote() should return the deleted note id",
+    "test"
+  ],
+  [
+    "notecontroller.getnotebyid src/controllers/note.controller.js~notecontroller.getnotebyid,notecontroller.getnotebyid",
     "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber12",
     "NoteController getNoteById()",
     "test"
@@ -80,36 +128,84 @@ window.esdocSearchIndex = [
   [
     "",
     "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13",
-    "NoteController getNoteById() should return a Note with id given",
+    "NoteController getNoteById() should call NoteDataservice.getNote (with id)",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber27",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber24",
+    "NoteController getNoteById() should return a Note with id passed",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber37",
+    "NoteController getNoteById() should return error message if Note doesn't exist",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber35",
+    "NoteController getNoteById() should return error message if id is invalid",
+    "test"
+  ],
+  [
+    "notecontroller.updatenote src/controllers/note.controller.js~notecontroller.updatenote,notecontroller.updatenote",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber76",
     "NoteController updateNote()",
     "test"
   ],
   [
-    "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber4",
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber77",
+    "NoteController updateNote() should call NoteDataservice.updateNote (with params)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber83",
+    "NoteController updateNote() should return error message if error updating note",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber81",
+    "NoteController updateNote() should return error message if id is invalid",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber79",
+    "NoteController updateNote() should return note with updated name, as passed",
+    "test"
+  ],
+  [
+    "notedataservice src/dataservices/note.service.js~notedataservice,notedataservice",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber5",
     "NoteDataservice",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber12",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber24",
     "NoteDataservice createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber6",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber25",
+    "NoteDataservice createNote() should return a note with the name passed",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber20",
     "NoteDataservice getNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber7",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber21",
     "NoteDataservice getNote() should return a note object with matching id",
     "test"
   ],

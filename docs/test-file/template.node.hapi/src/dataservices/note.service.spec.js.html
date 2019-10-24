@@ -32,19 +32,31 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">template.node.hapi/src/dataservices/note.service.spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { NoteDataservice } from &apos;./note.service.js&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import { NoteDataservice } from &apos;./note.service.js&apos;;
+import mariadb from &apos;mariadb&apos;;
 
-/** @test {NoteController} */
+/** @test {NoteDataservice} */
 describe(&apos;NoteDataservice&apos;, () =&gt; {
 
+  let queryStub;
+  beforeEach(() =&gt; {
+    queryStub = sinonSandbox.stub();
+    // TODO: Set up mariadb mock to return connectionStub we can check during tests
+    sinonSandbox.stub(mariadb, &apos;createPool&apos;).resolves({
+      getConnection: () =&gt; {
+        return {
+          query: queryStub
+        };
+      }
+    });
+  });
+
   describe(&apos;getNote()&apos;, () =&gt; {
-    it(&apos;should return a note object with matching id&apos;, async () =&gt; {
-      await NoteDataservice.getNote({ id: 1 }); 
-    })
+    it(&apos;should return a note object with matching id&apos;);
   });
 
   describe(&apos;createNote()&apos;, () =&gt; {
-
+    it(&apos;should return a note with the name passed&apos;);
   });
 });
 </code></pre>

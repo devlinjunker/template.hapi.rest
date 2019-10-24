@@ -34,17 +34,29 @@
 <div class="content" data-ice="content"><h1 data-ice="title">template.node.hapi/src/controllers/note.controller.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { NoteController } from &apos;./note.controller.js&apos;;
 import { NoteDataservice } from &apos;../dataservices/note.service.js&apos;;
-
-import { describe, it } from &apos;mocha&apos;;
-import { expect } from &apos;chai&apos;;
-import sinon from &apos;sinon&apos;;
+import mariadb from &apos;mariadb&apos;;
 
 /** @test {NoteController} */
 describe(&apos;NoteController&apos;, () =&gt; {
-  const sinonSandbox = sinon.sandbox.create();
+  beforeEach(() =&gt; {
+    sinonSandbox.stub(mariadb, &apos;createPool&apos;);
+  });
 
+  /** @test {NoteController.getNoteById} */
   describe(&apos;getNoteById()&apos;, () =&gt; {
-    it(&apos;should return a Note with id given&apos;, () =&gt; {
+    it(&apos;should call NoteDataservice.getNote (with id)&apos;, () =&gt; {
+      const id = 42;
+      const getStub = sinonSandbox.stub(NoteDataservice, &apos;getNote&apos;);
+      NoteController.getNoteById({ params: { id } });
+
+      expect(getStub).to.be.called;
+      // Should we check parameters being sent?
+      expect(getStub).to.be.calledWith({ id });
+    });
+
+
+    // Is this useful? Or should we just check that it calls the backend dataservice
+    it(&apos;should return a Note with id passed&apos;, () =&gt; {
       const id = 1;
       sinonSandbox.stub(NoteDataservice, &apos;getNote&apos;).returns({
         id
@@ -54,18 +66,67 @@ describe(&apos;NoteController&apos;, () =&gt; {
 
       expect(note).to.contain({ id });
     });
+
+    it(&apos;should return error message if id is invalid&apos;);
+
+    it(&apos;should return error message if Note doesn\&apos;t exist&apos;);
   });
 
+  /** @test {NoteController.createNote} */
   describe(&apos;createNote()&apos;, () =&gt; {
+    it(&apos;should call DataService.createNote (with newName?)&apos;, async() =&gt; {
+      const createNoteStub = sinonSandbox.stub(NoteDataservice, &apos;createNote&apos;);
 
+      const newNoteName = &apos;abc&apos;;
+      await NoteController.createNote({ payload: { name: newNoteName } });
+
+      expect(createNoteStub).to.be.called;
+      expect(createNoteStub).to.be.calledWith({ name: newNoteName });
+    });
+
+    it(&apos;should return note with name passed and new id&apos;, async() =&gt; {
+      const id = 13;
+      sinonSandbox.stub(NoteDataservice, &apos;createNote&apos;).callsFake(({ name }) =&gt; {
+        return {
+          id,
+          name
+        };
+      });
+
+      const newNoteName = &apos;abc&apos;;
+      const note = await NoteController.createNote({ payload: { name: newNoteName } });
+
+      expect(note).to.deep.equal({
+        id,
+        name: newNoteName
+      });
+    });
+
+    it(&apos;should return error if note name is empty&apos;);
+
+    it(&apos;should return error message if error creating note&apos;);
   });
 
+  /** @test {NoteController.updateNote} */
   describe(&apos;updateNote()&apos;, () =&gt; {
+    it(&apos;should call NoteDataservice.updateNote (with params)&apos;);
 
+    it(&apos;should return note with updated name, as passed&apos;);
+
+    it(&apos;should return error message if id is invalid&apos;);
+
+    it(&apos;should return error message if error updating note&apos;);
   });
 
+  /** @test {NoteController.deleteNote} */
   describe(&apos;deleteNote()&apos;, () =&gt; {
+    it(&apos;should call NoteDataservice.deleteNote (with id)&apos;);
 
+    it(&apos;should return the deleted note id&apos;);
+
+    it(&apos;should return error message if id is invalid&apos;);
+
+    it(&apos;should return error message if error deleting note&apos;);
   });
 });
 </code></pre>

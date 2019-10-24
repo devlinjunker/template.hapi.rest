@@ -1023,7 +1023,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\nimport sinon from 'sinon';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  const sinonSandbox = sinon.sandbox.create();\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      // Should we check parameters being sent?\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    // Is this useful? Or should we just check that it calls the backend dataservice\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": "public",
@@ -1034,7 +1034,7 @@
     "__docId__": 69,
     "kind": "file",
     "name": "src/dataservices/note.service.js",
-    "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\n\n// From MariaDB\ninterface InsertMariaDBResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  static dbPool: any;\n\n  /**\n   * Static Constructor to create database connection\n   * @returns {undefined}\n   */\n  static constructor() {\n    if (NoteDataservice.dbPool === undefined) {\n      // TODO: Configuration from file\n      NoteDataservice.dbPool = mariadb.createPool({\n        host: 'localhost',\n        user: 'root',\n        password: 'root',\n        connectionLimit: 5\n      });\n    }\n  }\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: change to data?\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const response: InsertMariaDBResponse = await connection.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n}\n// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it\nNoteDataservice.constructor();\n",
+    "content": "/**\n * @flow\n *\n * MariaDB Service Example\n * TODO: Look into proper conventions and practice for opening/closing db and connections\n */\nimport mariadb from 'mariadb';\n\n// From MariaDB\ninterface InsertMariaDBResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  static dbPool: any;\n\n  /**\n   * Static Constructor to create database connection\n   * @returns {undefined}\n   */\n  static constructor() {\n    if (NoteDataservice.dbPool === undefined) {\n      // TODO: Configuration from file\n      NoteDataservice.dbPool = mariadb.createPool({\n        host: 'localhost',\n        user: 'root',\n        password: 'root',\n        connectionLimit: 5\n      });\n    }\n  }\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: add (optional) content param and attribute\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const response: InsertMariaDBResponse = await connection.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n}\n// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it\nNoteDataservice.constructor();\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.js",
     "access": "public",
@@ -1053,7 +1053,7 @@
     "importPath": "HapiServer/src/dataservices/note.service.js",
     "importStyle": "{NoteDataservice}",
     "description": "Note Dataservice for interacting with the storage system for saving notes",
-    "lineNumber": 15,
+    "lineNumber": 21,
     "interface": false
   },
   {
@@ -1067,7 +1067,7 @@
     "longname": "src/dataservices/note.service.js~NoteDataservice.constructor",
     "access": "public",
     "description": "Static Constructor to create database connection",
-    "lineNumber": 21,
+    "lineNumber": 27,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1095,7 +1095,7 @@
     "longname": "src/dataservices/note.service.js~NoteDataservice.getNote",
     "access": "public",
     "description": "Returns a note, specified by the caller by id",
-    "lineNumber": 38,
+    "lineNumber": 44,
     "params": [
       {
         "nullable": null,
@@ -1128,8 +1128,8 @@
     "static": true,
     "longname": "src/dataservices/note.service.js~NoteDataservice.createNote",
     "access": "public",
-    "description": "Creates a new note with a name\nTODO: change to data?",
-    "lineNumber": 62,
+    "description": "Creates a new note with a name\nTODO: add (optional) content param and attribute",
+    "lineNumber": 68,
     "params": [
       {
         "nullable": null,
@@ -1155,7 +1155,7 @@
     "__docId__": 74,
     "kind": "file",
     "name": "src/dataservices/note.service.spec.js",
-    "content": "import { NoteDataservice } from './note.service.js';\n\n/** @test {NoteController} */\ndescribe('NoteDataservice', () => {\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id', async () => {\n      await NoteDataservice.getNote({ id: 1 }); \n    })\n  });\n\n  describe('createNote()', () => {\n\n  });\n});\n",
+    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n  });\n\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": "public",
@@ -1320,7 +1320,7 @@
     "__docId__": 84,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\n\nimport { describe, it } from 'mocha';\nimport { expect } from 'chai';\nimport sinon from 'sinon';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  const sinonSandbox = sinon.sandbox.create();\n\n  describe('getNoteById()', () => {\n    it('should return a Note with id given', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n  });\n\n  describe('createNote()', () => {\n\n  });\n\n  describe('updateNote()', () => {\n\n  });\n\n  describe('deleteNote()', () => {\n\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      // Should we check parameters being sent?\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    // Is this useful? Or should we just check that it calls the backend dataservice\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": null,
@@ -1338,7 +1338,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
     "access": null,
     "description": "NoteController",
-    "lineNumber": 9,
+    "lineNumber": 6,
     "testTargets": [
       "NoteController"
     ]
@@ -1354,7 +1354,10 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
     "access": null,
     "description": "getNoteById()",
-    "lineNumber": 12
+    "lineNumber": 12,
+    "testTargets": [
+      "NoteController.getNoteById"
+    ]
   },
   {
     "__docId__": 87,
@@ -1366,53 +1369,257 @@
     "static": true,
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it7",
     "access": null,
-    "description": "should return a Note with id given",
+    "description": "should call NoteDataservice.getNote (with id)",
     "lineNumber": 13
   },
   {
     "__docId__": 88,
     "kind": "test",
-    "name": "describe8",
+    "name": "it8",
     "testId": 8,
-    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
-    "testDepth": 1,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
+    "testDepth": 2,
     "static": true,
-    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe8",
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it8",
     "access": null,
-    "description": "createNote()",
-    "lineNumber": 25
+    "description": "should return a Note with id passed",
+    "lineNumber": 24
   },
   {
     "__docId__": 89,
     "kind": "test",
-    "name": "describe9",
+    "name": "it9",
     "testId": 9,
-    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
-    "testDepth": 1,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
+    "testDepth": 2,
     "static": true,
-    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe9",
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it9",
     "access": null,
-    "description": "updateNote()",
-    "lineNumber": 27
+    "description": "should return error message if id is invalid",
+    "lineNumber": 35
   },
   {
     "__docId__": 90,
     "kind": "test",
-    "name": "describe10",
+    "name": "it10",
     "testId": 10,
-    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
-    "testDepth": 1,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
+    "testDepth": 2,
     "static": true,
-    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe10",
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it10",
     "access": null,
-    "description": "deleteNote()",
-    "lineNumber": 29
+    "description": "should return error message if Note doesn't exist",
+    "lineNumber": 37
   },
   {
     "__docId__": 91,
+    "kind": "test",
+    "name": "describe11",
+    "testId": 11,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
+    "testDepth": 1,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
+    "access": null,
+    "description": "createNote()",
+    "lineNumber": 41,
+    "testTargets": [
+      "NoteController.createNote"
+    ]
+  },
+  {
+    "__docId__": 92,
+    "kind": "test",
+    "name": "it12",
+    "testId": 12,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it12",
+    "access": null,
+    "description": "should call DataService.createNote (with newName?)",
+    "lineNumber": 42
+  },
+  {
+    "__docId__": 93,
+    "kind": "test",
+    "name": "it13",
+    "testId": 13,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it13",
+    "access": null,
+    "description": "should return note with name passed and new id",
+    "lineNumber": 52
+  },
+  {
+    "__docId__": 94,
+    "kind": "test",
+    "name": "it14",
+    "testId": 14,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it14",
+    "access": null,
+    "description": "should return error if note name is empty",
+    "lineNumber": 70
+  },
+  {
+    "__docId__": 95,
+    "kind": "test",
+    "name": "it15",
+    "testId": 15,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it15",
+    "access": null,
+    "description": "should return error message if error creating note",
+    "lineNumber": 72
+  },
+  {
+    "__docId__": 96,
+    "kind": "test",
+    "name": "describe16",
+    "testId": 16,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
+    "testDepth": 1,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
+    "access": null,
+    "description": "updateNote()",
+    "lineNumber": 76,
+    "testTargets": [
+      "NoteController.updateNote"
+    ]
+  },
+  {
+    "__docId__": 97,
+    "kind": "test",
+    "name": "it17",
+    "testId": 17,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it17",
+    "access": null,
+    "description": "should call NoteDataservice.updateNote (with params)",
+    "lineNumber": 77
+  },
+  {
+    "__docId__": 98,
+    "kind": "test",
+    "name": "it18",
+    "testId": 18,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it18",
+    "access": null,
+    "description": "should return note with updated name, as passed",
+    "lineNumber": 79
+  },
+  {
+    "__docId__": 99,
+    "kind": "test",
+    "name": "it19",
+    "testId": 19,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it19",
+    "access": null,
+    "description": "should return error message if id is invalid",
+    "lineNumber": 81
+  },
+  {
+    "__docId__": 100,
+    "kind": "test",
+    "name": "it20",
+    "testId": 20,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it20",
+    "access": null,
+    "description": "should return error message if error updating note",
+    "lineNumber": 83
+  },
+  {
+    "__docId__": 101,
+    "kind": "test",
+    "name": "describe21",
+    "testId": 21,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
+    "testDepth": 1,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
+    "access": null,
+    "description": "deleteNote()",
+    "lineNumber": 87,
+    "testTargets": [
+      "NoteController.deleteNote"
+    ]
+  },
+  {
+    "__docId__": 102,
+    "kind": "test",
+    "name": "it22",
+    "testId": 22,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it22",
+    "access": null,
+    "description": "should call NoteDataservice.deleteNote (with id)",
+    "lineNumber": 88
+  },
+  {
+    "__docId__": 103,
+    "kind": "test",
+    "name": "it23",
+    "testId": 23,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it23",
+    "access": null,
+    "description": "should return the deleted note id",
+    "lineNumber": 90
+  },
+  {
+    "__docId__": 104,
+    "kind": "test",
+    "name": "it24",
+    "testId": 24,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it24",
+    "access": null,
+    "description": "should return error message if id is invalid",
+    "lineNumber": 92
+  },
+  {
+    "__docId__": 105,
+    "kind": "test",
+    "name": "it25",
+    "testId": 25,
+    "memberof": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it25",
+    "access": null,
+    "description": "should return error message if error deleting note",
+    "lineNumber": 94
+  },
+  {
+    "__docId__": 106,
     "kind": "testFile",
     "name": "template.node.hapi/src/dataservices/note.service.spec.js",
-    "content": "import { NoteDataservice } from './note.service.js';\n\n/** @test {NoteController} */\ndescribe('NoteDataservice', () => {\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id', async () => {\n      await NoteDataservice.getNote({ id: 1 }); \n    })\n  });\n\n  describe('createNote()', () => {\n\n  });\n});\n",
+    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n  });\n\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": null,
@@ -1420,58 +1627,71 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 92,
+    "__docId__": 107,
     "kind": "test",
-    "name": "describe11",
-    "testId": 11,
+    "name": "describe26",
+    "testId": 26,
     "memberof": "template.node.hapi/src/dataservices/note.service.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26",
     "access": null,
     "description": "NoteDataservice",
-    "lineNumber": 4,
+    "lineNumber": 5,
     "testTargets": [
-      "NoteController"
+      "NoteDataservice"
     ]
   },
   {
-    "__docId__": 93,
+    "__docId__": 108,
     "kind": "test",
-    "name": "describe12",
-    "testId": 12,
-    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "name": "describe27",
+    "testId": 27,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe26",
     "testDepth": 1,
     "static": true,
-    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe12",
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe27",
     "access": null,
     "description": "getNote()",
-    "lineNumber": 6
+    "lineNumber": 20
   },
   {
-    "__docId__": 94,
+    "__docId__": 109,
     "kind": "test",
-    "name": "it13",
-    "testId": 13,
-    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe12",
+    "name": "it28",
+    "testId": 28,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe27",
     "testDepth": 2,
     "static": true,
-    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe12.it13",
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe27.it28",
     "access": null,
     "description": "should return a note object with matching id",
-    "lineNumber": 7
+    "lineNumber": 21
   },
   {
-    "__docId__": 95,
+    "__docId__": 110,
     "kind": "test",
-    "name": "describe14",
-    "testId": 14,
-    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe11",
+    "name": "describe29",
+    "testId": 29,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe26",
     "testDepth": 1,
     "static": true,
-    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe11.describe14",
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe29",
     "access": null,
     "description": "createNote()",
-    "lineNumber": 12
+    "lineNumber": 24
+  },
+  {
+    "__docId__": 111,
+    "kind": "test",
+    "name": "it30",
+    "testId": 30,
+    "memberof": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe29",
+    "testDepth": 2,
+    "static": true,
+    "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe29.it30",
+    "access": null,
+    "description": "should return a note with the name passed",
+    "lineNumber": 25
   }
 ]
