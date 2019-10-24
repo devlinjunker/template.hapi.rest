@@ -1,5 +1,8 @@
 /**
  * @flow
+ *
+ * MariaDB Service Example
+ * TODO: Look into proper conventions and practice for opening/closing db and connections
  */
 import mariadb from 'mariadb';
 
@@ -66,7 +69,7 @@ export class NoteDataservice {
 
   /**
    * Creates a new note with a name
-   * TODO: change to data?
+   * TODO: add (optional) content param and attribute
    * @param  {String}  name name of note
    * @return {Note}      Note Object
    */

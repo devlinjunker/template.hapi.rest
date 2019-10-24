@@ -29,7 +29,7 @@ extends:
 
 globals:
   expect: readonly
-  sandbox: readonly
+  sinonSandbox: readonly
 
 # Rules for only some file locations/paths (globs)
 overrides:
@@ -45,7 +45,7 @@ overrides:
         - pattern: ^\*\n
                     \* \@flow\n
                    (\*\n
-                    \* .*\n )?$
+                    \* (.*\n)* )?$
       # Flow Type Rules
       flowtype/require-return-type:
         - warn

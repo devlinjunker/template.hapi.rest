@@ -43,7 +43,6 @@ const config =  {
       reportingSeverity: 'error'
     }),
 
-    // TODO: Fix so this runs every time we build
     new WebpackShellPlugin({
       onBuildExit: 'mocha --watch ./dist/test.bundle.js'
     }),
