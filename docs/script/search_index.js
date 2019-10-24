@@ -55,37 +55,37 @@ window.esdocSearchIndex = [
   ],
   [
     "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber5",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber9",
     "NoteController",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber20",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber25",
     "NoteController createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber24",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber29",
     "NoteController deleteNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber7",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber12",
     "NoteController getNoteById()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber8",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13",
     "NoteController getNoteById() should return a Note with id given",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber22",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber27",
     "NoteController updateNote()",
     "test"
   ],
@@ -97,7 +97,7 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber8",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber12",
     "NoteDataservice createNote()",
     "test"
   ],
@@ -105,6 +105,12 @@ window.esdocSearchIndex = [
     "",
     "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber6",
     "NoteDataservice getNote()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber7",
+    "NoteDataservice getNote() should return a note object with matching id",
     "test"
   ],
   [

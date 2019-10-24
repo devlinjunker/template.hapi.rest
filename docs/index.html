@@ -73,6 +73,26 @@
 <p><code>npm restart</code> will restart once start/stop completed</p>
 <h2 id="notes-ideas">Notes/Ideas</h2><ul>
 <li>OPTIONS requests?</li>
+<li>RDBMS vs Document store<ul>
+<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
+<li>Document Store:<ul>
+<li>use for settings data and where schema will be changed often</li>
+<li>when changes are small crud, based on users interactions?</li>
+<li>when count and aggregate data is useful to end user</li>
+</ul>
+</li>
+<li>RDBMS:<ul>
+<li>less duplicated data, normalized and stored in specific tables</li>
+<li>useful when data changes often</li>
+<li>seems like more useful for storing fact data in ETL processes?</li>
+<li>Q: phoenix?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
 </ul>
 <h3 id="todo">TODO</h3><ul>
 <li>[x] (^) Node 8</li>
@@ -101,10 +121,9 @@
 <li>ElasticSearch? for search endpoint</li>
 </ul>
 </li>
-<li>[?] (^) Absolute Paths: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
-<li>[..] (^) Fix watch commands so that tests can run and output errors without breaking<ul>
-<li>mocha doesn&apos;t stop the process</li>
-<li>tests don&apos;t run again on changes with webpack</li>
+<li>[x] (^) Fix watch commands so that tests can run and output errors without breaking<ul>
+<li>[x] mocha shouldn&apos;t stop the process</li>
+<li>[x] tests should run again on changes with webpack</li>
 </ul>
 </li>
 <li>[x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
@@ -119,11 +138,12 @@
 <li>[..] (^) Chai as promised and sinon-chai  </li>
 <li>[ ] (^) Config.yaml and Env config file<ul>
 <li>port</li>
-<li>other services/apis later?
--overrides</li>
+<li>other services/apis later?</li>
+<li>overrides</li>
 </ul>
 </li>
 <li>[ ] (^) Typescript/Express router<ul>
+<li>[] (?) Absolute Paths: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
 <li>Headers</li>
 <li>Cookies?</li>

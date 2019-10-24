@@ -32,13 +32,15 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/dataservices/note.service.spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { NoteDataservice } from &apos;./note.service.js&apos;;
 
 /** @test {NoteController} */
 describe(&apos;NoteDataservice&apos;, () =&gt; {
 
   describe(&apos;getNote()&apos;, () =&gt; {
-
+    it(&apos;should return a note object with matching id&apos;, async () =&gt; {
+      await NoteDataservice.getNote({ id: 1 }); 
+    })
   });
 
   describe(&apos;createNote()&apos;, () =&gt; {
