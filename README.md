@@ -90,10 +90,6 @@ How to use this template to create a quick HTTP REST server:
     - [x] eslinting  
     - [x] test with mocha
     - [x] nodemon to run server
- - [x] (^) Update Linting Rules (linewrap, length, etc)  
-    - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
-    - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-    - Headers  
  - [x] (^) Fix watch commands so that tests can run and output errors without breaking
     - [x] mocha shouldn't stop the process
     - [x] tests should run again on changes with webpack
@@ -103,6 +99,13 @@ How to use this template to create a quick HTTP REST server:
         - [x] in Docs
  - [x] (^) Debugging while running
      - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach
+ - [..] (^) Update Linting Rules (linewrap, length, etc)  
+    - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+    - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
+    - [ ] Test Rules 
+      - https://www.npmjs.com/package/eslint-plugin-mocha
+      - https://github.com/jest-community/eslint-plugin-jest
  - [..] (^) Simple DB endpoint  
      - MongoDB
      - PostgreSQL or MariaDB
@@ -120,6 +123,7 @@ How to use this template to create a quick HTTP REST server:
     - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
       - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
     - [ ] Automatically find controller files in entry rather than need to reference  
+ - [ ] (-) Healthcheck
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
     - [ ] mysql
@@ -133,6 +137,12 @@ How to use this template to create a quick HTTP REST server:
     - [ ] Authentication?
  - [ ] (-) Request Details Model attached to handler parameters
  - [ ] (-) Compression of responses
+ - [ ] (-) Run only affected tests on file save  
+ - [ ] (-) Githooks for generating reports/linting  
+    - Run `doc` command before commit on develop branch
+    - Check if spec files exist (except where special comment in file header)
+    - Check if READMEs exist at each directory level?
+ - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto
  - [ ] (-) production vs dev
       - webpack/build
       - pm2 for production
@@ -140,9 +150,7 @@ How to use this template to create a quick HTTP REST server:
       - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
- - [ ] (-) Run only affected tests on file save  
  - [ ] (-) Complain when missing unit tests
- - [ ] (-) Githooks for generating reports/linting  
  - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
  - [ ] (v) Serve docs with small script and `npm run doc-serve`
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
