@@ -85,10 +85,9 @@ How to use this template to create a quick HTTP REST server:
       - MongoDB
       - PostgreSQL or MariaDB
       - ElasticSearch? for search endpoint
- - [?] (^) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
- - [..] (^) Fix watch commands so that tests can run and output errors without breaking
-      - mocha doesn't stop the process
-      - tests don't run again on changes with webpack
+ - [x] (^) Fix watch commands so that tests can run and output errors without breaking
+      - [x] mocha shouldn't stop the process
+      - [x] tests should run again on changes with webpack
  - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
       - [v] OpenAPI Validation  
       - [x] Swagger UI
@@ -98,8 +97,9 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
-     -overrides
+     - overrides
  - [ ] (^) Typescript/Express router
+    - [] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
       - Cookies?

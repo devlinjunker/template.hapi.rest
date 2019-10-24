@@ -45,7 +45,7 @@ const config =  {
 
     // TODO: Fix so this runs every time we build
     new WebpackShellPlugin({
-      onBuildExit: 'mocha ./dist/test.bundle.js'
+      onBuildExit: 'mocha --watch ./dist/test.bundle.js'
     }),
   ],
 
