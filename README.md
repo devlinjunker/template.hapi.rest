@@ -82,53 +82,55 @@ How to use this template to create a quick HTTP REST server:
 
  - [x] (^) Node 8
  - [x] (^) Webpack  
-      - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
-      - [x] babel
-        - [x] sourcemap support
-        - https://www.npmjs.com/package/babel-plugin-source-map-support#description
-      - [x] flow webpack plugin - typechecking each compilation
-      - [x] eslinting  
-      - [x] test with mocha
-      - [x] nodemon to run server
+    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  
+    - [x] babel
+      - [x] sourcemap support
+      - https://www.npmjs.com/package/babel-plugin-source-map-support#description
+    - [x] flow webpack plugin - typechecking each compilation
+    - [x] eslinting  
+    - [x] test with mocha
+    - [x] nodemon to run server
  - [x] (^) Update Linting Rules (linewrap, length, etc)  
-      - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
-      - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-      - Headers  
- - [..] (^) Simple DB endpoint  
-      - MongoDB
-      - PostgreSQL or MariaDB
-      - ElasticSearch? for search endpoint
+    - ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
+    - Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
+    - Headers  
  - [x] (^) Fix watch commands so that tests can run and output errors without breaking
-      - [x] mocha shouldn't stop the process
-      - [x] tests should run again on changes with webpack
+    - [x] mocha shouldn't stop the process
+    - [x] tests should run again on changes with webpack
  - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  
-      - [v] OpenAPI Validation  
-      - [x] Swagger UI
-        - [..] in Docs
- - [ ] (^) Debugging while running
+    - [v] OpenAPI Validation  
+    - [x] Swagger UI
+        - [x] in Docs
+ - [x] (^) Debugging while running
+     - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach
+ - [..] (^) Simple DB endpoint  
+     - MongoDB
+     - PostgreSQL or MariaDB
+     - ElasticSearch? for search endpoint
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
      - overrides
  - [ ] (^) Typescript/Express router
-    - [] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
       - Cookies?
-    - [ ] OpenApi Decorators for spec generation https://github.com/epiphone/routing-controllers-openapi
+    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
+      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
     - [ ] Automatically find controller files in entry rather than need to reference  
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
-      - [ ] mysql
-      - [ ] external-service request (with performance monitoring/caching?)
-      - [ ] Logging
-        - GELF/Kibana?
-        - Winston/Bunyon
-        - Pino logs to file
-      - [ ] SendEmail
-      - [ ] Cron?
-      - [ ] Authentication?
+    - [ ] mysql
+    - [ ] external-service request (with performance monitoring/caching?)
+    - [ ] Logging
+      - GELF/Kibana?
+      - Winston/Bunyon
+      - Pino logs to file
+    - [ ] SendEmail
+    - [ ] Cron?
+    - [ ] Authentication?
  - [ ] (-) Request Details Model attached to handler parameters
  - [ ] (-) Compression of responses
  - [ ] (-) production vs dev
@@ -142,11 +144,12 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Complain when missing unit tests
  - [ ] (-) Githooks for generating reports/linting  
  - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
+ - [ ] (v) Serve docs with small script and `npm run doc-serve`
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
- - [x] (v) ESDoc Manual https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
+ - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
 
 ### Application
@@ -154,8 +157,9 @@ How to use this template to create a quick HTTP REST server:
  - [..] GET/POST/PUT/DELETE Note endpoints
  - [..] Serve Docs
     - only in development
- - [ ] Garbage UPC (External API) endpoint
-    - Map to information/notes?
+ - [ ] External API endpoint
+    - Weather (in UI?)
+    - (Garbage UPC) Map to information/notes?
  - [ ] Connect to Google Drive/Oauth
  - [ ] Authorized vs Unauthorized endpoints
  - [ ] SSO Server

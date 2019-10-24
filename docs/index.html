@@ -115,12 +115,6 @@
 <li>Headers  </li>
 </ul>
 </li>
-<li>[..] (^) Simple DB endpoint  <ul>
-<li>MongoDB</li>
-<li>PostgreSQL or MariaDB</li>
-<li>ElasticSearch? for search endpoint</li>
-</ul>
-</li>
 <li>[x] (^) Fix watch commands so that tests can run and output errors without breaking<ul>
 <li>[x] mocha shouldn&apos;t stop the process</li>
 <li>[x] tests should run again on changes with webpack</li>
@@ -129,12 +123,21 @@
 <li>[x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin <a href="https://swagger.io/docs/specification/about/">https://swagger.io/docs/specification/about/</a>  <ul>
 <li>[v] OpenAPI Validation  </li>
 <li>[x] Swagger UI<ul>
-<li>[..] in Docs</li>
+<li>[x] in Docs</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>[ ] (^) Debugging while running</li>
+<li>[x] (^) Debugging while running<ul>
+<li>use <code>node --inspect dist/server.bundle.js</code> to start debugger and a node debugging tool to attach</li>
+</ul>
+</li>
+<li>[..] (^) Simple DB endpoint  <ul>
+<li>MongoDB</li>
+<li>PostgreSQL or MariaDB</li>
+<li>ElasticSearch? for search endpoint</li>
+</ul>
+</li>
 <li>[..] (^) Chai as promised and sinon-chai  </li>
 <li>[ ] (^) Config.yaml and Env config file<ul>
 <li>port</li>
@@ -143,13 +146,16 @@
 </ul>
 </li>
 <li>[ ] (^) Typescript/Express router<ul>
-<li>[] (?) Absolute Paths: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
+<li>[ ] (?) Absolute Paths: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
 <li>Headers</li>
 <li>Cookies?</li>
 </ul>
 </li>
-<li>[ ] OpenApi Decorators for spec generation <a href="https://github.com/epiphone/routing-controllers-openapi">https://github.com/epiphone/routing-controllers-openapi</a></li>
+<li>[ ] OpenApi Decorators for openapi docs generation <a href="https://github.com/epiphone/routing-controllers-openapi">https://github.com/epiphone/routing-controllers-openapi</a><ul>
+<li>Newman (Postman) Auto Test Generation: <a href="https://github.com/dtzar/openapi-auto-test">https://github.com/dtzar/openapi-auto-test</a></li>
+</ul>
+</li>
 <li>[ ] Automatically find controller files in entry rather than need to reference  </li>
 </ul>
 </li>
@@ -183,11 +189,12 @@
 <li>[ ] (-) Complain when missing unit tests</li>
 <li>[ ] (-) Githooks for generating reports/linting  </li>
 <li>[..] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
+<li>[ ] (v) Serve docs with small script and <code>npm run doc-serve</code></li>
 <li>[ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a>  </li>
 <li>[ ] (v) Test coverage saved in spec files  </li>
 <li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
 <li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  </li>
-<li>[x] (v) ESDoc Manual <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
+<li>[ ] (v) ESDoc Manual with src READMEs <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
 <li><del>[ ] Docsify?</del>  </li>
 </ul>
 <h3 id="application">Application</h3><ul>
@@ -196,8 +203,9 @@
 <li>only in development</li>
 </ul>
 </li>
-<li>[ ] Garbage UPC (External API) endpoint<ul>
-<li>Map to information/notes?</li>
+<li>[ ] External API endpoint<ul>
+<li>Weather (in UI?)</li>
+<li>(Garbage UPC) Map to information/notes?</li>
 </ul>
 </li>
 <li>[ ] Connect to Google Drive/Oauth</li>
