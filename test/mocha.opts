@@ -1,4 +1,4 @@
---requrie @babel/core
+--require @babel/core
 --require @babel/polyfill
 --require @babel/register
 ./src/**/*.spec.js
