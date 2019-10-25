@@ -103,18 +103,20 @@ How to use this template to create a quick HTTP REST server:
     - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
     - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
     - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
-    - [ ] Test Rules 
+    - [ ] Test Rules
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
  - [..] (^) Simple DB endpoint  
      - MongoDB
      - PostgreSQL or MariaDB
      - ElasticSearch? for search endpoint
+     - Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
      - other services/apis later?
      - overrides
+ - [ ] (^) cleanup old builds
  - [ ] (^) Typescript/Express router
     - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
@@ -150,9 +152,7 @@ How to use this template to create a quick HTTP REST server:
       - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
- - [ ] (-) Complain when missing unit tests
  - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
- - [ ] (v) Serve docs with small script and `npm run doc-serve`
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
@@ -163,8 +163,8 @@ How to use this template to create a quick HTTP REST server:
 ### Application
 
  - [..] GET/POST/PUT/DELETE Note endpoints
- - [..] Serve Docs
-    - only in development
+ - [x] Serve Docs
+    - [ ] (v) only in development
  - [ ] External API endpoint
     - Weather (in UI?)
     - (Garbage UPC) Map to information/notes?

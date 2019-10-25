@@ -40,28 +40,59 @@
 
 import { Server } from &apos;./base/server.js&apos;;
 
-
-const server = new Server();
-
-server.run();
-
-process.on(&apos;unhandledRejection&apos;, (err) =&gt; { // eslint-disable-line
-  process.stdout.write(JSON.stringify(err));
-  process.exit(1);
-});
-
+// TODO: auto detect routes
+// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
 import infoRoutes from &apos;./controllers/info.controller.js&apos;;
 import helloRoutes from &apos;./controllers/hello.controller.js&apos;;
 import noteRoutes from &apos;./controllers/note.controller.js&apos;;
 
+
 const routes = infoRoutes.concat(helloRoutes, noteRoutes);
 
+// TODO: check if we&apos;re in development and only serve docs if we are
+const shouldServeDocs = true;
+if (shouldServeDocs) {
+  routes.push({
+    method: &apos;GET&apos;,
+    path: &apos;/openapi.yaml&apos;,
+    controller: {
+      // TODO: Fix this
+      file: &apos;openapi.yaml&apos;
+    }
+  });
 
+  routes.push({
+    method: &apos;GET&apos;,
+    path: &apos;/docs/{param*}&apos;,
+    controller: {
+      directory: {
+        // TODO: Fix this
+        path: &apos;/Users/junkerd/Programming/js/template.node.hapi/docs&apos;,
+        index: true,
+        redirectToSlash: true
+      }
+    }
+  });
+}
 
-server.addEndpoints(routes);
+/**
+ * Entry point to run the server
+ * @return {undefined} no return
+ */
+async function main() {
+  const server = new Server();
 
-// auto detect routes
-// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
+  await server.run();
+
+  server.addEndpoints(routes);
+}
+main();
+
+// What is this about again?
+process.on(&apos;unhandledRejection&apos;, (err) =&gt; { // eslint-disable-line
+  process.stdout.write(JSON.stringify(err));
+  process.exit(1);
+});
 </code></pre>
 
 </div>

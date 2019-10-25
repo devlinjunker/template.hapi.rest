@@ -53,7 +53,7 @@ import Inert from &apos;@hapi/inert&apos;;
 export interface EndpointConfig {
   method: string;
   path: string;
-  controller: Function; // eslint-disable-line
+  controller?: any; // eslint-disable-line
 }
 
 /**
@@ -109,26 +109,6 @@ export class Server {
     // visit at http://localhost:3333/docs/swagger/index.html
     await this.server.register({
       plugin: Inert
-    });
-    this.server.route({
-      method: &apos;GET&apos;,
-      path: &apos;/openapi.yaml&apos;,
-      handler: {
-        file: &apos;openapi.yaml&apos;
-      }
-    });
-
-    this.server.route({
-      method: &apos;GET&apos;,
-      path: &apos;/docs/{param*}&apos;,
-      handler: {
-        directory: {
-          // TODO: Fix this
-          path: &apos;/Users/junkerd/Programming/js/template.node.hapi/docs&apos;,
-          index: true,
-          redirectToSlash: true
-        }
-      }
     });
   }
 

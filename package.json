@@ -19,7 +19,7 @@
     "test-watch": "node_modules/.bin/mocha --watch",
     "dev-watch": "./node_modules/.bin/webpack --watch",
     "test": "node_modules/.bin/mocha",
-    "doc": "./node_modules/.bin/esdoc",
+    "doc": "./node_modules/.bin/esdoc && cp ./openapi.yaml docs/swagger/" ,
     "dev": "npm run build && node dist/server.bundle.js",
     "build": "./node_modules/.bin/webpack",
     "clean": "rm -rf ./dist",
