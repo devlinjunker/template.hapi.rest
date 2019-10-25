@@ -109,12 +109,6 @@
 <li>[x] nodemon to run server</li>
 </ul>
 </li>
-<li>[x] (^) Update Linting Rules (linewrap, length, etc)  <ul>
-<li>ensuring files start with a comment <a href="https://github.com/Stuk/eslint-plugin-header">https://github.com/Stuk/eslint-plugin-header</a>  </li>
-<li>Require Comments <a href="https://eslint.org/docs/rules/require-jsdoc">https://eslint.org/docs/rules/require-jsdoc</a> and valid <a href="https://eslint.org/docs/rules/valid-jsdoc">https://eslint.org/docs/rules/valid-jsdoc</a>  </li>
-<li>Headers  </li>
-</ul>
-</li>
 <li>[x] (^) Fix watch commands so that tests can run and output errors without breaking<ul>
 <li>[x] mocha shouldn&apos;t stop the process</li>
 <li>[x] tests should run again on changes with webpack</li>
@@ -130,6 +124,17 @@
 </li>
 <li>[x] (^) Debugging while running<ul>
 <li>use <code>node --inspect dist/server.bundle.js</code> to start debugger and a node debugging tool to attach</li>
+</ul>
+</li>
+<li>[..] (^) Update Linting Rules (linewrap, length, etc)  <ul>
+<li>[x] ensuring files start with a comment <a href="https://github.com/Stuk/eslint-plugin-header">https://github.com/Stuk/eslint-plugin-header</a>  </li>
+<li>[x] Require Comments <a href="https://eslint.org/docs/rules/require-jsdoc">https://eslint.org/docs/rules/require-jsdoc</a> and valid <a href="https://eslint.org/docs/rules/valid-jsdoc">https://eslint.org/docs/rules/valid-jsdoc</a>  </li>
+<li>[ ] Naming Conventions <a href="https://github.com/airbnb/javascript#naming-conventions">https://github.com/airbnb/javascript#naming-conventions</a></li>
+<li>[ ] Test Rules <ul>
+<li><a href="https://www.npmjs.com/package/eslint-plugin-mocha">https://www.npmjs.com/package/eslint-plugin-mocha</a></li>
+<li><a href="https://github.com/jest-community/eslint-plugin-jest">https://github.com/jest-community/eslint-plugin-jest</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>[..] (^) Simple DB endpoint  <ul>
@@ -159,6 +164,7 @@
 <li>[ ] Automatically find controller files in entry rather than need to reference  </li>
 </ul>
 </li>
+<li>[ ] (-) Healthcheck</li>
 <li>[ ] (-) Request Performance</li>
 <li>[ ] (-) Helpers<ul>
 <li>[ ] mysql</li>
@@ -176,6 +182,14 @@
 </li>
 <li>[ ] (-) Request Details Model attached to handler parameters</li>
 <li>[ ] (-) Compression of responses</li>
+<li>[ ] (-) Run only affected tests on file save  </li>
+<li>[ ] (-) Githooks for generating reports/linting  <ul>
+<li>Run <code>doc</code> command before commit on develop branch</li>
+<li>Check if spec files exist (except where special comment in file header)</li>
+<li>Check if READMEs exist at each directory level?</li>
+</ul>
+</li>
+<li>[ ] (-) Automatic Semantic Versioning (Based on PRs?) <a href="https://github.com/intuit/auto">https://github.com/intuit/auto</a></li>
 <li>[ ] (-) production vs dev<ul>
 <li>webpack/build</li>
 <li>pm2 for production</li>
@@ -185,9 +199,7 @@
 </li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
 <li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
-<li>[ ] (-) Run only affected tests on file save  </li>
 <li>[ ] (-) Complain when missing unit tests</li>
-<li>[ ] (-) Githooks for generating reports/linting  </li>
 <li>[..] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
 <li>[ ] (v) Serve docs with small script and <code>npm run doc-serve</code></li>
 <li>[ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a>  </li>
