@@ -36,6 +36,13 @@
 import { NoteDataservice } from &apos;../dataservices/note.service.js&apos;;
 import mariadb from &apos;mariadb&apos;;
 
+/**
+ * Question:
+ * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should
+ * cover all of the standard &quot;black-box&quot; expectations of the endpoint.
+ * https://github.com/dtzar/openapi-auto-test
+ */
+
 /** @test {NoteController} */
 describe(&apos;NoteController&apos;, () =&gt; {
   beforeEach(() =&gt; {
@@ -50,12 +57,18 @@ describe(&apos;NoteController&apos;, () =&gt; {
       NoteController.getNoteById({ params: { id } });
 
       expect(getStub).to.be.called;
-      // Should we check parameters being sent?
+      /**
+       * Question:
+       * Should we check what the NoteController passes to backend? Seems too much like &quot;white-box&quot; testing
+       */
       expect(getStub).to.be.calledWith({ id });
     });
 
 
-    // Is this useful? Or should we just check that it calls the backend dataservice
+    /**
+     * Question:
+     * Is this useful? Or should we just check that it calls the backend dataservice?
+     */
     it(&apos;should return a Note with id passed&apos;, () =&gt; {
       const id = 1;
       sinonSandbox.stub(NoteDataservice, &apos;getNote&apos;).returns({

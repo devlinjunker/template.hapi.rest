@@ -17,10 +17,17 @@ describe('NoteDataservice', () => {
     });
   });
 
+  /** @test {NoteDataservice.getNote} */
   describe('getNote()', () => {
     it('should return a note object with matching id');
+
+    /**
+     * Question:
+     * Should we test that mariadb queryStub is called? Seems like "white-box" testing, so probably not
+     */
   });
 
+  /** @test {NoteDataservice.createNote} */
   describe('createNote()', () => {
     it('should return a note with the name passed');
   });

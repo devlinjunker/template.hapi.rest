@@ -1023,7 +1023,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      // Should we check parameters being sent?\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    // Is this useful? Or should we just check that it calls the backend dataservice\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/**\n * Question:\n * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should\n * cover all of the standard \"black-box\" expectations of the endpoint.\n * https://github.com/dtzar/openapi-auto-test\n */\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      /**\n       * Question:\n       * Should we check what the NoteController passes to backend? Seems too much like \"white-box\" testing\n       */\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    /**\n     * Question:\n     * Is this useful? Or should we just check that it calls the backend dataservice?\n     */\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": "public",
@@ -1155,7 +1155,7 @@
     "__docId__": 74,
     "kind": "file",
     "name": "src/dataservices/note.service.spec.js",
-    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n  });\n\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
+    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n\n    /**\n     * Question:\n     * Should we test that mariadb queryStub is called? Seems like \"white-box\" testing, so probably not\n     */\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": "public",
@@ -1243,7 +1243,7 @@
   },
   {
     "kind": "index",
-    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add new OpenAPI endpoint to `openapi.yaml`\n3. Add Unit tests in `src/controllers/` (Test Driven Development)\n4. Add Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js` (with other controllers)\n5. Run `npm run start-watch` to compile and run server + tests in watch mode\n6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n - RDBMS vs Document store\n  - https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8\n  - Document Store:\n    - use for settings data and where schema will be changed often\n    - when changes are small crud, based on users interactions?\n    - when count and aggregate data is useful to end user\n  - RDBMS:\n    - less duplicated data, normalized and stored in specific tables\n    - useful when data changes often\n    - seems like more useful for storing fact data in ETL processes?\n    - Q: phoenix?\n\n- CAP theorem stands for C – Consistency, A — Availability, P — Partitioning (or Scalability) and states that having all three properties at the same time is not possible,\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n    - [x] babel\n      - [x] sourcemap support\n      - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n    - [x] flow webpack plugin - typechecking each compilation\n    - [x] eslinting  \n    - [x] test with mocha\n    - [x] nodemon to run server\n - [x] (^) Fix watch commands so that tests can run and output errors without breaking\n    - [x] mocha shouldn't stop the process\n    - [x] tests should run again on changes with webpack\n - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n    - [v] OpenAPI Validation  \n    - [x] Swagger UI\n        - [x] in Docs\n - [x] (^) Debugging while running\n     - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach\n - [..] (^) Update Linting Rules (linewrap, length, etc)  \n    - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n    - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions\n    - [ ] Test Rules\n      - https://www.npmjs.com/package/eslint-plugin-mocha\n      - https://github.com/jest-community/eslint-plugin-jest\n - [..] (^) Simple DB endpoint  \n     - MongoDB\n     - PostgreSQL or MariaDB\n     - ElasticSearch? for search endpoint\n     - Proper error messages/codes from endpoints\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     - overrides\n - [ ] (^) cleanup old builds\n - [ ] (^) Typescript/Express router\n    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2\n    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers\n      - Headers\n      - Cookies?\n    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi\n      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test\n    - [ ] Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Healthcheck\n - [ ] (-) Request Performance\n - [ ] (-) Helpers\n    - [ ] mysql\n    - [ ] external-service request (with performance monitoring/caching?)\n    - [ ] Logging\n      - GELF/Kibana?\n      - Winston/Bunyon\n      - Pino logs to file\n    - [ ] SendEmail\n    - [ ] Cron?\n    - [ ] Authentication?\n - [ ] (-) Request Details Model attached to handler parameters\n - [ ] (-) Compression of responses\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n    - Run `doc` command before commit on develop branch\n    - Check if spec files exist (except where special comment in file header)\n    - Check if READMEs exist at each directory level?\n - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto\n - [ ] (-) production vs dev\n      - webpack/build\n      - pm2 for production\n      - config\n      - proper logging\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [x] Serve Docs\n    - [ ] (v) only in development\n - [ ] External API endpoint\n    - Weather (in UI?)\n    - (Garbage UPC) Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
+    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add new OpenAPI endpoint to `openapi.yaml`\n3. Add Unit tests in `src/controllers/` (Test Driven Development)\n4. Add Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js` (with other controllers)\n5. Run `npm run start-watch` to compile and run server + tests in watch mode\n6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n - RDBMS vs Document store\n  - https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8\n  - Document Store:\n    - use for settings data and where schema will be changed often\n    - when changes are small crud, based on users interactions?\n    - when count and aggregate data is useful to end user\n  - RDBMS:\n    - less duplicated data, normalized and stored in specific tables\n    - useful when data changes often\n    - seems like more useful for storing fact data in ETL processes?\n    - Q: phoenix?\n\n- CAP theorem stands for C – Consistency, A — Availability, P — Partitioning (or Scalability) and states that having all three properties at the same time is not possible,\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n    - [x] babel\n      - [x] sourcemap support\n      - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n    - [x] flow webpack plugin - typechecking each compilation\n    - [x] eslinting  \n    - [x] test with mocha\n    - [x] nodemon to run server\n - [x] (^) Fix watch commands so that tests can run and output errors without breaking\n    - [x] mocha shouldn't stop the process\n    - [x] tests should run again on changes with webpack\n - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n    - [v] OpenAPI Validation  \n    - [x] Swagger UI\n        - [x] in Docs\n - [x] (^) Debugging while running\n     - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach\n - [..] (^) Update Linting Rules (linewrap, length, etc)  \n    - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n    - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions\n    - [ ] Test Rules\n      - https://www.npmjs.com/package/eslint-plugin-mocha\n      - https://github.com/jest-community/eslint-plugin-jest\n - [..] (^) Simple DB endpoint  \n     - [ ] MongoDB\n     - [..] PostgreSQL or MariaDB\n     - [ ] (?) ElasticSearch? for search endpoint\n     - [ ] Proper error messages/codes from endpoints\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     - overrides\n - [ ] (^) cleanup old builds\n - [ ] (^) Typescript/Express router\n    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2\n    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers\n      - Headers\n      - Cookies?\n    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi\n      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test\n    - [ ] Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Healthcheck\n - [ ] (-) Request Performance\n - [ ] (-) Helpers\n    - [ ] mysql\n    - [ ] external-service request (with performance monitoring/caching?)\n    - [ ] Logging\n      - GELF/Kibana?\n      - Winston/Bunyon\n      - Pino logs to file\n    - [ ] SendEmail\n    - [ ] Cron?\n    - [ ] Authentication?\n - [ ] (-) Request Details Model attached to handler parameters\n - [ ] (-) Compression of responses\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n    - Run `doc` command before commit on develop branch\n    - Check if spec files exist (except where special comment in file header)\n    - Check if READMEs exist at each directory level?\n - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto\n - [ ] (-) production vs dev\n      - webpack/build\n      - pm2 for production\n      - config\n      - proper logging\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [x] Serve Docs\n    - [ ] (v) only in development\n - [ ] External API endpoint\n    - Weather (in UI?)\n    - (Garbage UPC) Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/README.md",
     "name": "./README.md",
     "static": true,
@@ -1346,7 +1346,7 @@
     "__docId__": 85,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/note.controller.spec.js",
-    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      // Should we check parameters being sent?\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    // Is this useful? Or should we just check that it calls the backend dataservice\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
+    "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/**\n * Question:\n * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should\n * cover all of the standard \"black-box\" expectations of the endpoint.\n * https://github.com/dtzar/openapi-auto-test\n */\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      /**\n       * Question:\n       * Should we check what the NoteController passes to backend? Seems too much like \"white-box\" testing\n       */\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    /**\n     * Question:\n     * Is this useful? Or should we just check that it calls the backend dataservice?\n     */\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/note.controller.spec.js",
     "access": null,
@@ -1364,7 +1364,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5",
     "access": null,
     "description": "NoteController",
-    "lineNumber": 6,
+    "lineNumber": 13,
     "testTargets": [
       "NoteController"
     ]
@@ -1380,7 +1380,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6",
     "access": null,
     "description": "getNoteById()",
-    "lineNumber": 12,
+    "lineNumber": 19,
     "testTargets": [
       "NoteController.getNoteById"
     ]
@@ -1396,7 +1396,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it7",
     "access": null,
     "description": "should call NoteDataservice.getNote (with id)",
-    "lineNumber": 13
+    "lineNumber": 20
   },
   {
     "__docId__": 89,
@@ -1408,8 +1408,8 @@
     "static": true,
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it8",
     "access": null,
-    "description": "should return a Note with id passed",
-    "lineNumber": 24
+    "description": "Question:\nIs this useful? Or should we just check that it calls the backend dataservice?",
+    "lineNumber": 37
   },
   {
     "__docId__": 90,
@@ -1422,7 +1422,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it9",
     "access": null,
     "description": "should return error message if id is invalid",
-    "lineNumber": 35
+    "lineNumber": 48
   },
   {
     "__docId__": 91,
@@ -1435,7 +1435,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe6.it10",
     "access": null,
     "description": "should return error message if Note doesn't exist",
-    "lineNumber": 37
+    "lineNumber": 50
   },
   {
     "__docId__": 92,
@@ -1448,7 +1448,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11",
     "access": null,
     "description": "createNote()",
-    "lineNumber": 41,
+    "lineNumber": 54,
     "testTargets": [
       "NoteController.createNote"
     ]
@@ -1464,7 +1464,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it12",
     "access": null,
     "description": "should call DataService.createNote (with newName?)",
-    "lineNumber": 42
+    "lineNumber": 55
   },
   {
     "__docId__": 94,
@@ -1477,7 +1477,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it13",
     "access": null,
     "description": "should return note with name passed and new id",
-    "lineNumber": 52
+    "lineNumber": 65
   },
   {
     "__docId__": 95,
@@ -1490,7 +1490,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it14",
     "access": null,
     "description": "should return error if note name is empty",
-    "lineNumber": 70
+    "lineNumber": 83
   },
   {
     "__docId__": 96,
@@ -1503,7 +1503,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe11.it15",
     "access": null,
     "description": "should return error message if error creating note",
-    "lineNumber": 72
+    "lineNumber": 85
   },
   {
     "__docId__": 97,
@@ -1516,7 +1516,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16",
     "access": null,
     "description": "updateNote()",
-    "lineNumber": 76,
+    "lineNumber": 89,
     "testTargets": [
       "NoteController.updateNote"
     ]
@@ -1532,7 +1532,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it17",
     "access": null,
     "description": "should call NoteDataservice.updateNote (with params)",
-    "lineNumber": 77
+    "lineNumber": 90
   },
   {
     "__docId__": 99,
@@ -1545,7 +1545,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it18",
     "access": null,
     "description": "should return note with updated name, as passed",
-    "lineNumber": 79
+    "lineNumber": 92
   },
   {
     "__docId__": 100,
@@ -1558,7 +1558,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it19",
     "access": null,
     "description": "should return error message if id is invalid",
-    "lineNumber": 81
+    "lineNumber": 94
   },
   {
     "__docId__": 101,
@@ -1571,7 +1571,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe16.it20",
     "access": null,
     "description": "should return error message if error updating note",
-    "lineNumber": 83
+    "lineNumber": 96
   },
   {
     "__docId__": 102,
@@ -1584,7 +1584,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21",
     "access": null,
     "description": "deleteNote()",
-    "lineNumber": 87,
+    "lineNumber": 100,
     "testTargets": [
       "NoteController.deleteNote"
     ]
@@ -1600,7 +1600,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it22",
     "access": null,
     "description": "should call NoteDataservice.deleteNote (with id)",
-    "lineNumber": 88
+    "lineNumber": 101
   },
   {
     "__docId__": 104,
@@ -1613,7 +1613,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it23",
     "access": null,
     "description": "should return the deleted note id",
-    "lineNumber": 90
+    "lineNumber": 103
   },
   {
     "__docId__": 105,
@@ -1626,7 +1626,7 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it24",
     "access": null,
     "description": "should return error message if id is invalid",
-    "lineNumber": 92
+    "lineNumber": 105
   },
   {
     "__docId__": 106,
@@ -1639,13 +1639,13 @@
     "longname": "template.node.hapi/src/controllers/note.controller.spec.js~describe5.describe21.it25",
     "access": null,
     "description": "should return error message if error deleting note",
-    "lineNumber": 94
+    "lineNumber": 107
   },
   {
     "__docId__": 107,
     "kind": "testFile",
     "name": "template.node.hapi/src/dataservices/note.service.spec.js",
-    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n  });\n\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
+    "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n\n    /**\n     * Question:\n     * Should we test that mariadb queryStub is called? Seems like \"white-box\" testing, so probably not\n     */\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.spec.js",
     "access": null,
@@ -1679,7 +1679,10 @@
     "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe27",
     "access": null,
     "description": "getNote()",
-    "lineNumber": 20
+    "lineNumber": 21,
+    "testTargets": [
+      "NoteDataservice.getNote"
+    ]
   },
   {
     "__docId__": 110,
@@ -1692,7 +1695,7 @@
     "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe27.it28",
     "access": null,
     "description": "should return a note object with matching id",
-    "lineNumber": 21
+    "lineNumber": 22
   },
   {
     "__docId__": 111,
@@ -1705,7 +1708,10 @@
     "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe29",
     "access": null,
     "description": "createNote()",
-    "lineNumber": 24
+    "lineNumber": 31,
+    "testTargets": [
+      "NoteDataservice.createNote"
+    ]
   },
   {
     "__docId__": 112,
@@ -1718,6 +1724,6 @@
     "longname": "template.node.hapi/src/dataservices/note.service.spec.js~describe26.describe29.it30",
     "access": null,
     "description": "should return a note with the name passed",
-    "lineNumber": 25
+    "lineNumber": 32
   }
 ]

@@ -107,10 +107,10 @@ How to use this template to create a quick HTTP REST server:
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
  - [..] (^) Simple DB endpoint  
-     - MongoDB
-     - PostgreSQL or MariaDB
-     - ElasticSearch? for search endpoint
-     - Proper error messages/codes from endpoints
+     - [ ] MongoDB
+     - [..] PostgreSQL or MariaDB
+     - [ ] (?) ElasticSearch? for search endpoint
+     - [ ] Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
