@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "hapiserver/src/helpers/mariadb.helper.js~mariadbhelper",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html",
+    "<span>MariaDBHelper</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/mariadb.helper.js</span>",
+    "class"
+  ],
+  [
     "hapiserver/src/controllers/note.controller.js~notecontroller",
     "class/src/controllers/note.controller.js~NoteController.html",
     "<span>NoteController</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/note.controller.js</span>",
@@ -22,6 +28,12 @@ window.esdocSearchIndex = [
     "class/src/base/server.js~Server.html",
     "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
     "class"
+  ],
+  [
+    "hapiserver/src/helpers/mariadb.helper.js~mariadbhelper",
+    "variable/index.html#static-variable-mariadbHelper",
+    "<span>mariadbHelper</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/mariadb.helper.js</span>",
+    "variable"
   ],
   [
     "helloworld src/controllers/hello.controller.js~helloworld,helloworld",
@@ -628,6 +640,30 @@ window.esdocSearchIndex = [
     "file/src/entry.js.html",
     "src/entry.js",
     "file"
+  ],
+  [
+    "src/helpers/mariadb.helper.js",
+    "file/src/helpers/mariadb.helper.js.html",
+    "src/helpers/mariadb.helper.js",
+    "file"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#constructor",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-constructor-constructor",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#constructor",
+    "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#dbpool",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-member-dbPool",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#dbPool",
+    "member"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#query",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#query",
+    "method"
   ],
   [
     "template.node.hapi/src/controllers/hello.controller.spec.js",

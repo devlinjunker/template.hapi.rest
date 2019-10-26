@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/controllers/info.controller.js | HapiServer</title>
+  <title data-ice="title">src/helpers/mariadb.helper.js | HapiServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -33,30 +33,87 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/controllers/info.controller.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/helpers/mariadb.helper.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * @flow
- *
- * NOTE: This file will not be included in the esdoc list because it doesn&apos;t export any identifiers
  */
-import { HapiRequest } from &apos;../base/server.js&apos;;
+import mariadb from &apos;mariadb&apos;;
 
 /**
- * Basic Controller for returning server information
- * @param  {HapiRequest} request Request Parameters
- * @return {Object}         Server information Object
+ * Configuration for MariaDBHelper Database connection
+ * @type {MariaDBConfig}
  */
-function controller(request: HapiRequest): any { // eslint-disable-line
-  return request.server.info;
+export interface MariaDBConfig {
+  host: string;
+  user: string;
+  password: string;
+  connectionLimit: number;
+};
+
+/**
+ * MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple interactions
+ * and larger transaction.
+ * This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the constructor
+ * @type {MariaDBHelper}
+ */
+export class MariaDBHelper {
+  dbPool: any;
+
+  /**
+   * Creates a new Helper (on this file export starts the Database Pool)
+   */
+  constructor({ config, transactionConnection }: { config: (MariaDBConfig | null), transactionConnection: any }) {
+    // TODO: If testing, skip any of this
+
+    if (config) {
+      // Instantiating a connection to a different server
+      this.dbPool = mariadb.createPool(config);
+    } else if (transactionConnection) {
+      // For Larger Transaction
+    } else {
+      // TODO: Log on failure
+      throw new Error(&apos;MariaDBHelper created without DB Config or connection to use&apos;)
+    }
+  }
+
+  /**
+   * Execute a simple query on the entire database (don&apos;t )
+   * @param  {[type]}  string [description]
+   * @param  {[type]}  values [description]
+   * @return {Promise}        [description]
+   */
+  async query(query: string, values: any): Promise&lt;any&gt; {
+    return new Promise((resolve, reject) =&gt; {
+      // TODO: use transaction connection if it exists
+      this.dbPool.query(query, values, (err, rows) =&gt; {
+        if (err) {
+          // TODO: Log
+          reject(err);
+          return;
+        }
+        if (!rows) {
+          // TODO: Log
+          resolve(undefined);
+          return;
+        }
+        resolve(rows);
+      });
+    });
+  }
 }
 
-export default [
-  {
-    path: &apos;/info&apos;,
-    method: &apos;GET&apos;,
-    controller
-  }
-];
+/**
+ * Exported MariaDB Helper that uses configuration in config.yaml
+ * @type {MariaDBHelper}
+ */
+const mariadbHelper = new MariaDBHelper({
+  host: &apos;localhost&apos;,
+  user: &apos;root&apos;,
+  password: &apos;root&apos;,
+  connectionLimit: 5
+}, undefined);
+
+export default mariadbHelper;
 </code></pre>
 
 </div>
