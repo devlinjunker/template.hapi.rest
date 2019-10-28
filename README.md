@@ -106,9 +106,14 @@ How to use this template to create a quick HTTP REST server:
     - [ ] Test Rules
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
+ - [ ] (?) Absolute Paths:
+    - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+    - or: https://www.npmjs.com/package/app-module-path
+    - [ ] fix `__dirname` param in webpack/node with config and solve docs paths
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
      - [..] PostgreSQL or MariaDB
+      - [ ] MySQL scripts in repo to init database... update schema later...
      - [ ] (?) ElasticSearch? for search endpoint
      - [ ] Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  
@@ -118,7 +123,6 @@ How to use this template to create a quick HTTP REST server:
      - overrides
  - [ ] (^) cleanup old builds
  - [ ] (^) Typescript/Express router
-    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
       - Cookies?

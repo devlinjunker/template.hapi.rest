@@ -33,7 +33,7 @@ if (shouldServeDocs) {
     controller: {
       directory: {
         // TODO: Fix this
-        path: '/Users/junkerd/Programming/js/template.node.hapi/docs',
+        path: '/Users/djunker/js/template/template.node.hapi/docs',
         index: true,
         redirectToSlash: true
       }
