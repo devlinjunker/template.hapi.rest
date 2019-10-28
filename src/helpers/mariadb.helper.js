@@ -60,18 +60,19 @@ export class MariaDBHelper {
   query(query: string, values: any): Promise<any> {
     return new Promise((resolve: Function, reject: Function) => {
       // TODO: use transaction connection if it exists (this is what makes this so versatile)
-      this.dbPool.query(query, values, (err: any, ret: any) => {
-        if (err) {
-          // TODO: Log
-          reject(err);
-          return;
-        }
+      this.dbPool.query(query, values).then((ret: any) => {
         if (!ret) {
           // TODO: Log
           resolve(undefined);
           return;
         }
         resolve(ret);
+      }).catch((err: Error) => {
+        if (err) {
+          // TODO: Log
+          reject(err);
+          return;
+        }
       });
     });
   }

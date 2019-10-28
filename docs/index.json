@@ -1034,7 +1034,7 @@
     "__docId__": 69,
     "kind": "file",
     "name": "src/dataservices/note.service.js",
-    "content": "/**\n * @flow\n *\n * MariaDB Service Example\n * TODO: Look into proper conventions and practice for opening/closing db and connections\n */\nimport mariadb from 'mariadb';\n\n// From MariaDB\ninterface InsertMariaDBResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  static dbPool: any;\n\n  /**\n   * Static Constructor to create database connection\n   * @returns {undefined}\n   */\n  static constructor() {\n    if (NoteDataservice.dbPool === undefined) {\n      // TODO: Configuration from file\n      NoteDataservice.dbPool = mariadb.createPool({\n        host: 'localhost',\n        user: 'root',\n        password: 'root',\n        connectionLimit: 5\n      });\n    }\n  }\n\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: add (optional) content param and attribute\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    let connection;\n    try {\n      connection = await NoteDataservice.dbPool.getConnection();\n\n      const response: InsertMariaDBResponse = await connection.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    } finally {\n      if (connection) {\n        connection.end();\n      }\n    }\n  }\n}\n// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it\nNoteDataservice.constructor();\n",
+    "content": "/**\n * @flow\n *\n * MariaDB Service Example\n * TODO: Use MariaDBHelper instead\n */\n// import mariadb from 'mariadb';\nimport mariadb from '../helpers/mariadb.helper.js';\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport class NoteDataservice {\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number | string }): Promise<Note> {\n    try {\n      const rows = await mariadb.query(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      return rows[0];\n    } catch (err) {\n      console.log(err);\n      throw err;\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: add (optional) content param and attribute\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    try {\n      const response = await mariadb.query(\n        'INSERT INTO test.notes (name) VALUES (?)',\n        name\n      );\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/note.service.js",
     "access": "public",
@@ -1053,39 +1053,11 @@
     "importPath": "HapiServer/src/dataservices/note.service.js",
     "importStyle": "{NoteDataservice}",
     "description": "Note Dataservice for interacting with the storage system for saving notes",
-    "lineNumber": 21,
+    "lineNumber": 19,
     "interface": false
   },
   {
     "__docId__": 71,
-    "kind": "method",
-    "name": "constructor",
-    "memberof": "src/dataservices/note.service.js~NoteDataservice",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/dataservices/note.service.js~NoteDataservice.constructor",
-    "access": "public",
-    "description": "Static Constructor to create database connection",
-    "lineNumber": 27,
-    "unknown": [
-      {
-        "tagName": "@returns",
-        "tagValue": "{undefined}"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "undefined"
-      ],
-      "spread": false,
-      "description": ""
-    },
-    "params": []
-  },
-  {
-    "__docId__": 72,
     "kind": "method",
     "name": "getNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1095,7 +1067,7 @@
     "longname": "src/dataservices/note.service.js~NoteDataservice.getNote",
     "access": "public",
     "description": "Returns a note, specified by the caller by id",
-    "lineNumber": 44,
+    "lineNumber": 25,
     "params": [
       {
         "nullable": null,
@@ -1119,7 +1091,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1129,7 +1101,7 @@
     "longname": "src/dataservices/note.service.js~NoteDataservice.createNote",
     "access": "public",
     "description": "Creates a new note with a name\nTODO: add (optional) content param and attribute",
-    "lineNumber": 68,
+    "lineNumber": 42,
     "params": [
       {
         "nullable": null,
@@ -1152,7 +1124,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "file",
     "name": "src/dataservices/note.service.spec.js",
     "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n\n    /**\n     * Question:\n     * Should we test that mariadb queryStub is called? Seems like \"white-box\" testing, so probably not\n     */\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
@@ -1163,7 +1135,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 74,
     "kind": "file",
     "name": "src/entry.js",
     "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\n\nimport { Server } from './base/server.js';\n\n// TODO: auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\n\nconst routes = infoRoutes.concat(helloRoutes, noteRoutes);\n\n// TODO: check if we're in development and only serve docs if we are\nconst shouldServeDocs = true;\nif (shouldServeDocs) {\n  routes.push({\n    method: 'GET',\n    path: '/openapi.yaml',\n    controller: {\n      // TODO: Fix this\n      file: 'openapi.yaml'\n    }\n  });\n\n  routes.push({\n    method: 'GET',\n    path: '/docs/{param*}',\n    controller: {\n      directory: {\n        // TODO: Fix this\n        path: '/Users/junkerd/Programming/js/template.node.hapi/docs',\n        index: true,\n        redirectToSlash: true\n      }\n    }\n  });\n}\n\n/**\n * Entry point to run the server\n * @return {undefined} no return\n */\nasync function main() {\n  const server = new Server();\n\n  await server.run();\n\n  server.addEndpoints(routes);\n}\nmain();\n\n// What is this about again?\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n",
@@ -1174,7 +1146,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 76,
+    "__docId__": 75,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1195,7 +1167,7 @@
     "ignore": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 76,
     "kind": "variable",
     "name": "shouldServeDocs",
     "memberof": "src/entry.js",
@@ -1216,7 +1188,7 @@
     "ignore": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 77,
     "kind": "function",
     "name": "main",
     "memberof": "src/entry.js",
@@ -1242,10 +1214,10 @@
     "ignore": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 78,
     "kind": "file",
     "name": "src/helpers/mariadb.helper.js",
-    "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\n\n/**\n * Configuration for MariaDBHelper Database connection\n * @type {MariaDBConfig}\n */\nexport interface MariaDBConfig {\n  host: string;\n  user: string;\n  password: string;\n  connectionLimit: number;\n};\n\n/**\n * MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple interactions\n * and larger transaction.\n * This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the constructor\n * @type {MariaDBHelper}\n */\nexport class MariaDBHelper {\n  dbPool: any;\n\n  /**\n   * Creates a new Helper (on this file export starts the Database Pool)\n   */\n  constructor({ config, transactionConnection }: { config: (MariaDBConfig | null), transactionConnection: any }) {\n    // TODO: If testing, skip any of this\n\n    if (config) {\n      // Instantiating a connection to a different server\n      this.dbPool = mariadb.createPool(config);\n    } else if (transactionConnection) {\n      // For Larger Transaction\n    } else {\n      // TODO: Log on failure\n      throw new Error('MariaDBHelper created without DB Config or connection to use')\n    }\n  }\n\n  /**\n   * Execute a simple query on the entire database (don't )\n   * @param  {[type]}  string [description]\n   * @param  {[type]}  values [description]\n   * @return {Promise}        [description]\n   */\n  async query(query: string, values: any): Promise<any> {\n    return new Promise((resolve, reject) => {\n      // TODO: use transaction connection if it exists\n      this.dbPool.query(query, values, (err, rows) => {\n        if (err) {\n          // TODO: Log\n          reject(err);\n          return;\n        }\n        if (!rows) {\n          // TODO: Log\n          resolve(undefined);\n          return;\n        }\n        resolve(rows);\n      });\n    });\n  }\n}\n\n/**\n * Exported MariaDB Helper that uses configuration in config.yaml\n * @type {MariaDBHelper}\n */\nconst mariadbHelper = new MariaDBHelper({\n  host: 'localhost',\n  user: 'root',\n  password: 'root',\n  connectionLimit: 5\n}, undefined);\n\nexport default mariadbHelper;\n",
+    "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\n\n/**\n * Configuration for MariaDBHelper Database connection\n * @type {MariaDBConfig}\n */\nexport interface MariaDBConfig {\n  host: string;\n  user: string;\n  password: string;\n  connectionLimit: number;\n};\n\n// From MariaDB\n// interface InsertMariaDBResponse {\n//   affectedRows: number;\n//   insertId: number;\n//   warningStatus: number;\n// }\n\n/**\n * MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple\n * interactions and larger transaction.\n * This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the\n * constructor\n * @type {MariaDBHelper}\n */\nexport class MariaDBHelper {\n  dbPool: any;\n\n  /**\n   * Creates a new Helper (on this file export starts the Database Pool)\n   * @param {MariaDBConfig} config                Configuration to Connect to MySQL Database\n   * @param {MariaDB.Connection} transactionConnection MariaDB Connection to use for larger transactions\n   * (get passed back to transaction callback)\n   */\n  constructor({ config, transactionConnection }: { config?: MariaDBConfig, transactionConnection?: any }) {\n    // TODO: If testing, skip any of this\n\n    if (config) {\n      // Instantiating a connection to a different server\n      this.dbPool = mariadb.createPool(config);\n    } else if (transactionConnection) {\n      // For Larger Transaction\n    } else {\n      // TODO: Log on failure\n      throw new Error('MariaDBHelper created without DB Config or connection to use');\n    }\n  }\n\n  /**\n   * Execute a simple query on the entire database\n   * @param  {string}  query Query string to be passed to DB for response\n   * @param  {any}      values Values to inject in the\n   * @return {Promise}        Returns the response from the query\n   */\n  query(query: string, values: any): Promise<any> {\n    console.log(query);\n    return new Promise((resolve: Function, reject: Function) => {\n      console.log(values);\n      // TODO: use transaction connection if it exists (this is what makes this so versatile)\n      this.dbPool.query(query, values).then((ret: any) => {\n        console.log(ret);\n        if (!ret) {\n          // TODO: Log\n          resolve(undefined);\n          return;\n        }\n        resolve(ret);\n      }).catch((err: Error) => {\n        if (err) {\n          // TODO: Log\n          reject(err);\n          return;\n        }\n      });\n    });\n  }\n}\n\n/**\n * Exported MariaDB Helper tha uses configuration\n * TODO: from conf/config.yaml\n * @type {MariaDBHelper}\n */\nconst mariadbHelper = new MariaDBHelper({ config: {\n  host: 'localhost',\n  user: 'root',\n  password: 'root',\n  connectionLimit: 5\n} });\n\nexport default mariadbHelper;\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/helpers/mariadb.helper.js",
     "access": "public",
@@ -1253,7 +1225,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 80,
+    "__docId__": 79,
     "kind": "class",
     "name": "MariaDBHelper",
     "memberof": "src/helpers/mariadb.helper.js",
@@ -1263,8 +1235,8 @@
     "export": true,
     "importPath": "HapiServer/src/helpers/mariadb.helper.js",
     "importStyle": "{MariaDBHelper}",
-    "description": "MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple interactions\nand larger transaction.\nThis class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the constructor",
-    "lineNumber": 15,
+    "description": "MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple\ninteractions and larger transaction.\nThis class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the\nconstructor",
+    "lineNumber": 23,
     "type": {
       "nullable": null,
       "types": [
@@ -1276,7 +1248,7 @@
     "interface": false
   },
   {
-    "__docId__": 81,
+    "__docId__": 80,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1286,10 +1258,32 @@
     "longname": "src/helpers/mariadb.helper.js~MariaDBHelper#constructor",
     "access": "public",
     "description": "Creates a new Helper (on this file export starts the Database Pool)",
-    "lineNumber": 20
+    "lineNumber": 31,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "MariaDBConfig"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "config",
+        "description": "Configuration to Connect to MySQL Database"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "MariaDB.Connection"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "transactionConnection",
+        "description": "MariaDB Connection to use for larger transactions\n(get passed back to transaction callback)"
+      }
+    ]
   },
   {
-    "__docId__": 82,
+    "__docId__": 81,
     "kind": "member",
     "name": "dbPool",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1297,7 +1291,7 @@
     "longname": "src/helpers/mariadb.helper.js~MariaDBHelper#dbPool",
     "access": "public",
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 36,
     "undocument": true,
     "type": {
       "types": [
@@ -1306,37 +1300,37 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 82,
     "kind": "method",
     "name": "query",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
     "generator": false,
-    "async": true,
+    "async": false,
     "static": false,
     "longname": "src/helpers/mariadb.helper.js~MariaDBHelper#query",
     "access": "public",
-    "description": "Execute a simple query on the entire database (don't )",
-    "lineNumber": 40,
+    "description": "Execute a simple query on the entire database",
+    "lineNumber": 51,
     "params": [
       {
         "nullable": null,
         "types": [
-          "[type]"
+          "string"
         ],
         "spread": false,
         "optional": false,
-        "name": "string",
-        "description": "[description]"
+        "name": "query",
+        "description": "Query string to be passed to DB for response"
       },
       {
         "nullable": null,
         "types": [
-          "[type]"
+          "any"
         ],
         "spread": false,
         "optional": false,
         "name": "values",
-        "description": "[description]"
+        "description": "Values to inject in the"
       }
     ],
     "return": {
@@ -1345,11 +1339,11 @@
         "Promise"
       ],
       "spread": false,
-      "description": "[description]"
+      "description": "Returns the response from the query"
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 83,
     "kind": "variable",
     "name": "mariadbHelper",
     "memberof": "src/helpers/mariadb.helper.js",
@@ -1360,7 +1354,7 @@
     "importPath": "HapiServer/src/helpers/mariadb.helper.js",
     "importStyle": "mariadbHelper",
     "description": null,
-    "lineNumber": 71,
+    "lineNumber": 87,
     "undocument": true,
     "type": {
       "types": [
@@ -1370,7 +1364,7 @@
   },
   {
     "kind": "index",
-    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add new OpenAPI endpoint to `openapi.yaml`\n3. Add Unit tests in `src/controllers/` (Test Driven Development)\n4. Add Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js` (with other controllers)\n5. Run `npm run start-watch` to compile and run server + tests in watch mode\n6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n - RDBMS vs Document store\n  - https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8\n  - Document Store:\n    - use for settings data and where schema will be changed often\n    - when changes are small crud, based on users interactions?\n    - when count and aggregate data is useful to end user\n  - RDBMS:\n    - less duplicated data, normalized and stored in specific tables\n    - useful when data changes often\n    - seems like more useful for storing fact data in ETL processes?\n    - Q: phoenix?\n\n- CAP theorem stands for C – Consistency, A — Availability, P — Partitioning (or Scalability) and states that having all three properties at the same time is not possible,\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n    - [x] babel\n      - [x] sourcemap support\n      - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n    - [x] flow webpack plugin - typechecking each compilation\n    - [x] eslinting  \n    - [x] test with mocha\n    - [x] nodemon to run server\n - [x] (^) Fix watch commands so that tests can run and output errors without breaking\n    - [x] mocha shouldn't stop the process\n    - [x] tests should run again on changes with webpack\n - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n    - [v] OpenAPI Validation  \n    - [x] Swagger UI\n        - [x] in Docs\n - [x] (^) Debugging while running\n     - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach\n - [..] (^) Update Linting Rules (linewrap, length, etc)  \n    - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n    - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions\n    - [ ] Test Rules\n      - https://www.npmjs.com/package/eslint-plugin-mocha\n      - https://github.com/jest-community/eslint-plugin-jest\n - [..] (^) Simple DB endpoint  \n     - [ ] MongoDB\n     - [..] PostgreSQL or MariaDB\n     - [ ] (?) ElasticSearch? for search endpoint\n     - [ ] Proper error messages/codes from endpoints\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     - overrides\n - [ ] (^) cleanup old builds\n - [ ] (^) Typescript/Express router\n    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2\n    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers\n      - Headers\n      - Cookies?\n    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi\n      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test\n    - [ ] Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Healthcheck\n - [ ] (-) Request Performance\n - [ ] (-) Helpers\n    - [ ] mysql\n    - [ ] external-service request (with performance monitoring/caching?)\n    - [ ] Logging\n      - GELF/Kibana?\n      - Winston/Bunyon\n      - Pino logs to file\n    - [ ] SendEmail\n    - [ ] Cron?\n    - [ ] Authentication?\n - [ ] (-) Request Details Model attached to handler parameters\n - [ ] (-) Compression of responses\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n    - Run `doc` command before commit on develop branch\n    - Check if spec files exist (except where special comment in file header)\n    - Check if READMEs exist at each directory level?\n - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto\n - [ ] (-) production vs dev\n      - webpack/build\n      - pm2 for production\n      - config\n      - proper logging\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [x] Serve Docs\n    - [ ] (v) only in development\n - [ ] External API endpoint\n    - Weather (in UI?)\n    - (Garbage UPC) Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
+    "content": "# Basic Webpack Server App\n\nThis is meant to be an example/template of how to use Webpack in the Backend for rapid development.\n\nTODO: Simple endpoints that store and retrieve values\n\n\n## Dependencies\nNode v8+ and npm\n  (tested with node v8.12.0 and v10.15.1)\n\nSee [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies\n - Hapi v18\n - Webpack + Loaders\n - Babel\n - FlowJS\n - ESLint\n - Mocha, Chai, Sinon\n - EsDoc\n\n## Development\n\nHow to use this template to create a quick HTTP REST server:\n\n1. Download and update dependencies\n2. Add new OpenAPI endpoint to `openapi.yaml`\n3. Add Unit tests in `src/controllers/` (Test Driven Development)\n4. Add Controller Files to `src/controllers/`\n  - For now, add reference to controller in `src/entry.js` (with other controllers)\n5. Run `npm run start-watch` to compile and run server + tests in watch mode\n6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint\n\n### Tests/Running\n\n`npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done\n\n`npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests\n\n`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server\n\n`npm run test` to run all of the unit tests for the application one time\n\n`npm run dev` to run a development version of the server\n\n`npm run build` to compile development version of server to `dist/`\n\n`npm run doc` to generate static documentation in the doc folder\n\n`npm run clean` clean the workspace (remove `dist/`)\n\n`npm run help` to print the contents of `help.txt` to the command line\n\n**TODO**\n\n`npm run build-prod` ... TODO: compile application to production version\n\n`npm start` .. TODO: start production Server\n\n`npm stop` .. TODO: stop production Server\n\n`npm restart` will restart once start/stop completed\n\n\n## Notes/Ideas\n\n - OPTIONS requests?\n - RDBMS vs Document store\n  - https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8\n  - Document Store:\n    - use for settings data and where schema will be changed often\n    - when changes are small crud, based on users interactions?\n    - when count and aggregate data is useful to end user\n  - RDBMS:\n    - less duplicated data, normalized and stored in specific tables\n    - useful when data changes often\n    - seems like more useful for storing fact data in ETL processes?\n    - Q: phoenix?\n\n- CAP theorem stands for C – Consistency, A — Availability, P — Partitioning (or Scalability) and states that having all three properties at the same time is not possible,\n\n### TODO\n\n - [x] (^) Node 8\n - [x] (^) Webpack  \n    - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda  \n    - [x] babel\n      - [x] sourcemap support\n      - https://www.npmjs.com/package/babel-plugin-source-map-support#description\n    - [x] flow webpack plugin - typechecking each compilation\n    - [x] eslinting  \n    - [x] test with mocha\n    - [x] nodemon to run server\n - [x] (^) Fix watch commands so that tests can run and output errors without breaking\n    - [x] mocha shouldn't stop the process\n    - [x] tests should run again on changes with webpack\n - [x] (^) OpenAPI (Swagger) Documentation and ESDoc Plugin https://swagger.io/docs/specification/about/  \n    - [v] OpenAPI Validation  \n    - [x] Swagger UI\n        - [x] in Docs\n - [x] (^) Debugging while running\n     - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach\n - [..] (^) Update Linting Rules (linewrap, length, etc)  \n    - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  \n    - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  \n    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions\n    - [ ] Test Rules\n      - https://www.npmjs.com/package/eslint-plugin-mocha\n      - https://github.com/jest-community/eslint-plugin-jest\n - [..] (^) Simple DB endpoint  \n     - [ ] MongoDB\n     - [..] PostgreSQL or MariaDB\n     - [ ] (?) ElasticSearch? for search endpoint\n     - [ ] Proper error messages/codes from endpoints\n - [..] (^) Chai as promised and sinon-chai  \n - [ ] (^) Config.yaml and Env config file\n     - port\n     - other services/apis later?\n     - overrides\n - [ ] (^) cleanup old builds\n - [ ] (^) Typescript/Express router\n    - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2\n    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers\n      - Headers\n      - Cookies?\n    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi\n      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test\n    - [ ] Automatically find controller files in entry rather than need to reference  \n - [ ] (-) Healthcheck\n - [ ] (-) Request Performance\n - [ ] (-) Helpers\n    - [..] mysql\n    - [ ] external-service request (with performance monitoring/caching?)\n    - [ ] Logging\n      - GELF/Kibana?\n      - Winston/Bunyon\n      - Pino logs to file\n    - [ ] SendEmail\n    - [ ] Cron?\n    - [ ] Authentication?\n - [ ] (-) Request Details Model attached to handler parameters\n - [ ] (-) Compression of responses\n - [ ] (-) Run only affected tests on file save  \n - [ ] (-) Githooks for generating reports/linting  \n    - Run `doc` command before commit on develop branch\n    - Check if spec files exist (except where special comment in file header)\n    - Check if READMEs exist at each directory level?\n - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto\n - [ ] (-) production vs dev\n      - webpack/build\n      - pm2 for production\n      - config\n      - proper logging\n - [ ] (-) Require Node v8 and recommend v10 on build\n - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod\n - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  \n - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  \n - [ ] (v) Test coverage saved in spec files  \n - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  \n - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  \n - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  \n - ~~[ ] Docsify?~~  \n\n### Application\n\n - [..] GET/POST/PUT/DELETE Note endpoints\n - [x] Serve Docs\n    - [ ] (v) only in development\n - [ ] External API endpoint\n    - Weather (in UI?)\n    - (Garbage UPC) Map to information/notes?\n - [ ] Connect to Google Drive/Oauth\n - [ ] Authorized vs Unauthorized endpoints\n - [ ] SSO Server\n\n\n## Issues\n\n```\nevents.js:183\n      throw er; // Unhandled 'error' event\n      ^\n\nError: spawn mocha ENOENT\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:190:19)\n    at onErrorNT (internal/child_process.js:362:16)\n    at _combinedTickCallback (internal/process/next_tick.js:139:11)\n    at process._tickCallback (internal/process/next_tick.js:181:9)\n```\n\n- Made sure using node v8 and re-ran `npm install -D`\n\n\n```\nmodule.js:550\n    throw err;\n    ^\n\nError: Cannot find module 'babel-polyfill'\n```\n\n- Commented out line `polyfill: \"@babel/polyfill\",` in webpack.config.js\n- re-ran webpack `npm run build`\n- then uncommented line and ran `npm run start-watch`\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/README.md",
     "name": "./README.md",
     "static": true,
@@ -1385,7 +1379,7 @@
     "access": "public"
   },
   {
-    "__docId__": 85,
+    "__docId__": 84,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', () => {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', () => {\n    it('returns \\'Hello World!\\'', () => {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', () => {\n    it('returns \\'{request.params.name} says:\\'', () => {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1396,7 +1390,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 86,
+    "__docId__": 85,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1412,7 +1406,7 @@
     ]
   },
   {
-    "__docId__": 87,
+    "__docId__": 86,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1428,7 +1422,7 @@
     ]
   },
   {
-    "__docId__": 88,
+    "__docId__": 87,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1441,7 +1435,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 89,
+    "__docId__": 88,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1457,7 +1451,7 @@
     ]
   },
   {
-    "__docId__": 90,
+    "__docId__": 89,
     "kind": "test",
     "name": "it4",
     "testId": 4,
@@ -1470,7 +1464,7 @@
     "lineNumber": 16
   },
   {
-    "__docId__": 91,
+    "__docId__": 90,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/note.controller.spec.js",
     "content": "import { NoteController } from './note.controller.js';\nimport { NoteDataservice } from '../dataservices/note.service.js';\nimport mariadb from 'mariadb';\n\n/**\n * Question:\n * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should\n * cover all of the standard \"black-box\" expectations of the endpoint.\n * https://github.com/dtzar/openapi-auto-test\n */\n\n/** @test {NoteController} */\ndescribe('NoteController', () => {\n  beforeEach(() => {\n    sinonSandbox.stub(mariadb, 'createPool');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', () => {\n    it('should call NoteDataservice.getNote (with id)', () => {\n      const id = 42;\n      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n      NoteController.getNoteById({ params: { id } });\n\n      expect(getStub).to.be.called;\n      /**\n       * Question:\n       * Should we check what the NoteController passes to backend? Seems too much like \"white-box\" testing\n       */\n      expect(getStub).to.be.calledWith({ id });\n    });\n\n\n    /**\n     * Question:\n     * Is this useful? Or should we just check that it calls the backend dataservice?\n     */\n    it('should return a Note with id passed', () => {\n      const id = 1;\n      sinonSandbox.stub(NoteDataservice, 'getNote').returns({\n        id\n      });\n\n      const note = NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', () => {\n    it('should call DataService.createNote (with newName?)', async() => {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async() => {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', () => {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', () => {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
@@ -1481,7 +1475,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 92,
+    "__docId__": 91,
     "kind": "test",
     "name": "describe5",
     "testId": 5,
@@ -1497,7 +1491,7 @@
     ]
   },
   {
-    "__docId__": 93,
+    "__docId__": 92,
     "kind": "test",
     "name": "describe6",
     "testId": 6,
@@ -1513,7 +1507,7 @@
     ]
   },
   {
-    "__docId__": 94,
+    "__docId__": 93,
     "kind": "test",
     "name": "it7",
     "testId": 7,
@@ -1526,7 +1520,7 @@
     "lineNumber": 20
   },
   {
-    "__docId__": 95,
+    "__docId__": 94,
     "kind": "test",
     "name": "it8",
     "testId": 8,
@@ -1539,7 +1533,7 @@
     "lineNumber": 37
   },
   {
-    "__docId__": 96,
+    "__docId__": 95,
     "kind": "test",
     "name": "it9",
     "testId": 9,
@@ -1552,7 +1546,7 @@
     "lineNumber": 48
   },
   {
-    "__docId__": 97,
+    "__docId__": 96,
     "kind": "test",
     "name": "it10",
     "testId": 10,
@@ -1565,7 +1559,7 @@
     "lineNumber": 50
   },
   {
-    "__docId__": 98,
+    "__docId__": 97,
     "kind": "test",
     "name": "describe11",
     "testId": 11,
@@ -1581,7 +1575,7 @@
     ]
   },
   {
-    "__docId__": 99,
+    "__docId__": 98,
     "kind": "test",
     "name": "it12",
     "testId": 12,
@@ -1594,7 +1588,7 @@
     "lineNumber": 55
   },
   {
-    "__docId__": 100,
+    "__docId__": 99,
     "kind": "test",
     "name": "it13",
     "testId": 13,
@@ -1607,7 +1601,7 @@
     "lineNumber": 65
   },
   {
-    "__docId__": 101,
+    "__docId__": 100,
     "kind": "test",
     "name": "it14",
     "testId": 14,
@@ -1620,7 +1614,7 @@
     "lineNumber": 83
   },
   {
-    "__docId__": 102,
+    "__docId__": 101,
     "kind": "test",
     "name": "it15",
     "testId": 15,
@@ -1633,7 +1627,7 @@
     "lineNumber": 85
   },
   {
-    "__docId__": 103,
+    "__docId__": 102,
     "kind": "test",
     "name": "describe16",
     "testId": 16,
@@ -1649,7 +1643,7 @@
     ]
   },
   {
-    "__docId__": 104,
+    "__docId__": 103,
     "kind": "test",
     "name": "it17",
     "testId": 17,
@@ -1662,7 +1656,7 @@
     "lineNumber": 90
   },
   {
-    "__docId__": 105,
+    "__docId__": 104,
     "kind": "test",
     "name": "it18",
     "testId": 18,
@@ -1675,7 +1669,7 @@
     "lineNumber": 92
   },
   {
-    "__docId__": 106,
+    "__docId__": 105,
     "kind": "test",
     "name": "it19",
     "testId": 19,
@@ -1688,7 +1682,7 @@
     "lineNumber": 94
   },
   {
-    "__docId__": 107,
+    "__docId__": 106,
     "kind": "test",
     "name": "it20",
     "testId": 20,
@@ -1701,7 +1695,7 @@
     "lineNumber": 96
   },
   {
-    "__docId__": 108,
+    "__docId__": 107,
     "kind": "test",
     "name": "describe21",
     "testId": 21,
@@ -1717,7 +1711,7 @@
     ]
   },
   {
-    "__docId__": 109,
+    "__docId__": 108,
     "kind": "test",
     "name": "it22",
     "testId": 22,
@@ -1730,7 +1724,7 @@
     "lineNumber": 101
   },
   {
-    "__docId__": 110,
+    "__docId__": 109,
     "kind": "test",
     "name": "it23",
     "testId": 23,
@@ -1743,7 +1737,7 @@
     "lineNumber": 103
   },
   {
-    "__docId__": 111,
+    "__docId__": 110,
     "kind": "test",
     "name": "it24",
     "testId": 24,
@@ -1756,7 +1750,7 @@
     "lineNumber": 105
   },
   {
-    "__docId__": 112,
+    "__docId__": 111,
     "kind": "test",
     "name": "it25",
     "testId": 25,
@@ -1769,7 +1763,7 @@
     "lineNumber": 107
   },
   {
-    "__docId__": 113,
+    "__docId__": 112,
     "kind": "testFile",
     "name": "template.node.hapi/src/dataservices/note.service.spec.js",
     "content": "// import { NoteDataservice } from './note.service.js';\nimport mariadb from 'mariadb';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', () => {\n\n  let queryStub;\n  beforeEach(() => {\n    queryStub = sinonSandbox.stub();\n    // TODO: Set up mariadb mock to return connectionStub we can check during tests\n    sinonSandbox.stub(mariadb, 'createPool').resolves({\n      getConnection: () => {\n        return {\n          query: queryStub\n        };\n      }\n    });\n  });\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', () => {\n    it('should return a note object with matching id');\n\n    /**\n     * Question:\n     * Should we test that mariadb queryStub is called? Seems like \"white-box\" testing, so probably not\n     */\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', () => {\n    it('should return a note with the name passed');\n  });\n});\n",
@@ -1780,7 +1774,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 114,
+    "__docId__": 113,
     "kind": "test",
     "name": "describe26",
     "testId": 26,
@@ -1796,7 +1790,7 @@
     ]
   },
   {
-    "__docId__": 115,
+    "__docId__": 114,
     "kind": "test",
     "name": "describe27",
     "testId": 27,
@@ -1812,7 +1806,7 @@
     ]
   },
   {
-    "__docId__": 116,
+    "__docId__": 115,
     "kind": "test",
     "name": "it28",
     "testId": 28,
@@ -1825,7 +1819,7 @@
     "lineNumber": 22
   },
   {
-    "__docId__": 117,
+    "__docId__": 116,
     "kind": "test",
     "name": "describe29",
     "testId": 29,
@@ -1841,7 +1835,7 @@
     ]
   },
   {
-    "__docId__": 118,
+    "__docId__": 117,
     "kind": "test",
     "name": "it30",
     "testId": 30,

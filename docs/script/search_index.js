@@ -612,12 +612,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/dataservices/note.service.js~notedataservice.constructor",
-    "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-constructor",
-    "src/dataservices/note.service.js~NoteDataservice.constructor",
-    "method"
-  ],
-  [
     "src/dataservices/note.service.js~notedataservice.createnote",
     "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-createNote",
     "src/dataservices/note.service.js~NoteDataservice.createNote",

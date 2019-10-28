@@ -128,7 +128,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Healthcheck
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
-    - [ ] mysql
+    - [..] mysql
     - [ ] external-service request (with performance monitoring/caching?)
     - [ ] Logging
       - GELF/Kibana?

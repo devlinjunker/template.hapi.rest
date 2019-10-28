@@ -34,13 +34,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MariaDBHelper} from &apos;<span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber15">HapiServer/src/helpers/mariadb.helper.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MariaDBHelper} from &apos;<span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber23">HapiServer/src/helpers/mariadb.helper.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber15">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber23">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -64,9 +64,10 @@
 
   
   
-  <div class="description" data-ice="description"><p>MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple interactions
-and larger transaction.
-This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the constructor</p>
+  <div class="description" data-ice="description"><p>MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple
+interactions and larger transaction.
+This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the
+constructor</p>
 </div>
   
 
@@ -99,7 +100,7 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(config: <span>MariaDBConfig</span>, transactionConnection: <span>MariaDB.Connection</span>)</span>
         </p>
       </div>
       <div>
@@ -168,15 +169,15 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
       <div>
         <p>
           
-          <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query">query</a></span></span><span class="code" data-ice="signature">(string: <span>[type]</span>, values: <span>[type]</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query">query</a></span></span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Execute a simple query on the entire database (don&apos;t )</p>
+        <div data-ice="description"><p>Execute a simple query on the entire database</p>
 </div>
       </div>
     </td>
@@ -203,11 +204,11 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(config: <span>MariaDBConfig</span>, transactionConnection: <span>MariaDB.Connection</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
@@ -219,7 +220,32 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">config</td>
+      <td data-ice="type" class="code"><span>MariaDBConfig</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Configuration to Connect to MySQL Database</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">transactionConnection</td>
+      <td data-ice="type" class="code"><span>MariaDB.Connection</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>MariaDB Connection to use for larger transactions
+(get passed back to transaction callback)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
@@ -254,7 +280,7 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber36">source</a></span></span>
     </span>
   </h3>
 
@@ -294,20 +320,20 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
     
     
     
-    <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">query</span><span class="code" data-ice="signature">(string: <span>[type]</span>, values: <span>[type]</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    
+    <span class="code" data-ice="name">query</span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber40">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Execute a simple query on the entire database (don&apos;t )</p>
+  <div data-ice="description"><p>Execute a simple query on the entire database</p>
 </div>
 
   
@@ -321,17 +347,17 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">string</td>
-      <td data-ice="type" class="code"><span>[type]</span></td>
+      <td data-ice="name" class="code" data-depth="0">query</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>[description]</p>
+      <td data-ice="description"><p>Query string to be passed to DB for response</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">values</td>
-      <td data-ice="type" class="code"><span>[type]</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>[description]</p>
+      <td data-ice="description"><p>Values to inject in the</p>
 </td>
     </tr>
 </tbody>
@@ -345,7 +371,7 @@ This class can also be instantiated pointing elsewhere with a different MariaDBC
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>[description]</p>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns the response from the query</p>
 </td>
         </tr>
       </tbody>

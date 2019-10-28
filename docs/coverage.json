@@ -1,7 +1,7 @@
 {
-  "coverage": "81.48%",
-  "expectCount": 27,
-  "actualCount": 22,
+  "coverage": "80.76%",
+  "expectCount": 26,
+  "actualCount": 21,
   "files": {
     "src/base/server.js": {
       "expectCount": 6,
@@ -26,8 +26,8 @@
       "undocumentLines": []
     },
     "src/dataservices/note.service.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/entry.js": {
@@ -42,8 +42,8 @@
       "expectCount": 5,
       "actualCount": 3,
       "undocumentLines": [
-        25,
-        71
+        36,
+        87
       ]
     }
   }
