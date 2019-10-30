@@ -44,9 +44,9 @@ export class NoteDataservice {
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
     try {
-      const response = await mariadb.insert('test.notes',
-        { name }
-      );
+      const response = await mariadb.insert('test.notes', {
+        name
+      });
 
       // TODO: Figure out how to debug with atom
       console.log(response);

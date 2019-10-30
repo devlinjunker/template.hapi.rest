@@ -1,30 +1,33 @@
-// import { NoteDataservice } from './note.service.js';
-import mariadb from 'mariadb';
+import { NoteDataservice } from './note.service.js';
+import mariadb from '../helpers/mariadb.helper.js';
 
 /** @test {NoteDataservice} */
 describe('NoteDataservice', () => {
 
-  let queryStub;
+  let fetchStub;
   beforeEach(() => {
-    queryStub = sinonSandbox.stub();
-    // TODO: Set up mariadb mock to return connectionStub we can check during tests
-    sinonSandbox.stub(mariadb, 'createPool').resolves({
-      getConnection: () => {
-        return {
-          query: queryStub
-        };
-      }
-    });
+    fetchStub = sinonSandbox.stub(mariadb, 'fetchOne');
   });
 
   /** @test {NoteDataservice.getNote} */
   describe('getNote()', () => {
-    it('should return a note object with matching id');
-
     /**
      * Question:
-     * Should we test that mariadb queryStub is called? Seems like "white-box" testing, so probably not
+     * Should we test that mariadb fetchStub is called? Seems like "white-box" testing, but also
+     * we need to stub the query anyways..
      */
+    it('should return a note object with matching id', async() => {
+      fetchStub.resolves({ id: 1, name: 'abc' });
+      const id = 1;
+
+      const result = await NoteDataservice.getNote({ id });
+
+      expect(result).to.deep.equal({ id, name: 'abc' });
+    });
+
+    it('should throw error if id is invalid');
+
+    it('should throw error if id doesnt return note');
   });
 
   /** @test {NoteDataservice.createNote} */
