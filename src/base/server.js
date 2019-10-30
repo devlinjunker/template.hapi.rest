@@ -56,6 +56,21 @@ export class Server {
   }
 
   /**
+   * Shutdown the Hapi Server Properly
+   * @param  {Function} callback callback to run after server has shutdown
+   * @return {undefined}            no return
+   */
+  shutdown(callback: Function) {
+    // TODO: Set Shutdown Timeout from config
+    this.server.stop({ timeout: 10000 }).then((err) => {
+      if (err) {
+        // TODO: Log Hapi Shutdown Error
+      }
+      callback(err);
+    });
+  }
+
+  /**
    * Starts the server and registers any plugins
    * @return {Promise} Resolves once server has started
    */

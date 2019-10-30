@@ -56,6 +56,22 @@ export class MariaDBHelper {
   }
 
   /**
+   * Shuts down the mariadb connections
+   * @param  {Function} callback callback function to call after shutting down db connections
+   * @return {undefined}            no return
+   */
+  shutdown(callback: Function) {
+    if (this.dbPool) {
+      this.dbPool.end((err) => {
+        if (err) {
+          // TODO: Do Something
+        }
+        callback(err);
+      });
+    }
+  }
+
+  /**
    * Execute a simple query on the entire database
    * @param  {string}  query Query string to be passed to DB for response
    * @param  {any}      values Values to inject in the
