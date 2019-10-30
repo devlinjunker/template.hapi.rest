@@ -69,9 +69,9 @@ main();
  */
 function attemptGracefulShutdown(server: Server) {
   console.log('shutdown signal');
-  server.shutdown((hapiErr: any) => {
+  server.shutdown((hapiErr: Error) => {
     console.log('hapi server shutdown');
-    mariadb.shutdown((dbErr: any) => {
+    mariadb.shutdown((dbErr: Error) => {
       console.log('mariadb shutdown');
       process.exit(hapiErr || dbErr ? 1 : 0);
     });

@@ -60,9 +60,9 @@ export class Server {
    * @param  {Function} callback callback to run after server has shutdown
    * @return {undefined}            no return
    */
-  shutdown(callback: Function) {
+  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types
     // TODO: Set Shutdown Timeout from config
-    this.server.stop({ timeout: 10000 }).then((err) => {
+    this.server.stop({ timeout: 10000 }).then((err: Error) => {
       if (err) {
         // TODO: Log Hapi Shutdown Error
       }

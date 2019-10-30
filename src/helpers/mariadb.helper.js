@@ -3,6 +3,10 @@
  */
 import mariadb from 'mariadb';
 
+
+// Disable weak type rule to allow for generalized database objects
+/* eslint-disable flowtype/no-weak-types */
+
 /**
  * Configuration for MariaDBHelper Database connection
  * @type {MariaDBConfig}
@@ -70,7 +74,7 @@ export class MariaDBHelper {
    */
   shutdown(callback: Function) {
     if (this.dbPool) {
-      this.dbPool.end((err) => {
+      this.dbPool.end((err: Error) => {
         if (err) {
           // TODO: Do Something on MariaDB Shutdown error
         }
