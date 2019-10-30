@@ -1,18 +1,19 @@
 import { NoteController } from './note.controller.js';
 import { NoteDataservice } from '../dataservices/note.service.js';
-import mariadb from 'mariadb';
 
 /**
  * Question:
  * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should
  * cover all of the standard "black-box" expectations of the endpoint.
  * https://github.com/dtzar/openapi-auto-test
+ *
+ * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live
  */
 
 /** @test {NoteController} */
 describe('NoteController', () => {
   beforeEach(() => {
-    sinonSandbox.stub(mariadb, 'createPool');
+    // TODO: Stub and Fake NoteDataservice here
   });
 
   /** @test {NoteController.getNoteById} */
@@ -34,6 +35,9 @@ describe('NoteController', () => {
     /**
      * Question:
      * Is this useful? Or should we just check that it calls the backend dataservice?
+     *
+     * Maybe we should use Model classes for objects returned from service, so we can instantiate in
+     * the fakes/returns we stub
      */
     it('should return a Note with id passed', () => {
       const id = 1;

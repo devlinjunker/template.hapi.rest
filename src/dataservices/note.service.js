@@ -2,7 +2,6 @@
  * @flow
  *
  * MariaDB Service Example
- * TODO: Use MariaDBHelper instead
  */
 // import mariadb from 'mariadb';
 import mariadb from '../helpers/mariadb.helper.js';

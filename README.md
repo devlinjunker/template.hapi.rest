@@ -106,6 +106,7 @@ How to use this template to create a quick HTTP REST server:
     - [ ] Test Rules
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
+    - [ ] all variables flow typed?
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
      - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/

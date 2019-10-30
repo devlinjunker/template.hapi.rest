@@ -15,6 +15,9 @@ describe('NoteDataservice', () => {
      * Question:
      * Should we test that mariadb fetchStub is called? Seems like "white-box" testing, but also
      * we need to stub the query anyways..
+     *
+     * Maybe we should be testing that note object has properties we expect and dataservice should
+     * esnure we return those properties
      */
     it('should return a note object with matching id', async() => {
       fetchStub.resolves({ id: 1, name: 'abc' });
