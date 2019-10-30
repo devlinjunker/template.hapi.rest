@@ -34,13 +34,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MariaDBHelper} from &apos;<span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber19">HapiServer/src/helpers/mariadb.helper.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MariaDBHelper} from &apos;<span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber23">HapiServer/src/helpers/mariadb.helper.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber19">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber23">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -65,8 +65,8 @@
   
   
   <div class="description" data-ice="description"><p>MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple
-interactions and larger transaction.
-This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the
+interactions and larger transactions.</p>
+<p>This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the
 constructor</p>
 </div>
   
@@ -169,9 +169,96 @@ constructor</p>
       <div>
         <p>
           
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-fetch">fetch</a></span></span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Fetch all rows given a query string and values that can qualify the query</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-fetchOne">fetchOne</a></span></span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Fetch the (first) row that matches a string</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-insert">insert</a></span></span><span class="code" data-ice="signature">(table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, object: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>MariaDBInsertResponse</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Insert an Object into a specific table</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query">query</a></span></span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query">query</a></span></span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>any</span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -200,13 +287,13 @@ constructor</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-shutdown">shutdown</a></span></span><span class="code" data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-shutdown">shutdown</a></span></span><span class="code" data-ice="signature">(callback: <span>*</span>): <span>PoolApi</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Shuts down the mariadb connections</p>
+        <div data-ice="description"><p>MariaDB Pool API</p>
 </div>
       </div>
     </td>
@@ -237,7 +324,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
@@ -268,8 +355,7 @@ constructor</p>
       <td data-ice="name" class="code" data-depth="0">transactionConnection</td>
       <td data-ice="type" class="code"><span>MariaDB.Connection</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>MariaDB Connection to use for larger transactions
-(get passed back to transaction callback)</p>
+      <td data-ice="description"><p>MariaDB Connection to use for larger transactions</p>
 </td>
     </tr>
 </tbody>
@@ -309,7 +395,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber36">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -344,6 +430,235 @@ constructor</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-fetch">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">fetch</span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber96">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Fetch all rows given a query string and values that can qualify the query</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">query</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Query string to pass to mariadb</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Return array of values</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-fetchOne">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">fetchOne</span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber112">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Fetch the (first) row that matches a string</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">query</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Query string to pass to mariadb</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a single value</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-insert">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">insert</span><span class="code" data-ice="signature">(table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, object: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>MariaDBInsertResponse</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber128">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Insert an Object into a specific table</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">table</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Name of table to insert object into</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">object</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Mapping from column names to values to insert into DB Table</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>MariaDBInsertResponse</span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>Response from MariaDB</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-query">
     <span class="access" data-ice="access">public</span>
     
@@ -351,11 +666,11 @@ constructor</p>
     
     
     
-    <span class="code" data-ice="name">query</span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">query</span><span class="code" data-ice="signature">(query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, values: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>any</span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber154">source</a></span></span>
     </span>
   </h3>
 
@@ -379,14 +694,16 @@ constructor</p>
       <td data-ice="name" class="code" data-depth="0">query</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Query string to be passed to DB for response</p>
+      <td data-ice="description"><p>Query string to be passed to DB for response
+ see <a href="https://mariadb.com/kb/en/library/data-manipulation/">https://mariadb.com/kb/en/library/data-manipulation/</a> for reference</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">values</td>
-      <td data-ice="type" class="code"><span>any</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>any</span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Values to inject in the</p>
+      <td data-ice="description"><p>Array of values to inject into the query string, matching the number of
+ placeholders given</p>
 </td>
     </tr>
 </tbody>
@@ -432,18 +749,18 @@ constructor</p>
     
     
     
-    <span class="code" data-ice="name">shutdown</span><span class="code" data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+    <span class="code" data-ice="name">shutdown</span><span class="code" data-ice="signature">(callback: <span>*</span>): <span>PoolApi</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Shuts down the mariadb connections</p>
+  <div data-ice="description"><p>MariaDB Pool API</p>
 </div>
 
   
@@ -458,30 +775,16 @@ constructor</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">callback</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>callback function to call after shutting down db connections</p>
-</td>
+      <td data-ice="description"></td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>no return</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
+  
 
   
 

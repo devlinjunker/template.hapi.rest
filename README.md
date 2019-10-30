@@ -108,7 +108,7 @@ How to use this template to create a quick HTTP REST server:
       - https://github.com/jest-community/eslint-plugin-jest
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
-     - [..] PostgreSQL or MariaDB
+     - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
      - [ ] (?) ElasticSearch? for search endpoint
      - [ ] Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  

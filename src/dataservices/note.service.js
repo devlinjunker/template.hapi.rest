@@ -25,11 +25,11 @@ export class NoteDataservice {
    * @param  {number|string} id  `id` number of the Note to retrieve
    * @return {Note}       Note object
    */
-  static async getNote({ id }: { id: number | string }): Promise<Note> {
+  static async getNote({ id }: { id: number }): Promise<Note> {
     try {
-      const rows = await mariadb.query(`SELECT * FROM test.notes WHERE id=${id}`);
+      const rows = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      return rows[0];
+      return rows;
     } catch (err) {
       console.log(err);
       throw err;
@@ -44,9 +44,8 @@ export class NoteDataservice {
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
     try {
-      const response = await mariadb.query(
-        'INSERT INTO test.notes (name) VALUES (?)',
-        name
+      const response = await mariadb.insert('test.notes',
+        { name }
       );
 
       // TODO: Figure out how to debug with atom

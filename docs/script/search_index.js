@@ -660,6 +660,24 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/helpers/mariadb.helper.js~mariadbhelper#fetch",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-fetch",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#fetch",
+    "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#fetchone",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-fetchOne",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#fetchOne",
+    "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#insert",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-insert",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#insert",
+    "method"
+  ],
+  [
     "src/helpers/mariadb.helper.js~mariadbhelper#query",
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query",
     "src/helpers/mariadb.helper.js~MariaDBHelper#query",
