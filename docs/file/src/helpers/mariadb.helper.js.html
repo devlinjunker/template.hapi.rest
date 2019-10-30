@@ -51,11 +51,11 @@ export interface MariaDBConfig {
 };
 
 // From MariaDB
-// interface InsertMariaDBResponse {
-//   affectedRows: number;
-//   insertId: number;
-//   warningStatus: number;
-// }
+interface MariaDBInsertResponse {
+  affectedRows: number;
+  insertId: number;
+  warningStatus: number;
+}
 
 /**
  * MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple
@@ -74,7 +74,11 @@ export class MariaDBHelper {
    * (get passed back to transaction callback)
    */
   constructor({ config, transactionConnection }: { config?: MariaDBConfig, transactionConnection?: any }) {
-    // TODO: If testing, skip any of this
+    // If testing, skip any startup
+    // NOTE: Not sure if this is better, or if we should just make sure to always call `shutdown` to close db
+    if (process.argv.includes(&apos;--env.unit_test&apos;)) {
+      return;
+    }
 
     if (config) {
       // Instantiating a connection to a different server
@@ -88,18 +92,31 @@ export class MariaDBHelper {
   }
 
   /**
+   * Shuts down the mariadb connections
+   * @param  {Function} callback callback function to call after shutting down db connections
+   * @return {undefined}            no return
+   */
+  shutdown(callback: Function) {
+    if (this.dbPool) {
+      this.dbPool.end((err) =&gt; {
+        if (err) {
+          // TODO: Do Something
+        }
+        callback(err);
+      });
+    }
+  }
+
+  /**
    * Execute a simple query on the entire database
    * @param  {string}  query Query string to be passed to DB for response
    * @param  {any}      values Values to inject in the
    * @return {Promise}        Returns the response from the query
    */
   query(query: string, values: any): Promise&lt;any&gt; {
-    console.log(query);
     return new Promise((resolve: Function, reject: Function) =&gt; {
-      console.log(values);
       // TODO: use transaction connection if it exists (this is what makes this so versatile)
       this.dbPool.query(query, values).then((ret: any) =&gt; {
-        console.log(ret);
         if (!ret) {
           // TODO: Log
           resolve(undefined);

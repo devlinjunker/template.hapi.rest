@@ -540,6 +540,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/base/server.js~server#shutdown",
+    "class/src/base/server.js~Server.html#instance-method-shutdown",
+    "src/base/server.js~Server#shutdown",
+    "method"
+  ],
+  [
     "src/controllers/hello.controller.js",
     "file/src/controllers/hello.controller.js.html",
     "src/controllers/hello.controller.js",
@@ -657,6 +663,12 @@ window.esdocSearchIndex = [
     "src/helpers/mariadb.helper.js~mariadbhelper#query",
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query",
     "src/helpers/mariadb.helper.js~MariaDBHelper#query",
+    "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#shutdown",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-shutdown",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#shutdown",
     "method"
   ],
   [

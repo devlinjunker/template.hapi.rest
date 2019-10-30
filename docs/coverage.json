@@ -1,11 +1,11 @@
 {
-  "coverage": "80.76%",
-  "expectCount": 26,
-  "actualCount": 21,
+  "coverage": "82.75%",
+  "expectCount": 29,
+  "actualCount": 24,
   "files": {
     "src/base/server.js": {
-      "expectCount": 6,
-      "actualCount": 5,
+      "expectCount": 7,
+      "actualCount": 6,
       "undocumentLines": [
         38
       ]
@@ -31,19 +31,19 @@
       "undocumentLines": []
     },
     "src/entry.js": {
-      "expectCount": 3,
-      "actualCount": 1,
+      "expectCount": 4,
+      "actualCount": 2,
       "undocumentLines": [
-        15,
-        18
+        16,
+        19
       ]
     },
     "src/helpers/mariadb.helper.js": {
-      "expectCount": 5,
-      "actualCount": 3,
+      "expectCount": 6,
+      "actualCount": 4,
       "undocumentLines": [
         36,
-        87
+        100
       ]
     }
   }
