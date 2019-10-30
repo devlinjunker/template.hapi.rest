@@ -38,7 +38,11 @@ export class MariaDBHelper {
    * (get passed back to transaction callback)
    */
   constructor({ config, transactionConnection }: { config?: MariaDBConfig, transactionConnection?: any }) {
-    // TODO: If testing, skip any of this
+    // If testing, skip any startup
+    // NOTE: Not sure if this is better, or if we should just make sure to always call `shutdown` to close db
+    if (process.argv.includes('--env.unit_test')) {
+      return;
+    }
 
     if (config) {
       // Instantiating a connection to a different server

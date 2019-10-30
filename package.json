@@ -16,9 +16,9 @@
   "main": "dist/entry.js",
   "scripts": {
     "start-watch": "./node_modules/.bin/webpack --watch & (sleep 10s && nodemon dist/server.bundle.js)",
-    "test-watch": "node_modules/.bin/mocha --watch",
+    "test-watch": "node_modules/.bin/mocha --watch --env.unit_test",
     "dev-watch": "./node_modules/.bin/webpack --watch",
-    "test": "node_modules/.bin/mocha",
+    "test": "node node_modules/.bin/mocha --env.unit_test",
     "doc": "./node_modules/.bin/esdoc && cp ./openapi.yaml docs/swagger/" ,
     "dev": "npm run build && node dist/server.bundle.js",
     "build": "./node_modules/.bin/webpack",

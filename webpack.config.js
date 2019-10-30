@@ -45,7 +45,7 @@ const config =  {
 
 
     new WebpackShellPlugin({
-      onBuildExit: 'mocha --watch ./dist/test.bundle.js'
+      onBuildExit: 'mocha --env.unit_test ./dist/test.bundle.js'
     }),
   ],
 
