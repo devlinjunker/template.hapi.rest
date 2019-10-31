@@ -121,7 +121,9 @@ export class MariaDBHelper {
    * @return {Promise<MariaDBInsertResponse>}        Response from MariaDB
    */
   async insert(table: string, object: Object): Promise<MariaDBInsertResponse> {
-    const keyString: string = Object.keys(object).join(', '); // {'abc': 1, 'def', 2 } => 'abc, def'
+    // e.g. {'abc': 1, 'def', 2 }
+    const keyString: string = Object.keys(object).join(', '); // 'abc, def'
+
     const values: Array<any> = Object.values(object); // [1, 2]
     const inserts: string = '?,'.repeat(values.length).slice(0, (values.length * 2) - 1); // '?, ?'
 

@@ -23,7 +23,7 @@ if (shouldServeDocs) {
     method: 'GET',
     path: '/openapi.yaml',
     controller: {
-      // TODO: Fix this
+      // TODO: Fix path to openapi file
       file: 'openapi.yaml'
     }
   });
@@ -33,7 +33,7 @@ if (shouldServeDocs) {
     path: '/docs/{param*}',
     controller: {
       directory: {
-        // TODO: Fix this
+        // TODO: Fix path to doc
         path: '/Users/junkerd/Programming/js/template.node.hapi/docs',
         index: true,
         redirectToSlash: true
