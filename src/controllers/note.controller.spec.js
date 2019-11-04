@@ -4,34 +4,23 @@ import { NoteDataservice } from '../dataservices/note.service.js';
 /**
  * Question:
  * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should
- * cover all of the standard "black-box" expectations of the endpoint.
+ * cover all of the standard "black-box" expectations of the endpoint...
  * https://github.com/dtzar/openapi-auto-test
  *
- * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live
+ * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live,
+ * especially if we have controllers that will modify/transform data
  */
 
 /** @test {NoteController} */
 describe('NoteController', () => {
+  let getStub;
   beforeEach(() => {
-    // TODO: Stub and Fake NoteDataservice here
+    // Create stubs and fakes here for how we expect backend to interact
+    getStub = sinonSandbox.stub(NoteDataservice, 'getNote');
   });
 
   /** @test {NoteController.getNoteById} */
   describe('getNoteById()', () => {
-    it('should call NoteDataservice.getNote (with id)', () => {
-      const id = 42;
-      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');
-      NoteController.getNoteById({ params: { id } });
-
-      expect(getStub).to.be.called;
-      /**
-       * Question:
-       * Should we check what the NoteController passes to backend? Seems too much like "white-box" testing
-       */
-      expect(getStub).to.be.calledWith({ id });
-    });
-
-
     /**
      * Question:
      * Is this useful? Or should we just check that it calls the backend dataservice?
@@ -39,13 +28,13 @@ describe('NoteController', () => {
      * Maybe we should use Model classes for objects returned from service, so we can instantiate in
      * the fakes/returns we stub
      */
-    it('should return a Note with id passed', () => {
+    it('should return a Note with id passed', async() => {
       const id = 1;
-      sinonSandbox.stub(NoteDataservice, 'getNote').returns({
+      getStub.resolves({
         id
       });
 
-      const note = NoteController.getNoteById({ params: { id } });
+      const note = await NoteController.getNoteById({ params: { id } });
 
       expect(note).to.contain({ id });
     });

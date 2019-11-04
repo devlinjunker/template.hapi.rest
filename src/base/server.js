@@ -23,6 +23,24 @@ export interface EndpointConfig {
 }
 
 /**
+ * Request Error
+ * @type {RequestError}
+ */
+export class RequestError extends Error {
+  code: number;
+
+  /**
+   * Create a new Request Error
+   * @param {string} msg  message to display when returned
+   * @param {number} code code to set in Hapi Response
+   */
+  constructor(msg: string, code: number) {
+    super(msg);
+    this.code = code;
+  }
+}
+
+/**
  * Request Object that is passed to the controller as the first parameter
  * from https://github.com/hapijs/hapi/blob/master/API.md#request
  */

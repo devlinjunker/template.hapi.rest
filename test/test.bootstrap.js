@@ -3,9 +3,11 @@ const requireContext = require('require-context');
 import mocha from 'mocha';
 import sinon from 'sinon';
 import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 import sinonChai from 'sinon-chai';
 
 chai.use(sinonChai);
+chai.use(chaiAsPromised);
 global.describe = mocha.describe;
 global.it = mocha.it;
 global.beforeEach = mocha.beforeEach;

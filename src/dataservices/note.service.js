@@ -3,8 +3,8 @@
  *
  * MariaDB Service Example
  */
-// import mariadb from 'mariadb';
 import mariadb from '../helpers/mariadb.helper.js';
+import { RequestError } from '../base/server.js';
 
 /**
  * Note object with name and id
@@ -25,10 +25,17 @@ export class NoteDataservice {
    * @return {Note}       Note object
    */
   static async getNote({ id }: { id: number }): Promise<Note> {
+    if (typeof(id) === 'string' && Number.isNaN(Number.parseInt((id: string)))) {
+      throw new RequestError('Note Id must be an integer', 400);
+    }
     try {
-      const rows = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
+      const row = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      return rows;
+      if (row === undefined) {
+        throw new RequestError('Unrecognized Note Id', 404);
+      }
+
+      return row;
     } catch (err) {
       console.log(err);
       throw err;

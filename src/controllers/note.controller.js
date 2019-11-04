@@ -11,10 +11,19 @@ export class NoteController {
   /**
    * Returns a note, specified by Id
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler object for rejecting/setting errors
    * @return {Note}         Note corresponding to Id passed in
    */
-  static getNoteById({ params }: HapiRequest): Promise<Note> {
-    return NoteDataservice.getNote({ id: params.id });
+  static async getNoteById({ params }: HapiRequest, handler: any): Promise<Note | typeof(undefined)> {
+    try {
+      return await NoteDataservice.getNote({ id: params.id });
+    } catch (e) {
+      const resp = handler.response(e.message);
+      if (e.code) {
+        resp.code(e.code);
+      }
+      return resp;
+    }
   }
 
   /**
