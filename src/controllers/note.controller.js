@@ -29,12 +29,17 @@ export class NoteController {
   /**
    * Create a new Note
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler
    * @return {Note}        [description]
    */
-  static createNote({ payload }: HapiRequest): Promise<Note> {
-    // TODO: Debug this?
-    console.log(payload);
-    return NoteDataservice.createNote({ name: payload.name });
+  static createNote({ payload }: HapiRequest, handler: any): Promise<Note> {
+    if (payload.name) {
+      return NoteDataservice.createNote({ name: payload.name });
+    } else if (Array.isArray(payload)) {
+      return NoteDataservice.createNotes(payload);
+    } else {
+      return handler.response('Missing Note(s) to create').code(500);
+    }
   }
 
   /**

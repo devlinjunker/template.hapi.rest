@@ -4,6 +4,7 @@
  * MariaDB Service Example
  */
 import mariadb from '../helpers/mariadb.helper.js';
+import { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
 import { RequestError } from '../base/server.js';
 
 /**
@@ -50,7 +51,7 @@ export class NoteDataservice {
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
     try {
-      const response = await mariadb.insert('test.notes', {
+      const response: MariaDBInsertResponse = await mariadb.insert('test.notes', {
         name
       });
 
@@ -58,6 +59,25 @@ export class NoteDataservice {
       console.log(response);
 
       return await NoteDataservice.getNote({ id: response.insertId });
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  /**
+   * Create multiple notes
+   * @param  {Array}  notes Array of note objects with name parameter
+   * @return {Promise}       [description]
+   */
+  static async createNotes(notes: Array<{name: string}>): Promise<any> {
+    try {
+      const insert: MariaDBInsertResponse = await mariadb.insertMultiple('test.notes', notes);
+
+      const endId = insert.insertId + insert.affectedRows;
+      const query = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
+
+      return await mariadb.fetch(query);
     } catch (err) {
       console.log(err);
       throw err;

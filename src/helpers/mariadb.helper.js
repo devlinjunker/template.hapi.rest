@@ -22,7 +22,7 @@ export interface MariaDBConfig {
  * Response from MariaDB Insert statement (From MariaDB)
  * @type {MariaDBInsertResponse}
  */
-interface MariaDBInsertResponse {
+export interface MariaDBInsertResponse {
   affectedRows: number;
   insertId: number;
   warningStatus: number;
@@ -42,6 +42,7 @@ export class MariaDBHelper {
    * @type {PoolApi} https://mariadb.com/kb/en/library/connector-nodejs-promise-api/#pool-api
    */
   dbPool: any;
+  transactionConnection: any;
 
   /**
    * Creates a new Helper (on this file export starts the Database Pool)
@@ -84,12 +85,40 @@ export class MariaDBHelper {
   }
 
   /**
+   * Execute a simple query on the entire database
+   * @param  {string}  query Query string to be passed to DB for response
+   *  see https://mariadb.com/kb/en/library/data-manipulation/ for reference
+   * @param  {Array<any>}      values Array of values to inject into the query string, matching the number of
+   *  placeholders given
+   * @return {Promise}        Returns the response from the query
+   */
+  query(query: string, values?: Array<any>): Promise<any> {
+    return new Promise((resolve: Function, reject: Function) => {
+      // TODO: use transaction connection if it exists (this is what makes this so versatile)
+      this.dbPool.query(query, values).then((ret: any) => {
+        if (!ret) {
+          // TODO: Log Query no values
+          resolve(undefined);
+          return;
+        }
+        resolve(ret);
+      }).catch((err: Error) => {
+        if (err) {
+          // TODO: Log Query Error
+          reject(err);
+          return;
+        }
+      });
+    });
+  }
+
+  /**
    * Fetch all rows given a query string and values that can qualify the query
    * @param  {string}  query  Query string to pass to mariadb
    * @return {Promise}        Return array of values
    */
   async fetch(query: string): Promise<Array<any>> {
-    // TODO: Verify that query contains `SELECT`
+    // TODO: Log if query doesn't contain `SELECT`
 
     const response = await this.query(query);
 
@@ -136,32 +165,57 @@ export class MariaDBHelper {
   }
 
   /**
-   * Execute a simple query on the entire database
-   * @param  {string}  query Query string to be passed to DB for response
-   *  see https://mariadb.com/kb/en/library/data-manipulation/ for reference
-   * @param  {Array<any>}      values Array of values to inject into the query string, matching the number of
-   *  placeholders given
-   * @return {Promise}        Returns the response from the query
+   * Insert multiple objects into the table
+   * @param  {string}  table   to insert into
+   * @param  {Array<Object>}  objects Array of objects to insert
+   * @return {Promise}        Response from MariaDB
    */
-  query(query: string, values?: Array<any>): Promise<any> {
-    return new Promise((resolve: Function, reject: Function) => {
-      // TODO: use transaction connection if it exists (this is what makes this so versatile)
-      this.dbPool.query(query, values).then((ret: any) => {
-        if (!ret) {
-          // TODO: Log Query no values
-          resolve(undefined);
-          return;
-        }
-        resolve(ret);
-      }).catch((err: Error) => {
-        if (err) {
-          // TODO: Log Query Error
-          reject(err);
-          return;
-        }
-      });
-    });
+  async insertMultiple(table: string, objects: Array<Object>): Promise<any> {
+    const firstObject = objects[0];
+    // e.g. {'abc': 1, 'def', 2 }
+    const keyString: string = Object.keys(firstObject).join(', '); // 'abc, def'
+
+    let inserts = '';
+    const allValues = [];
+    for (const object of objects) {
+      const values: Array<any> = Object.values(object); // [1, 2]
+      inserts = '?,'.repeat(values.length).slice(0, (values.length * 2) - 1); // '?, ?'
+      allValues.push(values);
+    }
+
+    // TODO: Handle insert if in transaction
+    if (this.transactionConnection) {
+      //
+    } else {
+      // Best way to insert multiple objects in one statement?
+      return await this.dbPool.batch(`INSERT INTO ${table} (${keyString}) VALUES (${inserts})`, allValues);
+    }
   }
+
+  // async update(table: string, object: any, where: any): any {
+  //
+  // }
+
+  // /**
+  //  * Create a new connection and Helper to run a single transaction with multiple queries/db statements
+  //  * @param  {Function} transactionCallback Uses the helper passed back to run all of the different queries
+  //  * @return {Promise}                     Indicates that the transaction has completed or errored
+  //  */
+  // transaction(transactionCallback: Function): Promise<any> {
+  //   console.log(transactionCallback);
+  //   // TODO: Create new Helper with connection
+  //
+  //   return new Promise((resolve: Function, reject: Function) => {
+  //     console.log(this);
+  //
+  //     // TODO: call transactionCallback(helper)
+  //
+  //     // TODO: close connection properly
+  //
+  //     console.log(resolve);
+  //     console.log(reject);
+  //   });
+  // }
 }
 
 // TODO: get MariaDB settings from conf/config.yaml
