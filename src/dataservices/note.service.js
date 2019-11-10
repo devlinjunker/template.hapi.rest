@@ -30,7 +30,7 @@ export class NoteDataservice {
       throw new RequestError('Note Id must be an integer', 400);
     }
     try {
-      const row = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
+      const row: Note = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
       if (row === undefined) {
         throw new RequestError('Unrecognized Note Id', 404);
@@ -70,12 +70,12 @@ export class NoteDataservice {
    * @param  {Array}  notes Array of note objects with name parameter
    * @return {Promise}       [description]
    */
-  static async createNotes(notes: Array<{name: string}>): Promise<any> {
+  static async createNotes(notes: Array<{name: string}>): Promise<Array<Note> | Note> {
     try {
       const insert: MariaDBInsertResponse = await mariadb.insertMultiple('test.notes', notes);
 
-      const endId = insert.insertId + insert.affectedRows;
-      const query = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
+      const endId: number = insert.insertId + insert.affectedRows;
+      const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
 
       return await mariadb.fetch(query);
     } catch (err) {

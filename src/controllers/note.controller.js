@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import { HapiRequest } from '../base/server.js';
+import { HapiRequest, HapiHandler } from '../base/server.js';
 import { NoteDataservice, Note } from '../dataservices/note.service.js';
 
 /**
@@ -14,11 +14,11 @@ export class NoteController {
    * @param  {any} handler Hapi Handler object for rejecting/setting errors
    * @return {Note}         Note corresponding to Id passed in
    */
-  static async getNoteById({ params }: HapiRequest, handler: any): Promise<Note | typeof(undefined)> {
+  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | typeof(undefined)> {
     try {
       return await NoteDataservice.getNote({ id: params.id });
     } catch (e) {
-      const resp = handler.response(e.message);
+      const resp = handler.response(e.message); // eslint-disable-line
       if (e.code) {
         resp.code(e.code);
       }
@@ -32,7 +32,7 @@ export class NoteController {
    * @param  {any} handler Hapi Handler
    * @return {Note}        [description]
    */
-  static createNote({ payload }: HapiRequest, handler: any): Promise<Note> {
+  static createNote({ payload }: HapiRequest, handler: HapiHandler): Promise<Note | Array<Note>> {
     if (payload.name) {
       return NoteDataservice.createNote({ name: payload.name });
     } else if (Array.isArray(payload)) {

@@ -5,7 +5,7 @@ import mariadb from 'mariadb';
 
 
 // Disable weak type rule to allow for generalized database objects
-/* eslint-disable flowtype/no-weak-types */
+/* eslint-disable flowtype/no-weak-types, flowtype/require-variable-type */
 
 /**
  * Configuration for MariaDBHelper Database connection

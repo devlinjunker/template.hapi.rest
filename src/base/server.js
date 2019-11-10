@@ -22,6 +22,11 @@ export interface EndpointConfig {
   controller?: any; // eslint-disable-line
 }
 
+export interface HapiHandler {
+  code: Function; // eslint-disable-line
+  response: Function; // eslint-disable-line
+}
+
 /**
  * Request Error
  * @type {RequestError}
@@ -134,7 +139,7 @@ export class Server {
    * @returns {undefined}
    */
   addEndpoints(routes: Array<EndpointConfig>) {
-    for (let i = 0; i < routes.length; i++) {
+    for (let i: number = 0; i < routes.length; i++) {
       this.addEndpoint(routes[i]);
     }
   }

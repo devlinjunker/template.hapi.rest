@@ -58,6 +58,8 @@ overrides:
                    (\*\n
                     \* (.*\n)* )?$
       # Flow Type Rules
+      flowtype/require-variable-type:
+        - warn
       flowtype/require-return-type:
         - warn
         - always

@@ -4,7 +4,7 @@
  * Entry point that loads all routes for the server
  */
 
-import { Server } from './base/server.js';
+import { Server, EndpointConfig } from './base/server.js';
 import mariadb from './helpers/mariadb.helper.js';
 
 // TODO: auto detect routes
@@ -14,10 +14,10 @@ import helloRoutes from './controllers/hello.controller.js';
 import noteRoutes from './controllers/note.controller.js';
 
 
-const routes = infoRoutes.concat(helloRoutes, noteRoutes);
+const routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
 
 // TODO: check if we're in development and only serve docs if we are
-const shouldServeDocs = true;
+const shouldServeDocs: boolean = true;
 if (shouldServeDocs) {
   routes.push({
     method: 'GET',
@@ -47,7 +47,7 @@ if (shouldServeDocs) {
  * @return {undefined} no return
  */
 async function main() {
-  const server = new Server();
+  const server: Server = new Server();
 
   await server.run();
 
