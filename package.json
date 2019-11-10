@@ -19,8 +19,9 @@
     "test-watch": "node_modules/.bin/mocha --watch --env.unit_test",
     "dev-watch": "./node_modules/.bin/webpack --watch",
     "test": "node node_modules/.bin/mocha --env.unit_test",
-    "doc": "./node_modules/.bin/esdoc && cp ./openapi.yaml docs/swagger/" ,
+    "doc": "./node_modules/.bin/esdoc && cp ./openapi.yaml docs/swagger/",
     "dev": "npm run build && node dist/server.bundle.js",
+    "lint": "node_modules/.bin/eslint src/",
     "build": "./node_modules/.bin/webpack",
     "clean": "rm -rf ./dist",
     "help": "echo \"$(cat help.txt)\""
@@ -55,6 +56,7 @@
     "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-flowtype-errors": "^4.1.0",
     "eslint-plugin-header": "^3.0.0",
+    "eslint-plugin-mocha": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.1",
     "flow-bin": "^0.107.0",
     "flow-webpack-plugin": "^1.2.0",

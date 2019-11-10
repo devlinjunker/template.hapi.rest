@@ -2,7 +2,7 @@ import { NoteDataservice } from './note.service.js';
 import mariadb from '../helpers/mariadb.helper.js';
 
 /** @test {NoteDataservice} */
-describe('NoteDataservice', () => {
+describe('NoteDataservice', function() {
 
   /**
    * Question:
@@ -16,14 +16,14 @@ describe('NoteDataservice', () => {
    */
 
   /** @test {NoteDataservice.getNote} */
-  describe('getNote()', () => {
+  describe('getNote()', function() {
     let fetchStub;
-    beforeEach(() => {
+    beforeEach(function() {
       // Create stubs and fakes here on mariadbhelper, should we create a larger fake object class?
       fetchStub = sinonSandbox.stub(mariadb, 'fetchOne');
     });
 
-    it('should return a note object with matching id', async() => {
+    it('should return a note object with matching id', async function() {
       fetchStub.resolves({ id: 1, name: 'abc' });
       const id = 1;
 
@@ -32,13 +32,13 @@ describe('NoteDataservice', () => {
       expect(result).to.contain({ id, name: 'abc' });
     });
 
-    it('should throw error if id is invalid', async() => {
+    it('should throw error if id is invalid', async function() {
       const promise = NoteDataservice.getNote({ id: 'abc' });
 
       await expect(promise).to.be.rejected;
     });
 
-    it('should throw error if id doesnt return note', async() => {
+    it('should throw error if id doesnt return note', async function() {
       // Hide logging from exception message
       sinonSandbox.stub(console, 'log');
 
@@ -50,7 +50,7 @@ describe('NoteDataservice', () => {
   });
 
   /** @test {NoteDataservice.createNote} */
-  describe('createNote()', () => {
+  describe('createNote()', function() {
     it('should return a note with the name passed');
   });
 });

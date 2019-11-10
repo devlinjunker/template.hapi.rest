@@ -20,12 +20,17 @@ plugins:
   - flowtype
   - header
   - flowtype-errors
+  - mocha
+  # - jest
 
 extends:
   - eslint:recommended
   - prettier
   - prettier/flowtype
   - plugin:flowtype/recommended
+  - plugin:mocha/recommended
+  # Can't seem to configure this plugin myself....
+  # - plugin:jest/recommended
 
 globals:
   expect: readonly
@@ -39,6 +44,12 @@ overrides:
       - test/*.js
       - ./**/*.spec.js
     rules:
+      # Mocha prefers function() style to set `this`: http://mochajs.org/#arrow-functions
+      prefer-arrow-callback:
+        - off
+      mocha/prefer-arrow-callback:
+        - error
+      # Header at top of files
       header/header:
         - error
         - block
@@ -60,6 +71,10 @@ overrides:
         - error
       flowtype-errors/show-warnings:
         - warn
+      # Jest Plugin (Don't use Jest though so need to disable specific rules)
+      # Doesn't seem to work...
+      jest/valid-expect:
+        - off
 
 # Custom Rules Below
 rules:
@@ -177,6 +192,6 @@ rules:
     - error
     - always
   arrow-spacing: error
-  prefer-arrow-callback:
-    - error
-    - allowNamedFunctions: true
+  # prefer-arrow-callback:
+    # - error
+    # - allowNamedFunctions: true
