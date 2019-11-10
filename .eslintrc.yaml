@@ -22,6 +22,7 @@ plugins:
   - flowtype-errors
   - mocha
   # - jest
+  - filenames
 
 extends:
   - eslint:recommended
@@ -77,6 +78,25 @@ overrides:
       # Doesn't seem to work...
       jest/valid-expect:
         - off
+  ## File Naming Conventions
+  - files:
+    - src/controllers/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.controller(\.spec)?$
+  - files:
+    - src/dataservices/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.service(\.spec)?$
+  - files:
+    - src/helpers/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.helper(\.spec)?$
 
 # Custom Rules Below
 rules:
@@ -88,6 +108,18 @@ rules:
         FunctionDeclaration: true
         MethodDefinition: true
         ClassDeclaration: true
+
+  # Naming conventions
+  id-length:
+    - warn
+    - min: 3
+      exceptions:
+      - id
+      - i
+  new-cap:
+    - error
+  camelcase:
+    - warn
 
   # File Conventions
   max-len:

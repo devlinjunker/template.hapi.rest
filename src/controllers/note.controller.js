@@ -17,10 +17,10 @@ export class NoteController {
   static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | typeof(undefined)> {
     try {
       return await NoteDataservice.getNote({ id: params.id });
-    } catch (e) {
-      const resp = handler.response(e.message); // eslint-disable-line
-      if (e.code) {
-        resp.code(e.code);
+    } catch (err) {
+      const resp = handler.response(err.message); // eslint-disable-line
+      if (err.code) {
+        resp.code(err.code);
       }
       return resp;
     }

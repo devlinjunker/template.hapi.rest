@@ -102,10 +102,11 @@ How to use this template to create a quick HTTP REST server:
  - [..] (^) Update Linting Rules (linewrap, length, etc)  
     - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
     - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
+    - [x] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
     - [x] Test Rules
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
+        - Jest plugin doesn't seem to allow configs of only some rules
     - [x] all variables flow typed?
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
