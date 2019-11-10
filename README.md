@@ -108,6 +108,7 @@ How to use this template to create a quick HTTP REST server:
       - https://github.com/jest-community/eslint-plugin-jest
         - Jest plugin doesn't seem to allow configs of only some rules
     - [x] all variables flow typed?
+    - [x] filenames: https://www.npmjs.com/package/eslint-plugin-filenames
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
      - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/

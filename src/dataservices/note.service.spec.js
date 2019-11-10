@@ -53,4 +53,9 @@ describe('NoteDataservice', function() {
   describe('createNote()', function() {
     it('should return a note with the name passed');
   });
+
+  /** @test {NoteDataservice.createNotes} */
+  describe('createNotes()', function() {
+    it('should return same number of notes passed to be created');
+  });
 });
