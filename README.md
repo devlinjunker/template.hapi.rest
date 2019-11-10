@@ -99,7 +99,7 @@ How to use this template to create a quick HTTP REST server:
         - [x] in Docs
  - [x] (^) Debugging while running
      - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach
- - [..] (^) Update Linting Rules (linewrap, length, etc)  
+ - [x] (^) Update Linting Rules (linewrap, length, etc)  
     - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
     - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
     - [x] Naming Conventions https://github.com/airbnb/javascript#naming-conventions

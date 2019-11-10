@@ -93,23 +93,12 @@ export class MariaDBHelper {
    * @return {Promise}        Returns the response from the query
    */
   query(query: string, values?: Array<any>): Promise<any> {
-    return new Promise((resolve: Function, reject: Function) => {
+    if (this.transactionConnection) {
       // TODO: use transaction connection if it exists (this is what makes this so versatile)
-      this.dbPool.query(query, values).then((ret: any) => {
-        if (!ret) {
-          // TODO: Log Query no values
-          resolve(undefined);
-          return;
-        }
-        resolve(ret);
-      }).catch((err: Error) => {
-        if (err) {
-          // TODO: Log Query Error
-          reject(err);
-          return;
-        }
-      });
-    });
+      return this.transactionConnection.query(query, values);
+    } else {
+      return this.dbPool.query(query, values);
+    }
   }
 
   /**
@@ -171,8 +160,8 @@ export class MariaDBHelper {
    * @return {Promise}        Response from MariaDB
    */
   async insertMultiple(table: string, objects: Array<Object>): Promise<any> {
-    const firstObject = objects[0];
     // e.g. {'abc': 1, 'def', 2 }
+    const firstObject = objects[0];
     const keyString: string = Object.keys(firstObject).join(', '); // 'abc, def'
 
     let inserts = '';
@@ -185,7 +174,7 @@ export class MariaDBHelper {
 
     // TODO: Handle insert if in transaction
     if (this.transactionConnection) {
-      //
+      // just use transactionConnection instead?
     } else {
       // Best way to insert multiple objects in one statement?
       return await this.dbPool.batch(`INSERT INTO ${table} (${keyString}) VALUES (${inserts})`, allValues);
@@ -193,7 +182,7 @@ export class MariaDBHelper {
   }
 
   // async update(table: string, object: any, where: any): any {
-  //
+  //  // TODO: Write proper update statement
   // }
 
   // /**
@@ -203,18 +192,41 @@ export class MariaDBHelper {
   //  */
   // transaction(transactionCallback: Function): Promise<any> {
   //   console.log(transactionCallback);
-  //   // TODO: Create new Helper with connection
+  //   if (this.dbPool) { // TODO: Create new Helper with a connection from pool }
   //
   //   return new Promise((resolve: Function, reject: Function) => {
   //     console.log(this);
+  //     this._beginTransaction();
   //
-  //     // TODO: call transactionCallback(helper)
+  //     // TODO: call transactionCallback(with new helper)
   //
   //     // TODO: close connection properly
   //
-  //     console.log(resolve);
-  //     console.log(reject);
+  //     if (failure)
+  //       this._rollbackTransaction();
+  //       console.log(reject);
+  //
+  //     else
+  //       this._commitTransaction();
+  //       console.log(resolve);
+  //
   //   });
+  // }
+
+  // async _beginTransaction() {
+  //
+  // }
+  //
+  // async _commitTransaction() {
+  //
+  // }
+  //
+  // async _rollbackTransaction() {
+  //
+  // }
+
+  // async healthCheck() {
+  //
   // }
 }
 
