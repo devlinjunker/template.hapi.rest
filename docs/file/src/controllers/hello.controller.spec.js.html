@@ -23,7 +23,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
@@ -37,10 +38,10 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { HelloWorld } from &apos;./hello.controller.js&apos;;
 
 /** @test {HelloWorld} */
-describe(&apos;HelloWorld&apos;, () =&gt; {
+describe(&apos;HelloWorld&apos;, function() {
   /** @test {HelloWorld.basic} */
-  describe(&apos;basic()&apos;, () =&gt; {
-    it(&apos;returns \&apos;Hello World!\&apos;&apos;, () =&gt; {
+  describe(&apos;basic()&apos;, function() {
+    it(&apos;returns \&apos;Hello World!\&apos;&apos;, function() {
       const returned = HelloWorld.basic();
 
       expect(returned).to.equal(&apos;Hello World!&apos;);
@@ -48,8 +49,8 @@ describe(&apos;HelloWorld&apos;, () =&gt; {
   });
 
   /** @test {HelloWorld.name} */
-  describe(&apos;name()&apos;, () =&gt; {
-    it(&apos;returns \&apos;{request.params.name} says:\&apos;&apos;, () =&gt; {
+  describe(&apos;name()&apos;, function() {
+    it(&apos;returns \&apos;{request.params.name} says:\&apos;&apos;, function() {
       const request = {
         params: {
           name: &apos;Devlin&apos;

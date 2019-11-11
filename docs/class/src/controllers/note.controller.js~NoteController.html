@@ -23,7 +23,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
@@ -72,7 +73,7 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13">NoteController</a></span></li>
+    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber15">NoteController</a></span></li>
 </ul>
   </div>
 
@@ -98,7 +99,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html#static-method-createNote">createNote</a></span></span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>): <span>Note</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html#static-method-createNote">createNote</a></span></span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>, handler: <span>any</span>): <span>Note</span></span>
         </p>
       </div>
       <div>
@@ -154,9 +155,9 @@
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html#static-method-getNoteById">getNoteById</a></span></span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>): <span>Note</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html#static-method-getNoteById">getNoteById</a></span></span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>, handler: <span>any</span>): <span>Note</span></span>
         </p>
       </div>
       <div>
@@ -220,11 +221,11 @@
     
     
     
-    <span class="code" data-ice="name">createNote</span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>): <span>Note</span></span>
+    <span class="code" data-ice="name">createNote</span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>, handler: <span>any</span>): <span>Note</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -249,6 +250,13 @@
       <td data-ice="type" class="code"><span>HapiRequest</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>RequestObject</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">handler</td>
+      <td data-ice="type" class="code"><span>any</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Hapi Handler</p>
 </td>
     </tr>
 </tbody>
@@ -285,7 +293,7 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber54">NoteController createNote()</a></span></li>
+    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber48">NoteController createNote()</a></span></li>
 </ul>
   </div>
 
@@ -304,7 +312,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber42">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber58">source</a></span></span>
     </span>
   </h3>
 
@@ -365,7 +373,7 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber100">NoteController deleteNote()</a></span></li>
+    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber94">NoteController deleteNote()</a></span></li>
 </ul>
   </div>
 
@@ -378,13 +386,13 @@
     <span data-ice="static">static</span>
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">getNoteById</span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>): <span>Note</span></span>
+    <span class="code" data-ice="name">getNoteById</span><span class="code" data-ice="signature">(request: <span>HapiRequest</span>, handler: <span>any</span>): <span>Note</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
@@ -409,6 +417,13 @@
       <td data-ice="type" class="code"><span>HapiRequest</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>RequestObject</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">handler</td>
+      <td data-ice="type" class="code"><span>any</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Hapi Handler object for rejecting/setting errors</p>
 </td>
     </tr>
 </tbody>
@@ -445,7 +460,7 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber19">NoteController getNoteById()</a></span></li>
+    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber23">NoteController getNoteById()</a></span></li>
 </ul>
   </div>
 
@@ -464,7 +479,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/controllers/note.controller.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
@@ -525,7 +540,7 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber89">NoteController updateNote()</a></span></li>
+    <li data-ice="test"><span><a href="test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber83">NoteController updateNote()</a></span></li>
 </ul>
   </div>
 

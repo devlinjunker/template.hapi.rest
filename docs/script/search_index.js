@@ -24,6 +24,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "hapiserver/src/base/server.js~requesterror",
+    "class/src/base/server.js~RequestError.html",
+    "<span>RequestError</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
+    "class"
+  ],
+  [
     "hapiserver/src/base/server.js~server",
     "class/src/base/server.js~Server.html",
     "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
@@ -67,127 +73,121 @@ window.esdocSearchIndex = [
   ],
   [
     "notecontroller src/controllers/note.controller.js~notecontroller,notecontroller",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber13",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber15",
     "NoteController",
     "test"
   ],
   [
     "notecontroller.createnote src/controllers/note.controller.js~notecontroller.createnote,notecontroller.createnote",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber54",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber48",
     "NoteController createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber55",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber49",
     "NoteController createNote() should call DataService.createNote (with newName?)",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber83",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber77",
     "NoteController createNote() should return error if note name is empty",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber85",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber79",
     "NoteController createNote() should return error message if error creating note",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber65",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber59",
     "NoteController createNote() should return note with name passed and new id",
     "test"
   ],
   [
     "notecontroller.deletenote src/controllers/note.controller.js~notecontroller.deletenote,notecontroller.deletenote",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber100",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber94",
     "NoteController deleteNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber101",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber95",
     "NoteController deleteNote() should call NoteDataservice.deleteNote (with id)",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber107",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber101",
     "NoteController deleteNote() should return error message if error deleting note",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber105",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber99",
     "NoteController deleteNote() should return error message if id is invalid",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber103",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber97",
     "NoteController deleteNote() should return the deleted note id",
     "test"
   ],
   [
     "notecontroller.getnotebyid src/controllers/note.controller.js~notecontroller.getnotebyid,notecontroller.getnotebyid",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber19",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber23",
     "NoteController getNoteById()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber37",
-    "NoteController getNoteById() Question:\nIs this useful? Or should we just check that it calls the backend dataservice?",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber31",
+    "NoteController getNoteById() Question:\nIs this useful? Or should we just check that it calls the backend dataservice?\n\nMaybe we should use Model classes for objects returned from service, so we can instantiate in\nthe fakes/returns we stub",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber20",
-    "NoteController getNoteById() should call NoteDataservice.getNote (with id)",
-    "test"
-  ],
-  [
-    "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber50",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber44",
     "NoteController getNoteById() should return error message if Note doesn't exist",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber48",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber42",
     "NoteController getNoteById() should return error message if id is invalid",
     "test"
   ],
   [
     "notecontroller.updatenote src/controllers/note.controller.js~notecontroller.updatenote,notecontroller.updatenote",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber89",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber83",
     "NoteController updateNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber90",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber84",
     "NoteController updateNote() should call NoteDataservice.updateNote (with params)",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber96",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber90",
     "NoteController updateNote() should return error message if error updating note",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber94",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber88",
     "NoteController updateNote() should return error message if id is invalid",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber92",
+    "test-file/template.node.hapi/src/controllers/note.controller.spec.js.html#lineNumber86",
     "NoteController updateNote() should return note with updated name, as passed",
     "test"
   ],
@@ -199,26 +199,50 @@ window.esdocSearchIndex = [
   ],
   [
     "notedataservice.createnote src/dataservices/note.service.js~notedataservice.createnote,notedataservice.createnote",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber31",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber53",
     "NoteDataservice createNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber32",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber54",
     "NoteDataservice createNote() should return a note with the name passed",
     "test"
   ],
   [
+    "notedataservice.createnotes src/dataservices/note.service.js~notedataservice.createnotes,notedataservice.createnotes",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber58",
+    "NoteDataservice createNotes()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber59",
+    "NoteDataservice createNotes() should return same number of notes passed to be created",
+    "test"
+  ],
+  [
     "notedataservice.getnote src/dataservices/note.service.js~notedataservice.getnote,notedataservice.getnote",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber21",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber19",
     "NoteDataservice getNote()",
     "test"
   ],
   [
     "",
-    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber22",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber26",
     "NoteDataservice getNote() should return a note object with matching id",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber41",
+    "NoteDataservice getNote() should throw error if id doesnt return note",
+    "test"
+  ],
+  [
+    "",
+    "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html#lineNumber35",
+    "NoteDataservice getNote() should throw error if id is invalid",
     "test"
   ],
   [
@@ -510,6 +534,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/base/server.js~requesterror#code",
+    "class/src/base/server.js~RequestError.html#instance-member-code",
+    "src/base/server.js~RequestError#code",
+    "member"
+  ],
+  [
+    "src/base/server.js~requesterror#constructor",
+    "class/src/base/server.js~RequestError.html#instance-constructor-constructor",
+    "src/base/server.js~RequestError#constructor",
+    "method"
+  ],
+  [
     "src/base/server.js~server#addendpoint",
     "class/src/base/server.js~Server.html#instance-method-addEndpoint",
     "src/base/server.js~Server#addEndpoint",
@@ -624,6 +660,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/dataservices/note.service.js~notedataservice.createnotes",
+    "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-createNotes",
+    "src/dataservices/note.service.js~NoteDataservice.createNotes",
+    "method"
+  ],
+  [
     "src/dataservices/note.service.js~notedataservice.getnote",
     "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-getNote",
     "src/dataservices/note.service.js~NoteDataservice.getNote",
@@ -678,6 +720,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/helpers/mariadb.helper.js~mariadbhelper#insertmultiple",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-insertMultiple",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#insertMultiple",
+    "method"
+  ],
+  [
     "src/helpers/mariadb.helper.js~mariadbhelper#query",
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-query",
     "src/helpers/mariadb.helper.js~MariaDBHelper#query",
@@ -688,6 +736,12 @@ window.esdocSearchIndex = [
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-shutdown",
     "src/helpers/mariadb.helper.js~MariaDBHelper#shutdown",
     "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.spec.js",
+    "file/src/helpers/mariadb.helper.spec.js.html",
+    "src/helpers/mariadb.helper.spec.js",
+    "file"
   ],
   [
     "template.node.hapi/src/controllers/hello.controller.spec.js",
@@ -705,6 +759,12 @@ window.esdocSearchIndex = [
     "template.node.hapi/src/dataservices/note.service.spec.js",
     "test-file/template.node.hapi/src/dataservices/note.service.spec.js.html",
     "template.node.hapi/src/dataservices/note.service.spec.js",
+    "testFile"
+  ],
+  [
+    "template.node.hapi/src/helpers/mariadb.helper.spec.js",
+    "test-file/template.node.hapi/src/helpers/mariadb.helper.spec.js.html",
+    "template.node.hapi/src/helpers/mariadb.helper.spec.js",
     "testFile"
   ]
 ]

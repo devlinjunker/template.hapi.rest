@@ -23,7 +23,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
@@ -128,15 +129,20 @@
 <li>use <code>node --inspect dist/server.bundle.js</code> to start debugger and a node debugging tool to attach</li>
 </ul>
 </li>
-<li>[..] (^) Update Linting Rules (linewrap, length, etc)  <ul>
+<li>[x] (^) Update Linting Rules (linewrap, length, etc)  <ul>
 <li>[x] ensuring files start with a comment <a href="https://github.com/Stuk/eslint-plugin-header">https://github.com/Stuk/eslint-plugin-header</a>  </li>
 <li>[x] Require Comments <a href="https://eslint.org/docs/rules/require-jsdoc">https://eslint.org/docs/rules/require-jsdoc</a> and valid <a href="https://eslint.org/docs/rules/valid-jsdoc">https://eslint.org/docs/rules/valid-jsdoc</a>  </li>
-<li>[ ] Naming Conventions <a href="https://github.com/airbnb/javascript#naming-conventions">https://github.com/airbnb/javascript#naming-conventions</a></li>
-<li>[ ] Test Rules<ul>
+<li>[x] Naming Conventions <a href="https://github.com/airbnb/javascript#naming-conventions">https://github.com/airbnb/javascript#naming-conventions</a></li>
+<li>[x] Test Rules<ul>
 <li><a href="https://www.npmjs.com/package/eslint-plugin-mocha">https://www.npmjs.com/package/eslint-plugin-mocha</a></li>
-<li><a href="https://github.com/jest-community/eslint-plugin-jest">https://github.com/jest-community/eslint-plugin-jest</a></li>
+<li><a href="https://github.com/jest-community/eslint-plugin-jest">https://github.com/jest-community/eslint-plugin-jest</a><ul>
+<li>Jest plugin doesn&apos;t seem to allow configs of only some rules</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>[x] all variables flow typed?</li>
+<li>[x] filenames: <a href="https://www.npmjs.com/package/eslint-plugin-filenames">https://www.npmjs.com/package/eslint-plugin-filenames</a></li>
 </ul>
 </li>
 <li>[..] (^) Simple DB endpoint  <ul>
