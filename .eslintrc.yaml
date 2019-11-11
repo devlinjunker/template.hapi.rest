@@ -20,12 +20,19 @@ plugins:
   - flowtype
   - header
   - flowtype-errors
+  - mocha
+  # - jest
+  - filenames
+  - import
 
 extends:
   - eslint:recommended
   - prettier
   - prettier/flowtype
   - plugin:flowtype/recommended
+  - plugin:mocha/recommended
+  # Can't seem to configure this plugin myself....
+  # - plugin:jest/recommended
 
 globals:
   expect: readonly
@@ -39,6 +46,12 @@ overrides:
       - test/*.js
       - ./**/*.spec.js
     rules:
+      # Mocha prefers function() style to set `this`: http://mochajs.org/#arrow-functions
+      prefer-arrow-callback:
+        - off
+      mocha/prefer-arrow-callback:
+        - error
+      # Header at top of files
       header/header:
         - error
         - block
@@ -47,6 +60,8 @@ overrides:
                    (\*\n
                     \* (.*\n)* )?$
       # Flow Type Rules
+      flowtype/require-variable-type:
+        - warn
       flowtype/require-return-type:
         - warn
         - always
@@ -60,6 +75,29 @@ overrides:
         - error
       flowtype-errors/show-warnings:
         - warn
+      # Jest Plugin (Don't use Jest though so need to disable specific rules)
+      # Doesn't seem to work...
+      jest/valid-expect:
+        - off
+  ## File Naming Conventions
+  - files:
+    - src/controllers/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.controller(\.spec)?$
+  - files:
+    - src/dataservices/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.service(\.spec)?$
+  - files:
+    - src/helpers/*.js
+    rules:
+      filenames/match-regex:
+        - error
+        - .*\.helper(\.spec)?$
 
 # Custom Rules Below
 rules:
@@ -71,6 +109,19 @@ rules:
         FunctionDeclaration: true
         MethodDefinition: true
         ClassDeclaration: true
+
+  # Naming conventions
+  id-length:
+    - warn
+    - min: 3
+      exceptions:
+      - id
+      - i
+      - it
+  new-cap:
+    - error
+  camelcase:
+    - warn
 
   # File Conventions
   max-len:
@@ -87,6 +138,34 @@ rules:
   linebreak-style:
     - error
     - unix
+
+  # Import Rules
+  import/no-unresolved:
+    - error
+  import/no-absolute-path:
+    - error
+  import/no-dynamic-require:
+    - error
+  import/no-self-import:
+    - error
+  import/no-cycle:
+    - error
+  import/export:
+    - error
+  import/no-named-as-default:
+    - warn
+  import/no-named-as-default-member:
+    - warn
+  import/no-mutable-exports:
+    - warn
+  import/first:
+    - warn
+  import/no-duplicates:
+    - warn
+  import/newline-after-import:
+    - error
+  import/prefer-default-export:
+    - warn
 
   # Basic Rules
   no-var: error
@@ -177,6 +256,6 @@ rules:
     - error
     - always
   arrow-spacing: error
-  prefer-arrow-callback:
-    - error
-    - allowNamedFunctions: true
+  # prefer-arrow-callback:
+    # - error
+    # - allowNamedFunctions: true

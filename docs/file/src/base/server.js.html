@@ -23,10 +23,13 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -35,12 +38,15 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * @flow
  */
+/* eslint-disable import/first */
 require(&apos;source-map-support/register&apos;);
 require(&apos;@babel/register&apos;);
 require(&apos;@babel/polyfill&apos;);
+
 import Pino from &apos;hapi-pino&apos;;
 import Hapi from &apos;@hapi/hapi&apos;;
 import Inert from &apos;@hapi/inert&apos;;
+
 // import Path from &apos;path&apos;;
 
 /**
@@ -54,6 +60,29 @@ export interface EndpointConfig {
   method: string;
   path: string;
   controller?: any; // eslint-disable-line
+}
+
+export interface HapiHandler {
+  code: Function; // eslint-disable-line
+  response: Function; // eslint-disable-line
+}
+
+/**
+ * Request Error
+ * @type {RequestError}
+ */
+export class RequestError extends Error {
+  code: number;
+
+  /**
+   * Create a new Request Error
+   * @param {string} msg  message to display when returned
+   * @param {number} code code to set in Hapi Response
+   */
+  constructor(msg: string, code: number) {
+    super(msg);
+    this.code = code;
+  }
 }
 
 /**
@@ -86,6 +115,21 @@ export class Server {
     this.server = Hapi.server({
       port: 3333,
       host: &apos;localhost&apos;,
+    });
+  }
+
+  /**
+   * Shutdown the Hapi Server Properly
+   * @param  {Function} callback callback to run after server has shutdown
+   * @return {undefined}            no return
+   */
+  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types
+    // TODO: Set Shutdown Timeout from config
+    this.server.stop({ timeout: 10000 }).then((err: Error) =&gt; {
+      if (err) {
+        // TODO: Log Hapi Shutdown Error
+      }
+      callback(err);
     });
   }
 
@@ -135,7 +179,7 @@ export class Server {
    * @returns {undefined}
    */
   addEndpoints(routes: Array&lt;EndpointConfig&gt;) {
-    for (let i = 0; i &lt; routes.length; i++) {
+    for (let i: number = 0; i &lt; routes.length; i++) {
       this.addEndpoint(routes[i]);
     }
   }

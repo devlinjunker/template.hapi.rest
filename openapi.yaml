@@ -59,10 +59,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Note'
         '400':
-          description: 'TODO: specified id is invalid (not integer)'
+          description: 'specified id is invalid (not integer)'
         '404':
-          description: 'TODO: Note with specified id is not available'
-        default:
+          description: 'Note with specified id is not available'
+        '500':
           description: Unexpected Error
 
 

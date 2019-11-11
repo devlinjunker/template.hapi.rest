@@ -23,10 +23,13 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -35,8 +38,8 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * @flow
  */
-import { HapiRequest } from &apos;../base/server.js&apos;;
-import { NoteDataservice, Note } from &apos;../dataservices/note.service.js&apos;;
+import { HapiRequest, HapiHandler } from &apos;../base/server.js&apos;;
+import NoteDataservice, { Note } from &apos;../dataservices/note.service.js&apos;;
 
 /**
  * Container Controller for Note CRUD Functions
@@ -45,21 +48,37 @@ export class NoteController {
   /**
    * Returns a note, specified by Id
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler object for rejecting/setting errors
    * @return {Note}         Note corresponding to Id passed in
    */
-  static getNoteById({ params }: HapiRequest): Promise&lt;Note&gt; {
-    return NoteDataservice.getNote({ id: params.id });
+  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise&lt;Note | typeof(undefined)&gt; {
+    try {
+      return await NoteDataservice.getNote({ id: params.id });
+    } catch (err) {
+      const resp = handler.response(err.message); // eslint-disable-line
+      if (typeof(err.code) === &apos;number&apos;)  {
+        resp.code(err.code);
+      } else {
+        throw err;
+      }
+      return resp;
+    }
   }
 
   /**
    * Create a new Note
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler
    * @return {Note}        [description]
    */
-  static createNote({ payload }: HapiRequest): Promise&lt;Note&gt; {
-    // TODO: Debug this?
-    console.log(payload);
-    return NoteDataservice.createNote({ name: payload.name });
+  static createNote({ payload }: HapiRequest, handler: HapiHandler): Promise&lt;Note | Array&lt;Note&gt;&gt; {
+    if (payload.name) {
+      return NoteDataservice.createNote({ name: payload.name });
+    } else if (Array.isArray(payload)) {
+      return NoteDataservice.createNotes(payload);
+    } else {
+      return handler.response(&apos;Missing Note(s) to create&apos;).code(500);
+    }
   }
 
   /**

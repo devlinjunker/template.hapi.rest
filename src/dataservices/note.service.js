@@ -2,16 +2,9 @@
  * @flow
  *
  * MariaDB Service Example
- * TODO: Look into proper conventions and practice for opening/closing db and connections
  */
-import mariadb from 'mariadb';
-
-// From MariaDB
-interface InsertMariaDBResponse {
-  affectedRows: number;
-  insertId: number;
-  warningStatus: number;
-}
+import mariadb, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
+import { RequestError } from '../base/server.js';
 
 /**
  * Note object with name and id
@@ -25,45 +18,27 @@ export interface Note {
 /**
  * Note Dataservice for interacting with the storage system for saving notes
  */
-export class NoteDataservice {
-  static dbPool: any;
-
-  /**
-   * Static Constructor to create database connection
-   * @returns {undefined}
-   */
-  static constructor() {
-    if (NoteDataservice.dbPool === undefined) {
-      // TODO: Configuration from file
-      NoteDataservice.dbPool = mariadb.createPool({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        connectionLimit: 5
-      });
-    }
-  }
-
+export default class NoteDataservice {
   /**
    * Returns a note, specified by the caller by id
    * @param  {number|string} id  `id` number of the Note to retrieve
    * @return {Note}       Note object
    */
-  static async getNote({ id }: { id: number | string }): Promise<Note> {
-    let connection;
+  static async getNote({ id }: { id: number }): Promise<Note> {
+    if (typeof(id) === 'string' && Number.isNaN(Number.parseInt((id: string)))) {
+      throw new RequestError('Note Id must be an integer', 400);
+    }
     try {
-      connection = await NoteDataservice.dbPool.getConnection();
+      const row: Note = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      const rows = await connection.query(`SELECT * FROM test.notes WHERE id=${id}`);
+      if (row === undefined) {
+        throw new RequestError('Unrecognized Note Id', 404);
+      }
 
-      return rows[0];
+      return row;
     } catch (err) {
       console.log(err);
       throw err;
-    } finally {
-      if (connection) {
-        connection.end();
-      }
     }
   }
 
@@ -74,14 +49,10 @@ export class NoteDataservice {
    * @return {Note}      Note Object
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
-    let connection;
     try {
-      connection = await NoteDataservice.dbPool.getConnection();
-
-      const response: InsertMariaDBResponse = await connection.query(
-        'INSERT INTO test.notes (name) VALUES (?)',
+      const response: MariaDBInsertResponse = await mariadb.insert('test.notes', {
         name
-      );
+      });
 
       // TODO: Figure out how to debug with atom
       console.log(response);
@@ -90,12 +61,25 @@ export class NoteDataservice {
     } catch (err) {
       console.log(err);
       throw err;
-    } finally {
-      if (connection) {
-        connection.end();
-      }
+    }
+  }
+
+  /**
+   * Create multiple notes
+   * @param  {Array}  notes Array of note objects with name parameter
+   * @return {Promise}       [description]
+   */
+  static async createNotes(notes: Array<{name: string}>): Promise<Array<Note> | Note> {
+    try {
+      const insert: MariaDBInsertResponse = await mariadb.insertMultiple('test.notes', notes);
+
+      const endId: number = insert.insertId + insert.affectedRows;
+      const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
+
+      return await mariadb.fetch(query);
+    } catch (err) {
+      console.log(err);
+      throw err;
     }
   }
 }
-// Not sure if I like this pattern... maybe a reason to instantiate a dataservice and export it
-NoteDataservice.constructor();

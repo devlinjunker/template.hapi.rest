@@ -23,47 +23,79 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/dataservices/note.service.spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import { NoteDataservice } from &apos;./note.service.js&apos;;
-import mariadb from &apos;mariadb&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import NoteDataservice from &apos;./note.service.js&apos;;
+import mariadb from &apos;../helpers/mariadb.helper.js&apos;;
 
 /** @test {NoteDataservice} */
-describe(&apos;NoteDataservice&apos;, () =&gt; {
+describe(&apos;NoteDataservice&apos;, function() {
 
-  let queryStub;
-  beforeEach(() =&gt; {
-    queryStub = sinonSandbox.stub();
-    // TODO: Set up mariadb mock to return connectionStub we can check during tests
-    sinonSandbox.stub(mariadb, &apos;createPool&apos;).resolves({
-      getConnection: () =&gt; {
-        return {
-          query: queryStub
-        };
-      }
-    });
-  });
+  /**
+   * Question:
+   * Should we test that mariadb fetchStub is called? Seems like &quot;white-box&quot; testing, but also
+   * we need to stub the query anyways..
+   *
+   * Maybe we should be testing that note object has properties we expect and dataservice should
+   * ensure we return those properties. Flow doesn&apos;t check this?
+   * Maybe just test things that affect the application output, like if the mariadb helper returns
+   * bad values what is response
+   */
 
   /** @test {NoteDataservice.getNote} */
-  describe(&apos;getNote()&apos;, () =&gt; {
-    it(&apos;should return a note object with matching id&apos;);
+  describe(&apos;getNote()&apos;, function() {
+    let fetchStub;
+    beforeEach(function() {
+      // Create stubs and fakes here on mariadbhelper, should we create a larger fake object class?
+      fetchStub = sinonSandbox.stub(mariadb, &apos;fetchOne&apos;);
+    });
 
-    /**
-     * Question:
-     * Should we test that mariadb queryStub is called? Seems like &quot;white-box&quot; testing, so probably not
-     */
+    it(&apos;should return a note object with matching id&apos;, async function() {
+      fetchStub.resolves({ id: 1, name: &apos;abc&apos; });
+      const id = 1;
+
+      const result = await NoteDataservice.getNote({ id });
+
+      expect(result).to.contain({ id, name: &apos;abc&apos; });
+    });
+
+    it(&apos;should throw error if id is invalid&apos;, async function() {
+      const promise = NoteDataservice.getNote({ id: &apos;abc&apos; });
+
+      await expect(promise).to.be.rejected;
+    });
+
+    it(&apos;should throw error if id doesnt return note&apos;, async function() {
+      // Hide logging from exception message
+      sinonSandbox.stub(console, &apos;log&apos;);
+
+      fetchStub.resolves(undefined);
+
+      const promise = NoteDataservice.getNote({ id: 1 });
+      await expect(promise).to.be.rejected;
+    });
+
+    it(&apos;should throw error with code if mysql unreachable&apos;);
   });
 
   /** @test {NoteDataservice.createNote} */
-  describe(&apos;createNote()&apos;, () =&gt; {
+  describe(&apos;createNote()&apos;, function() {
     it(&apos;should return a note with the name passed&apos;);
+  });
+
+  /** @test {NoteDataservice.createNotes} */
+  describe(&apos;createNotes()&apos;, function() {
+    it(&apos;should return same number of notes passed to be created&apos;);
   });
 });
 </code></pre>

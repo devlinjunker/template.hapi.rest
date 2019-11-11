@@ -43,8 +43,9 @@ const config =  {
       reportingSeverity: 'error'
     }),
 
+
     new WebpackShellPlugin({
-      onBuildExit: 'mocha --watch ./dist/test.bundle.js'
+      onBuildExit: 'mocha --env.unit_test ./dist/test.bundle.js'
     }),
   ],
 
@@ -53,26 +54,19 @@ const config =  {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          {
-          // Use Babel to get ES6 syntax
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'eslint-loader'
-          }
-        ]
+        use: ['babel-loader', 'eslint-loader'], // eslint will only run on files imported by the project
       },
-      {
-        test: /\.spec\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-          // Run tests on compile
-            loader: 'mocha-loader',
-          },
-        ]
-      }
+      // Not sure this is what we want....
+      // {
+      //   test: /\.spec\.js$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //     // Run tests on compile
+      //       loader: 'mocha-loader',
+      //     },
+      //   ]
+      // }
     ]
   }
 };

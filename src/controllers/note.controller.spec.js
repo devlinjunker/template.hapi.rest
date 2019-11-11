@@ -1,47 +1,40 @@
 import { NoteController } from './note.controller.js';
-import { NoteDataservice } from '../dataservices/note.service.js';
-import mariadb from 'mariadb';
+import NoteDataservice from '../dataservices/note.service.js';
 
 /**
  * Question:
  * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should
- * cover all of the standard "black-box" expectations of the endpoint.
+ * cover all of the standard "black-box" expectations of the endpoint...
  * https://github.com/dtzar/openapi-auto-test
+ *
+ * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live,
+ * especially if we have controllers that will modify/transform data
  */
 
 /** @test {NoteController} */
-describe('NoteController', () => {
-  beforeEach(() => {
-    sinonSandbox.stub(mariadb, 'createPool');
+describe('NoteController', function() {
+  let getStub;
+  beforeEach(function() {
+    // Create stubs and fakes here for how we expect backend to interact
+    getStub = sinonSandbox.stub(NoteDataservice, 'getNote');
   });
 
   /** @test {NoteController.getNoteById} */
-  describe('getNoteById()', () => {
-    it('should call NoteDataservice.getNote (with id)', () => {
-      const id = 42;
-      const getStub = sinonSandbox.stub(NoteDataservice, 'getNote');
-      NoteController.getNoteById({ params: { id } });
-
-      expect(getStub).to.be.called;
-      /**
-       * Question:
-       * Should we check what the NoteController passes to backend? Seems too much like "white-box" testing
-       */
-      expect(getStub).to.be.calledWith({ id });
-    });
-
-
+  describe('getNoteById()', function() {
     /**
      * Question:
      * Is this useful? Or should we just check that it calls the backend dataservice?
+     *
+     * Maybe we should use Model classes for objects returned from service, so we can instantiate in
+     * the fakes/returns we stub
      */
-    it('should return a Note with id passed', () => {
+    it('should return a Note with id passed', async function() {
       const id = 1;
-      sinonSandbox.stub(NoteDataservice, 'getNote').returns({
+      getStub.resolves({
         id
       });
 
-      const note = NoteController.getNoteById({ params: { id } });
+      const note = await NoteController.getNoteById({ params: { id } });
 
       expect(note).to.contain({ id });
     });
@@ -52,8 +45,8 @@ describe('NoteController', () => {
   });
 
   /** @test {NoteController.createNote} */
-  describe('createNote()', () => {
-    it('should call DataService.createNote (with newName?)', async() => {
+  describe('createNote()', function() {
+    it('should call DataService.createNote (with newName?)', async function() {
       const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');
 
       const newNoteName = 'abc';
@@ -63,7 +56,7 @@ describe('NoteController', () => {
       expect(createNoteStub).to.be.calledWith({ name: newNoteName });
     });
 
-    it('should return note with name passed and new id', async() => {
+    it('should return note with name passed and new id', async function() {
       const id = 13;
       sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {
         return {
@@ -87,7 +80,7 @@ describe('NoteController', () => {
   });
 
   /** @test {NoteController.updateNote} */
-  describe('updateNote()', () => {
+  describe('updateNote()', function() {
     it('should call NoteDataservice.updateNote (with params)');
 
     it('should return note with updated name, as passed');
@@ -98,7 +91,7 @@ describe('NoteController', () => {
   });
 
   /** @test {NoteController.deleteNote} */
-  describe('deleteNote()', () => {
+  describe('deleteNote()', function() {
     it('should call NoteDataservice.deleteNote (with id)');
 
     it('should return the deleted note id');

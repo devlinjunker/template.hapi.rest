@@ -23,10 +23,13 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -38,7 +41,8 @@
  * Entry point that loads all routes for the server
  */
 
-import { Server } from &apos;./base/server.js&apos;;
+import { Server, EndpointConfig } from &apos;./base/server.js&apos;;
+import mariadb from &apos;./helpers/mariadb.helper.js&apos;;
 
 // TODO: auto detect routes
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
@@ -47,16 +51,16 @@ import helloRoutes from &apos;./controllers/hello.controller.js&apos;;
 import noteRoutes from &apos;./controllers/note.controller.js&apos;;
 
 
-const routes = infoRoutes.concat(helloRoutes, noteRoutes);
+const routes: Array&lt;EndpointConfig&gt; = infoRoutes.concat(helloRoutes, noteRoutes);
 
 // TODO: check if we&apos;re in development and only serve docs if we are
-const shouldServeDocs = true;
+const shouldServeDocs: boolean = true;
 if (shouldServeDocs) {
   routes.push({
     method: &apos;GET&apos;,
     path: &apos;/openapi.yaml&apos;,
     controller: {
-      // TODO: Fix this
+      // TODO: Fix path to openapi file
       file: &apos;openapi.yaml&apos;
     }
   });
@@ -66,7 +70,7 @@ if (shouldServeDocs) {
     path: &apos;/docs/{param*}&apos;,
     controller: {
       directory: {
-        // TODO: Fix this
+        // TODO: Fix path to doc
         path: &apos;/Users/junkerd/Programming/js/template.node.hapi/docs&apos;,
         index: true,
         redirectToSlash: true
@@ -80,13 +84,36 @@ if (shouldServeDocs) {
  * @return {undefined} no return
  */
 async function main() {
-  const server = new Server();
+  const server: Server = new Server();
 
   await server.run();
 
   server.addEndpoints(routes);
+
+  process.on(&apos;SIGTERM&apos;, () =&gt; {
+    attemptGracefulShutdown(server);
+  });
+  process.on(&apos;SIGUSR2&apos;, () =&gt; { // For nodemon?
+    attemptGracefulShutdown(server);
+  });
 }
 main();
+
+/**
+ * Attempt to shutdown the server and database connections
+ * @param  {Server} server Server Object to be shutdown
+ * @return {undefined}        undefined
+ */
+function attemptGracefulShutdown(server: Server) {
+  console.log(&apos;shutdown signal&apos;);
+  server.shutdown((hapiErr: Error) =&gt; {
+    console.log(&apos;hapi server shutdown&apos;);
+    mariadb.shutdown((dbErr: Error) =&gt; {
+      console.log(&apos;mariadb shutdown&apos;);
+      process.exit(hapiErr || dbErr ? 1 : 0);
+    });
+  });
+}
 
 // What is this about again?
 process.on(&apos;unhandledRejection&apos;, (err) =&gt; { // eslint-disable-line
