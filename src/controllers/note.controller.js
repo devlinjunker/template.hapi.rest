@@ -14,11 +14,14 @@ export class NoteController {
    * @param  {any} handler Hapi Handler object for rejecting/setting errors
    * @return {Note}         Note corresponding to Id passed in
    */
-  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | typeof(undefined)> {
+  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | HapiHandler> {
     try {
       return await NoteDataservice.getNote({ id: params.id });
     } catch (err) {
-      const resp = handler.response(err.message); // eslint-disable-line
+      const resp: HapiHandler = handler.response({
+        message: err.message,
+        code: err.code
+      });
       if (typeof(err.code) === 'number')  {
         resp.code(err.code);
       } else {
