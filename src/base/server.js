@@ -1,12 +1,15 @@
 /**
  * @flow
  */
+/* eslint-disable import/first */
 require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');
+
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
+
 // import Path from 'path';
 
 /**

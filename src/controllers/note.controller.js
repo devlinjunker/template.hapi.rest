@@ -2,7 +2,7 @@
  * @flow
  */
 import { HapiRequest, HapiHandler } from '../base/server.js';
-import { NoteDataservice, Note } from '../dataservices/note.service.js';
+import NoteDataservice, { Note } from '../dataservices/note.service.js';
 
 /**
  * Container Controller for Note CRUD Functions
@@ -19,8 +19,10 @@ export class NoteController {
       return await NoteDataservice.getNote({ id: params.id });
     } catch (err) {
       const resp = handler.response(err.message); // eslint-disable-line
-      if (err.code) {
+      if (typeof(err.code) === 'number')  {
         resp.code(err.code);
+      } else {
+        throw err;
       }
       return resp;
     }

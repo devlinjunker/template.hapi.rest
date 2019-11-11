@@ -3,8 +3,7 @@
  *
  * MariaDB Service Example
  */
-import mariadb from '../helpers/mariadb.helper.js';
-import { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
+import mariadb, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
 import { RequestError } from '../base/server.js';
 
 /**
@@ -19,7 +18,7 @@ export interface Note {
 /**
  * Note Dataservice for interacting with the storage system for saving notes
  */
-export class NoteDataservice {
+export default class NoteDataservice {
   /**
    * Returns a note, specified by the caller by id
    * @param  {number|string} id  `id` number of the Note to retrieve

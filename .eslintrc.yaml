@@ -23,6 +23,7 @@ plugins:
   - mocha
   # - jest
   - filenames
+  - import
 
 extends:
   - eslint:recommended
@@ -116,6 +117,7 @@ rules:
       exceptions:
       - id
       - i
+      - it
   new-cap:
     - error
   camelcase:
@@ -136,6 +138,34 @@ rules:
   linebreak-style:
     - error
     - unix
+
+  # Import Rules
+  import/no-unresolved:
+    - error
+  import/no-absolute-path:
+    - error
+  import/no-dynamic-require:
+    - error
+  import/no-self-import:
+    - error
+  import/no-cycle:
+    - error
+  import/export:
+    - error
+  import/no-named-as-default:
+    - warn
+  import/no-named-as-default-member:
+    - warn
+  import/no-mutable-exports:
+    - warn
+  import/first:
+    - warn
+  import/no-duplicates:
+    - warn
+  import/newline-after-import:
+    - error
+  import/prefer-default-export:
+    - warn
 
   # Basic Rules
   no-var: error

@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable no-undef, import/first */
 const requireContext = require('require-context');
 import mocha from 'mocha';
 import sinon from 'sinon';
@@ -19,6 +19,7 @@ const testsContext = requireContext('../../src', true, /.spec$/);
 
 testsContext.keys().forEach(testsContext);
 
-afterEach(() => {
+/* eslint-disable mocha/no-top-level-hooks, mocha/no-hooks-for-single-case */
+afterEach(function() {
   sinonSandbox.restore();
 });
