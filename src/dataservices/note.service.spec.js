@@ -1,4 +1,4 @@
-import { NoteDataservice } from './note.service.js';
+import NoteDataservice from './note.service.js';
 import mariadb from '../helpers/mariadb.helper.js';
 
 /** @test {NoteDataservice} */
@@ -47,6 +47,8 @@ describe('NoteDataservice', function() {
       const promise = NoteDataservice.getNote({ id: 1 });
       await expect(promise).to.be.rejected;
     });
+
+    it('should throw error with code if mysql unreachable');
   });
 
   /** @test {NoteDataservice.createNote} */

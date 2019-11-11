@@ -1,10 +1,11 @@
-/* eslint-disable no-undef, import/first */
-const requireContext = require('require-context');
+/* eslint-disable no-undef  */
 import mocha from 'mocha';
 import sinon from 'sinon';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import sinonChai from 'sinon-chai';
+
+const requireContext = require('require-context');
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);

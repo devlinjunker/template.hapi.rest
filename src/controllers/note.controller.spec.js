@@ -1,5 +1,5 @@
 import { NoteController } from './note.controller.js';
-import { NoteDataservice } from '../dataservices/note.service.js';
+import NoteDataservice from '../dataservices/note.service.js';
 
 /**
  * Question:

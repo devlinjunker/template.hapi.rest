@@ -109,6 +109,7 @@ How to use this template to create a quick HTTP REST server:
         - Jest plugin doesn't seem to allow configs of only some rules
     - [x] all variables flow typed?
     - [x] filenames: https://www.npmjs.com/package/eslint-plugin-filenames
+    - [x] import/export rules: https://www.npmjs.com/package/eslint-plugin-import
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
      - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
@@ -119,6 +120,7 @@ How to use this template to create a quick HTTP REST server:
      - port
      - other services/apis later?
      - overrides
+ - [ ] (^) Healthcheck
  - [ ] (^) cleanup old builds
  - [ ] (^) Typescript/Express router
     - [ ] (?) Absolute Paths: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
@@ -128,7 +130,6 @@ How to use this template to create a quick HTTP REST server:
     - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
       - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
     - [ ] Automatically find controller files in entry rather than need to reference  
- - [ ] (-) Healthcheck
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
     - [..] mysql
