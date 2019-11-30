@@ -113,11 +113,11 @@ How to use this template to create a quick HTTP REST server:
   - [ ] (?) Absolute Paths:
      - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
      - or: https://www.npmjs.com/package/app-module-path
-     - [ ] fix `__dirname` param in webpack/node with config and solve docs paths
+     - [x] fix `__dirname` param in webpack/node with config and solve docs paths
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
      - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
-        - [ ] MySQL scripts in repo to init database... update schema later...
+        - [ ] (^) MySQL scripts in repo to init database... update schema later...
      - [ ] (?) ElasticSearch? for search endpoint
      - [ ] Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  
