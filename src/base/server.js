@@ -1,12 +1,15 @@
 /**
  * @flow
  */
+/* eslint-disable import/first */
 require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');
+
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
+
 // import Path from 'path';
 
 /**
@@ -20,6 +23,29 @@ export interface EndpointConfig {
   method: string;
   path: string;
   controller?: any; // eslint-disable-line
+}
+
+export interface HapiHandler {
+  code: Function; // eslint-disable-line
+  response: Function; // eslint-disable-line
+}
+
+/**
+ * Request Error
+ * @type {RequestError}
+ */
+export class RequestError extends Error {
+  code: number;
+
+  /**
+   * Create a new Request Error
+   * @param {string} msg  message to display when returned
+   * @param {number} code code to set in Hapi Response
+   */
+  constructor(msg: string, code: number) {
+    super(msg);
+    this.code = code;
+  }
 }
 
 /**
@@ -52,6 +78,21 @@ export class Server {
     this.server = Hapi.server({
       port: 3333,
       host: 'localhost',
+    });
+  }
+
+  /**
+   * Shutdown the Hapi Server Properly
+   * @param  {Function} callback callback to run after server has shutdown
+   * @return {undefined}            no return
+   */
+  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types
+    // TODO: Set Shutdown Timeout from config
+    this.server.stop({ timeout: 10000 }).then((err: Error) => {
+      if (err) {
+        // TODO: Log Hapi Shutdown Error
+      }
+      callback(err);
     });
   }
 
@@ -101,7 +142,7 @@ export class Server {
    * @returns {undefined}
    */
   addEndpoints(routes: Array<EndpointConfig>) {
-    for (let i = 0; i < routes.length; i++) {
+    for (let i: number = 0; i < routes.length; i++) {
       this.addEndpoint(routes[i]);
     }
   }

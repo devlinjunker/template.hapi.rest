@@ -1,10 +1,10 @@
 import { HelloWorld } from './hello.controller.js';
 
 /** @test {HelloWorld} */
-describe('HelloWorld', () => {
+describe('HelloWorld', function() {
   /** @test {HelloWorld.basic} */
-  describe('basic()', () => {
-    it('returns \'Hello World!\'', () => {
+  describe('basic()', function() {
+    it('returns \'Hello World!\'', function() {
       const returned = HelloWorld.basic();
 
       expect(returned).to.equal('Hello World!');
@@ -12,8 +12,8 @@ describe('HelloWorld', () => {
   });
 
   /** @test {HelloWorld.name} */
-  describe('name()', () => {
-    it('returns \'{request.params.name} says:\'', () => {
+  describe('name()', function() {
+    it('returns \'{request.params.name} says:\'', function() {
       const request = {
         params: {
           name: 'Devlin'

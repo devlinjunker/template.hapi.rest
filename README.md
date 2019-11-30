@@ -99,21 +99,25 @@ How to use this template to create a quick HTTP REST server:
         - [x] in Docs
  - [x] (^) Debugging while running
      - use `node --inspect dist/server.bundle.js` to start debugger and a node debugging tool to attach
- - [..] (^) Update Linting Rules (linewrap, length, etc)  
+ - [x] (^) Update Linting Rules (linewrap, length, etc)  
     - [x] ensuring files start with a comment https://github.com/Stuk/eslint-plugin-header  
     - [x] Require Comments https://eslint.org/docs/rules/require-jsdoc and valid https://eslint.org/docs/rules/valid-jsdoc  
-    - [ ] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
-    - [ ] Test Rules
+    - [x] Naming Conventions https://github.com/airbnb/javascript#naming-conventions
+    - [x] Test Rules
       - https://www.npmjs.com/package/eslint-plugin-mocha
       - https://github.com/jest-community/eslint-plugin-jest
- - [ ] (?) Absolute Paths:
-    - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
-    - or: https://www.npmjs.com/package/app-module-path
-    - [ ] fix `__dirname` param in webpack/node with config and solve docs paths
+        - Jest plugin doesn't seem to allow configs of only some rules
+    - [x] all variables flow typed?
+    - [x] filenames: https://www.npmjs.com/package/eslint-plugin-filenames
+    - [x] import/export rules: https://www.npmjs.com/package/eslint-plugin-import
+  - [ ] (?) Absolute Paths:
+     - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+     - or: https://www.npmjs.com/package/app-module-path
+     - [ ] fix `__dirname` param in webpack/node with config and solve docs paths
  - [..] (^) Simple DB endpoint  
      - [ ] MongoDB
-     - [..] PostgreSQL or MariaDB
-      - [ ] MySQL scripts in repo to init database... update schema later...
+     - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
+        - [ ] MySQL scripts in repo to init database... update schema later...
      - [ ] (?) ElasticSearch? for search endpoint
      - [ ] Proper error messages/codes from endpoints
  - [..] (^) Chai as promised and sinon-chai  
@@ -121,6 +125,7 @@ How to use this template to create a quick HTTP REST server:
      - port
      - other services/apis later?
      - overrides
+ - [ ] (^) Healthcheck
  - [ ] (^) cleanup old builds
  - [ ] (^) Typescript/Express router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
@@ -129,10 +134,9 @@ How to use this template to create a quick HTTP REST server:
     - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
       - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
     - [ ] Automatically find controller files in entry rather than need to reference  
- - [ ] (-) Healthcheck
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
-    - [ ] mysql
+    - [..] mysql
     - [ ] external-service request (with performance monitoring/caching?)
     - [ ] Logging
       - GELF/Kibana?

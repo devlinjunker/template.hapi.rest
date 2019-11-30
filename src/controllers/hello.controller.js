@@ -25,7 +25,7 @@ export class HelloWorld {
    */
   static name(request: HapiRequest): string {
 
-    const name = request.params.name;
+    const name: string = request.params.name;
 
     return name + ' says: ' + Math.random() + '!!!!';
   }

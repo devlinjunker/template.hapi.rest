@@ -1,8 +1,8 @@
 /**
  * @flow
  */
-import { HapiRequest } from '../base/server.js';
-import { NoteDataservice, Note } from '../dataservices/note.service.js';
+import { HapiRequest, HapiHandler } from '../base/server.js';
+import NoteDataservice, { Note } from '../dataservices/note.service.js';
 
 /**
  * Container Controller for Note CRUD Functions
@@ -11,21 +11,40 @@ export class NoteController {
   /**
    * Returns a note, specified by Id
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler object for rejecting/setting errors
    * @return {Note}         Note corresponding to Id passed in
    */
-  static getNoteById({ params }: HapiRequest): Promise<Note> {
-    return NoteDataservice.getNote({ id: params.id });
+  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | HapiHandler> {
+    try {
+      return await NoteDataservice.getNote({ id: params.id });
+    } catch (err) {
+      const resp: HapiHandler = handler.response({
+        message: err.message,
+        code: err.code
+      });
+      if (typeof(err.code) === 'number')  {
+        resp.code(err.code);
+      } else {
+        throw err;
+      }
+      return resp;
+    }
   }
 
   /**
    * Create a new Note
    * @param  {HapiRequest} request RequestObject
+   * @param  {any} handler Hapi Handler
    * @return {Note}        [description]
    */
-  static createNote({ payload }: HapiRequest): Promise<Note> {
-    // TODO: Debug this?
-    console.log(payload);
-    return NoteDataservice.createNote({ name: payload.name });
+  static createNote({ payload }: HapiRequest, handler: HapiHandler): Promise<Note | Array<Note>> {
+    if (payload.name) {
+      return NoteDataservice.createNote({ name: payload.name });
+    } else if (Array.isArray(payload)) {
+      return NoteDataservice.createNotes(payload);
+    } else {
+      return handler.response('Missing Note(s) to create').code(500);
+    }
   }
 
   /**
