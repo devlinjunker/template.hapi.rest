@@ -126,7 +126,7 @@ How to use this template to create a quick HTTP REST server:
     - [ ] (?) ElasticSearch? for search endpoint
     - [..] Proper error messages/codes from endpoints
        - https://www.restapitutorial.com/httpstatuscodes.html
- - [ ] (^) Config.yaml and Env config file
+ - [..] (^) Config.yaml (and Env config file?)
     - port
     - database
     - other services/apis later?

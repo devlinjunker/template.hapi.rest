@@ -9,6 +9,7 @@ require('@babel/polyfill');
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
+import CONFIG from '../helpers/config.helper.js';
 
 // import Path from 'path';
 
@@ -76,8 +77,8 @@ export class Server {
    */
   constructor() {
     this.server = Hapi.server({
-      port: 3333,
-      host: 'localhost',
+      port: CONFIG.SERVER.port,
+      host: CONFIG.SERVER.host,
     });
   }
 
@@ -102,7 +103,7 @@ export class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write('Server started on ' + this.server.info.port);
+    process.stdout.write('\n\n' + CONFIG.SERVER.name + ' started on ' + this.server.info.port + '\n\n');
 
     await this.server.register({
       plugin: Pino,

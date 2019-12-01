@@ -1,0 +1,35 @@
+
+# Configuration for server
+SERVER:
+  protocol: http
+  host: localhost
+  name: Simple Server Template
+  port: '3333'
+  tmpDir: /tmp
+
+DB:
+  name: test
+  host: localhost
+  user: root
+  password: root
+
+## TODO: Add Healthcheck
+HEALTH_CHECK:
+  path: /admin/status
+
+## TODO: Add controller/dataservice that uses one of these
+EXTERNAL_SERVICES:
+  EXAMPLE:
+    protocol: http
+    host: example.com
+    port: 4444
+    path: /api/v1
+    healthcheck:
+      port: 4444
+      path: /example/admin/status
+    cacheEnabled: false
+    cacheExpiration: 60
+
+# Other things for later
+# OAUTH:
+# SSO:

@@ -3,7 +3,14 @@
 Helpers are classes that wrap some functionality not associated with an external service
 
 **Examples:**
-  - [ ] mysql/mardiadb
+  - [..] mysql/mardiadb
+    - connecting with mariadb server
+      - query
+      - insert
+      - fetch
+      - fetchOne
+  - [..] config
+    - reading properties from config file
   - [ ] external-service request (with performance monitoring/caching?)
   - [ ] Logging
     - GELF/Kibana?

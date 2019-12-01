@@ -2,6 +2,7 @@
  * @flow
  */
 import mariadb from 'mariadb';
+import CONFIG from './config.helper.js';
 
 
 // Disable weak type rule to allow for generalized database objects
@@ -237,9 +238,9 @@ export class MariaDBHelper {
  */
 const mariadbHelper = new MariaDBHelper({ config: {
   database: undefined,
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
+  host: CONFIG.DB.host,
+  user: CONFIG.DB.user,
+  password: CONFIG.DB.password,
   connectionLimit: 5
 } });
 
