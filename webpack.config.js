@@ -44,7 +44,14 @@ const config =  {
     }),
 
 
+    // TODO: Run tests only once on start-dev, rebuild and restart server on changes
+    //    tests can be run again by the developer before commits, or on new npm run
+    // IDEA: build once with webpack, start server with nodeman, start webpack watch?
     new WebpackShellPlugin({
+      // whoa, why is this different than mocha.opts?
+      // q: what is the difference between doing this and running spec individually?
+      //    does this still pick up mocha.opts? does this add to it?
+      //    how is output of this when exceptions thrown vs if we run the test files indidually? (mocha.opts)
       onBuildExit: 'mocha --env.unit_test ./dist/test.bundle.js'
     }),
   ],

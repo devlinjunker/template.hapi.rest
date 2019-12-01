@@ -46,6 +46,8 @@ How to use this template to create a quick HTTP REST server:
 
 `npm run doc` to generate static documentation in the doc folder
 
+`npm run lint` to run linter and see any errors/warnings
+
 `npm run clean` clean the workspace (remove `dist/`)
 
 `npm run help` to print the contents of `help.txt` to the command line
@@ -115,6 +117,7 @@ How to use this template to create a quick HTTP REST server:
      - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
      - [ ] (?) ElasticSearch? for search endpoint
      - [ ] Proper error messages/codes from endpoints
+       - https://www.restapitutorial.com/httpstatuscodes.html
  - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
      - port
