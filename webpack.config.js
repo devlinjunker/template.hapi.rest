@@ -25,6 +25,10 @@ const config =  {
   target: 'node',
   externals: [nodeExternals()],
 
+  node: {
+    __dirname: true
+  },
+
   resolve: {
     extensions: ['.js'],
     modules: ['node_modules'],

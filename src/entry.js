@@ -13,6 +13,8 @@ import infoRoutes from './controllers/info.controller.js';
 import helloRoutes from './controllers/hello.controller.js';
 import noteRoutes from './controllers/note.controller.js';
 
+const path = require('path');
+
 
 const routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
 
@@ -23,8 +25,7 @@ if (shouldServeDocs) {
     method: 'GET',
     path: '/openapi.yaml',
     controller: {
-      // TODO: Fix path to openapi file
-      file: 'openapi.yaml'
+      file: path.resolve(__dirname, '../openapi.yaml')
     }
   });
 
@@ -33,8 +34,7 @@ if (shouldServeDocs) {
     path: '/docs/{param*}',
     controller: {
       directory: {
-        // TODO: Fix path to doc
-        path: '/Users/junkerd/Programming/js/template.node.hapi/docs',
+        path: path.resolve(__dirname, '../docs'),
         index: true,
         redirectToSlash: true
       }
@@ -47,6 +47,8 @@ if (shouldServeDocs) {
  * @return {undefined} no return
  */
 async function main() {
+  // TODO: Check if db exists (use name in config file)
+
   const server: Server = new Server();
 
   await server.run();

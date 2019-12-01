@@ -236,6 +236,7 @@ export class MariaDBHelper {
  * @type {MariaDBHelper}
  */
 const mariadbHelper = new MariaDBHelper({ config: {
+  database: undefined,
   host: 'localhost',
   user: 'root',
   password: 'root',
