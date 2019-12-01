@@ -47,6 +47,8 @@ if (shouldServeDocs) {
  * @return {undefined} no return
  */
 async function main() {
+  // TODO: Check if db exists (use name in config file)
+
   const server: Server = new Server();
 
   await server.run();
