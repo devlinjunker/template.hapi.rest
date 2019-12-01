@@ -3,7 +3,7 @@
  *
  * MariaDB Service Example
  */
-import mariadb, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
+import mariadbHelper, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
 import { RequestError } from '../base/server.js';
 
 /**
@@ -29,7 +29,7 @@ export default class NoteDataservice {
       throw new RequestError('Note Id must be an integer', 400);
     }
     try {
-      const row: Note = await mariadb.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
+      const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
       if (row === undefined) {
         throw new RequestError('Unrecognized Note Id', 404);
@@ -50,7 +50,7 @@ export default class NoteDataservice {
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
     try {
-      const response: MariaDBInsertResponse = await mariadb.insert('test.notes', {
+      const response: MariaDBInsertResponse = await mariadbHelper.insert('test.notes', {
         name
       });
 
@@ -71,12 +71,12 @@ export default class NoteDataservice {
    */
   static async createNotes(notes: Array<{name: string}>): Promise<Array<Note> | Note> {
     try {
-      const insert: MariaDBInsertResponse = await mariadb.insertMultiple('test.notes', notes);
+      const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple('test.notes', notes);
 
       const endId: number = insert.insertId + insert.affectedRows;
       const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
 
-      return await mariadb.fetch(query);
+      return await mariadbHelper.fetch(query);
     } catch (err) {
       console.log(err);
       throw err;

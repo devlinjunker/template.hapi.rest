@@ -1,20 +1,31 @@
 /**
  * @flow
  */
-const path = require('path');
-const YAML = require('yamljs');
-const fs = require('fs');
+import path from 'path';
+import YAML from 'yamljs';
+import fs from 'fs';
 
-const configYamlPath: string = path.resolve(__dirname, '../../conf/config.yaml');
-
-const yamlContent: string = fs.readFileSync(configYamlPath, 'utf-8');
+/**
+ * YAML file content
+ * @type {string}
+ */
+const yamlContent: string = fs.readFileSync(path.resolve(__dirname, '../../conf/config.yaml'), 'utf-8');
 
 // TODO: env.properties file with replacements/defaults in config.yaml?
 
-const config: Config = YAML.parse(yamlContent);
 
-export default config;
 
+/**
+ * CONFIG object with SERVER and DB properties
+ * @type {Config}
+ */
+const CONFIG: Config = YAML.parse(yamlContent);
+export default CONFIG;
+
+/**
+ * Config Helper Expected Properties
+ * @type {Config}
+ */
 export interface Config {
   SERVER: {
     protocol: string;
@@ -22,6 +33,7 @@ export interface Config {
     name: string;
     port: number;
     tmpDir: string; // For generating files
+    docs: boolean; // should display docs?
   };
   DB: {
     name: string;

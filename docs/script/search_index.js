@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "hapiserver/src/helpers/config.helper.js~config",
+    "variable/index.html#static-variable-CONFIG",
+    "<span>CONFIG</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/config.helper.js</span>",
+    "variable"
+  ],
+  [
     "hapiserver/src/controllers/hello.controller.js~helloworld",
     "class/src/controllers/hello.controller.js~HelloWorld.html",
     "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/hello.controller.js</span>",
@@ -687,6 +693,12 @@ window.esdocSearchIndex = [
     "src/entry.js",
     "file/src/entry.js.html",
     "src/entry.js",
+    "file"
+  ],
+  [
+    "src/helpers/config.helper.js",
+    "file/src/helpers/config.helper.js.html",
+    "src/helpers/config.helper.js",
     "file"
   ],
   [

@@ -29,6 +29,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -40,9 +41,10 @@
  *
  * Entry point that loads all routes for the server
  */
-
+import path from &apos;path&apos;;
 import { Server, EndpointConfig } from &apos;./base/server.js&apos;;
 import mariadb from &apos;./helpers/mariadb.helper.js&apos;;
+import CONFIG from &apos;./helpers/config.helper.js&apos;;
 
 // TODO: auto detect routes
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
@@ -50,18 +52,17 @@ import infoRoutes from &apos;./controllers/info.controller.js&apos;;
 import helloRoutes from &apos;./controllers/hello.controller.js&apos;;
 import noteRoutes from &apos;./controllers/note.controller.js&apos;;
 
-
+/**
+ * Build the routes from files and add docs if CONFIG set
+ * @type {Array&lt;EndpointConfig&gt;}
+ */
 const routes: Array&lt;EndpointConfig&gt; = infoRoutes.concat(helloRoutes, noteRoutes);
-
-// TODO: check if we&apos;re in development and only serve docs if we are
-const shouldServeDocs: boolean = true;
-if (shouldServeDocs) {
+if (CONFIG.SERVER.docs) {
   routes.push({
     method: &apos;GET&apos;,
     path: &apos;/openapi.yaml&apos;,
     controller: {
-      // TODO: Fix path to openapi file
-      file: &apos;openapi.yaml&apos;
+      file: path.resolve(__dirname, &apos;../openapi.yaml&apos;)
     }
   });
 
@@ -70,20 +71,21 @@ if (shouldServeDocs) {
     path: &apos;/docs/{param*}&apos;,
     controller: {
       directory: {
-        // TODO: Fix this
-        path: &apos;/Users/djunker/js/template/template.node.hapi/docs&apos;,
+        path: path.resolve(__dirname, &apos;../docs&apos;),
         index: true,
         redirectToSlash: true
       }
     }
   });
 }
-
 /**
  * Entry point to run the server
  * @return {undefined} no return
  */
 async function main() {
+  // TODO: Check if mysql can be connected/db exists (use name in config file)
+  // Only serve docs if error (can we add a notification in docs that indicates why server down?)
+
   const server: Server = new Server();
 
   await server.run();

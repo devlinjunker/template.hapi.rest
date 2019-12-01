@@ -231,11 +231,7 @@ export class MariaDBHelper {
   // }
 }
 
-// TODO: get MariaDB settings from conf/config.yaml
-/**
- * Exported MariaDB Helper tha uses configuration
- * @type {MariaDBHelper}
- */
+
 const mariadbHelper = new MariaDBHelper({ config: {
   database: undefined,
   host: CONFIG.DB.host,
@@ -244,4 +240,8 @@ const mariadbHelper = new MariaDBHelper({ config: {
   connectionLimit: 5
 } });
 
+/**
+ * Exported MariaDB Helper that uses DB configuration in config.yaml
+ * @type {MariaDBHelper}
+ */
 export default mariadbHelper;

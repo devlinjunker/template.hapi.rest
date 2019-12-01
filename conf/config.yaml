@@ -5,7 +5,10 @@ SERVER:
   host: localhost
   name: Simple Server Template
   port: '3333'
+  # For file generation (todo)
   tmpDir: /tmp
+  # Should we display docs and openapi?
+  docs: true
 
 DB:
   name: test

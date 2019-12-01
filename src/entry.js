@@ -3,9 +3,10 @@
  *
  * Entry point that loads all routes for the server
  */
-
+import path from 'path';
 import { Server, EndpointConfig } from './base/server.js';
 import mariadb from './helpers/mariadb.helper.js';
+import CONFIG from './helpers/config.helper.js';
 
 // TODO: auto detect routes
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
@@ -13,14 +14,12 @@ import infoRoutes from './controllers/info.controller.js';
 import helloRoutes from './controllers/hello.controller.js';
 import noteRoutes from './controllers/note.controller.js';
 
-const path = require('path');
-
-
+/**
+ * Build the routes from files and add docs if CONFIG set
+ * @type {Array<EndpointConfig>}
+ */
 const routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
-
-// TODO: check if we're in development and only serve docs if we are
-const shouldServeDocs: boolean = true;
-if (shouldServeDocs) {
+if (CONFIG.SERVER.docs) {
   routes.push({
     method: 'GET',
     path: '/openapi.yaml',
@@ -41,14 +40,13 @@ if (shouldServeDocs) {
     }
   });
 }
-
 /**
  * Entry point to run the server
  * @return {undefined} no return
  */
 async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
-  // Only serve docs if error (can we add a notification in docs that indicates why server down?)
+  // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
   const server: Server = new Server();
 

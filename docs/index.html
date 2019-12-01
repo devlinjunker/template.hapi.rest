@@ -29,6 +29,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -67,6 +68,7 @@
 <p><code>npm run dev</code> to run a development version of the server</p>
 <p><code>npm run build</code> to compile development version of server to <code>dist/</code></p>
 <p><code>npm run doc</code> to generate static documentation in the doc folder</p>
+<p><code>npm run lint</code> to run linter and see any errors/warnings</p>
 <p><code>npm run clean</code> clean the workspace (remove <code>dist/</code>)</p>
 <p><code>npm run help</code> to print the contents of <code>help.txt</code> to the command line</p>
 <p><strong>TODO</strong></p>
@@ -143,33 +145,44 @@
 </li>
 <li>[x] all variables flow typed?</li>
 <li>[x] filenames: <a href="https://www.npmjs.com/package/eslint-plugin-filenames">https://www.npmjs.com/package/eslint-plugin-filenames</a></li>
-<li>[x] import/export rules: <a href="https://www.npmjs.com/package/eslint-plugin-import">https://www.npmjs.com/package/eslint-plugin-import</a><ul>
-<li>[ ] (?) Absolute Paths:</li>
+<li>[x] import/export rules: <a href="https://www.npmjs.com/package/eslint-plugin-import">https://www.npmjs.com/package/eslint-plugin-import</a></li>
+</ul>
+</li>
+<li>[ ] (?) Absolute Paths:<ul>
 <li>maybe: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
 <li>or: <a href="https://www.npmjs.com/package/app-module-path">https://www.npmjs.com/package/app-module-path</a></li>
-<li>[ ] fix <code>__dirname</code> param in webpack/node with config and solve docs paths</li>
+<li>[x] fix <code>__dirname</code> param in webpack/node with config and solve docs paths</li>
 </ul>
 </li>
-</ul>
-</li>
+<li>[x] (^) Chai as promised and sinon-chai</li>
 <li>[..] (^) Simple DB endpoint  <ul>
-<li>[ ] MongoDB</li>
-<li>[..] PostgreSQL or MariaDB <a href="https://mariadb.com/kb/en/library/connector-nodejs-promise-api/">https://mariadb.com/kb/en/library/connector-nodejs-promise-api/</a><ul>
-<li>[ ] MySQL scripts in repo to init database... update schema later...</li>
+<li>[ ] MongoDB<ul>
+<li>for quick development? (objects on the fly)</li>
+</ul>
+</li>
+<li>[..] PostgreSQL or MariaDB<ul>
+<li><a href="https://mariadb.com/kb/en/library/connector-nodejs-promise-api/">https://mariadb.com/kb/en/library/connector-nodejs-promise-api/</a></li>
+<li>[ ] (^) MySQL scripts in repo to init database... update schema later...</li>
 </ul>
 </li>
 <li>[ ] (?) ElasticSearch? for search endpoint</li>
-<li>[ ] Proper error messages/codes from endpoints</li>
+<li>[..] Proper error messages/codes from endpoints<ul>
+<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a></li>
 </ul>
 </li>
-<li>[..] (^) Chai as promised and sinon-chai  </li>
-<li>[ ] (^) Config.yaml and Env config file<ul>
+</ul>
+</li>
+<li>[..] (^) Config.yaml (and Env config file?)<ul>
 <li>port</li>
+<li>database</li>
 <li>other services/apis later?</li>
 <li>overrides</li>
 </ul>
 </li>
-<li>[ ] (^) Healthcheck</li>
+<li>[ ] (^) Healthcheck<ul>
+<li>Link to in docs</li>
+</ul>
+</li>
 <li>[ ] (^) cleanup old builds</li>
 <li>[ ] (^) Typescript/Express router<ul>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>

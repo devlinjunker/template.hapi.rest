@@ -29,6 +29,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -46,8 +47,7 @@ require(&apos;@babel/polyfill&apos;);
 import Pino from &apos;hapi-pino&apos;;
 import Hapi from &apos;@hapi/hapi&apos;;
 import Inert from &apos;@hapi/inert&apos;;
-
-// import Path from &apos;path&apos;;
+import CONFIG from &apos;../helpers/config.helper.js&apos;;
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
@@ -62,13 +62,17 @@ export interface EndpointConfig {
   controller?: any; // eslint-disable-line
 }
 
+/**
+ * Hapi Handler for returning messages or setting error codes during requests
+ * @type {HapiHandler}
+ */
 export interface HapiHandler {
   code: Function; // eslint-disable-line
   response: Function; // eslint-disable-line
 }
 
 /**
- * Request Error
+ * Request Error Class to help set a response code and message to display to the user
  * @type {RequestError}
  */
 export class RequestError extends Error {
@@ -77,7 +81,7 @@ export class RequestError extends Error {
   /**
    * Create a new Request Error
    * @param {string} msg  message to display when returned
-   * @param {number} code code to set in Hapi Response
+   * @param {number} code response status code to set in Hapi Response
    */
   constructor(msg: string, code: number) {
     super(msg);
@@ -86,8 +90,9 @@ export class RequestError extends Error {
 }
 
 /**
- * Request Object that is passed to the controller as the first parameter
+ * Request Object that is passed to the controller function as the first parameter
  * from https://github.com/hapijs/hapi/blob/master/API.md#request
+ * @type {HapiRequest}
  */
 export interface HapiRequest {
   server: any; // eslint-disable-line
@@ -103,7 +108,7 @@ export interface HapiRequest {
  * Abstraction to manage running the server. Instantiate on application server start up
  * inside `entry.js` file or wherever the intial &quot;main&quot; script is
  *
- * @type {Server} class
+ * @type {Server}
  */
 export class Server {
   server: any; // eslint-disable-line
@@ -113,8 +118,8 @@ export class Server {
    */
   constructor() {
     this.server = Hapi.server({
-      port: 3333,
-      host: &apos;localhost&apos;,
+      port: CONFIG.SERVER.port,
+      host: CONFIG.SERVER.host,
     });
   }
 
@@ -139,7 +144,7 @@ export class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write(&apos;Server started on &apos; + this.server.info.port);
+    process.stdout.write(&apos;\n\n&apos; + CONFIG.SERVER.name + &apos; started on &apos; + this.server.info.port + &apos;\n\n&apos;);
 
     await this.server.register({
       plugin: Pino,

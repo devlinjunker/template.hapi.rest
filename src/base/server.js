@@ -11,8 +11,6 @@ import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 import CONFIG from '../helpers/config.helper.js';
 
-// import Path from 'path';
-
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
  * the path is hit
@@ -26,13 +24,17 @@ export interface EndpointConfig {
   controller?: any; // eslint-disable-line
 }
 
+/**
+ * Hapi Handler for returning messages or setting error codes during requests
+ * @type {HapiHandler}
+ */
 export interface HapiHandler {
   code: Function; // eslint-disable-line
   response: Function; // eslint-disable-line
 }
 
 /**
- * Request Error
+ * Request Error Class to help set a response code and message to display to the user
  * @type {RequestError}
  */
 export class RequestError extends Error {
@@ -41,7 +43,7 @@ export class RequestError extends Error {
   /**
    * Create a new Request Error
    * @param {string} msg  message to display when returned
-   * @param {number} code code to set in Hapi Response
+   * @param {number} code response status code to set in Hapi Response
    */
   constructor(msg: string, code: number) {
     super(msg);
@@ -50,8 +52,9 @@ export class RequestError extends Error {
 }
 
 /**
- * Request Object that is passed to the controller as the first parameter
+ * Request Object that is passed to the controller function as the first parameter
  * from https://github.com/hapijs/hapi/blob/master/API.md#request
+ * @type {HapiRequest}
  */
 export interface HapiRequest {
   server: any; // eslint-disable-line
@@ -64,10 +67,10 @@ export interface HapiRequest {
 
 
 /**
- * Abstraction to manage running the server. Instantiate on application server start up
- * inside `entry.js` file or wherever the intial "main" script is
+ * Abstraction to manage running the server.
+ * Instantiates on application server start up inside `entry.js` file or wherever the intial "main" script is
  *
- * @type {Server} class
+ * @type {Server}
  */
 export class Server {
   server: any; // eslint-disable-line
