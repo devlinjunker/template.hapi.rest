@@ -112,23 +112,27 @@ How to use this template to create a quick HTTP REST server:
     - [x] all variables flow typed?
     - [x] filenames: https://www.npmjs.com/package/eslint-plugin-filenames
     - [x] import/export rules: https://www.npmjs.com/package/eslint-plugin-import
-  - [ ] (?) Absolute Paths:
-     - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
-     - or: https://www.npmjs.com/package/app-module-path
-     - [x] fix `__dirname` param in webpack/node with config and solve docs paths
+ - [ ] (?) Absolute Paths:
+    - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+    - or: https://www.npmjs.com/package/app-module-path
+    - [x] fix `__dirname` param in webpack/node with config and solve docs paths
+ - [x] (^) Chai as promised and sinon-chai
  - [..] (^) Simple DB endpoint  
-     - [ ] MongoDB
-     - [..] PostgreSQL or MariaDB https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
-        - [ ] (^) MySQL scripts in repo to init database... update schema later...
-     - [ ] (?) ElasticSearch? for search endpoint
-     - [ ] Proper error messages/codes from endpoints
+    - [ ] MongoDB
+      - for quick development? (objects on the fly)
+    - [..] PostgreSQL or MariaDB
+      - https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
+      - [ ] (^) MySQL scripts in repo to init database... update schema later...
+    - [ ] (?) ElasticSearch? for search endpoint
+    - [..] Proper error messages/codes from endpoints
        - https://www.restapitutorial.com/httpstatuscodes.html
- - [..] (^) Chai as promised and sinon-chai  
  - [ ] (^) Config.yaml and Env config file
-     - port
-     - other services/apis later?
-     - overrides
+    - port
+    - database
+    - other services/apis later?
+    - overrides
  - [ ] (^) Healthcheck
+    - Link to in docs
  - [ ] (^) cleanup old builds
  - [ ] (^) Typescript/Express router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers

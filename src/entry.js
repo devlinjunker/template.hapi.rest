@@ -47,7 +47,8 @@ if (shouldServeDocs) {
  * @return {undefined} no return
  */
 async function main() {
-  // TODO: Check if db exists (use name in config file)
+  // TODO: Check if mysql can be connected/db exists (use name in config file)
+  // Only serve docs if error (can we add a notification in docs that indicates why server down?)
 
   const server: Server = new Server();
 

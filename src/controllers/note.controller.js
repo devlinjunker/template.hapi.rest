@@ -18,6 +18,7 @@ export class NoteController {
     try {
       return await NoteDataservice.getNote({ id: params.id });
     } catch (err) {
+      // Get resp(HapiHandler) to return http code if number
       const resp: HapiHandler = handler.response({
         message: err.message,
         code: err.code
