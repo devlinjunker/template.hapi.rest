@@ -50,6 +50,12 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.test.html"><a href="manual/README.test.html" data-ice="link">Test</a></li>
+</ul>
+  </div>
 </div>
 </nav>
 
@@ -59,6 +65,7 @@
 <li><a href="manual/README.controllers.html">Controllers</a> - mappings from url endpoints to methods for handling requests</li>
 <li><a href="manual/README.dataservices.html">Dataservices</a> - classes/methods that connect to external services or datastores</li>
 <li><a href="manual/README.helpers.html">Helpers</a> - classes that are used frequently for interacting with other systems/tools</li>
+<li><a href="manual/README.test.html">Test</a> - Testing Files used to run the unit tests (eventually automated tests)</li>
 </ul>
 <p>.</p>
 </div>
@@ -140,6 +147,17 @@ notification system)</p></div>
 <li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
 </ul></div>
         <a data-ice="link" href="manual/README.helpers.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Test</h1><p>Testing Bootstrap file finds all of the test files and imports global objects that can be used in all tests
+to simplify each test file. Also creates a sinon Sandbox that is rest before each test for mocking context</p><p>Imports:</p><ul>
+<li>Sinon</li>
+<li>expect from Chai</li>
+<li>describe/it/beforeEach from Mocha</li>
+</ul></div>
+        <a data-ice="link" href="manual/README.test.html"></a>
       </div>
     </div>
 </div>

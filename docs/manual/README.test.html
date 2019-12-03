@@ -59,36 +59,13 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="helpers">Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p>
-<p><strong>Examples:</strong></p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="test">Test</h1><p>Testing Bootstrap file finds all of the test files and imports global objects that can be used in all tests
+to simplify each test file. Also creates a sinon Sandbox that is rest before each test for mocking context</p>
+<p>Imports:</p>
 <ul>
-<li>[..] mysql/mardiadb<ul>
-<li>connecting with mariadb server<ul>
-<li>query</li>
-<li>insert</li>
-<li>fetch</li>
-<li>fetchOne</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>[..] config<ul>
-<li>reading properties from config file</li>
-</ul>
-</li>
-<li>[ ] external-service request (with performance monitoring/caching?)</li>
-<li>[ ] Logging<ul>
-<li>GELF/Kibana?</li>
-<li>Winston/Bunyon</li>
-</ul>
-</li>
-<li>[ ] SendEmail</li>
-<li>[ ] Cron?</li>
-<li>[ ] Authentication?</li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
-<li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
+<li>Sinon</li>
+<li>expect from Chai</li>
+<li>describe/it/beforeEach from Mocha</li>
 </ul>
 </div>
 </div>

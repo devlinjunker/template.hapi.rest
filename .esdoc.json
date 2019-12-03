@@ -11,7 +11,8 @@
             "./src/entry.md",
             "./src/controllers/README.controllers.md",
             "./src/dataservices/README.dataservices.md",
-            "./src/helpers/README.helpers.md"
+            "./src/helpers/README.helpers.md",
+            "./test/README.test.md"
           ]
         },
         "test": {
