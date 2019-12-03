@@ -1,14 +1,8 @@
-# Codebase
+# Simple Template API Docs
 
-## Best Practices
- - Do not use relative imports (TODO: Figure this out)
+- [Entry Point](manual/entry.html)
+- [Controllers](manual/_controllers.html) - mappings from url endpoints to methods for handling requests
+- [Dataservices](manual/_dataservices.html) - classes/methods that connect to external services or datastores
+- [Helpers](manual/_helpers.html) - classes that are used frequently for interacting with other systems/tools
 
-## Directories
-
-`base/` contains classes/files used to run the server and help handle requests
-
-`controllers/` contains the mappings from endpoints to methods for handling requests
-
-`dataservices/` contain the classes/methods that connect to external services or datastores
-
-`helpers/` contain small classes that are used frequently for interacting with other systems/tools
+.

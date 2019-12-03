@@ -44,7 +44,7 @@ if (CONFIG.SERVER.docs) {
  * Entry point to run the server
  * @return {undefined} no return
  */
-async function main() {
+export async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 

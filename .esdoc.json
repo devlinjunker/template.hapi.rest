@@ -5,6 +5,15 @@
     {
       "name": "esdoc-standard-plugin",
       "option": {
+        "manual": {
+          "index": "./src/README.md",
+          "files": [
+            "./src/entry.md",
+            "./src/controllers/_controllers.md",
+            "./src/dataservices/_dataservices.md",
+            "./src/helpers/_helpers.md"
+          ]
+        },
         "test": {
           "source": "./",
           "interfaces": ["describe", "it", "context", "suite", "test"],

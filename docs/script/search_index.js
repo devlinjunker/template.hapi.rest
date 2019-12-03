@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "hapiserver/src/entry.js~main",
+    "function/index.html#static-function-main",
+    "<span>main</span> <span class=\"search-result-import-path\">HapiServer/src/entry.js</span>",
+    "function"
+  ],
+  [
     "hapiserver/src/helpers/mariadb.helper.js~mariadbhelper",
     "variable/index.html#static-variable-mariadbHelper",
     "<span>mariadbHelper</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/mariadb.helper.js</span>",
