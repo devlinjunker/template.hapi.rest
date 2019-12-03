@@ -2,8 +2,6 @@
 
 This is meant to be an example/template of how to use Webpack in the Backend for rapid development.
 
-TODO: Simple endpoints that store and retrieve values
-
 
 ## Dependencies
 Node v8+ and npm

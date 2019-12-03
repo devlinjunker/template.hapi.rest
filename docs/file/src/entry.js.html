@@ -84,7 +84,7 @@ if (CONFIG.SERVER.docs) {
  */
 async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
-  // Only serve docs if error (can we add a notification in docs that indicates why server down?)
+  // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
   const server: Server = new Server();
 
