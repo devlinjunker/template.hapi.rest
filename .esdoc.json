@@ -6,7 +6,7 @@
       "name": "esdoc-standard-plugin",
       "option": {
         "manual": {
-          "index": "./src/README.md",
+          "index": "./src/index.md",
           "files": [
             "./src/entry.md",
             "./src/controllers/README.controllers.md",

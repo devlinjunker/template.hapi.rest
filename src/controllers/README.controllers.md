@@ -33,3 +33,4 @@ export default [ map1, map2, ... ];
     - I prefer creating classes with __static__  methods for encapsulation for testing and documentation purposes
  - DO NOT USE SHARED CLASS PROPERTIES/STATEFUL VARIABLES IN CONTROLLER FUNCTIONS
     - These functions need to be stateless.
+ - Catch any exceptions that don't have response code and log or email indicating unexpected state
