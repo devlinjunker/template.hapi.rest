@@ -1,9 +1,21 @@
 # Test
 
-Testing Bootstrap file finds all of the test files and imports global objects that can be used in all tests
-to simplify each test file. Also creates a sinon Sandbox that is rest before each test for mocking context
+Testing bootstrap file([source](https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js))
+finds all of the test files and imports global objects that can be used in all tests to simplify each test
+file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
+functions in the test context.
 
-Imports:
+To run the tests with mocha, use `npm run test` to see the output from all tests in `.spec` files in the
+standard output.
+
+
+Global Imports (available in all `.spec` files):
  - Sinon
  - expect from Chai
  - describe/it/beforeEach from Mocha
+
+
+## Notes/Ideas
+  - [ ] Look into differences between webpack tests vs `npm test`
+  - Mocha settings/plugin for displaying filepath in output of tests (when erroring?)
+    - seems difficult to do on async/timeout errors

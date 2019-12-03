@@ -2,7 +2,7 @@
 
 How to run
 
-1. Ensure using Node v8
+1. Ensure using Node v8+
 2. Install Development Dependencies:
     \033[1m npm install -D \033[0m
 3. Compile server files:
@@ -14,4 +14,3 @@ How to run
       \033[1m dev-watch \033[0m to run hot reload server ONLY
       \033[1m test \033[0m to run unit tests once
       \033[1m dev \033[0m to run server in "development" mode
- 

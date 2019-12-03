@@ -39,7 +39,7 @@
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="basic-webpack-server-app">Basic Webpack Server App</h1><p>This is meant to be an example of how to use Webpack in the Backend for rapid development of an API server
 with endpoints for managing requests and connections to other servers and/or database/storage tools.</p>
 <p>This example can also be used to quickly create a server with your own endpoints to do whatever you would like
-on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis) </p>
+on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)</p>
 <h2 id="dependencies">Dependencies</h2><p>Node v8+ and npm
   (tested with node v8.12.0 and v10.15.1)</p>
 <p>See <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json">package.json</a> for full list of current dependencies</p>
@@ -57,7 +57,8 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <h2 id="development">Development</h2><p>How to use this template to create a quick HTTP REST server:</p>
 <ol>
 <li>Download and update dependencies</li>
-<li>Add new OpenAPI endpoint to <code>openapi.yaml</code></li>
+<li>Update <code>conf/config.yaml</code> with any changes to settings</li>
+<li>Add new OpenAPI endpoint to <code>./openapi.yaml</code></li>
 <li>Add Unit tests in <code>src/controllers/</code> (Test Driven Development)</li>
 <li>Add Controller Files to <code>src/controllers/</code><ul>
 <li>For now, add reference to controller in <code>src/entry.js</code> (with other controllers)</li>
@@ -81,30 +82,7 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <p><code>npm start</code> .. TODO: start production Server</p>
 <p><code>npm stop</code> .. TODO: stop production Server</p>
 <p><code>npm restart</code> will restart once start/stop completed</p>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>OPTIONS requests?</li>
-<li>RDBMS vs Document store<ul>
-<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
-<li>Document Store:<ul>
-<li>use for settings data and where schema will be changed often</li>
-<li>when changes are small crud, based on users interactions?</li>
-<li>when count and aggregate data is useful to end user</li>
-</ul>
-</li>
-<li>RDBMS:<ul>
-<li>less duplicated data, normalized and stored in specific tables</li>
-<li>useful when data changes often</li>
-<li>seems like more useful for storing fact data in ETL processes?</li>
-<li>Q: phoenix?</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
-</ul>
-<h3 id="todo">TODO</h3><ul>
+<h2 id="todo">TODO</h2><ul>
 <li>[x] (^) Node 8</li>
 <li>[x] (^) Webpack  <ul>
 <li><a href="https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda">https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda</a>  </li>
@@ -153,26 +131,11 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[x] import/export rules: <a href="https://www.npmjs.com/package/eslint-plugin-import">https://www.npmjs.com/package/eslint-plugin-import</a></li>
 </ul>
 </li>
-<li>[ ] (?) Absolute Paths:<ul>
-<li>maybe: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
-<li>or: <a href="https://www.npmjs.com/package/app-module-path">https://www.npmjs.com/package/app-module-path</a></li>
-<li>[x] fix <code>__dirname</code> param in webpack/node with config and solve docs paths</li>
-</ul>
-</li>
 <li>[x] (^) Chai as promised and sinon-chai</li>
 <li>[..] (^) Simple DB endpoint  <ul>
-<li>[ ] MongoDB<ul>
-<li>for quick development? (objects on the fly)</li>
-</ul>
-</li>
 <li>[..] PostgreSQL or MariaDB<ul>
 <li><a href="https://mariadb.com/kb/en/library/connector-nodejs-promise-api/">https://mariadb.com/kb/en/library/connector-nodejs-promise-api/</a></li>
-<li>[ ] (^) MySQL scripts in repo to init database... update schema later...</li>
-</ul>
-</li>
-<li>[ ] (?) ElasticSearch? for search endpoint</li>
-<li>[..] Proper error messages/codes from endpoints<ul>
-<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a></li>
+<li>[ ] MySQL scripts in repo to init database... update schema later...</li>
 </ul>
 </li>
 </ul>
@@ -181,7 +144,7 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>port</li>
 <li>database</li>
 <li>other services/apis later?</li>
-<li>overrides</li>
+<li>[ ] overrides</li>
 </ul>
 </li>
 <li>[ ] (^) Healthcheck<ul>
@@ -189,6 +152,13 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </ul>
 </li>
 <li>[ ] (^) cleanup old builds</li>
+<li>[ ] (-) Githooks for generating reports/linting  <ul>
+<li>Check if READMEs exist at each directory level?</li>
+<li>Run <code>doc</code> command before commit on develop branch</li>
+<li>Check if spec files exist (except where special comment in file header)</li>
+</ul>
+</li>
+<li>[ ] (-) Automatic Semantic Versioning (Based on PRs?) <a href="https://github.com/intuit/auto">https://github.com/intuit/auto</a></li>
 <li>[ ] (^) Typescript/Express router<ul>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
 <li>Headers</li>
@@ -200,33 +170,35 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </ul>
 </li>
 <li>[ ] Automatically find controller files in entry rather than need to reference  </li>
+<li>[ ] Proper error messages/codes from endpoints<ul>
+<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a><ul>
+<li>[ ] MongoDB</li>
+</ul>
+</li>
+<li>for quick development? (objects on the fly)</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>[ ] (-) Request Performance</li>
 <li>[ ] (-) Helpers<ul>
 <li>[..] mysql</li>
 <li>[ ] external-service request (with performance monitoring/caching?)</li>
+<li>[ ] healthcheck using db and external service configs</li>
+<li>[ ] Authentication</li>
 <li>[ ] Logging<ul>
 <li>GELF/Kibana?</li>
 <li>Winston/Bunyon</li>
-<li>Pino logs to file</li>
 </ul>
 </li>
 <li>[ ] SendEmail</li>
 <li>[ ] Cron?</li>
-<li>[ ] Authentication?</li>
+<li>[ ] ElasticSearch? for search endpoint</li>
 </ul>
 </li>
 <li>[ ] (-) Request Details Model attached to handler parameters</li>
 <li>[ ] (-) Compression of responses</li>
 <li>[ ] (-) Run only affected tests on file save  </li>
-<li>[ ] (-) Githooks for generating reports/linting  <ul>
-<li>Run <code>doc</code> command before commit on develop branch</li>
-<li>Check if spec files exist (except where special comment in file header)</li>
-<li>Check if READMEs exist at each directory level?</li>
-</ul>
-</li>
-<li>[ ] (-) Automatic Semantic Versioning (Based on PRs?) <a href="https://github.com/intuit/auto">https://github.com/intuit/auto</a></li>
 <li>[ ] (-) production vs dev<ul>
 <li>webpack/build</li>
 <li>pm2 for production</li>
@@ -236,12 +208,18 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
 <li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
+<li>[ ] (?) Absolute Paths:<ul>
+<li>maybe: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
+<li>or: <a href="https://www.npmjs.com/package/app-module-path">https://www.npmjs.com/package/app-module-path</a></li>
+<li>[x] fix <code>__dirname</code> param in webpack/node with config and solve docs paths</li>
+</ul>
+</li>
 <li>[..] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
 <li>[ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a>  </li>
 <li>[ ] (v) Test coverage saved in spec files  </li>
 <li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
 <li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  </li>
-<li>[ ] (v) ESDoc Manual with src READMEs <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
+<li>[x] (v) ESDoc Manual with src READMEs <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
 <li><del>[ ] Docsify?</del>  </li>
 </ul>
 <h3 id="application">Application</h3><ul>

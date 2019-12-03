@@ -4,7 +4,7 @@ This is meant to be an example of how to use Webpack in the Backend for rapid de
 with endpoints for managing requests and connections to other servers and/or database/storage tools.
 
 This example can also be used to quickly create a server with your own endpoints to do whatever you would like
-on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis) 
+on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)
 
 ## Dependencies
 Node v8+ and npm
@@ -26,7 +26,8 @@ See [package.json](https://github.com/devlinjunker/template.node.hapi/blob/maste
 How to use this template to create a quick HTTP REST server:
 
 1. Download and update dependencies
-2. Add new OpenAPI endpoint to `openapi.yaml`
+2. Update `conf/config.yaml` with any changes to settings
+2. Add new OpenAPI endpoint to `./openapi.yaml`
 3. Add Unit tests in `src/controllers/` (Test Driven Development)
 4. Add Controller Files to `src/controllers/`
   - For now, add reference to controller in `src/entry.js` (with other controllers)
@@ -66,24 +67,7 @@ How to use this template to create a quick HTTP REST server:
 `npm restart` will restart once start/stop completed
 
 
-## Notes/Ideas
-
- - OPTIONS requests?
- - RDBMS vs Document store
-  - https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8
-  - Document Store:
-    - use for settings data and where schema will be changed often
-    - when changes are small crud, based on users interactions?
-    - when count and aggregate data is useful to end user
-  - RDBMS:
-    - less duplicated data, normalized and stored in specific tables
-    - useful when data changes often
-    - seems like more useful for storing fact data in ETL processes?
-    - Q: phoenix?
-
-- CAP theorem stands for C – Consistency, A — Availability, P — Partitioning (or Scalability) and states that having all three properties at the same time is not possible,
-
-### TODO
+## TODO
 
  - [x] (^) Node 8
  - [x] (^) Webpack  
@@ -115,28 +99,24 @@ How to use this template to create a quick HTTP REST server:
     - [x] all variables flow typed?
     - [x] filenames: https://www.npmjs.com/package/eslint-plugin-filenames
     - [x] import/export rules: https://www.npmjs.com/package/eslint-plugin-import
- - [ ] (?) Absolute Paths:
-    - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
-    - or: https://www.npmjs.com/package/app-module-path
-    - [x] fix `__dirname` param in webpack/node with config and solve docs paths
  - [x] (^) Chai as promised and sinon-chai
  - [..] (^) Simple DB endpoint  
-    - [ ] MongoDB
-      - for quick development? (objects on the fly)
     - [..] PostgreSQL or MariaDB
       - https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
-      - [ ] (^) MySQL scripts in repo to init database... update schema later...
-    - [ ] (?) ElasticSearch? for search endpoint
-    - [..] Proper error messages/codes from endpoints
-       - https://www.restapitutorial.com/httpstatuscodes.html
+      - [ ] MySQL scripts in repo to init database... update schema later...
  - [..] (^) Config.yaml (and Env config file?)
     - port
     - database
     - other services/apis later?
-    - overrides
+    - [ ] overrides
  - [ ] (^) Healthcheck
     - Link to in docs
  - [ ] (^) cleanup old builds
+ - [ ] (-) Githooks for generating reports/linting  
+    - Check if READMEs exist at each directory level?
+    - Run `doc` command before commit on develop branch
+    - Check if spec files exist (except where special comment in file header)
+ - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto
  - [ ] (^) Typescript/Express router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
@@ -144,25 +124,25 @@ How to use this template to create a quick HTTP REST server:
     - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
       - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
     - [ ] Automatically find controller files in entry rather than need to reference  
+    - [ ] Proper error messages/codes from endpoints
+       - https://www.restapitutorial.com/httpstatuscodes.html
+     - [ ] MongoDB
+       - for quick development? (objects on the fly)
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
     - [..] mysql
     - [ ] external-service request (with performance monitoring/caching?)
+    - [ ] healthcheck using db and external service configs
+    - [ ] Authentication
     - [ ] Logging
       - GELF/Kibana?
       - Winston/Bunyon
-      - Pino logs to file
     - [ ] SendEmail
     - [ ] Cron?
-    - [ ] Authentication?
+    - [ ] ElasticSearch? for search endpoint
  - [ ] (-) Request Details Model attached to handler parameters
  - [ ] (-) Compression of responses
  - [ ] (-) Run only affected tests on file save  
- - [ ] (-) Githooks for generating reports/linting  
-    - Run `doc` command before commit on develop branch
-    - Check if spec files exist (except where special comment in file header)
-    - Check if READMEs exist at each directory level?
- - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto
  - [ ] (-) production vs dev
       - webpack/build
       - pm2 for production
@@ -170,12 +150,16 @@ How to use this template to create a quick HTTP REST server:
       - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
+ - [ ] (?) Absolute Paths:
+    - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
+    - or: https://www.npmjs.com/package/app-module-path
+    - [x] fix `__dirname` param in webpack/node with config and solve docs paths
  - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
- - [ ] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
+ - [x] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
 
 ### Application

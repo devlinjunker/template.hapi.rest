@@ -68,25 +68,13 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="test">Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js">source</a>)
-finds all of the test files and imports global objects that can be used in all tests to simplify each test
-file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
-functions in the test context.</p>
-<p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the
-standard output.</p>
-<p>Global Imports (available in all <code>.spec</code> files):</p>
-<ul>
-<li>Sinon</li>
-<li>expect from Chai</li>
-<li>describe/it/beforeEach from Mocha</li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>[ ] Look into differences between webpack tests vs <code>npm test</code></li>
-<li>Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
-<li>seems difficult to do on async/timeout errors</li>
-</ul>
-</li>
-</ul>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="application-entry-point">Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we import the server class, and set up the routes to
+be handled by our application. We also want to make ensure the application is closed down as calmly as
+possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
+close any open connections.</p>
+<p>I think we also added the handler(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>) for <code>unhandledRejection</code>
+exceptions so that we print the error to output before exiting (We may also want to log this to any
+notification system)</p>
 </div>
 </div>
 

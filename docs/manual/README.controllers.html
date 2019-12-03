@@ -25,7 +25,14 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/entry.html"><a href="manual/entry.html" data-ice="link">Application Entry Point</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -41,6 +48,7 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -54,6 +62,7 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.test.html"><a href="manual/README.test.html" data-ice="link">Test</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.test.html"><a href="manual/README.test.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 </div>
@@ -73,6 +82,7 @@
 </code></pre><p>To make this endpoint available to the server, we need to export an array of these mappings:</p>
 <pre><code><code class="source-code prettyprint">export default [ map1, map2, ... ];</code>
 </code></pre><h2 id="notes-ideas">Notes/Ideas</h2><ul>
+<li>OPTIONS requests?</li>
 <li>Do not instantiate classes to handle requests. This would be a huge memory overhead!<ul>
 <li>From Walmart interview: class methods bad for memory as we don&apos;t want to instantiate a class in memory. Seems like that isn&apos;t true for static functions though... <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a></li>
 <li>I prefer creating classes with <strong>static</strong>  methods for encapsulation for testing and documentation purposes</li>

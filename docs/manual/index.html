@@ -25,7 +25,14 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/entry.html"><a href="manual/entry.html" data-ice="link">Application Entry Point</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -41,6 +48,7 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -54,6 +62,7 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.test.html"><a href="manual/README.test.html" data-ice="link">Test</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.test.html"><a href="manual/README.test.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 </div>
@@ -61,8 +70,9 @@
 
 <div class="content" data-ice="content"><div class="github-markdown">
   <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="simple-template-api-docs">Simple Template API Docs</h1><ul>
-<li><a href="">Setup</a> - TODO: dependencies and how to install and start development (eventually production?)</li>
-<li><a href="manual/entry.html">Entry Point</a></li>
+<li><a href="manual/README.setup.html">Setup</a> - dependencies and how to install and start development (eventually
+production?)</li>
+<li><a href="manual/README.entry.html">Entry Point</a></li>
 <li><a href="manual/README.controllers.html">Controllers</a> - mappings from url endpoints to methods for handling requests</li>
 <li><a href="manual/README.dataservices.html">Dataservices</a> - classes/methods that connect to external services or datastores</li>
 <li><a href="manual/README.helpers.html">Helpers</a> - classes that are used frequently for interacting with other systems/tools</li>
@@ -77,13 +87,30 @@
     
   <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Application Entry Point</h1><p>The <a href="./manual/../file/src/entry.js.html#lineNumber47">main method</a> is where we import the server class, and set up the routes to
+        <div data-ice="card"><h1>Setup</h1><p>Requires Node 8+ (prefer 10?). Please install this before attempting to run. The easiest way to install and
+manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. After installing
+the correct Node version, you should install all project dependencies with <code>npm install</code>.</p><p>If you have cloned the master branch, then the build should compile and all tests should pass once the
+dependencies have been downloaded and installed. To see compilation only you can use <code>npm run build</code>, or to
+see the tests passing you can use <code>npm run test</code>. To watch the files for changes and rebuild/retest the files
+on changes, you can use <code>npm run start-watch</code>.</p><p>The Note Dataservice Endpoints require MariaDB installed as well. After you have installed mariadb, you will
+need to set up the initial database using mariadb and a SQL program (or scripts if we get working). Once the
+db is set up, the configuration for the database name, user, password and port are in <code>conf/config.yaml</code>.</p><p>Each endpoint that is created should have an OpenAPI representation in <code>openapi.yaml</code>. This file can be used
+to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to help with running/testing the processes
+developed. (Eventually we will autogenerate OpenAPI file from code annotations and create Postman test suites
+based on these descriptions). You can see this at the API link in the docs.</p><h2>Webpack</h2><p>Webpack config file (<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">source</a>)
+is used to manage our webpack build. In this file we setup..</p></div>
+        <a data-ice="link" href="manual/README.setup.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we import the server class, and set up the routes to
 be handled by our application. We also want to make ensure the application is closed down as calmly as
 possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
-close any open connections.</p><p>I think we also added <a href="./manual/../file/src/entry.js.html#lineNumber83">the handler</a> for <code>unhandledRejection</code>
+close any open connections.</p><p>I think we also added the handler(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>) for <code>unhandledRejection</code>
 exceptions so that we print the error to output before exiting (We may also want to log this to any
 notification system)</p></div>
-        <a data-ice="link" href="manual/entry.html"></a>
+        <a data-ice="link" href="manual/README.entry.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
@@ -98,6 +125,7 @@ notification system)</p></div>
 }</code>
 </code></pre><p>To make this endpoint available to the server, we need to export an array of these mappings:</p><pre><code><code class="source-code prettyprint">export default [ map1, map2, ... ];</code>
 </code></pre><h2>Notes/Ideas</h2><ul>
+<li>OPTIONS requests?</li>
 <li>Do not instantiate classes to handle requests. This would be a huge memory overhead!<ul>
 <li>From Walmart interview: class methods bad for memory as we don&apos;t want to instantiate a class in memory. Seems like that isn&apos;t true for static functions though... <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a></li>
 <li>I prefer creating classes with <strong>static</strong>  methods for encapsulation for testing and documentation purposes</li>
@@ -114,14 +142,35 @@ notification system)</p></div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p><h2>Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p><h2>Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p></div>
+        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p><h2>Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p><h2>Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p><h2>Notes/Ideas</h2><ul>
+<li><p>RDBMS vs Document store</p>
+<ul>
+<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
+<li>Document Store:<ul>
+<li>use for settings data and where schema will be changed often</li>
+<li>when changes are small crud, based on users interactions?</li>
+<li>when count and aggregate data is useful to end user</li>
+</ul>
+</li>
+<li>RDBMS:<ul>
+<li>less duplicated data, normalized and stored in specific tables</li>
+<li>useful when data changes often</li>
+<li>seems like more useful for storing fact data in ETL processes?</li>
+<li>Q: phoenix?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</p>
+</li>
+</ul></div>
         <a data-ice="link" href="manual/README.dataservices.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
         <div data-ice="card"><h1>Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p><p><strong>Examples:</strong></p><ul>
-<li>[..] mysql/mardiadb<ul>
+<li>MardiaDB<ul>
 <li>connecting with mariadb server<ul>
 <li>query</li>
 <li>insert</li>
@@ -131,20 +180,10 @@ notification system)</p></div>
 </li>
 </ul>
 </li>
-<li>[..] config<ul>
+<li>Config<ul>
 <li>reading properties from config file</li>
 </ul>
 </li>
-<li>[ ] healthcheck using db and external service configs</li>
-<li>[ ] external-service request (with performance monitoring/caching?)</li>
-<li>[ ] Logging<ul>
-<li>GELF/Kibana?</li>
-<li>Winston/Bunyon</li>
-</ul>
-</li>
-<li>[ ] SendEmail</li>
-<li>[ ] Cron?</li>
-<li>[ ] Authentication?</li>
 </ul><h2>Notes/Ideas</h2><ul>
 <li>Do we want/need to worry about Dependency Injection/Singletons?</li>
 <li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
@@ -154,11 +193,20 @@ notification system)</p></div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Test</h1><p>Testing Bootstrap file finds all of the test files and imports global objects that can be used in all tests
-to simplify each test file. Also creates a sinon Sandbox that is rest before each test for mocking context</p><p>Imports:</p><ul>
+        <div data-ice="card"><h1>Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js">source</a>)
+finds all of the test files and imports global objects that can be used in all tests to simplify each test
+file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
+functions in the test context.</p><p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the
+standard output.</p><p>Global Imports (available in all <code>.spec</code> files):</p><ul>
 <li>Sinon</li>
 <li>expect from Chai</li>
 <li>describe/it/beforeEach from Mocha</li>
+</ul><h2>Notes/Ideas</h2><ul>
+<li>[ ] Look into differences between webpack tests vs <code>npm test</code></li>
+<li>Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
+<li>seems difficult to do on async/timeout errors</li>
+</ul>
+</li>
 </ul></div>
         <a data-ice="link" href="manual/README.test.html"></a>
       </div>

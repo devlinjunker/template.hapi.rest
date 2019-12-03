@@ -25,6 +25,12 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
     <li data-ice="manualNav" class="indent-h1" data-link="manual/entry.html"><a href="manual/entry.html" data-ice="link">Application Entry Point</a></li>
 </ul>
   </div>
@@ -41,6 +47,7 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -59,11 +66,11 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="application-entry-point">Application Entry Point</h1><p>The <a href="./manual/../file/src/entry.js.html#lineNumber47">main method</a> is where we import the server class, and set up the routes to
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="application-entry-point">Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we import the server class, and set up the routes to
 be handled by our application. We also want to make ensure the application is closed down as calmly as
 possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
 close any open connections.</p>
-<p>I think we also added <a href="./manual/../file/src/entry.js.html#lineNumber83">the handler</a> for <code>unhandledRejection</code>
+<p>I think we also added the handler(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>) for <code>unhandledRejection</code>
 exceptions so that we print the error to output before exiting (We may also want to log this to any
 notification system)</p>
 </div>

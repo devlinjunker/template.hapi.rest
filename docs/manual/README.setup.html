@@ -68,25 +68,22 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="test">Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js">source</a>)
-finds all of the test files and imports global objects that can be used in all tests to simplify each test
-file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
-functions in the test context.</p>
-<p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the
-standard output.</p>
-<p>Global Imports (available in all <code>.spec</code> files):</p>
-<ul>
-<li>Sinon</li>
-<li>expect from Chai</li>
-<li>describe/it/beforeEach from Mocha</li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>[ ] Look into differences between webpack tests vs <code>npm test</code></li>
-<li>Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
-<li>seems difficult to do on async/timeout errors</li>
-</ul>
-</li>
-</ul>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="setup">Setup</h1><p>Requires Node 8+ (prefer 10?). Please install this before attempting to run. The easiest way to install and
+manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. After installing
+the correct Node version, you should install all project dependencies with <code>npm install</code>.</p>
+<p>If you have cloned the master branch, then the build should compile and all tests should pass once the
+dependencies have been downloaded and installed. To see compilation only you can use <code>npm run build</code>, or to
+see the tests passing you can use <code>npm run test</code>. To watch the files for changes and rebuild/retest the files
+on changes, you can use <code>npm run start-watch</code>.</p>
+<p>The Note Dataservice Endpoints require MariaDB installed as well. After you have installed mariadb, you will
+need to set up the initial database using mariadb and a SQL program (or scripts if we get working). Once the
+db is set up, the configuration for the database name, user, password and port are in <code>conf/config.yaml</code>.</p>
+<p>Each endpoint that is created should have an OpenAPI representation in <code>openapi.yaml</code>. This file can be used
+to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to help with running/testing the processes
+developed. (Eventually we will autogenerate OpenAPI file from code annotations and create Postman test suites
+based on these descriptions). You can see this at the API link in the docs.</p>
+<h2 id="webpack">Webpack</h2><p>Webpack config file (<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">source</a>)
+is used to manage our webpack build. In this file we setup..</p>
 </div>
 </div>
 

@@ -25,7 +25,14 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/entry.html"><a href="manual/entry.html" data-ice="link">Application Entry Point</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -41,6 +48,7 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -54,6 +62,7 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.test.html"><a href="manual/README.test.html" data-ice="link">Test</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.test.html"><a href="manual/README.test.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 </div>
@@ -62,6 +71,28 @@
 <div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="dataservices">Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p>
 <h2 id="hello-world">Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p>
 <h2 id="note-dataservice">Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p>
+<h2 id="notes-ideas">Notes/Ideas</h2><ul>
+<li><p>RDBMS vs Document store</p>
+<ul>
+<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
+<li>Document Store:<ul>
+<li>use for settings data and where schema will be changed often</li>
+<li>when changes are small crud, based on users interactions?</li>
+<li>when count and aggregate data is useful to end user</li>
+</ul>
+</li>
+<li>RDBMS:<ul>
+<li>less duplicated data, normalized and stored in specific tables</li>
+<li>useful when data changes often</li>
+<li>seems like more useful for storing fact data in ETL processes?</li>
+<li>Q: phoenix?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</p>
+</li>
+</ul>
 </div>
 </div>
 
