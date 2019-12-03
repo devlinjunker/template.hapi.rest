@@ -11,6 +11,7 @@ Helpers are classes that wrap some functionality not associated with an external
       - fetchOne
   - [..] config
     - reading properties from config file
+  - [ ] healthcheck using db and external service configs
   - [ ] external-service request (with performance monitoring/caching?)
   - [ ] Logging
     - GELF/Kibana?
