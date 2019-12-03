@@ -51,13 +51,30 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="application-entry-point">Application Entry Point</h1><p>The <a href="./manual/../file/src/entry.js.html#lineNumber47">main method</a> is where we import the server class, and set up the routes to
-be handled by our application. We also want to make ensure the application is closed down as calmly as
-possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
-close any open connections.</p>
-<p>I think we also added <a href="./manual/../file/src/entry.js.html#lineNumber83">the handler</a> for <code>unhandledRejection</code>
-exceptions so that we print the error to output before exiting (We may also want to log this to any
-notification system)</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="controllers">Controllers</h1><p>Controllers are functions that handle requests to specific endpoint paths:</p>
+<pre><code><code class="source-code prettyprint">function controllerFunction(request) {
+    ... do stuff and return a message ...
+}</code>
+</code></pre><p>The first parameter passed in is the <a href="https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest">HapiRequest</a> object</p>
+<p>We define the mapping from endpoint/method to controller function with an JSON object:</p>
+<pre><code><code class="source-code prettyprint">const map1 = {
+  path: &quot;/endpoint&quot;,
+  method: &quot;GET&quot;, ///
+  controller: controllerFunction
+}</code>
+</code></pre><p>To make this endpoint available to the server, we need to export an array of these mappings:</p>
+<pre><code><code class="source-code prettyprint">export default [ map1, map2, ... ];</code>
+</code></pre><h2 id="notes-">Notes:</h2><ul>
+<li>Do not instantiate classes to handle requests. This would be a huge memory overhead!<ul>
+<li>From Walmart interview: class methods bad for memory as we don&apos;t want to instantiate a class in memory. Seems like that isn&apos;t true for static functions though... <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a></li>
+<li>I prefer creating classes with <strong>static</strong>  methods for encapsulation for testing and documentation purposes</li>
+</ul>
+</li>
+<li>DO NOT USE SHARED CLASS PROPERTIES/STATEFUL VARIABLES IN CONTROLLER FUNCTIONS<ul>
+<li>These functions need to be stateless.</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 

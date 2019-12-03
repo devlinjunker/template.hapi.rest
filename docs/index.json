@@ -1801,7 +1801,7 @@
   },
   {
     "kind": "manualIndex",
-    "content": "# Simple Template API Docs\n\n- [Entry Point](manual/entry.html)\n- [Controllers](manual/_controllers.html) - mappings from url endpoints to methods for handling requests\n- [Dataservices](manual/_dataservices.html) - classes/methods that connect to external services or datastores\n- [Helpers](manual/_helpers.html) - classes that are used frequently for interacting with other systems/tools\n\n.\n",
+    "content": "# Simple Template API Docs\n\n- [Entry Point](manual/entry.html)\n- [Controllers](manual/README.controllers.html) - mappings from url endpoints to methods for handling requests\n- [Dataservices](manual/README.dataservices.html) - classes/methods that connect to external services or datastores\n- [Helpers](manual/README.helpers.html) - classes that are used frequently for interacting with other systems/tools\n\n.\n",
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/README.md",
     "name": "./src/README.md",
     "static": true,
@@ -1817,24 +1817,24 @@
   },
   {
     "kind": "manual",
-    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/_controllers.md",
-    "name": "./src/controllers/_controllers.md",
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/controllers/README.controllers.md",
+    "name": "./src/controllers/README.controllers.md",
     "content": "# Controllers\n\nControllers are functions that handle requests to specific endpoint paths:\n\n```\nfunction controllerFunction(request) {\n    ... do stuff and return a message ...\n}\n```\n\nThe first parameter passed in is the [HapiRequest](https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest) object\n\nWe define the mapping from endpoint/method to controller function with an JSON object:\n\n```\nconst map1 = {\n  path: \"/endpoint\",\n  method: \"GET\", ///\n  controller: controllerFunction\n}\n```\n\nTo make this endpoint available to the server, we need to export an array of these mappings:\n\n```\nexport default [ map1, map2, ... ];\n```\n\n\n## Notes:\n - Do not instantiate classes to handle requests. This would be a huge memory overhead!\n    -  From Walmart interview: class methods bad for memory as we don't want to instantiate a class in memory. Seems like that isn't true for static functions though... https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static\n    - I prefer creating classes with __static__  methods for encapsulation for testing and documentation purposes\n - DO NOT USE SHARED CLASS PROPERTIES/STATEFUL VARIABLES IN CONTROLLER FUNCTIONS\n    - These functions need to be stateless.\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/_dataservices.md",
-    "name": "./src/dataservices/_dataservices.md",
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/dataservices/README.dataservices.md",
+    "name": "./src/dataservices/README.dataservices.md",
     "content": "# Dataservices\n\nDataservices communicate with storage systems or external APIs to fetch/store data.\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/helpers/_helpers.md",
-    "name": "./src/helpers/_helpers.md",
+    "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/helpers/README.helpers.md",
+    "name": "./src/helpers/README.helpers.md",
     "content": "# Helpers\n\nHelpers are classes that wrap some functionality not associated with an external service\n\n**Examples:**\n  - [..] mysql/mardiadb\n    - connecting with mariadb server\n      - query\n      - insert\n      - fetch\n      - fetchOne\n  - [..] config\n    - reading properties from config file\n  - [ ] external-service request (with performance monitoring/caching?)\n  - [ ] Logging\n    - GELF/Kibana?\n    - Winston/Bunyon\n  - [ ] SendEmail\n  - [ ] Cron?\n  - [ ] Authentication?\n\n\n## Notes\n  - Do we want/need to worry about Dependency Injection/Singletons?\n  - IDEA: Move Server into helpers as `server.helper.js`?\n",
     "static": true,
     "access": "public"

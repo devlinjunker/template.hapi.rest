@@ -51,13 +51,37 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="application-entry-point">Application Entry Point</h1><p>The <a href="./manual/../file/src/entry.js.html#lineNumber47">main method</a> is where we import the server class, and set up the routes to
-be handled by our application. We also want to make ensure the application is closed down as calmly as
-possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
-close any open connections.</p>
-<p>I think we also added <a href="./manual/../file/src/entry.js.html#lineNumber83">the handler</a> for <code>unhandledRejection</code>
-exceptions so that we print the error to output before exiting (We may also want to log this to any
-notification system)</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="helpers">Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>[..] mysql/mardiadb<ul>
+<li>connecting with mariadb server<ul>
+<li>query</li>
+<li>insert</li>
+<li>fetch</li>
+<li>fetchOne</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[..] config<ul>
+<li>reading properties from config file</li>
+</ul>
+</li>
+<li>[ ] external-service request (with performance monitoring/caching?)</li>
+<li>[ ] Logging<ul>
+<li>GELF/Kibana?</li>
+<li>Winston/Bunyon</li>
+</ul>
+</li>
+<li>[ ] SendEmail</li>
+<li>[ ] Cron?</li>
+<li>[ ] Authentication?</li>
+</ul>
+<h2 id="notes">Notes</h2><ul>
+<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
+<li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
+</ul>
 </div>
 </div>
 
