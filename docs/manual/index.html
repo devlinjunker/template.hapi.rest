@@ -32,20 +32,22 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.controllers.html"><a href="manual/README.controllers.html" data-ice="link">Controllers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.controllers.html"><a href="manual/README.controllers.html#notes-" data-ice="link">Notes:</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.controllers.html"><a href="manual/README.controllers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes" data-ice="link">Notes</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 </div>
@@ -87,7 +89,7 @@ notification system)</p></div>
   controller: controllerFunction
 }</code>
 </code></pre><p>To make this endpoint available to the server, we need to export an array of these mappings:</p><pre><code><code class="source-code prettyprint">export default [ map1, map2, ... ];</code>
-</code></pre><h2>Notes:</h2><ul>
+</code></pre><h2>Notes/Ideas</h2><ul>
 <li>Do not instantiate classes to handle requests. This would be a huge memory overhead!<ul>
 <li>From Walmart interview: class methods bad for memory as we don&apos;t want to instantiate a class in memory. Seems like that isn&apos;t true for static functions though... <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a></li>
 <li>I prefer creating classes with <strong>static</strong>  methods for encapsulation for testing and documentation purposes</li>
@@ -103,7 +105,7 @@ notification system)</p></div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p></div>
+        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p><h2>Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p><h2>Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p></div>
         <a data-ice="link" href="manual/README.dataservices.html"></a>
       </div>
     </div>
@@ -133,7 +135,7 @@ notification system)</p></div>
 <li>[ ] SendEmail</li>
 <li>[ ] Cron?</li>
 <li>[ ] Authentication?</li>
-</ul><h2>Notes</h2><ul>
+</ul><h2>Notes/Ideas</h2><ul>
 <li>Do we want/need to worry about Dependency Injection/Singletons?</li>
 <li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
 </ul></div>

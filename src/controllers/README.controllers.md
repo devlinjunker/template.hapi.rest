@@ -27,7 +27,7 @@ export default [ map1, map2, ... ];
 ```
 
 
-## Notes:
+## Notes/Ideas
  - Do not instantiate classes to handle requests. This would be a huge memory overhead!
     -  From Walmart interview: class methods bad for memory as we don't want to instantiate a class in memory. Seems like that isn't true for static functions though... https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
     - I prefer creating classes with __static__  methods for encapsulation for testing and documentation purposes

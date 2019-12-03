@@ -9,9 +9,9 @@
           "index": "./src/README.md",
           "files": [
             "./src/entry.md",
-            "./src/controllers/_controllers.md",
-            "./src/dataservices/_dataservices.md",
-            "./src/helpers/_helpers.md"
+            "./src/controllers/README.controllers.md",
+            "./src/dataservices/README.dataservices.md",
+            "./src/helpers/README.helpers.md"
           ]
         },
         "test": {
