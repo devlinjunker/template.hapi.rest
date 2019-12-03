@@ -103,7 +103,7 @@ How to use this template to create a quick HTTP REST server:
  - [..] (^) Simple DB endpoint  
     - [..] PostgreSQL or MariaDB
       - https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
-      - [ ] MySQL scripts in repo to init database... update schema later...
+      - [ ] SQL scripts in repo to init database... update schema later...
  - [..] (^) Config.yaml (and Env config file?)
     - port
     - database
@@ -111,6 +111,8 @@ How to use this template to create a quick HTTP REST server:
     - [ ] overrides
  - [ ] (^) Healthcheck
     - Link to in docs
+    - MariaDB
+    - External Service
  - [ ] (^) cleanup old builds
  - [ ] (-) Githooks for generating reports/linting  
     - Check if READMEs exist at each directory level?
