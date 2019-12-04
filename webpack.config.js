@@ -24,7 +24,6 @@ const config =  {
 
   target: 'node',
   externals: [nodeExternals()],
-
   node: {
     __dirname: true
   },
@@ -35,6 +34,27 @@ const config =  {
     alias: {
 
     }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'eslint-loader'], // eslint will only run on files imported by the project
+      },
+      // Not sure this is what we want....
+      // {
+      //   test: /\.spec\.js$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //     // Run tests on compile
+      //       loader: 'mocha-loader',
+      //     },
+      //   ]
+      // }
+    ]
   },
 
   plugins: [
@@ -58,28 +78,7 @@ const config =  {
       //    how is output of this when exceptions thrown vs if we run the test files indidually? (mocha.opts)
       onBuildExit: 'mocha --env.unit_test ./dist/test.bundle.js'
     }),
-  ],
-
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'], // eslint will only run on files imported by the project
-      },
-      // Not sure this is what we want....
-      // {
-      //   test: /\.spec\.js$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     {
-      //     // Run tests on compile
-      //       loader: 'mocha-loader',
-      //     },
-      //   ]
-      // }
-    ]
-  }
+  ]
 };
 
 module.exports = config;

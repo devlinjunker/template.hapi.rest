@@ -111,14 +111,21 @@ How to use this template to create a quick HTTP REST server:
     - [ ] overrides
  - [ ] (^) Healthcheck
     - Link to in docs
+    - Server status
     - MariaDB
     - External Service
+    - Version?
  - [ ] (^) cleanup old builds
  - [ ] (-) Githooks for generating reports/linting  
     - Check if READMEs exist at each directory level?
     - Run `doc` command before commit on develop branch
     - Check if spec files exist (except where special comment in file header)
+    - Run tests and cancel on tests fail
  - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto
+ - [ ] (v) Test coverage saved in spec files  
+ - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
+ - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
+   - Read test results report on webpage in docs site
  - [ ] (^) Typescript/Express router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
@@ -128,8 +135,8 @@ How to use this template to create a quick HTTP REST server:
     - [ ] Automatically find controller files in entry rather than need to reference  
     - [ ] Proper error messages/codes from endpoints
        - https://www.restapitutorial.com/httpstatuscodes.html
-     - [ ] MongoDB
-       - for quick development? (objects on the fly)
+    - [ ] MongoDB
+      - for quick development? (objects on the fly)
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
     - [..] mysql
@@ -158,9 +165,6 @@ How to use this template to create a quick HTTP REST server:
     - [x] fix `__dirname` param in webpack/node with config and solve docs paths
  - [..] (v) ESDoc plugins https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b  
  - [ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing http://cucumber.github.io/cucumber-js/  
- - [ ] (v) Test coverage saved in spec files  
- - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
- - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
  - [x] (v) ESDoc Manual with src READMEs https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual  
  - ~~[ ] Docsify?~~  
 
@@ -168,7 +172,10 @@ How to use this template to create a quick HTTP REST server:
 
  - [..] GET/POST/PUT/DELETE Note endpoints
  - [x] Serve Docs
-    - [ ] (v) only in development
+    - [x] (v) ~only in development~ with config setting
+ - [ ] Websocket
+    - Log output to website & file instead of console
+      - config.yaml settings
  - [ ] External API endpoint
     - Weather (in UI?)
     - (Garbage UPC) Map to information/notes?

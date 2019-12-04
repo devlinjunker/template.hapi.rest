@@ -10,12 +10,12 @@ standard output.
 
 
 Global Imports (available in all `.spec` files):
- - Sinon
- - expect from Chai
- - describe/it/beforeEach from Mocha
+ - `sinonSandbox` from [Sinon](https://sinonjs.org/)
+ - `expect` from [Chai](https://www.chaijs.com/)
+ - `describe`/`it`/`beforeEach` from [Mocha](https://mochajs.org/)
 
 
 ## Notes/Ideas
   - [ ] Look into differences between webpack tests vs `npm test`
-  - Mocha settings/plugin for displaying filepath in output of tests (when erroring?)
+  - **IDEA:** Mocha settings/plugin for displaying filepath in output of tests (when erroring?)
     - seems difficult to do on async/timeout errors

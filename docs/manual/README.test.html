@@ -27,12 +27,14 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.entry.html"><a href="manual/README.entry.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -76,13 +78,13 @@ functions in the test context.</p>
 standard output.</p>
 <p>Global Imports (available in all <code>.spec</code> files):</p>
 <ul>
-<li>Sinon</li>
-<li>expect from Chai</li>
-<li>describe/it/beforeEach from Mocha</li>
+<li><code>sinonSandbox</code> from <a href="https://sinonjs.org/">Sinon</a></li>
+<li><code>expect</code> from <a href="https://www.chaijs.com/">Chai</a></li>
+<li><code>describe</code>/<code>it</code>/<code>beforeEach</code> from <a href="https://mochajs.org/">Mocha</a></li>
 </ul>
 <h2 id="notes-ideas">Notes/Ideas</h2><ul>
 <li>[ ] Look into differences between webpack tests vs <code>npm test</code></li>
-<li>Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
+<li><strong>IDEA:</strong> Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
 <li>seems difficult to do on async/timeout errors</li>
 </ul>
 </li>

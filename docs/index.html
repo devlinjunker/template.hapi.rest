@@ -135,7 +135,7 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[..] (^) Simple DB endpoint  <ul>
 <li>[..] PostgreSQL or MariaDB<ul>
 <li><a href="https://mariadb.com/kb/en/library/connector-nodejs-promise-api/">https://mariadb.com/kb/en/library/connector-nodejs-promise-api/</a></li>
-<li>[ ] MySQL scripts in repo to init database... update schema later...</li>
+<li>[ ] SQL scripts in repo to init database... update schema later...</li>
 </ul>
 </li>
 </ul>
@@ -149,6 +149,10 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </li>
 <li>[ ] (^) Healthcheck<ul>
 <li>Link to in docs</li>
+<li>Server status</li>
+<li>MariaDB</li>
+<li>External Service</li>
+<li>Version?</li>
 </ul>
 </li>
 <li>[ ] (^) cleanup old builds</li>
@@ -156,9 +160,16 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>Check if READMEs exist at each directory level?</li>
 <li>Run <code>doc</code> command before commit on develop branch</li>
 <li>Check if spec files exist (except where special comment in file header)</li>
+<li>Run tests and cancel on tests fail</li>
 </ul>
 </li>
 <li>[ ] (-) Automatic Semantic Versioning (Based on PRs?) <a href="https://github.com/intuit/auto">https://github.com/intuit/auto</a></li>
+<li>[ ] (v) Test coverage saved in spec files  </li>
+<li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
+<li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  <ul>
+<li>Read test results report on webpage in docs site</li>
+</ul>
+</li>
 <li>[ ] (^) Typescript/Express router<ul>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
 <li>Headers</li>
@@ -171,10 +182,10 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </li>
 <li>[ ] Automatically find controller files in entry rather than need to reference  </li>
 <li>[ ] Proper error messages/codes from endpoints<ul>
-<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a><ul>
-<li>[ ] MongoDB</li>
+<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a></li>
 </ul>
 </li>
+<li>[ ] MongoDB<ul>
 <li>for quick development? (objects on the fly)</li>
 </ul>
 </li>
@@ -216,16 +227,20 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </li>
 <li>[..] (v) ESDoc plugins <a href="https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b">https://medium.com/trabe/understanding-esdoc-plugins-d9ee9095d98b</a>  </li>
 <li>[ ] (v) Cucumber.js for BDD(Behavior Driven Development) testing <a href="http://cucumber.github.io/cucumber-js/">http://cucumber.github.io/cucumber-js/</a>  </li>
-<li>[ ] (v) Test coverage saved in spec files  </li>
-<li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
-<li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  </li>
 <li>[x] (v) ESDoc Manual with src READMEs <a href="https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual">https://doc.esdoc.org/github.com/esdoc/esdoc/manual/feature.html#integration-manual</a>  </li>
 <li><del>[ ] Docsify?</del>  </li>
 </ul>
 <h3 id="application">Application</h3><ul>
 <li>[..] GET/POST/PUT/DELETE Note endpoints</li>
 <li>[x] Serve Docs<ul>
-<li>[ ] (v) only in development</li>
+<li>[x] (v) ~only in development~ with config setting</li>
+</ul>
+</li>
+<li>[ ] Websocket<ul>
+<li>Log output to website &amp; file instead of console<ul>
+<li>config.yaml settings</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>[ ] External API endpoint<ul>

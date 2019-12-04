@@ -3,7 +3,7 @@
  */
 import path from 'path';
 import YAML from 'yamljs';
-import fs from 'fs';
+import fs from 'fs'; // eslint-disable-line
 
 /**
  * YAML file content

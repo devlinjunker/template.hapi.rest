@@ -27,12 +27,14 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.entry.html"><a href="manual/README.entry.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -92,7 +94,16 @@
 <li>These functions need to be stateless.</li>
 </ul>
 </li>
-<li>Catch any exceptions that don&apos;t have response code and log or email indicating unexpected state</li>
+<li><strong>IDEA:</strong> Catch any exceptions that don&apos;t have response code and log or email indicating unexpected state</li>
+<li><strong>IDEA:</strong> generic CRUD endpoints with a flexible storage system for prototypes<ul>
+<li>/{objectType}/create</li>
+<li>/{objectType}/read/{id}</li>
+<li>/{objectType}/update/{id}</li>
+<li>/{objectType}/delete/{id}</li>
+<li>/{objectType}/all?filters?fields?</li>
+<li>/{objectType}/search?q</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

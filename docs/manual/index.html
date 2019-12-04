@@ -27,12 +27,14 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.entry.html"><a href="manual/README.entry.html" data-ice="link">Application Entry Point</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.entry.html"><a href="manual/README.entry.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -87,29 +89,48 @@ production?)</li>
     
   <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Setup</h1><p>Requires Node 8+ (prefer 10?). Please install this before attempting to run. The easiest way to install and
-manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. After installing
-the correct Node version, you should install all project dependencies with <code>npm install</code>.</p><p>If you have cloned the master branch, then the build should compile and all tests should pass once the
-dependencies have been downloaded and installed. To see compilation only you can use <code>npm run build</code>, or to
-see the tests passing you can use <code>npm run test</code>. To watch the files for changes and rebuild/retest the files
-on changes, you can use <code>npm run start-watch</code>.</p><p>The Note Dataservice Endpoints require MariaDB installed as well. After you have installed mariadb, you will
-need to set up the initial database using mariadb and a SQL program (or scripts if we get working). Once the
-db is set up, the configuration for the database name, user, password and port are in <code>conf/config.yaml</code>.</p><p>Each endpoint that is created should have an OpenAPI representation in <code>openapi.yaml</code>. This file can be used
-to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to help with running/testing the processes
-developed. (Eventually we will autogenerate OpenAPI file from code annotations and create Postman test suites
-based on these descriptions). You can see this at the API link in the docs.</p><h2>Webpack</h2><p>Webpack config file (<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">source</a>)
-is used to manage our webpack build. In this file we setup..</p></div>
+        <div data-ice="card"><h1>Setup</h1><p><strong>Requires Node 8+</strong> (prefer 10?). Please install this before attempting to run. The easiest way to install and
+manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>.</p><p>Use <code>nvm use 8</code> to switch node versions after installing a new Node version. <strong>Then you should install all
+project dependencies with</strong> <code>npm install</code>. This should install the Hapi Server Framework, MariaDB and other
+libraries used in this project.</p><p>If you have cloned the master branch, then the build should compile and all tests should pass once the
+dependencies have been downloaded and installed. To only compile the server, use <code>npm run build</code>, or you can
+just run the tests with <code>npm run test</code>. <strong>To watch the files for changes and rebuild/retest the files
+on changes, you can use</strong> <code>npm run start-watch</code>.</p><p>The Note Controller/Dataservice Endpoints require MariaDB installed to store the notes passed. After you
+have installed mariadb, you will need to set up the initial database using mariadb and a SQL program (or
+scripts if we get working). <strong>Once the db is set up, the configuration for the database name, user, password
+and port are set in</strong> <code>conf/config.yaml</code>
+(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml">github</a>).</p><p><strong>Each endpoint that is created should have an OpenAPI representation in</strong> <code>openapi.yaml</code>. This file can be
+used to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to help with running/testing the processes
+developed. There is a Swagger application at the API link in the docs or can view the raw
+file(<a href="./manual/../swagger/openapi.yaml">source</a>) (Eventually we will autogenerate OpenAPI file from code annotations
+and create Postman test suites based on these files)</p><h2>Webpack</h2><p>Webpack config file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">github</a>)
+is used to manage our webpack build to compile the application. In this file we:</p><ul>
+<li>designate the files that will be created with the build</li>
+<li>define the source mapping that will be generated with the output (this should be changed in prod)</li>
+<li>set the target environment and available globals</li>
+<li>define where we should look to import files</li>
+<li>and set up modules/plugins for the build<ul>
+<li>Babel and ESLint Loaders</li>
+<li>Flow Integration with Webpack</li>
+<li>Hot Module Replacement for rebuilding on file changes</li>
+<li>Webpack Shell Plugin to re-run Mocha tests on file changes/rebuild</li>
+</ul>
+</li>
+</ul><h2>Notes/Ideas</h2><ul>
+<li><strong>IDEA:</strong>  init scripts with installation and SQL setup</li>
+</ul></div>
         <a data-ice="link" href="manual/README.setup.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we import the server class, and set up the routes to
-be handled by our application. We also want to make ensure the application is closed down as calmly as
-possible when the user asks, so we make sure to nicely ask our server to shut itself and then ask mariadb to
-close any open connections.</p><p>I think we also added the handler(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>) for <code>unhandledRejection</code>
-exceptions so that we print the error to output before exiting (We may also want to log this to any
-notification system)</p></div>
+        <div data-ice="card"><h1>Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we instantiate the server wrapper
+class, and set up the routes to be handled by our application. We also want to make ensure the application is
+closed down as calmly as possible when the user asks, so we make sure to nicely ask our server to shut itself
+down and then ask mariadb to close any open connections(<a href="./manual/../file/src/entry.js.html#lineNumber71">source</a>).</p><p>I think we also added the handler for <code>unhandledRejection</code> exceptions(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>)
+so that we print the error to output before exiting (We may also want to log this to any notification system)</p><h2>Notes/Ideas</h2><ul>
+<li><strong>IDEA:</strong> Generic Handler/Middleware that creates Request Details Object to pass to each controller</li>
+</ul></div>
         <a data-ice="link" href="manual/README.entry.html"></a>
       </div>
     </div>
@@ -135,7 +156,16 @@ notification system)</p></div>
 <li>These functions need to be stateless.</li>
 </ul>
 </li>
-<li>Catch any exceptions that don&apos;t have response code and log or email indicating unexpected state</li>
+<li><strong>IDEA:</strong> Catch any exceptions that don&apos;t have response code and log or email indicating unexpected state</li>
+<li><strong>IDEA:</strong> generic CRUD endpoints with a flexible storage system for prototypes<ul>
+<li>/{objectType}/create</li>
+<li>/{objectType}/read/{id}</li>
+<li>/{objectType}/update/{id}</li>
+<li>/{objectType}/delete/{id}</li>
+<li>/{objectType}/all?filters?fields?</li>
+<li>/{objectType}/search?q</li>
+</ul>
+</li>
 </ul></div>
         <a data-ice="link" href="manual/README.controllers.html"></a>
       </div>
@@ -143,8 +173,8 @@ notification system)</p></div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
         <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p><h2>Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p><h2>Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p><h2>Notes/Ideas</h2><ul>
-<li><p>RDBMS vs Document store</p>
-<ul>
+<li>RDBMS vs Document store<ul>
+<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
 <li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
 <li>Document Store:<ul>
 <li>use for settings data and where schema will be changed often</li>
@@ -160,8 +190,6 @@ notification system)</p></div>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</p>
 </li>
 </ul></div>
         <a data-ice="link" href="manual/README.dataservices.html"></a>
@@ -186,7 +214,7 @@ notification system)</p></div>
 </li>
 </ul><h2>Notes/Ideas</h2><ul>
 <li>Do we want/need to worry about Dependency Injection/Singletons?</li>
-<li>IDEA: Move Server into helpers as <code>server.helper.js</code>?</li>
+<li><strong>IDEA:</strong> Move Server into helpers as <code>server.helper.js</code>?</li>
 </ul></div>
         <a data-ice="link" href="manual/README.helpers.html"></a>
       </div>
@@ -198,12 +226,12 @@ finds all of the test files and imports global objects that can be used in all t
 file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
 functions in the test context.</p><p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the
 standard output.</p><p>Global Imports (available in all <code>.spec</code> files):</p><ul>
-<li>Sinon</li>
-<li>expect from Chai</li>
-<li>describe/it/beforeEach from Mocha</li>
+<li><code>sinonSandbox</code> from <a href="https://sinonjs.org/">Sinon</a></li>
+<li><code>expect</code> from <a href="https://www.chaijs.com/">Chai</a></li>
+<li><code>describe</code>/<code>it</code>/<code>beforeEach</code> from <a href="https://mochajs.org/">Mocha</a></li>
 </ul><h2>Notes/Ideas</h2><ul>
 <li>[ ] Look into differences between webpack tests vs <code>npm test</code></li>
-<li>Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
+<li><strong>IDEA:</strong> Mocha settings/plugin for displaying filepath in output of tests (when erroring?)<ul>
 <li>seems difficult to do on async/timeout errors</li>
 </ul>
 </li>
