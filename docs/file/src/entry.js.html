@@ -58,10 +58,14 @@ import noteRoutes from &apos;./controllers/note.controller.js&apos;;
  * @type {Array&lt;EndpointConfig&gt;}
  */
 const routes: Array&lt;EndpointConfig&gt; = infoRoutes.concat(helloRoutes, noteRoutes);
+routes.forEach((route: EndpointConfig) =&gt; {
+  route.path = CONFIG.PATHS.api + route.path;
+});
+
 if (CONFIG.SERVER.docs) {
   routes.push({
     method: &apos;GET&apos;,
-    path: &apos;/openapi.yaml&apos;,
+    path: CONFIG.PATHS.api,
     controller: {
       file: path.resolve(__dirname, &apos;../openapi.yaml&apos;)
     }
@@ -83,11 +87,15 @@ if (CONFIG.SERVER.docs) {
  * Entry point to run the server
  * @return {undefined} no return
  */
-export async function main() {
+export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
-  const server: Server = new Server();
+  const server: Server = new Server({
+    name: CONFIG.SERVER.name,
+    host: CONFIG.SERVER.host,
+    port: CONFIG.SERVER.port
+  });
 
   await server.run();
 

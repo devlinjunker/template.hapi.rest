@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/base/server.js",
-    "content": "/**\n * @flow\n */\n/* eslint-disable import/first */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\n\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\nimport Inert from '@hapi/inert';\nimport CONFIG from '../helpers/config.helper.js';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller?: any; // eslint-disable-line\n}\n\n/**\n * Hapi Handler for returning messages or setting error codes during requests\n * @type {HapiHandler}\n */\nexport interface HapiHandler {\n  code: Function; // eslint-disable-line\n  response: Function; // eslint-disable-line\n}\n\n/**\n * Request Error Class to help set a response code and message to display to the user\n * @type {RequestError}\n */\nexport class RequestError extends Error {\n  code: number;\n\n  /**\n   * Create a new Request Error\n   * @param {string} msg  message to display when returned\n   * @param {number} code response status code to set in Hapi Response\n   */\n  constructor(msg: string, code: number) {\n    super(msg);\n    this.code = code;\n  }\n}\n\n/**\n * Request Object that is passed to the controller function as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n * @type {HapiRequest}\n */\nexport interface HapiRequest {\n  server: any; // eslint-disable-line\n  headers: any; // eslint-disable-line\n  // from path\n  params: any; // eslint-disable-line\n  // Body of a POST request\n  payload: any; // eslint-disable-line\n};\n\n\n/**\n * Abstraction to manage running the server.\n * Instantiates on application server start up inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server}\n */\nexport class Server {\n  server: any; // eslint-disable-line\n\n  /**\n   * Server Constructor\n   */\n  constructor() {\n    this.server = Hapi.server({\n      port: CONFIG.SERVER.port,\n      host: CONFIG.SERVER.host,\n    });\n  }\n\n  /**\n   * Shutdown the Hapi Server Properly\n   * @param  {Function} callback callback to run after server has shutdown\n   * @return {undefined}            no return\n   */\n  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types\n    // TODO: Set Shutdown Timeout from config\n    this.server.stop({ timeout: 10000 }).then((err: Error) => {\n      if (err) {\n        // TODO: Log Hapi Shutdown Error\n      }\n      callback(err);\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('\\n\\n' + CONFIG.SERVER.name + ' started on ' + this.server.info.port + '\\n\\n');\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n\n    // Serve Docs with OpenAPI and Swagger UI\n    // visit at http://localhost:3333/docs/swagger/index.html\n    await this.server.register({\n      plugin: Inert\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {EndpointConfig} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<EndpointConfig>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i: number = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
+    "content": "/**\n * @flow\n */\n/* eslint-disable import/first */\nrequire('source-map-support/register');\nrequire('@babel/register');\nrequire('@babel/polyfill');\n\nimport Pino from 'hapi-pino';\nimport Hapi from '@hapi/hapi';\nimport Inert from '@hapi/inert';\n\n/**\n * Endpoint that can be created, should have a http method, path and controller that resolves when\n * the path is hit\n * @param {string} method     HTTP method the endpoint must be called with to trigger controller\n * @param {string} path       URL path of endpoint\n * @param {Function} controller Handler function that is triggered when endpoint is hit\n */\nexport interface EndpointConfig {\n  method: string;\n  path: string;\n  controller?: any; // eslint-disable-line\n}\n\n/**\n * Hapi Handler for returning messages or setting error codes during requests\n * @type {HapiHandler}\n */\nexport interface HapiHandler {\n  code: Function; // eslint-disable-line\n  response: Function; // eslint-disable-line\n}\n\n/**\n * Request Error Class to help set a response code and message to display to the user\n * @type {RequestError}\n */\nexport class RequestError extends Error {\n  code: number;\n\n  /**\n   * Create a new Request Error\n   * @param {string} msg  message to display when returned\n   * @param {number} code response status code to set in Hapi Response\n   */\n  constructor(msg: string, code: number) {\n    super(msg);\n    this.code = code;\n  }\n}\n\n/**\n * Request Object that is passed to the controller function as the first parameter\n * from https://github.com/hapijs/hapi/blob/master/API.md#request\n * @type {HapiRequest}\n */\nexport interface HapiRequest {\n  server: any; // eslint-disable-line\n  headers: any; // eslint-disable-line\n  // from path\n  params: any; // eslint-disable-line\n  // Body of a POST request\n  payload: any; // eslint-disable-line\n};\n\n\nexport interface ServerParams {\n  name: string;\n  port: number;\n  host: string;\n}\n\n/**\n * Abstraction to manage running the server.\n * Instantiates on application server start up inside `entry.js` file or wherever the intial \"main\" script is\n *\n * @type {Server}\n */\nexport class Server {\n  server: any; // eslint-disable-line\n  name: string;\n\n  /**\n   * Server Constructor\n   */\n  constructor({ name, port, host }: ServerParams) {\n    this.name = name || 'Server';\n    this.server = Hapi.server({\n      port,\n      host\n    });\n  }\n\n  /**\n   * Shutdown the Hapi Server Properly\n   * @param  {Function} callback callback to run after server has shutdown\n   * @return {undefined}            no return\n   */\n  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types\n    // TODO: Set Shutdown Timeout from config\n    this.server.stop({ timeout: 10000 }).then((err: Error) => {\n      if (err) {\n        // TODO: Log Hapi Shutdown Error\n      }\n      callback(err);\n    });\n  }\n\n  /**\n   * Starts the server and registers any plugins\n   * @return {Promise} Resolves once server has started\n   */\n  async run() {\n    await this.server.start();\n    process.stdout.write('\\n\\n' + this.name + ' started on ' + this.server.info.port + '\\n\\n');\n\n    await this.server.register({\n      plugin: Pino,\n      options: {\n        prettyPrint: false,\n        logEvents: ['response']\n      }\n    });\n\n    // Serve Docs with OpenAPI and Swagger UI\n    // visit at http://localhost:3333/docs/swagger/index.html\n    await this.server.register({\n      plugin: Inert\n    });\n  }\n\n\n  /**\n   * Adds an endpoint at the path given handled by the controller\n   * @param {EndpointConfig} endpoint configuration\n   * @return {undefined}\n   */\n  addEndpoint({ method, path, controller }: EndpointConfig) {\n    this.server.route({\n      method,\n      path,\n      handler: controller,\n      options: {\n        cors: true\n      }\n    });\n  }\n\n  /**\n   * Adds the endpoints given to the server\n   * @param {Array<EndpointConfig>} routes Routes to add to the server\n   * @returns {undefined}\n   */\n  addEndpoints(routes: Array<EndpointConfig>) {\n    for (let i: number = 0; i < routes.length; i++) {\n      this.addEndpoint(routes[i]);\n    }\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/base/server.js",
     "access": "public",
@@ -586,7 +586,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": "{RequestError}",
     "description": "Request Error Class to help set a response code and message to display to the user",
-    "lineNumber": 31,
+    "lineNumber": 30,
     "type": {
       "nullable": null,
       "types": [
@@ -611,7 +611,7 @@
     "longname": "src/base/server.js~RequestError#constructor",
     "access": "public",
     "description": "Create a new Request Error",
-    "lineNumber": 38,
+    "lineNumber": 37,
     "params": [
       {
         "nullable": null,
@@ -644,7 +644,7 @@
     "longname": "src/base/server.js~RequestError#code",
     "access": "public",
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 39,
     "undocument": true,
     "type": {
       "types": [
@@ -664,7 +664,7 @@
     "importPath": "HapiServer/src/base/server.js",
     "importStyle": "{Server}",
     "description": "Abstraction to manage running the server.\nInstantiates on application server start up inside `entry.js` file or wherever the intial \"main\" script is",
-    "lineNumber": 58,
+    "lineNumber": 56,
     "type": {
       "nullable": null,
       "types": [
@@ -686,18 +686,18 @@
     "longname": "src/base/server.js~Server#constructor",
     "access": "public",
     "description": "Server Constructor",
-    "lineNumber": 64
+    "lineNumber": 61
   },
   {
     "__docId__": 54,
     "kind": "member",
-    "name": "server",
+    "name": "name",
     "memberof": "src/base/server.js~Server",
     "static": false,
-    "longname": "src/base/server.js~Server#server",
+    "longname": "src/base/server.js~Server#name",
     "access": "public",
     "description": null,
-    "lineNumber": 65,
+    "lineNumber": 62,
     "undocument": true,
     "type": {
       "types": [
@@ -707,6 +707,23 @@
   },
   {
     "__docId__": 55,
+    "kind": "member",
+    "name": "server",
+    "memberof": "src/base/server.js~Server",
+    "static": false,
+    "longname": "src/base/server.js~Server#server",
+    "access": "public",
+    "description": null,
+    "lineNumber": 63,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
     "kind": "method",
     "name": "shutdown",
     "memberof": "src/base/server.js~Server",
@@ -716,7 +733,7 @@
     "longname": "src/base/server.js~Server#shutdown",
     "access": "public",
     "description": "Shutdown the Hapi Server Properly",
-    "lineNumber": 76,
+    "lineNumber": 75,
     "params": [
       {
         "nullable": null,
@@ -739,7 +756,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "method",
     "name": "run",
     "memberof": "src/base/server.js~Server",
@@ -749,7 +766,7 @@
     "longname": "src/base/server.js~Server#run",
     "access": "public",
     "description": "Starts the server and registers any plugins",
-    "lineNumber": 91,
+    "lineNumber": 90,
     "return": {
       "nullable": null,
       "types": [
@@ -761,7 +778,7 @@
     "params": []
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "method",
     "name": "addEndpoint",
     "memberof": "src/base/server.js~Server",
@@ -771,7 +788,7 @@
     "longname": "src/base/server.js~Server#addEndpoint",
     "access": "public",
     "description": "Adds an endpoint at the path given handled by the controller",
-    "lineNumber": 115,
+    "lineNumber": 114,
     "params": [
       {
         "nullable": null,
@@ -794,7 +811,7 @@
     }
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "method",
     "name": "addEndpoints",
     "memberof": "src/base/server.js~Server",
@@ -804,7 +821,7 @@
     "longname": "src/base/server.js~Server#addEndpoints",
     "access": "public",
     "description": "Adds the endpoints given to the server",
-    "lineNumber": 131,
+    "lineNumber": 130,
     "unknown": [
       {
         "tagName": "@returns",
@@ -833,7 +850,7 @@
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "file",
     "name": "src/controllers/hello.controller.js",
     "content": "/**\n * @flow\n */\n// For some reason this can't use the `app` alias but can do relative pathing here... :/\nimport { HapiRequest } from '../base/server.js';\n\n/**\n * Controllers for Basic \"Hello World\" Functions\n *\n * See https://github.com/hapijs/hapi/blob/master/API.md#request for HapiRequest definition\n */\nexport class HelloWorld {\n  /**\n   * Returns 'Hello World!'\n   * @return {String} Hello World!\n   */\n  static basic(): string {\n    return 'Hello World!';\n  }\n\n  /**\n   * Returns a customized Hello Message\n   * @param  {HapiRequest} request Request Parameters\n   * @return {String}         Customized Hello Message\n   */\n  static name(request: HapiRequest): string {\n\n    const name: string = request.params.name;\n\n    return name + ' says: ' + Math.random() + '!!!!';\n  }\n}\n\nexport default [\n  {\n    path: '/hello',\n    method: 'GET',\n    controller: HelloWorld.basic\n  },\n  {\n    path: '/{name}',\n    method: 'GET',\n    controller: HelloWorld.name\n  }\n];\n",
@@ -844,7 +861,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "class",
     "name": "HelloWorld",
     "memberof": "src/controllers/hello.controller.js",
@@ -859,7 +876,7 @@
     "interface": false
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "method",
     "name": "basic",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -881,7 +898,7 @@
     "params": []
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "method",
     "name": "name",
     "memberof": "src/controllers/hello.controller.js~HelloWorld",
@@ -914,7 +931,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "file",
     "name": "src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', function() {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', function() {\n    it('returns \\'Hello World!\\'', function() {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', function() {\n    it('returns \\'{request.params.name} says:\\'', function() {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -925,7 +942,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "file",
     "name": "src/controllers/info.controller.js",
     "content": "/**\n * @flow\n *\n * NOTE: This file will not be included in the esdoc list because it doesn't export any identifiers\n */\nimport { HapiRequest } from '../base/server.js';\n\n/**\n * Basic Controller for returning server information\n * @param  {HapiRequest} request Request Parameters\n * @return {Object}         Server information Object\n */\nfunction controller(request: HapiRequest): any { // eslint-disable-line\n  return request.server.info;\n}\n\nexport default [\n  {\n    path: '/info',\n    method: 'GET',\n    controller\n  }\n];\n",
@@ -936,7 +953,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "function",
     "name": "controller",
     "memberof": "src/controllers/info.controller.js",
@@ -973,7 +990,7 @@
     "ignore": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "file",
     "name": "src/controllers/note.controller.js",
     "content": "/**\n * @flow\n */\nimport { HapiRequest, HapiHandler } from '../base/server.js';\nimport NoteDataservice, { Note } from '../dataservices/note.service.js';\n\n/**\n * Container Controller for Note CRUD Functions\n */\nexport class NoteController {\n  /**\n   * Returns a note, specified by Id\n   * @param  {HapiRequest} request RequestObject\n   * @param  {any} handler Hapi Handler object for rejecting/setting errors\n   * @return {Note}         Note corresponding to Id passed in\n   */\n  static async getNoteById({ params }: HapiRequest, handler: HapiHandler): Promise<Note | HapiHandler> {\n    try {\n      return await NoteDataservice.getNote({ id: params.id });\n    } catch (err) {\n      // Get resp(HapiHandler) to return http code if number\n      const resp: HapiHandler = handler.response({\n        message: err.message,\n        code: err.code\n      });\n      if (typeof(err.code) === 'number')  {\n        resp.code(err.code);\n      } else {\n        throw err;\n      }\n      return resp;\n    }\n  }\n\n  /**\n   * Create a new Note\n   * @param  {HapiRequest} request RequestObject\n   * @param  {any} handler Hapi Handler\n   * @return {Note}        [description]\n   */\n  static createNote({ payload }: HapiRequest, handler: HapiHandler): Promise<Note | Array<Note>> {\n    if (payload.name) {\n      return NoteDataservice.createNote({ name: payload.name });\n    } else if (Array.isArray(payload)) {\n      return NoteDataservice.createNotes(payload);\n    } else {\n      return handler.response('Missing Note(s) to create').code(500);\n    }\n  }\n\n  /**\n   * Update a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {Note}        [description]\n   */\n  static updateNote({ payload }: HapiRequest) {\n    console.log(payload);\n  }\n\n  /**\n   * Delete a note, specified by id\n   * @param  {HapiRequest} request RequestObject\n   * @return {boolean}        [description]\n   */\n  static deleteNote({ params }: HapiRequest) {\n    console.log(params);\n  }\n}\n\nexport default [\n  {\n    path: '/note/{id}',\n    method: 'GET',\n    controller: NoteController.getNoteById\n  },\n  {\n    path: '/note',\n    method: 'POST',\n    controller: NoteController.createNote\n  },\n  {\n    path: '/note/{id?}',\n    method: 'PUT',\n    controller: NoteController.updateNote\n  },\n  {\n    path: '/note/{id}',\n    method: 'DELETE',\n    controller: NoteController.deleteNote\n  }\n];\n",
@@ -984,7 +1001,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "class",
     "name": "NoteController",
     "memberof": "src/controllers/note.controller.js",
@@ -999,7 +1016,7 @@
     "interface": false
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "method",
     "name": "getNoteById",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1042,7 +1059,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1085,7 +1102,7 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "method",
     "name": "updateNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1118,7 +1135,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "method",
     "name": "deleteNote",
     "memberof": "src/controllers/note.controller.js~NoteController",
@@ -1151,7 +1168,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "file",
     "name": "src/controllers/note.controller.spec.js",
     "content": "import { NoteController } from './note.controller.js';\nimport NoteDataservice from '../dataservices/note.service.js';\n\n/**\n * Question:\n * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should\n * cover all of the standard \"black-box\" expectations of the endpoint...\n * https://github.com/dtzar/openapi-auto-test\n *\n * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live,\n * especially if we have controllers that will modify/transform data\n */\n\n/** @test {NoteController} */\ndescribe('NoteController', function() {\n  let getStub;\n  beforeEach(function() {\n    // Create stubs and fakes here for how we expect backend to interact\n    getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', function() {\n    /**\n     * Question:\n     * Is this useful? Or should we just check that it calls the backend dataservice?\n     *\n     * Maybe we should use Model classes for objects returned from service, so we can instantiate in\n     * the fakes/returns we stub\n     */\n    it('should return a Note with id passed', async function() {\n      const id = 1;\n      getStub.resolves({\n        id\n      });\n\n      const note = await NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', function() {\n    it('should call DataService.createNote (with newName?)', async function() {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async function() {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', function() {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', function() {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
@@ -1162,7 +1179,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "file",
     "name": "src/dataservices/note.service.js",
     "content": "/**\n * @flow\n *\n * MariaDB Service Example\n */\nimport mariadbHelper, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line\nimport { RequestError } from '../base/server.js';\n\n/**\n * Note object with name and id\n * @type {Note}\n */\nexport interface Note {\n  id: number;\n  name: string;\n};\n\n/**\n * Note Dataservice for interacting with the storage system for saving notes\n */\nexport default class NoteDataservice {\n  /**\n   * Returns a note, specified by the caller by id\n   * @param  {number|string} id  `id` number of the Note to retrieve\n   * @return {Note}       Note object\n   */\n  static async getNote({ id }: { id: number }): Promise<Note> {\n    if (typeof(id) === 'string' && Number.isNaN(Number.parseInt((id: string)))) {\n      throw new RequestError('Note Id must be an integer', 400);\n    }\n    try {\n      const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);\n\n      if (row === undefined) {\n        throw new RequestError('Unrecognized Note Id', 404);\n      }\n\n      return row;\n    } catch (err) {\n      console.log(err);\n      throw err;\n    }\n  }\n\n  /**\n   * Creates a new note with a name\n   * TODO: add (optional) content param and attribute\n   * @param  {String}  name name of note\n   * @return {Note}      Note Object\n   */\n  static async createNote({ name }: { name: string }): Promise<Note> {\n    try {\n      const response: MariaDBInsertResponse = await mariadbHelper.insert('test.notes', {\n        name\n      });\n\n      // TODO: Figure out how to debug with atom\n      console.log(response);\n\n      return await NoteDataservice.getNote({ id: response.insertId });\n    } catch (err) {\n      console.log(err);\n      throw err;\n    }\n  }\n\n  /**\n   * Create multiple notes\n   * @param  {Array}  notes Array of note objects with name parameter\n   * @return {Promise}       [description]\n   */\n  static async createNotes(notes: Array<{name: string}>): Promise<Array<Note> | Note> {\n    try {\n      const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple('test.notes', notes);\n\n      const endId: number = insert.insertId + insert.affectedRows;\n      const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;\n\n      return await mariadbHelper.fetch(query);\n    } catch (err) {\n      console.log(err);\n      throw err;\n    }\n  }\n}\n",
@@ -1173,7 +1190,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "class",
     "name": "NoteDataservice",
     "memberof": "src/dataservices/note.service.js",
@@ -1188,7 +1205,7 @@
     "interface": false
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "method",
     "name": "getNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1222,7 +1239,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "method",
     "name": "createNote",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1255,7 +1272,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "method",
     "name": "createNotes",
     "memberof": "src/dataservices/note.service.js~NoteDataservice",
@@ -1288,7 +1305,7 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "file",
     "name": "src/dataservices/note.service.spec.js",
     "content": "import NoteDataservice from './note.service.js';\nimport mariadb from '../helpers/mariadb.helper.js';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', function() {\n\n  /**\n   * Question:\n   * Should we test that mariadb fetchStub is called? Seems like \"white-box\" testing, but also\n   * we need to stub the query anyways..\n   *\n   * Maybe we should be testing that note object has properties we expect and dataservice should\n   * ensure we return those properties. Flow doesn't check this?\n   * Maybe just test things that affect the application output, like if the mariadb helper returns\n   * bad values what is response\n   */\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', function() {\n    let fetchStub;\n    beforeEach(function() {\n      // Create stubs and fakes here on mariadbhelper, should we create a larger fake object class?\n      fetchStub = sinonSandbox.stub(mariadb, 'fetchOne');\n    });\n\n    it('should return a note object with matching id', async function() {\n      fetchStub.resolves({ id: 1, name: 'abc' });\n      const id = 1;\n\n      const result = await NoteDataservice.getNote({ id });\n\n      expect(result).to.contain({ id, name: 'abc' });\n    });\n\n    it('should throw error if id is invalid', async function() {\n      const promise = NoteDataservice.getNote({ id: 'abc' });\n\n      await expect(promise).to.be.rejected;\n    });\n\n    it('should throw error if id doesnt return note', async function() {\n      // Hide logging from exception message\n      sinonSandbox.stub(console, 'log');\n\n      fetchStub.resolves(undefined);\n\n      const promise = NoteDataservice.getNote({ id: 1 });\n      await expect(promise).to.be.rejected;\n    });\n\n    it('should throw error with code if mysql unreachable');\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', function() {\n    it('should return a note with the name passed');\n  });\n\n  /** @test {NoteDataservice.createNotes} */\n  describe('createNotes()', function() {\n    it('should return same number of notes passed to be created');\n  });\n});\n",
@@ -1299,10 +1316,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "file",
     "name": "src/entry.js",
-    "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\nimport path from 'path';\nimport { Server, EndpointConfig } from './base/server.js';\nimport mariadb from './helpers/mariadb.helper.js';\nimport CONFIG from './helpers/config.helper.js';\n\n// TODO: auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\n/**\n * Build the routes from files and add docs if CONFIG set\n * @type {Array<EndpointConfig>}\n */\nconst routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);\nif (CONFIG.SERVER.docs) {\n  routes.push({\n    method: 'GET',\n    path: '/openapi.yaml',\n    controller: {\n      file: path.resolve(__dirname, '../openapi.yaml')\n    }\n  });\n\n  routes.push({\n    method: 'GET',\n    path: '/docs/{param*}',\n    controller: {\n      directory: {\n        path: path.resolve(__dirname, '../docs'),\n        index: true,\n        redirectToSlash: true\n      }\n    }\n  });\n}\n/**\n * Entry point to run the server\n * @return {undefined} no return\n */\nexport async function main() {\n  // TODO: Check if mysql can be connected/db exists (use name in config file)\n  // Only serve healthcheck if error (redirect all other pages to healtcheck?)\n\n  const server: Server = new Server();\n\n  await server.run();\n\n  server.addEndpoints(routes);\n\n  process.on('SIGTERM', () => {\n    attemptGracefulShutdown(server);\n  });\n  process.on('SIGUSR2', () => { // For nodemon?\n    attemptGracefulShutdown(server);\n  });\n}\nmain();\n\n/**\n * Attempt to shutdown the server and database connections\n * @param  {Server} server Server Object to be shutdown\n * @return {undefined}        undefined\n */\nfunction attemptGracefulShutdown(server: Server) {\n  console.log('shutdown signal');\n  server.shutdown((hapiErr: Error) => {\n    console.log('hapi server shutdown');\n    mariadb.shutdown((dbErr: Error) => {\n      console.log('mariadb shutdown');\n      process.exit(hapiErr || dbErr ? 1 : 0);\n    });\n  });\n}\n\n// What is this about again?\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n",
+    "content": "/**\n * @flow\n *\n * Entry point that loads all routes for the server\n */\nimport path from 'path';\nimport { Server, EndpointConfig } from './base/server.js';\nimport mariadb from './helpers/mariadb.helper.js';\nimport CONFIG from './helpers/config.helper.js';\n\n// TODO: auto detect routes\n// https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express\nimport infoRoutes from './controllers/info.controller.js';\nimport helloRoutes from './controllers/hello.controller.js';\nimport noteRoutes from './controllers/note.controller.js';\n\n/**\n * Build the routes from files and add docs if CONFIG set\n * @type {Array<EndpointConfig>}\n */\nconst routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);\nroutes.forEach((route: EndpointConfig) => {\n  route.path = CONFIG.PATHS.api + route.path;\n});\n\nif (CONFIG.SERVER.docs) {\n  routes.push({\n    method: 'GET',\n    path: CONFIG.PATHS.api,\n    controller: {\n      file: path.resolve(__dirname, '../openapi.yaml')\n    }\n  });\n\n  routes.push({\n    method: 'GET',\n    path: '/docs/{param*}',\n    controller: {\n      directory: {\n        path: path.resolve(__dirname, '../docs'),\n        index: true,\n        redirectToSlash: true\n      }\n    }\n  });\n}\n/**\n * Entry point to run the server\n * @return {undefined} no return\n */\nexport default async function main() {\n  // TODO: Check if mysql can be connected/db exists (use name in config file)\n  // Only serve healthcheck if error (redirect all other pages to healtcheck?)\n\n  const server: Server = new Server({\n    name: CONFIG.SERVER.name,\n    host: CONFIG.SERVER.host,\n    port: CONFIG.SERVER.port\n  });\n\n  await server.run();\n\n  server.addEndpoints(routes);\n\n  process.on('SIGTERM', () => {\n    attemptGracefulShutdown(server);\n  });\n  process.on('SIGUSR2', () => { // For nodemon?\n    attemptGracefulShutdown(server);\n  });\n}\nmain();\n\n/**\n * Attempt to shutdown the server and database connections\n * @param  {Server} server Server Object to be shutdown\n * @return {undefined}        undefined\n */\nfunction attemptGracefulShutdown(server: Server) {\n  console.log('shutdown signal');\n  server.shutdown((hapiErr: Error) => {\n    console.log('hapi server shutdown');\n    mariadb.shutdown((dbErr: Error) => {\n      console.log('mariadb shutdown');\n      process.exit(hapiErr || dbErr ? 1 : 0);\n    });\n  });\n}\n\n// What is this about again?\nprocess.on('unhandledRejection', (err) => { // eslint-disable-line\n  process.stdout.write(JSON.stringify(err));\n  process.exit(1);\n});\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/entry.js",
     "access": "public",
@@ -1310,7 +1327,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "variable",
     "name": "routes",
     "memberof": "src/entry.js",
@@ -1333,7 +1350,7 @@
     "ignore": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 82,
     "kind": "function",
     "name": "main",
     "memberof": "src/entry.js",
@@ -1344,9 +1361,9 @@
     "access": "public",
     "export": true,
     "importPath": "HapiServer/src/entry.js",
-    "importStyle": "{main}",
+    "importStyle": "main",
     "description": "Entry point to run the server",
-    "lineNumber": 47,
+    "lineNumber": 51,
     "return": {
       "nullable": null,
       "types": [
@@ -1358,7 +1375,7 @@
     "params": []
   },
   {
-    "__docId__": 82,
+    "__docId__": 83,
     "kind": "function",
     "name": "attemptGracefulShutdown",
     "memberof": "src/entry.js",
@@ -1371,7 +1388,7 @@
     "importPath": "HapiServer/src/entry.js",
     "importStyle": null,
     "description": "Attempt to shutdown the server and database connections",
-    "lineNumber": 70,
+    "lineNumber": 78,
     "params": [
       {
         "nullable": null,
@@ -1395,10 +1412,10 @@
     "ignore": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 84,
     "kind": "file",
     "name": "src/helpers/config.helper.js",
-    "content": "/**\n * @flow\n */\nimport path from 'path';\nimport YAML from 'yamljs';\nimport fs from 'fs'; // eslint-disable-line\n\n/**\n * YAML file content\n * @type {string}\n */\nconst yamlContent: string = fs.readFileSync(path.resolve(__dirname, '../../conf/config.yaml'), 'utf-8');\n\n// TODO: env.properties file with replacements/defaults in config.yaml?\n\n\n\n/**\n * CONFIG object with SERVER and DB properties\n * @type {Config}\n */\nconst CONFIG: Config = YAML.parse(yamlContent);\nexport default CONFIG;\n\n/**\n * Config Helper Expected Properties\n * @type {Config}\n */\nexport interface Config {\n  SERVER: {\n    protocol: string;\n    host: string;\n    name: string;\n    port: number;\n    tmpDir: string; // For generating files\n    docs: boolean; // should display docs?\n  };\n  DB: {\n    name: string;\n    host: string;\n    user: string;\n    password: string;\n  };\n}\n",
+    "content": "/**\n * @flow\n */\nimport path from 'path';\nimport YAML from 'yamljs';\nimport fs from 'fs'; // eslint-disable-line\n\n/**\n * YAML file content\n * @type {string}\n */\nconst yamlContent: string = fs.readFileSync(path.resolve(__dirname, '../../conf/config.yaml'), 'utf-8');\n\n// TODO: env.properties file with replacements/defaults in config.yaml?\n\n\n\n/**\n * CONFIG object with SERVER and DB properties\n * @type {Config}\n */\nconst CONFIG: Config = YAML.parse(yamlContent);\nexport default CONFIG;\n\n/**\n * Config Helper Expected Properties\n * @type {Config}\n */\nexport interface Config {\n  SERVER: {\n    protocol: string;\n    host: string;\n    name: string;\n    port: number;\n    tmpDir: string; // For generating files\n    docs: boolean; // should display docs?\n  };\n  DB: {\n    name: string;\n    host: string;\n    user: string;\n    password: string;\n  };\n  PATHS: {\n    api: string;\n    healtcheck: string;\n  }\n}\n",
     "static": true,
     "longname": "/Users/junkerd/Programming/js/template.node.hapi/src/helpers/config.helper.js",
     "access": "public",
@@ -1406,7 +1423,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 84,
+    "__docId__": 85,
     "kind": "variable",
     "name": "yamlContent",
     "memberof": "src/helpers/config.helper.js",
@@ -1429,7 +1446,7 @@
     "ignore": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 86,
     "kind": "variable",
     "name": "CONFIG",
     "memberof": "src/helpers/config.helper.js",
@@ -1451,7 +1468,7 @@
     }
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "file",
     "name": "src/helpers/mariadb.helper.js",
     "content": "/**\n * @flow\n */\nimport mariadb from 'mariadb';\nimport CONFIG from './config.helper.js';\n\n\n// Disable weak type rule to allow for generalized database objects\n/* eslint-disable flowtype/no-weak-types, flowtype/require-variable-type */\n\n/**\n * Configuration for MariaDBHelper Database connection\n * @type {MariaDBConfig}\n */\nexport interface MariaDBConfig {\n  host: string;\n  user: string;\n  password: string;\n  connectionLimit: number;\n};\n\n/**\n * Response from MariaDB Insert statement (From MariaDB)\n * @type {MariaDBInsertResponse}\n */\nexport interface MariaDBInsertResponse {\n  affectedRows: number;\n  insertId: number;\n  warningStatus: number;\n}\n\n/**\n * MariaDB Helper for easy access to a configured MySQL Connection, with consistent methods for simple\n * interactions and larger transactions.\n *\n * This class can also be instantiated pointing elsewhere with a different MariaDBConfig passed to the\n * constructor\n * @type {MariaDBHelper}\n */\nexport class MariaDBHelper {\n  /**\n   * MariaDB Pool API\n   * @type {PoolApi} https://mariadb.com/kb/en/library/connector-nodejs-promise-api/#pool-api\n   */\n  dbPool: any;\n  transactionConnection: any;\n\n  /**\n   * Creates a new Helper (on this file export starts the Database Pool)\n   * @param {MariaDBConfig} config                Configuration to Connect to MySQL Database\n   * @param {MariaDB.Connection} transactionConnection MariaDB Connection to use for larger transactions\n   */\n  constructor({ config, transactionConnection }: { config?: MariaDBConfig, transactionConnection?: any }) {\n    // NOTE: Not sure if this is better, or if we should just make sure to always call `shutdown` to close db\n    // If testing, skip any startup\n    if (process.argv.includes('--env.unit_test')) {\n      return;\n    }\n\n    if (config) {\n      // Instantiating a connection to a different server\n      this.dbPool = mariadb.createPool(config);\n    } else if (transactionConnection) {\n      // For Larger Transaction\n      // TODO: Finish up transactionConnection Helper\n    } else {\n      // TODO: Log on failure to create MariaDB Helper\n      throw new Error('MariaDBHelper created without DB Config or connection to use');\n    }\n  }\n\n  /**\n   * Shuts down the mariadb connections\n   * @param  {Function} callback callback function to call after shutting down db connections\n   * @return {undefined}            no return\n   */\n  shutdown(callback: Function) {\n    if (this.dbPool) {\n      this.dbPool.end((err: Error) => {\n        if (err) {\n          // TODO: Do Something on MariaDB Shutdown error\n        }\n        callback(err);\n      });\n    }\n  }\n\n  /**\n   * Execute a simple query on the entire database\n   * @param  {string}  query Query string to be passed to DB for response\n   *  see https://mariadb.com/kb/en/library/data-manipulation/ for reference\n   * @param  {Array<any>}      values Array of values to inject into the query string, matching the number of\n   *  placeholders given\n   * @return {Promise}        Returns the response from the query\n   */\n  query(query: string, values?: Array<any>): Promise<any> {\n    if (this.transactionConnection) {\n      // TODO: use transaction connection if it exists (this is what makes this so versatile)\n      return this.transactionConnection.query(query, values);\n    } else {\n      return this.dbPool.query(query, values);\n    }\n  }\n\n  /**\n   * Fetch all rows given a query string and values that can qualify the query\n   * @param  {string}  query  Query string to pass to mariadb\n   * @return {Promise}        Return array of values\n   */\n  async fetch(query: string): Promise<Array<any>> {\n    // TODO: Log if query doesn't contain `SELECT`\n\n    const response = await this.query(query);\n\n    if (!response || response.length === 0) {\n      return [];\n    }\n    return response;\n  }\n\n  /**\n   * Fetch the (first) row that matches a string\n   * @param  {string}  query  Query string to pass to mariadb\n   * @return {Promise}        Returns a single value\n   */\n  async fetchOne(query: string): Promise<any> {\n    const response = await this.fetch(query);\n\n    if (!response || response.length === 0) {\n      return undefined;\n    }\n\n    return response[0];\n  }\n\n  /**\n   * Insert an Object into a specific table\n   * @param  {String}  table  Name of table to insert object into\n   * @param  {Object}  object Mapping from column names to values to insert into DB Table\n   * @return {Promise<MariaDBInsertResponse>}        Response from MariaDB\n   */\n  async insert(table: string, object: Object): Promise<MariaDBInsertResponse> {\n    // e.g. {'abc': 1, 'def', 2 }\n    const keyString: string = Object.keys(object).join(', '); // 'abc, def'\n\n    const values: Array<any> = Object.values(object); // [1, 2]\n    const inserts: string = '?,'.repeat(values.length).slice(0, (values.length * 2) - 1); // '?, ?'\n\n    const response: MariaDBInsertResponse = await this.query(\n      `INSERT INTO ${table} (${keyString}) value (${inserts})`,\n      values\n    );\n\n    return response;\n  }\n\n  /**\n   * Insert multiple objects into the table\n   * @param  {string}  table   to insert into\n   * @param  {Array<Object>}  objects Array of objects to insert\n   * @return {Promise}        Response from MariaDB\n   */\n  async insertMultiple(table: string, objects: Array<Object>): Promise<any> {\n    // e.g. {'abc': 1, 'def', 2 }\n    const firstObject = objects[0];\n    const keyString: string = Object.keys(firstObject).join(', '); // 'abc, def'\n\n    let inserts = '';\n    const allValues = [];\n    for (const object of objects) {\n      const values: Array<any> = Object.values(object); // [1, 2]\n      inserts = '?,'.repeat(values.length).slice(0, (values.length * 2) - 1); // '?, ?'\n      allValues.push(values);\n    }\n\n    // TODO: Handle insert if in transaction\n    if (this.transactionConnection) {\n      // just use transactionConnection instead?\n    } else {\n      // Best way to insert multiple objects in one statement?\n      return await this.dbPool.batch(`INSERT INTO ${table} (${keyString}) VALUES (${inserts})`, allValues);\n    }\n  }\n\n  // async update(table: string, object: any, where: any): any {\n  //  // TODO: Write proper update statement\n  // }\n\n  // /**\n  //  * Create a new connection and Helper to run a single transaction with multiple queries/db statements\n  //  * @param  {Function} transactionCallback Uses the helper passed back to run all of the different queries\n  //  * @return {Promise}                     Indicates that the transaction has completed or errored\n  //  */\n  // transaction(transactionCallback: Function): Promise<any> {\n  //   console.log(transactionCallback);\n  //   if (this.dbPool) { // TODO: Create new Helper with a connection from pool }\n  //\n  //   return new Promise((resolve: Function, reject: Function) => {\n  //     console.log(this);\n  //     this._beginTransaction();\n  //\n  //     // TODO: call transactionCallback(with new helper)\n  //\n  //     // TODO: close connection properly\n  //\n  //     if (failure)\n  //       this._rollbackTransaction();\n  //       console.log(reject);\n  //\n  //     else\n  //       this._commitTransaction();\n  //       console.log(resolve);\n  //\n  //   });\n  // }\n\n  // async _beginTransaction() {\n  //\n  // }\n  //\n  // async _commitTransaction() {\n  //\n  // }\n  //\n  // async _rollbackTransaction() {\n  //\n  // }\n\n  // async healthCheck() {\n  //\n  // }\n}\n\n\nconst mariadbHelper = new MariaDBHelper({ config: {\n  database: undefined,\n  host: CONFIG.DB.host,\n  user: CONFIG.DB.user,\n  password: CONFIG.DB.password,\n  connectionLimit: 5\n} });\n\n/**\n * Exported MariaDB Helper that uses DB configuration in config.yaml\n * @type {MariaDBHelper}\n */\nexport default mariadbHelper;\n",
@@ -1462,7 +1479,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
     "kind": "class",
     "name": "MariaDBHelper",
     "memberof": "src/helpers/mariadb.helper.js",
@@ -1485,7 +1502,7 @@
     "interface": false
   },
   {
-    "__docId__": 88,
+    "__docId__": 89,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1506,7 +1523,7 @@
     }
   },
   {
-    "__docId__": 89,
+    "__docId__": 90,
     "kind": "member",
     "name": "dbPool",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1523,7 +1540,7 @@
     }
   },
   {
-    "__docId__": 90,
+    "__docId__": 91,
     "kind": "method",
     "name": "shutdown",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1556,7 +1573,7 @@
     }
   },
   {
-    "__docId__": 91,
+    "__docId__": 92,
     "kind": "method",
     "name": "query",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1599,7 +1616,7 @@
     }
   },
   {
-    "__docId__": 92,
+    "__docId__": 93,
     "kind": "method",
     "name": "fetch",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1632,7 +1649,7 @@
     }
   },
   {
-    "__docId__": 93,
+    "__docId__": 94,
     "kind": "method",
     "name": "fetchOne",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1665,7 +1682,7 @@
     }
   },
   {
-    "__docId__": 94,
+    "__docId__": 95,
     "kind": "method",
     "name": "insert",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1708,7 +1725,7 @@
     }
   },
   {
-    "__docId__": 95,
+    "__docId__": 96,
     "kind": "method",
     "name": "insertMultiple",
     "memberof": "src/helpers/mariadb.helper.js~MariaDBHelper",
@@ -1751,7 +1768,7 @@
     }
   },
   {
-    "__docId__": 96,
+    "__docId__": 97,
     "kind": "variable",
     "name": "mariadbHelper",
     "memberof": "src/helpers/mariadb.helper.js",
@@ -1773,7 +1790,7 @@
     }
   },
   {
-    "__docId__": 97,
+    "__docId__": 98,
     "kind": "file",
     "name": "src/helpers/mariadb.helper.spec.js",
     "content": "// import mariaDbHelper from 'mariadb.helper.js';\n\n// Q: should we write this spec file? It seems like we're just testing things that won't be affected by\n// anything... and may just change later.\n//\n// Do we want to test that the correct query strings are sent to the mariadb library?\n// Seems like too much\n//\n// Seems like white box testing so I'm not going to do it right now\n\n/* @test {MariaDBHelper} */\n// describe('MariaDBHelper', () => {\n//   describe('constructor', () => {\n//     it('should not do anything if in test mode');\n//\n//     it('should require a config or transactionConnection');\n//   });\n//\n//   describe('shutdown()');\n//\n//   describe('query()');\n//\n//   describe('fetch()');\n//\n//   describe('fetchOne()');\n//\n//   describe('insert()');\n// });\n",
@@ -1856,7 +1873,7 @@
     "access": "public"
   },
   {
-    "__docId__": 98,
+    "__docId__": 99,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/hello.controller.spec.js",
     "content": "import { HelloWorld } from './hello.controller.js';\n\n/** @test {HelloWorld} */\ndescribe('HelloWorld', function() {\n  /** @test {HelloWorld.basic} */\n  describe('basic()', function() {\n    it('returns \\'Hello World!\\'', function() {\n      const returned = HelloWorld.basic();\n\n      expect(returned).to.equal('Hello World!');\n    });\n  });\n\n  /** @test {HelloWorld.name} */\n  describe('name()', function() {\n    it('returns \\'{request.params.name} says:\\'', function() {\n      const request = {\n        params: {\n          name: 'Devlin'\n        }\n      };\n\n      let returned = HelloWorld.name(request);\n      expect(returned.startsWith('Devlin says')).to.be.true;\n\n      request.params.name = 'Michelle';\n\n      returned = HelloWorld.name(request);\n      expect(returned.startsWith('Michelle says')).to.be.true;\n    });\n  });\n});\n",
@@ -1867,7 +1884,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 99,
+    "__docId__": 100,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -1883,7 +1900,7 @@
     ]
   },
   {
-    "__docId__": 100,
+    "__docId__": 101,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -1899,7 +1916,7 @@
     ]
   },
   {
-    "__docId__": 101,
+    "__docId__": 102,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -1912,7 +1929,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 102,
+    "__docId__": 103,
     "kind": "test",
     "name": "describe3",
     "testId": 3,
@@ -1928,7 +1945,7 @@
     ]
   },
   {
-    "__docId__": 103,
+    "__docId__": 104,
     "kind": "test",
     "name": "it4",
     "testId": 4,
@@ -1941,7 +1958,7 @@
     "lineNumber": 16
   },
   {
-    "__docId__": 104,
+    "__docId__": 105,
     "kind": "testFile",
     "name": "template.node.hapi/src/controllers/note.controller.spec.js",
     "content": "import { NoteController } from './note.controller.js';\nimport NoteDataservice from '../dataservices/note.service.js';\n\n/**\n * Question:\n * Do we want to unit test controllers? If we do openapi based testing with Newman, I think that should\n * cover all of the standard \"black-box\" expectations of the endpoint...\n * https://github.com/dtzar/openapi-auto-test\n *\n * Seems like we should still unit test with fakes/stubs on the dataservices so we can test before live,\n * especially if we have controllers that will modify/transform data\n */\n\n/** @test {NoteController} */\ndescribe('NoteController', function() {\n  let getStub;\n  beforeEach(function() {\n    // Create stubs and fakes here for how we expect backend to interact\n    getStub = sinonSandbox.stub(NoteDataservice, 'getNote');\n  });\n\n  /** @test {NoteController.getNoteById} */\n  describe('getNoteById()', function() {\n    /**\n     * Question:\n     * Is this useful? Or should we just check that it calls the backend dataservice?\n     *\n     * Maybe we should use Model classes for objects returned from service, so we can instantiate in\n     * the fakes/returns we stub\n     */\n    it('should return a Note with id passed', async function() {\n      const id = 1;\n      getStub.resolves({\n        id\n      });\n\n      const note = await NoteController.getNoteById({ params: { id } });\n\n      expect(note).to.contain({ id });\n    });\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if Note doesn\\'t exist');\n  });\n\n  /** @test {NoteController.createNote} */\n  describe('createNote()', function() {\n    it('should call DataService.createNote (with newName?)', async function() {\n      const createNoteStub = sinonSandbox.stub(NoteDataservice, 'createNote');\n\n      const newNoteName = 'abc';\n      await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(createNoteStub).to.be.called;\n      expect(createNoteStub).to.be.calledWith({ name: newNoteName });\n    });\n\n    it('should return note with name passed and new id', async function() {\n      const id = 13;\n      sinonSandbox.stub(NoteDataservice, 'createNote').callsFake(({ name }) => {\n        return {\n          id,\n          name\n        };\n      });\n\n      const newNoteName = 'abc';\n      const note = await NoteController.createNote({ payload: { name: newNoteName } });\n\n      expect(note).to.deep.equal({\n        id,\n        name: newNoteName\n      });\n    });\n\n    it('should return error if note name is empty');\n\n    it('should return error message if error creating note');\n  });\n\n  /** @test {NoteController.updateNote} */\n  describe('updateNote()', function() {\n    it('should call NoteDataservice.updateNote (with params)');\n\n    it('should return note with updated name, as passed');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error updating note');\n  });\n\n  /** @test {NoteController.deleteNote} */\n  describe('deleteNote()', function() {\n    it('should call NoteDataservice.deleteNote (with id)');\n\n    it('should return the deleted note id');\n\n    it('should return error message if id is invalid');\n\n    it('should return error message if error deleting note');\n  });\n});\n",
@@ -1952,7 +1969,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 105,
+    "__docId__": 106,
     "kind": "test",
     "name": "describe5",
     "testId": 5,
@@ -1968,7 +1985,7 @@
     ]
   },
   {
-    "__docId__": 106,
+    "__docId__": 107,
     "kind": "test",
     "name": "describe6",
     "testId": 6,
@@ -1984,7 +2001,7 @@
     ]
   },
   {
-    "__docId__": 107,
+    "__docId__": 108,
     "kind": "test",
     "name": "it7",
     "testId": 7,
@@ -1997,7 +2014,7 @@
     "lineNumber": 31
   },
   {
-    "__docId__": 108,
+    "__docId__": 109,
     "kind": "test",
     "name": "it8",
     "testId": 8,
@@ -2010,7 +2027,7 @@
     "lineNumber": 42
   },
   {
-    "__docId__": 109,
+    "__docId__": 110,
     "kind": "test",
     "name": "it9",
     "testId": 9,
@@ -2023,7 +2040,7 @@
     "lineNumber": 44
   },
   {
-    "__docId__": 110,
+    "__docId__": 111,
     "kind": "test",
     "name": "describe10",
     "testId": 10,
@@ -2039,7 +2056,7 @@
     ]
   },
   {
-    "__docId__": 111,
+    "__docId__": 112,
     "kind": "test",
     "name": "it11",
     "testId": 11,
@@ -2052,7 +2069,7 @@
     "lineNumber": 49
   },
   {
-    "__docId__": 112,
+    "__docId__": 113,
     "kind": "test",
     "name": "it12",
     "testId": 12,
@@ -2065,7 +2082,7 @@
     "lineNumber": 59
   },
   {
-    "__docId__": 113,
+    "__docId__": 114,
     "kind": "test",
     "name": "it13",
     "testId": 13,
@@ -2078,7 +2095,7 @@
     "lineNumber": 77
   },
   {
-    "__docId__": 114,
+    "__docId__": 115,
     "kind": "test",
     "name": "it14",
     "testId": 14,
@@ -2091,7 +2108,7 @@
     "lineNumber": 79
   },
   {
-    "__docId__": 115,
+    "__docId__": 116,
     "kind": "test",
     "name": "describe15",
     "testId": 15,
@@ -2107,7 +2124,7 @@
     ]
   },
   {
-    "__docId__": 116,
+    "__docId__": 117,
     "kind": "test",
     "name": "it16",
     "testId": 16,
@@ -2120,7 +2137,7 @@
     "lineNumber": 84
   },
   {
-    "__docId__": 117,
+    "__docId__": 118,
     "kind": "test",
     "name": "it17",
     "testId": 17,
@@ -2133,7 +2150,7 @@
     "lineNumber": 86
   },
   {
-    "__docId__": 118,
+    "__docId__": 119,
     "kind": "test",
     "name": "it18",
     "testId": 18,
@@ -2146,7 +2163,7 @@
     "lineNumber": 88
   },
   {
-    "__docId__": 119,
+    "__docId__": 120,
     "kind": "test",
     "name": "it19",
     "testId": 19,
@@ -2159,7 +2176,7 @@
     "lineNumber": 90
   },
   {
-    "__docId__": 120,
+    "__docId__": 121,
     "kind": "test",
     "name": "describe20",
     "testId": 20,
@@ -2175,7 +2192,7 @@
     ]
   },
   {
-    "__docId__": 121,
+    "__docId__": 122,
     "kind": "test",
     "name": "it21",
     "testId": 21,
@@ -2188,7 +2205,7 @@
     "lineNumber": 95
   },
   {
-    "__docId__": 122,
+    "__docId__": 123,
     "kind": "test",
     "name": "it22",
     "testId": 22,
@@ -2201,7 +2218,7 @@
     "lineNumber": 97
   },
   {
-    "__docId__": 123,
+    "__docId__": 124,
     "kind": "test",
     "name": "it23",
     "testId": 23,
@@ -2214,7 +2231,7 @@
     "lineNumber": 99
   },
   {
-    "__docId__": 124,
+    "__docId__": 125,
     "kind": "test",
     "name": "it24",
     "testId": 24,
@@ -2227,7 +2244,7 @@
     "lineNumber": 101
   },
   {
-    "__docId__": 125,
+    "__docId__": 126,
     "kind": "testFile",
     "name": "template.node.hapi/src/dataservices/note.service.spec.js",
     "content": "import NoteDataservice from './note.service.js';\nimport mariadb from '../helpers/mariadb.helper.js';\n\n/** @test {NoteDataservice} */\ndescribe('NoteDataservice', function() {\n\n  /**\n   * Question:\n   * Should we test that mariadb fetchStub is called? Seems like \"white-box\" testing, but also\n   * we need to stub the query anyways..\n   *\n   * Maybe we should be testing that note object has properties we expect and dataservice should\n   * ensure we return those properties. Flow doesn't check this?\n   * Maybe just test things that affect the application output, like if the mariadb helper returns\n   * bad values what is response\n   */\n\n  /** @test {NoteDataservice.getNote} */\n  describe('getNote()', function() {\n    let fetchStub;\n    beforeEach(function() {\n      // Create stubs and fakes here on mariadbhelper, should we create a larger fake object class?\n      fetchStub = sinonSandbox.stub(mariadb, 'fetchOne');\n    });\n\n    it('should return a note object with matching id', async function() {\n      fetchStub.resolves({ id: 1, name: 'abc' });\n      const id = 1;\n\n      const result = await NoteDataservice.getNote({ id });\n\n      expect(result).to.contain({ id, name: 'abc' });\n    });\n\n    it('should throw error if id is invalid', async function() {\n      const promise = NoteDataservice.getNote({ id: 'abc' });\n\n      await expect(promise).to.be.rejected;\n    });\n\n    it('should throw error if id doesnt return note', async function() {\n      // Hide logging from exception message\n      sinonSandbox.stub(console, 'log');\n\n      fetchStub.resolves(undefined);\n\n      const promise = NoteDataservice.getNote({ id: 1 });\n      await expect(promise).to.be.rejected;\n    });\n\n    it('should throw error with code if mysql unreachable');\n  });\n\n  /** @test {NoteDataservice.createNote} */\n  describe('createNote()', function() {\n    it('should return a note with the name passed');\n  });\n\n  /** @test {NoteDataservice.createNotes} */\n  describe('createNotes()', function() {\n    it('should return same number of notes passed to be created');\n  });\n});\n",
@@ -2238,7 +2255,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 126,
+    "__docId__": 127,
     "kind": "test",
     "name": "describe25",
     "testId": 25,
@@ -2254,7 +2271,7 @@
     ]
   },
   {
-    "__docId__": 127,
+    "__docId__": 128,
     "kind": "test",
     "name": "describe26",
     "testId": 26,
@@ -2270,7 +2287,7 @@
     ]
   },
   {
-    "__docId__": 128,
+    "__docId__": 129,
     "kind": "test",
     "name": "it27",
     "testId": 27,
@@ -2283,7 +2300,7 @@
     "lineNumber": 26
   },
   {
-    "__docId__": 129,
+    "__docId__": 130,
     "kind": "test",
     "name": "it28",
     "testId": 28,
@@ -2296,7 +2313,7 @@
     "lineNumber": 35
   },
   {
-    "__docId__": 130,
+    "__docId__": 131,
     "kind": "test",
     "name": "it29",
     "testId": 29,
@@ -2309,7 +2326,7 @@
     "lineNumber": 41
   },
   {
-    "__docId__": 131,
+    "__docId__": 132,
     "kind": "test",
     "name": "it30",
     "testId": 30,
@@ -2322,7 +2339,7 @@
     "lineNumber": 51
   },
   {
-    "__docId__": 132,
+    "__docId__": 133,
     "kind": "test",
     "name": "describe31",
     "testId": 31,
@@ -2338,7 +2355,7 @@
     ]
   },
   {
-    "__docId__": 133,
+    "__docId__": 134,
     "kind": "test",
     "name": "it32",
     "testId": 32,
@@ -2351,7 +2368,7 @@
     "lineNumber": 56
   },
   {
-    "__docId__": 134,
+    "__docId__": 135,
     "kind": "test",
     "name": "describe33",
     "testId": 33,
@@ -2367,7 +2384,7 @@
     ]
   },
   {
-    "__docId__": 135,
+    "__docId__": 136,
     "kind": "test",
     "name": "it34",
     "testId": 34,
@@ -2380,7 +2397,7 @@
     "lineNumber": 61
   },
   {
-    "__docId__": 136,
+    "__docId__": 137,
     "kind": "testFile",
     "name": "template.node.hapi/src/helpers/mariadb.helper.spec.js",
     "content": "// import mariaDbHelper from 'mariadb.helper.js';\n\n// Q: should we write this spec file? It seems like we're just testing things that won't be affected by\n// anything... and may just change later.\n//\n// Do we want to test that the correct query strings are sent to the mariadb library?\n// Seems like too much\n//\n// Seems like white box testing so I'm not going to do it right now\n\n/* @test {MariaDBHelper} */\n// describe('MariaDBHelper', () => {\n//   describe('constructor', () => {\n//     it('should not do anything if in test mode');\n//\n//     it('should require a config or transactionConnection');\n//   });\n//\n//   describe('shutdown()');\n//\n//   describe('query()');\n//\n//   describe('fetch()');\n//\n//   describe('fetchOne()');\n//\n//   describe('insert()');\n// });\n",

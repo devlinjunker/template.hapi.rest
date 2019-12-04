@@ -48,7 +48,6 @@ require(&apos;@babel/polyfill&apos;);
 import Pino from &apos;hapi-pino&apos;;
 import Hapi from &apos;@hapi/hapi&apos;;
 import Inert from &apos;@hapi/inert&apos;;
-import CONFIG from &apos;../helpers/config.helper.js&apos;;
 
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
@@ -105,6 +104,12 @@ export interface HapiRequest {
 };
 
 
+export interface ServerParams {
+  name: string;
+  port: number;
+  host: string;
+}
+
 /**
  * Abstraction to manage running the server.
  * Instantiates on application server start up inside `entry.js` file or wherever the intial &quot;main&quot; script is
@@ -113,14 +118,16 @@ export interface HapiRequest {
  */
 export class Server {
   server: any; // eslint-disable-line
+  name: string;
 
   /**
    * Server Constructor
    */
-  constructor() {
+  constructor({ name, port, host }: ServerParams) {
+    this.name = name || &apos;Server&apos;;
     this.server = Hapi.server({
-      port: CONFIG.SERVER.port,
-      host: CONFIG.SERVER.host,
+      port,
+      host
     });
   }
 
@@ -145,7 +152,7 @@ export class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write(&apos;\n\n&apos; + CONFIG.SERVER.name + &apos; started on &apos; + this.server.info.port + &apos;\n\n&apos;);
+    process.stdout.write(&apos;\n\n&apos; + this.name + &apos; started on &apos; + this.server.info.port + &apos;\n\n&apos;);
 
     await this.server.register({
       plugin: Pino,

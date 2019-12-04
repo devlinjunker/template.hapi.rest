@@ -4,7 +4,7 @@ SERVER:
   protocol: http
   host: localhost
   name: Simple Server Template
-  port: '3333'
+  port: 3333
   # For file generation (todo)
   tmpDir: /tmp
   # Should we display docs and openapi?
@@ -17,8 +17,10 @@ DB:
   password: root
 
 ## TODO: Add Healthcheck
-HEALTH_CHECK:
-  path: /admin/status
+PATHS:
+  api: /api
+  healthcheck: /admin/status
+
 
 ## TODO: Add controller/dataservice that uses one of these
 EXTERNAL_SERVICES:

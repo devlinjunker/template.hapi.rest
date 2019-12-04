@@ -41,4 +41,8 @@ export interface Config {
     user: string;
     password: string;
   };
+  PATHS: {
+    api: string;
+    healtcheck: string;
+  }
 }
