@@ -27,6 +27,7 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.setup.html"><a href="manual/README.setup.html" data-ice="link">Setup</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#webpack" data-ice="link">Webpack</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#documentation" data-ice="link">Documentation</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.setup.html"><a href="manual/README.setup.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -104,6 +105,14 @@ is used to manage our webpack build to compile the application. In this file we:
 </ul>
 </li>
 </ul>
+<h2 id="documentation">Documentation</h2><p>The <code>docs/</code> directory is created with <code>npm run doc</code>, this generates an esdoc webpage based on the modified
+template stored in <code>docs/template</code>.</p>
+<p>The Dependency Graph is created with <a href="https://github.com/pahen/madge">Madge</a> and graphviz, you will need to
+install both in order to update the dependency graph. I didn&apos;t include these in the package.json dependencies
+because I felt this is more than is needed to develop a working app or even write basic documentation.</p>
+<p>Install madge with <code>npm install madge</code> and install graphviz with <code>brew install graphviz</code> or
+<code>port install graphviz</code> (for OSX)</p>
+<p>I split this out to a separate npm script: <code>npm run doc-image</code></p>
 <h2 id="notes-ideas">Notes/Ideas</h2><ul>
 <li><strong>IDEA:</strong>  init scripts with installation and SQL setup</li>
 </ul>

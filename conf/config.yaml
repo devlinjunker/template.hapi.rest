@@ -7,7 +7,7 @@ SERVER:
   port: 3333
   # For file generation (todo)
   tmpDir: /tmp
-  # Should we display docs and openapi?
+  # Should we display docs and swagger?
   docs: true
 
 DB:
@@ -20,7 +20,15 @@ DB:
 PATHS:
   api: /api
   healthcheck: /admin/status
+  logs: /admin/logs
 
+## TODO: Protect healthcheck and logs behind these?
+AUTHORIZATION:
+  ADMIN:
+    id: root
+    password: root
+# OAUTH:
+# SSO:
 
 ## TODO: Add controller/dataservice that uses one of these
 EXTERNAL_SERVICES:
@@ -34,7 +42,3 @@ EXTERNAL_SERVICES:
       path: /example/admin/status
     cacheEnabled: false
     cacheExpiration: 60
-
-# Other things for later
-# OAUTH:
-# SSO:

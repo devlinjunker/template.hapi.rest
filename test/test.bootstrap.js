@@ -16,7 +16,7 @@ global.expect = chai.expect;
 global.sinonSandbox = sinon.createSandbox();
 
 // $FlowFixMe
-const testsContext = requireContext('../../src', true, /.spec$/);
+const testsContext = requireContext('../', true, /.spec$/);
 
 testsContext.keys().forEach(testsContext);
 

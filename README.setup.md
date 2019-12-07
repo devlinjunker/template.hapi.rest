@@ -38,6 +38,20 @@ is used to manage our webpack build to compile the application. In this file we:
     - Hot Module Replacement for rebuilding on file changes
     - Webpack Shell Plugin to re-run Mocha tests on file changes/rebuild
 
+## Documentation
+
+The `docs/` directory is created with `npm run doc`, this generates an esdoc webpage based on the modified
+template stored in `docs/template`.
+
+The Dependency Graph is created with [Madge](https://github.com/pahen/madge) and graphviz, you will need to
+install both in order to update the dependency graph. I didn't include these in the package.json dependencies
+because I felt this is more than is needed to develop a working app or even write basic documentation.
+
+Install madge with `npm install madge` and install graphviz with `brew install graphviz` or
+`port install graphviz` (for OSX)
+
+I split this out to a separate npm script: `npm run doc-image`
+
 
 ## Notes/Ideas
   - **IDEA:**  init scripts with installation and SQL setup

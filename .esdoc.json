@@ -1,5 +1,6 @@
 {
   "source": "./src",
+  "excludes": ["(spec)\\.js$"],
   "destination": "./docs",
   "plugins": [
     {

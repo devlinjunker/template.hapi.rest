@@ -31,6 +31,7 @@ How to use this template to create a quick HTTP REST server:
 3. Add Unit tests in `src/controllers/` (Test Driven Development)
 4. Add Controller Files to `src/controllers/`
   - For now, add reference to controller in `src/entry.js` (with other controllers)
+  - Controller endpoints will be served at `/api` (or whatever is set in config.yaml)
 5. Run `npm run start-watch` to compile and run server + tests in watch mode
 6. Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint
 
@@ -40,7 +41,7 @@ How to use this template to create a quick HTTP REST server:
 
 `npm run test-watch` to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests
 
-`npm run dev-watch` to run only webpack and watch for changes on the files to recompile and reload the server
+`npm run dev-watch` to run only webpack to watch for changes on the files and recompile/rerun tests
 
 `npm run test` to run all of the unit tests for the application one time
 
@@ -115,7 +116,8 @@ How to use this template to create a quick HTTP REST server:
     - MariaDB
     - External Service
     - Version?
- - [ ] (^) cleanup old builds
+ - [x] (^) cleanup old builds
+ - [x] (-) Madge for Dependency graph
  - [ ] (-) Githooks for generating reports/linting  
     - Check if READMEs exist at each directory level?
     - Run `doc` command before commit on develop branch

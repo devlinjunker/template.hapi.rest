@@ -624,12 +624,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/controllers/hello.controller.spec.js",
-    "file/src/controllers/hello.controller.spec.js.html",
-    "src/controllers/hello.controller.spec.js",
-    "file"
-  ],
-  [
     "src/controllers/info.controller.js",
     "file/src/controllers/info.controller.js.html",
     "src/controllers/info.controller.js",
@@ -666,12 +660,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/controllers/note.controller.spec.js",
-    "file/src/controllers/note.controller.spec.js.html",
-    "src/controllers/note.controller.spec.js",
-    "file"
-  ],
-  [
     "src/dataservices/note.service.js",
     "file/src/dataservices/note.service.js.html",
     "src/dataservices/note.service.js",
@@ -694,12 +682,6 @@ window.esdocSearchIndex = [
     "class/src/dataservices/note.service.js~NoteDataservice.html#static-method-getNote",
     "src/dataservices/note.service.js~NoteDataservice.getNote",
     "method"
-  ],
-  [
-    "src/dataservices/note.service.spec.js",
-    "file/src/dataservices/note.service.spec.js.html",
-    "src/dataservices/note.service.spec.js",
-    "file"
   ],
   [
     "src/entry.js",
@@ -766,12 +748,6 @@ window.esdocSearchIndex = [
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-shutdown",
     "src/helpers/mariadb.helper.js~MariaDBHelper#shutdown",
     "method"
-  ],
-  [
-    "src/helpers/mariadb.helper.spec.js",
-    "file/src/helpers/mariadb.helper.spec.js.html",
-    "src/helpers/mariadb.helper.spec.js",
-    "file"
   ],
   [
     "template.node.hapi/src/controllers/hello.controller.spec.js",

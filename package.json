@@ -13,9 +13,9 @@
   ],
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",
-  "main": "dist/entry.js",
+  "main": "dist/server.bundle.js",
   "scripts": {
-    "start-watch": "./node_modules/.bin/webpack --watch & (sleep 10s && nodemon dist/server.bundle.js)",
+    "start-watch": "rm -rf ./dist/; ./node_modules/.bin/webpack --watch & (sleep 20s && nodemon dist/server.bundle.js)",
     "test-watch": "node_modules/.bin/mocha --watch --env.unit_test",
     "dev-watch": "./node_modules/.bin/webpack --watch",
     "test": "node node_modules/.bin/mocha --env.unit_test",
@@ -24,7 +24,8 @@
     "lint": "node_modules/.bin/eslint src/",
     "build": "./node_modules/.bin/webpack",
     "clean": "rm -rf ./dist",
-    "help": "echo \"$(cat help.txt)\""
+    "help": "echo \"$(cat help.txt)\"",
+    "doc-image": "./node_modules/madge/bin/cli.js ./src -i docs/image/dependency.png & npm run doc"
   },
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
