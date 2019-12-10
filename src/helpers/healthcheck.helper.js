@@ -84,9 +84,17 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
 /**
  * Class to wrap the methods that are used for server healthcheck
  */
-class Healthcheck {
+class HealthcheckHelper {
   // Tried these with ES6 Map type but it made it much harder to do easy JSON manipulations
+  /**
+   * Map of External Services
+   * @type {Object}
+   */
   serviceMap: { [name: string]: ExternalServiceConfig };
+  /**
+   * Map of DB Services
+   * @type {Object}
+   */
   dbMap: { [name: string]: DatabaseConfig };
 
   /**
@@ -161,6 +169,5 @@ class Healthcheck {
  * Exported Helperto interact with Healcheck Operations
  * @type {Healthcheck}
  */
-const healthcheckHelper: Healthcheck = new Healthcheck();
-
+const healthcheckHelper: HealthcheckHelper = new HealthcheckHelper();
 export default healthcheckHelper;

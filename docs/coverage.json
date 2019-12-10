@@ -1,7 +1,7 @@
 {
-  "coverage": "89.74%",
-  "expectCount": 39,
-  "actualCount": 35,
+  "coverage": "86%",
+  "expectCount": 50,
+  "actualCount": 43,
   "files": {
     "src/base/server.js": {
       "expectCount": 11,
@@ -12,14 +12,14 @@
         63
       ]
     },
+    "src/controllers/admin.controller.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
     "src/controllers/hello.controller.js": {
       "expectCount": 3,
       "actualCount": 3,
-      "undocumentLines": []
-    },
-    "src/controllers/info.controller.js": {
-      "expectCount": 1,
-      "actualCount": 1,
       "undocumentLines": []
     },
     "src/controllers/note.controller.js": {
@@ -42,9 +42,18 @@
       "actualCount": 2,
       "undocumentLines": []
     },
+    "src/helpers/healthcheck.helper.js": {
+      "expectCount": 9,
+      "actualCount": 6,
+      "undocumentLines": [
+        94,
+        95,
+        166
+      ]
+    },
     "src/helpers/mariadb.helper.js": {
-      "expectCount": 10,
-      "actualCount": 9,
+      "expectCount": 11,
+      "actualCount": 10,
       "undocumentLines": [
         48
       ]

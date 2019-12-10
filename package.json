@@ -25,7 +25,7 @@
     "build": "./node_modules/.bin/webpack",
     "clean": "rm -rf ./dist",
     "help": "echo \"$(cat help.txt)\"",
-    "doc-image": "./node_modules/madge/bin/cli.js ./src -i docs/image/dependency.png & npm run doc"
+    "doc-image": "./node_modules/madge/bin/cli.js ./src -x '.*\\.spec\\.js' -i docs/image/dependency.png & npm run doc"
   },
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
