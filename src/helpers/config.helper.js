@@ -36,13 +36,37 @@ export interface Config {
     docs: boolean; // should display docs?
   };
   DB: {
-    name: string;
-    host: string;
-    user: string;
-    password: string;
+    MARIADB: DatabaseConfig
   };
   PATHS: {
     api: string;
-    healtcheck: string;
-  }
+    healthcheck: string;
+    info: string;
+  };
+  EXTERNAL_SERVICES: {
+    // TODO: Update this
+    EXAMPLE: ExternalServiceConfig
+  };
+}
+
+export interface DatabaseConfig {
+  serviceName?: string;
+  name: string;
+  host: string;
+  user: string;
+  password: string;
+}
+
+export interface ExternalServiceConfig {
+  serviceName?: string;
+  protocol: string;
+  host: string;
+  port: number;
+  path: string;
+  healthcheck?: {
+    port?: number;
+    path: string;
+  };
+  cacheEnabled: boolean;
+  cacheExpiration: number;
 }
