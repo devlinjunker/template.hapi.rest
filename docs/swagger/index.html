@@ -18,6 +18,8 @@
   <a href="../source.html">Source</a>
   <a href="../test.html" data-ice="testLink">Test</a>
   <a href="index.html">API</a>
+  <a id='healthcheck' href="">Healthcheck</a>
+
   <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="../image/github.png"></a></header>
 
   <div class="search-box">
@@ -49,5 +51,14 @@
 <script src="../script/patch-for-local.js"></script>
 
 <script src="swagger.bundle.js"></script>
+
+<script>
+  if (window.location.href.indexOf('localhost') != -1) {
+    document.getElementById('healthcheck').href = '../../admin/status';
+  } else {
+    document.getElementById('healthcheck').style.color = 'grey';
+    document.getElementById('healthcheck').style.cursor = 'not-allowed';
+  }
+</script>
 </body>
 </html>

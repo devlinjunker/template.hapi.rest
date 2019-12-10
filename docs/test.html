@@ -19,6 +19,7 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -275,5 +276,14 @@ the fakes/returns we stub</p>
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
+<script>
+if (window.location.href.indexOf('localhost') != -1) {
+  document.getElementById('healthcheck').href = '../../admin/status';
+} else {
+  document.getElementById('healthcheck').style.color = 'grey';
+  document.getElementById('healthcheck').style.cursor = 'not-allowed';
+}
+</script>
 </body>
 </html>
