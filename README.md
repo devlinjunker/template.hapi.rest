@@ -208,6 +208,16 @@ How to use this template to create a quick HTTP REST server:
 
 ## Issues
 
+**Issues when properties missing/misnamed in controller route objects**
+TODO: add issues
+
+**Issues when controllers/routes being duplicated**
+TODO: add issues
+
+**Issues with wrong node version (<8)**
+TODO: add issues
+
+**Issues when not using babel/polyfill**
 ```
 events.js:183
       throw er; // Unhandled 'error' event

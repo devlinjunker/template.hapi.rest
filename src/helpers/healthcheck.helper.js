@@ -24,7 +24,7 @@ interface HealthcheckResponse {
 async function _getDatabaseStatus(config: DatabaseConfig): Promise<HealthcheckResponse> {
   const response: HealthcheckResponse = {
     name: config.serviceName,
-    status: 'Response: '
+    status: undefined
   };
   try {
     const helper: MariaDBHelper = new MariaDBHelper({
@@ -33,11 +33,11 @@ async function _getDatabaseStatus(config: DatabaseConfig): Promise<HealthcheckRe
       })
     });
     const status: string | boolean = await helper.getStatus();
-    response.status += JSON.stringify(status);
+    response.status = JSON.stringify(status);
     helper.shutdown();
   } catch (error) {
     response.error = true;
-    response.status = 'Error: ' + error;
+    response.status = error;
   }
 
   return response;
@@ -59,9 +59,9 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
       });
     });
     // TODO: Set Timeout length from Config (per service or have default?)
-    req.setTimeout(1000, () => {
+    req.setTimeout(5000, () => {
       req.destroy();
-      reject('TIMEOUT');
+      reject('Error: Timeout at ' + endpoint);
     });
     req.on('error', (error: Error) => {
       reject(error);
@@ -70,13 +70,13 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
 
   const response: HealthcheckResponse = {
     name: config.serviceName,
-    status: 'Response: '
+    status: undefined
   };
   try {
     response.status += await promise;
   } catch (error) {
     response.error = true;
-    response.status = 'Error: ' + error;
+    response.status = error;
   }
   return response;
 }
@@ -86,15 +86,7 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
  */
 class HealthcheckHelper {
   // Tried these with ES6 Map type but it made it much harder to do easy JSON manipulations
-  /**
-   * Map of External Services
-   * @type {Object}
-   */
   serviceMap: { [name: string]: ExternalServiceConfig };
-  /**
-   * Map of DB Services
-   * @type {Object}
-   */
   dbMap: { [name: string]: DatabaseConfig };
 
   /**

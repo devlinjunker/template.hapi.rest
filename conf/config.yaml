@@ -17,12 +17,12 @@ DB:
     user: root
     password: root
 
-## TODO: Add Healthcheck
 PATHS:
   api: /api
-  healthcheck: /admin/status
-  logs: /admin/logs
   info: /admin/info
+  healthcheck: /admin/status
+  ## TODO: Add Log Output endpoint
+  logs: /admin/logs
 
 ## TODO: Protect healthcheck and logs behind these?
 AUTHORIZATION:
@@ -34,9 +34,9 @@ AUTHORIZATION:
 
 ## TODO: Add controller/dataservice that uses one of these
 EXTERNAL_SERVICES:
-  EXAMPLE:
+  EXAMPLE_API:
     protocol: http
-    host: google.com
+    host: example.com
     port: 4444
     path: /api/v1
     healthcheck:

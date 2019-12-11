@@ -60,6 +60,9 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -204,8 +207,7 @@ so that we print the error to output before exiting (We may also want to log thi
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p><p><strong>Examples:</strong></p><ul>
-<li>MardiaDB<ul>
+        <div data-ice="card"><h1>Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p><h2>MariaDB</h2><ul>
 <li>connecting with mariadb server<ul>
 <li>query</li>
 <li>insert</li>
@@ -213,16 +215,10 @@ so that we print the error to output before exiting (We may also want to log thi
 <li>fetchOne</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Config<ul>
-<li>reading properties from config file</li>
-</ul>
-</li>
-<li>Healthcheck<ul>
+</ul><h2>Config</h2><ul>
+<li>reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></li>
+</ul><h2>Healthcheck</h2><ul>
 <li>Make simple requests to configured DB/External Services to see if available</li>
-</ul>
-</li>
 </ul><h2>Notes/Ideas</h2><ul>
 <li>Do we want/need to worry about Dependency Injection/Singletons?</li>
 <li><strong>IDEA:</strong> Move Server into helpers as <code>server.helper.js</code>?</li>

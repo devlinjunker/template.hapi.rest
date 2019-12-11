@@ -104,13 +104,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Map of External Services</p>
+        <div data-ice="description"><p>Creates the Healthcheck helper by loading the configuration file and parsing the database and external
+service configurations</p>
 </div>
       </div>
     </td>
@@ -232,13 +233,13 @@
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-isRunning">isRunning</a></span></span><span class="code" data-ice="signature">(serviceName: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-isRunning">isRunning</a></span></span><span class="code" data-ice="signature">(serviceName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Map of DB Services</p>
+        <div data-ice="description"><p>Returns whether the service passed is running</p>
 </div>
       </div>
     </td>
@@ -265,18 +266,19 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber93">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Map of External Services</p>
+  <div data-ice="description"><p>Creates the Healthcheck helper by loading the configuration file and parsing the database and external
+service configurations</p>
 </div>
 
   
@@ -316,7 +318,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber95">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -359,7 +361,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber94">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber90">source</a></span></span>
     </span>
   </h3>
 
@@ -405,7 +407,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber143">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber134">source</a></span></span>
     </span>
   </h3>
 
@@ -478,18 +480,18 @@
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">isRunning</span><span class="code" data-ice="signature">(serviceName: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">isRunning</span><span class="code" data-ice="signature">(serviceName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber121">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber112">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Map of DB Services</p>
+  <div data-ice="description"><p>Returns whether the service passed is running</p>
 </div>
 
   
@@ -504,9 +506,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">serviceName</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>name of the service/database to check is running</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -518,8 +521,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>whether or not the service returns it is healthy</p>
+</td>
         </tr>
       </tbody>
     </table>
