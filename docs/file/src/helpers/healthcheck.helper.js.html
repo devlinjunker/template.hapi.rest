@@ -20,6 +20,17 @@
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
   <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -222,13 +233,5 @@ export default healthcheckHelper;
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
 
-<script>
-if (window.location.href.indexOf('localhost') != -1) {
-  document.getElementById('healthcheck').href = '../../admin/status';
-} else {
-  document.getElementById('healthcheck').style.color = 'grey';
-  document.getElementById('healthcheck').style.cursor = 'not-allowed';
-}
-</script>
 </body>
 </html>
