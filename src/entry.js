@@ -53,6 +53,7 @@ export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
+  console.log(process.env.NODE_ENV);
   const server: Server = new Server({
     name: CONFIG.SERVER.name,
     host: CONFIG.SERVER.host,
