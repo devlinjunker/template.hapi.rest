@@ -136,7 +136,8 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[..] (^) Simple DB endpoint  <ul>
 <li>[..] PostgreSQL or MariaDB<ul>
 <li><a href="https://mariadb.com/kb/en/library/connector-nodejs-promise-api/">https://mariadb.com/kb/en/library/connector-nodejs-promise-api/</a></li>
-<li>[ ] SQL scripts in repo to init database... update schema later...</li>
+<li>[ ] SQL scripts in repo to init database... update schema later...
+= [ ] (^) Sequelize? <a href="https://sequelize.org/v5/">https://sequelize.org/v5/</a></li>
 </ul>
 </li>
 </ul>
@@ -148,7 +149,7 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] overrides</li>
 </ul>
 </li>
-<li>[ ] (^) Healthcheck<ul>
+<li>[..] (^) Healthcheck<ul>
 <li>Link to in docs</li>
 <li>Server status</li>
 <li>MariaDB</li>
@@ -172,7 +173,15 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>Read test results report on webpage in docs site</li>
 </ul>
 </li>
-<li>[ ] (^) Typescript/Express router<ul>
+<li>[ ] (^) Hapi Improvements<ul>
+<li>Dev Errors in log <a href="https://www.npmjs.com/package/hapi-dev-errors">https://www.npmjs.com/package/hapi-dev-errors</a></li>
+<li>Hapi Swagger <a href="https://github.com/glennjones/hapi-swagger">https://github.com/glennjones/hapi-swagger</a></li>
+<li>Joi object/param validation <a href="https://hapi.dev/family/joi/">https://hapi.dev/family/joi/</a></li>
+<li>Simple Authentication for Healthcheck/Logging <a href="https://hapi.dev/tutorials/auth/">https://hapi.dev/tutorials/auth/</a></li>
+<li>Advanced Authentication</li>
+</ul>
+</li>
+<li>[ ] (^) Typescript/(Express?) router<ul>
 <li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
 <li>Headers</li>
 <li>Cookies?</li>
@@ -197,14 +206,14 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] (-) Helpers<ul>
 <li>[..] mysql</li>
 <li>[ ] external-service request (with performance monitoring/caching?)</li>
-<li>[ ] healthcheck using db and external service configs</li>
-<li>[ ] Authentication</li>
-<li>[ ] Logging<ul>
+<li>[..] healthcheck using db and external service configs</li>
+<li>[ ] (^) Authentication</li>
+<li>[ ] (^) Logging<ul>
 <li>GELF/Kibana?</li>
 <li>Winston/Bunyon</li>
 </ul>
 </li>
-<li>[ ] SendEmail</li>
+<li>[ ] SendEmail (mailchimp?)</li>
 <li>[ ] Cron?</li>
 <li>[ ] ElasticSearch? for search endpoint</li>
 </ul>
@@ -220,7 +229,20 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </ul>
 </li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>
-<li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod</li>
+<li>[ ] (-) <code>bin/</code> directory with script named <code>node.hapi</code> for starting/stopping prod<ul>
+<li>could be a javascript script file...</li>
+</ul>
+</li>
+<li>[ ] (-) Onboarding Documentation<ul>
+<li>Environment Setup (IDEs, Building, Deployment, Repos)</li>
+<li>Overview of Architecture</li>
+<li>Resources for Languages/Frameworks/Libraries</li>
+<li>Coding Standards</li>
+<li>Technical Process (reviews, issue management, story lifecycle)</li>
+<li>Domain Specific Language (Jargon)</li>
+<li>Roles and Responsibilities</li>
+</ul>
+</li>
 <li>[ ] (?) Absolute Paths:<ul>
 <li>maybe: <a href="https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2">https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2</a></li>
 <li>or: <a href="https://www.npmjs.com/package/app-module-path">https://www.npmjs.com/package/app-module-path</a></li>

@@ -105,12 +105,13 @@ How to use this template to create a quick HTTP REST server:
     - [..] PostgreSQL or MariaDB
       - https://mariadb.com/kb/en/library/connector-nodejs-promise-api/
       - [ ] SQL scripts in repo to init database... update schema later...
+      = [ ] (^) Sequelize? https://sequelize.org/v5/
  - [..] (^) Config.yaml (and Env config file?)
     - port
     - database
     - other services/apis later?
     - [ ] overrides
- - [ ] (^) Healthcheck
+ - [..] (^) Healthcheck
     - Link to in docs
     - Server status
     - MariaDB
@@ -128,7 +129,13 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
    - Read test results report on webpage in docs site
- - [ ] (^) Typescript/Express router
+ - [ ] (^) Hapi Improvements
+    - Dev Errors in log https://www.npmjs.com/package/hapi-dev-errors
+    - Hapi Swagger https://github.com/glennjones/hapi-swagger
+    - Joi object/param validation https://hapi.dev/family/joi/
+    - Simple Authentication for Healthcheck/Logging https://hapi.dev/tutorials/auth/
+    - Advanced Authentication
+ - [ ] (^) Typescript/(Express?) router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
       - Cookies?
@@ -143,12 +150,12 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Helpers
     - [..] mysql
     - [ ] external-service request (with performance monitoring/caching?)
-    - [ ] healthcheck using db and external service configs
-    - [ ] Authentication
-    - [ ] Logging
+    - [..] healthcheck using db and external service configs
+    - [ ] (^) Authentication
+    - [ ] (^) Logging
       - GELF/Kibana?
       - Winston/Bunyon
-    - [ ] SendEmail
+    - [ ] SendEmail (mailchimp?)
     - [ ] Cron?
     - [ ] ElasticSearch? for search endpoint
  - [ ] (-) Request Details Model attached to handler parameters
@@ -161,6 +168,15 @@ How to use this template to create a quick HTTP REST server:
       - proper logging
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
+    - could be a javascript script file...
+ - [ ] (-) Onboarding Documentation
+    - Environment Setup (IDEs, Building, Deployment, Repos)
+    - Overview of Architecture
+    - Resources for Languages/Frameworks/Libraries
+    - Coding Standards
+    - Technical Process (reviews, issue management, story lifecycle)
+    - Domain Specific Language (Jargon)
+    - Roles and Responsibilities
  - [ ] (?) Absolute Paths:
     - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - or: https://www.npmjs.com/package/app-module-path
