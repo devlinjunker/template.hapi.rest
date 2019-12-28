@@ -27,6 +27,11 @@
     "help": "echo \"$(cat help.txt)\"",
     "doc-image": "./node_modules/madge/bin/cli.js ./src -x '.*\\.spec\\.js' -i docs/image/dependency.png & npm run doc"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./scripts/hooks/pre-commit.sh"
+    }
+  },
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
