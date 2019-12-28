@@ -124,7 +124,9 @@ How to use this template to create a quick HTTP REST server:
     - Run `doc` command before commit on develop branch
     - Check if spec files exist (except where special comment in file header)
     - Run tests and cancel on tests fail
- - [ ] (-) Automatic Semantic Versioning (Based on PRs?) https://github.com/intuit/auto
+ - [ ] (^) GoAccess log analyzer
+    - https://goaccess.io/
+    - [ ] webpage with log analysis
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
@@ -146,6 +148,7 @@ How to use this template to create a quick HTTP REST server:
        - https://www.restapitutorial.com/httpstatuscodes.html
     - [ ] MongoDB
       - for quick development? (objects on the fly)
+ - [ ] (-) Uptime Robot to check if app/website/api is alive or not
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
     - [..] mysql
