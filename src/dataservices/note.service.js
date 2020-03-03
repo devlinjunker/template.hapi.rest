@@ -5,6 +5,7 @@
  */
 import mariadbHelper, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
 import { RequestError } from '../base/server.js';
+import _ from 'lodash';
 
 /**
  * Note object with name and id
@@ -28,18 +29,13 @@ export default class NoteDataservice {
     if (typeof(id) === 'string' && Number.isNaN(Number.parseInt((id: string)))) {
       throw new RequestError('Note Id must be an integer', 400);
     }
-    try {
-      const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
+    const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      if (row === undefined) {
-        throw new RequestError('Unrecognized Note Id', 404);
-      }
-
-      return row;
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (row === undefined) {
+      throw new RequestError('Unrecognized Note Id', 404);
     }
+
+    return row;
   }
 
   /**
@@ -49,19 +45,18 @@ export default class NoteDataservice {
    * @return {Note}      Note Object
    */
   static async createNote({ name }: { name: string }): Promise<Note> {
-    try {
-      const response: MariaDBInsertResponse = await mariadbHelper.insert('test.notes', {
-        name
-      });
-
-      // TODO: Figure out how to debug with atom
-      console.log(response);
-
-      return await NoteDataservice.getNote({ id: response.insertId });
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (name === '' || name === undefined) {
+      throw new RequestError('Name must be provided', 404);
     }
+
+    const response: MariaDBInsertResponse = await mariadbHelper.insert('test.notes', {
+      name
+    });
+
+    // TODO: Figure out how to debug with atom
+    console.log(response);
+
+    return await NoteDataservice.getNote({ id: response.insertId });
   }
 
   /**
@@ -70,16 +65,18 @@ export default class NoteDataservice {
    * @return {Promise}       [description]
    */
   static async createNotes(notes: Array<{name: string}>): Promise<Array<Note> | Note> {
-    try {
-      const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple('test.notes', notes);
-
-      const endId: number = insert.insertId + insert.affectedRows;
-      const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
-
-      return await mariadbHelper.fetch(query);
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (
+      _.find(({ name }: { name: string; }): boolean => {
+        return name === '' || name === undefined;
+      }) !== undefined
+    ) {
+      throw new RequestError('Name cannot be empty or undefined', 404);
     }
+    const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple('test.notes', notes);
+
+    const endId: number = insert.insertId + insert.affectedRows;
+    const query: string = `SELECT * from test.notes WHERE id >= ${insert.insertId} AND id < ${endId}`;
+
+    return await mariadbHelper.fetch(query);
   }
 }

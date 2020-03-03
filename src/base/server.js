@@ -62,6 +62,7 @@ export interface HapiRequest {
   params: any; // eslint-disable-line
   // Body of a POST request
   payload: any; // eslint-disable-line
+  log: Function; // eslint-disable-line
 };
 
 
@@ -119,7 +120,9 @@ export class Server {
       plugin: Pino,
       options: {
         prettyPrint: false,
-        logEvents: ['response']
+        logEvents: ['response'],
+        logRequestStart: true,
+        logRequestComple: true,
       }
     });
 
@@ -128,6 +131,16 @@ export class Server {
     await this.server.register({
       plugin: Inert
     });
+  }
+
+  /**
+   * Logs a message through hapi-pino
+   * @param  {string[]} tags for pino log record
+   * @param  {string} data for pino log record
+   * @return {undefined}
+   */
+  log({ tags, data }: { tags: string[]; data: string }) {
+    this.server.log(tags, data);
   }
 
 
