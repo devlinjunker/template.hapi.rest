@@ -36,6 +36,7 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "hapi-pino": "^6.1.0",
+    "lodash": "^4.17.15",
     "mariadb": "^2.1.1",
     "yamljs": "^0.3.0"
   },

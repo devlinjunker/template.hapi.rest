@@ -70,6 +70,8 @@ export default async function main() {
   process.on('SIGUSR2', () => { // For nodemon?
     attemptGracefulShutdown(server);
   });
+
+  server.log({ tags: ['STARTUP'], data: 'server startup complete' });
 }
 main();
 
@@ -79,11 +81,12 @@ main();
  * @return {undefined}        undefined
  */
 function attemptGracefulShutdown(server: Server) {
-  console.log('shutdown signal');
+  server.log({ tags: ['SHUTDOWN'], data: 'shutdown signal' });
   server.shutdown((hapiErr: Error) => {
-    console.log('hapi server shutdown');
+    server.log({ tags: ['SHUTDOWN'], data: 'hapi server shutdown' });
     mariadb.shutdown((dbErr: Error) => {
-      console.log('mariadb shutdown');
+      server.log({ tags: ['SHUTDOWN'], data: 'mariadb shutdown' });
+
       process.exit(hapiErr || dbErr ? 1 : 0);
     });
   });
