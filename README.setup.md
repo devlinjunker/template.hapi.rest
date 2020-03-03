@@ -1,16 +1,19 @@
 # Setup
 
-**Requires Node 8+** (prefer 10?). Please install this before attempting to run. The easiest way to install and
-manage node versions is by using the [Node Version Manager](https://github.com/nvm-sh/nvm).
+**Requires Node 10+**. Please install this before attempting to run. The easiest way to install and
+manage node versions is by using the [Node Version Manager](https://github.com/nvm-sh/nvm). We define a .nvm file
+in the project to help reference this minimum node version.
 
-Use `nvm use 8` to switch node versions after installing a new Node version. **Then you should install all
-project dependencies with** `npm install`. This should install the Hapi Server Framework, MariaDB and other
-libraries used in this project.
+Use `nvm use 10` to switch node versions after installing a new Node version. **Then you should install all
+project dependencies**([github](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30)) 
+with `npm install` (or `npm install -D` if development work is planned). This should install the Hapi Server Framework,
+ MariaDB and other libraries used in this project.
 
 If you have cloned the master branch, then the build should compile and all tests should pass once the
 dependencies have been downloaded and installed. To only compile the server, use `npm run build`, or you can
 just run the tests with `npm run test`. **To watch the files for changes and rebuild/retest the files
-on changes, you can use** `npm run start-watch`.
+on changes, you can use** `npm run start-watch`. See the package.json([github](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L17))
+for all possibe npm commands.
 
 The Note Controller/Dataservice Endpoints require MariaDB installed to store the notes passed. After you
 have installed mariadb, you will need to set up the initial database using mariadb and a SQL program (or
@@ -27,7 +30,9 @@ and create Postman test suites based on these files)
 ## Webpack
 
 Webpack config file([github](https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js))
-is used to manage our webpack build to compile the application. In this file we:
+is used to manage our webpack build to compile the application. 
+
+In this file we:
   - designate the files that will be created with the build
   - define the source mapping that will be generated with the output (this should be changed in prod)
   - set the target environment and available globals

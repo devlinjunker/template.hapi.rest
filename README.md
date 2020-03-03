@@ -7,8 +7,8 @@ This example can also be used to quickly create a server with your own endpoints
 on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)
 
 ## Dependencies
-Node v8+ and npm
-  (tested with node v8.12.0 and v10.15.1)
+Node v10+ and npm
+  (tested with v10.15.1)
 
 See [package.json](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json) for full list of current dependencies
  - Hapi v18
