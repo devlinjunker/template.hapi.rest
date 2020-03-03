@@ -119,25 +119,26 @@ How to use this template to create a quick HTTP REST server:
     - [x] Version?
  - [x] (^) cleanup old builds
  - [x] (-) Madge for Dependency graph
- - [ ] (-) Githooks for generating reports/linting  
-    - Check if READMEs exist at each directory level?
-    - Run `doc` command before commit on develop branch
-    - Check if spec files exist (except where special comment in file header)
-    - Run tests and cancel on tests fail
+ - [..] (-) Githooks for generating reports/linting  
+    - [..] Run tests and cancel on tests fail
+    - [ ] Run `doc` command before commit on develop branch
+        - [ ] after merge
+    - [ ] Check if READMEs exist at each directory level?
+    - [ ] Check if spec files exist (except where special comment in file header)
  - [ ] (^) GoAccess log analyzer
     - https://goaccess.io/
     - [ ] webpage with log analysis
- - [ ] (-) Use Hapi Error (in production? not dev?) https://www.npmjs.com/package/hapi-error
- - [ ] (v) Test coverage saved in spec files  
- - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
- - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
-   - Read test results report on webpage in docs site
  - [ ] (^) Hapi Improvements
+    - [ ] (-) Use Hapi Error (in production? not dev?) https://www.npmjs.com/package/hapi-error
     - Dev Errors in log https://www.npmjs.com/package/hapi-dev-errors
     - Hapi Swagger https://github.com/glennjones/hapi-swagger
     - Joi object/param validation https://hapi.dev/family/joi/
     - Simple Authentication for Healthcheck/Logging https://hapi.dev/tutorials/auth/
     - Advanced Authentication
+ - [ ] (v) Test coverage saved in spec files  
+ - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
+ - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
+   - Read test results report on webpage in docs site
  - [ ] (^) Typescript/(Express?) router
     - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
       - Headers
