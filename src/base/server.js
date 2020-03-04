@@ -30,6 +30,7 @@ export interface EndpointConfig {
 export interface HapiHandler {
   code: Function; // eslint-disable-line
   response: Function; // eslint-disable-line
+  redirect: Function; //eslint-disable-line
 }
 
 /**
@@ -89,7 +90,9 @@ export class Server {
     this.name = name || 'Server';
     this.server = Hapi.server({
       port,
-      host
+      host,
+      // Sets errors to print to console while running
+      debug: { request: ['error'] } // TODO: How do we get these to log to file
     });
   }
 
@@ -116,21 +119,29 @@ export class Server {
     await this.server.start();
     process.stdout.write('\n\n' + this.name + ' started on ' + this.server.info.port + '\n\n');
 
-    await this.server.register({
-      plugin: Pino,
-      options: {
-        prettyPrint: false,
-        logEvents: ['response'],
-        logRequestStart: true,
-        logRequestComple: true,
-      }
-    });
-
     // Serve Docs with OpenAPI and Swagger UI
     // visit at http://localhost:3333/docs/swagger/index.html
     await this.server.register({
       plugin: Inert
     });
+
+    await this.server.register({
+      plugin: Pino,
+      options: {
+        prettyPrint: false,
+        logEvents: [
+          // 'onRequest',
+          'response',
+          // 'request-error'
+        ],
+        logRequestStart: true,
+        logRequestComple: true
+        // TODO: stream: file stream to output to
+      }
+    });
+
+    // TODO: Separate stream for errors?
+
   }
 
   /**
