@@ -69,7 +69,7 @@ export default async function main() {
 
   await server.run();
 
-  // TODO: Single controller for logging/error messages better?
+  // TODO: Single controller for logging/error messages better? how do we do path finding?
   server.addEndpoints(apiRoutes);
 
   if (CONFIG.SERVER.docs) {
