@@ -41,5 +41,12 @@ export default [
     path: '/{name}',
     method: 'GET',
     controller: HelloWorld.name
+  },
+  {
+    path: '/error',
+    method: 'GET',
+    controller: () => {
+      throw new Error('Intentional Error Thrown');
+    }
   }
 ];

@@ -4,7 +4,7 @@
  * Entry point that loads all routes for the server
  */
 import path from 'path';
-import { Server, EndpointConfig } from './base/server.js';
+import { Server, EndpointConfig, HapiRequest, HapiHandler } from './base/server.js';
 import mariadb from './helpers/mariadb.helper.js';
 import CONFIG from './helpers/config.helper.js';
 
@@ -18,22 +18,22 @@ import noteRoutes from './controllers/note.controller.js';
  * Build the routes from files and add docs if CONFIG set
  * @type {Array<EndpointConfig>}
  */
-let routes: Array<EndpointConfig> = helloRoutes.concat(noteRoutes);
-routes.forEach((route: EndpointConfig) => {
+const apiRoutes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
+apiRoutes.forEach((route: EndpointConfig) => {
   route.path = CONFIG.PATHS.api + route.path;
 });
 routes = routes.concat(adminRoutes);
 
-if (CONFIG.SERVER.docs) {
-  routes.push({
+
+const docRoutes: Array<EndpointConfig> = [
+  {
     method: 'GET',
     path: CONFIG.PATHS.api,
     controller: {
       file: path.resolve(__dirname, '../openapi.yaml')
     }
-  });
-
-  routes.push({
+  },
+  {
     method: 'GET',
     path: '/docs/{param*}',
     controller: {
@@ -43,8 +43,15 @@ if (CONFIG.SERVER.docs) {
         redirectToSlash: true
       }
     }
-  });
-}
+  },
+  {
+    method: 'GET',
+    path: '/docs',
+    controller: (request: HapiRequest, handler: HapiHandler): any => {
+      return handler.redirect('/docs/');
+    }
+  }
+];
 /**
  * Entry point to run the server
  * @return {undefined} no return
@@ -62,7 +69,12 @@ export default async function main() {
 
   await server.run();
 
-  server.addEndpoints(routes);
+  // TODO: Single controller for logging/error messages better?
+  server.addEndpoints(apiRoutes);
+
+  if (CONFIG.SERVER.docs) {
+    server.addEndpoints(docRoutes);
+  }
 
   process.on('SIGTERM', () => {
     attemptGracefulShutdown(server);
