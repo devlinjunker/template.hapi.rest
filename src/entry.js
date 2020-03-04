@@ -59,33 +59,43 @@ const docRoutes: Array<EndpointConfig> = [
 export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
+  try {
+    const server: Server = new Server({
+      name: CONFIG.SERVER.name,
+      host: CONFIG.SERVER.host,
+      port: CONFIG.SERVER.port
+    });
 
-  console.log(process.env.NODE_ENV);
-  const server: Server = new Server({
-    name: CONFIG.SERVER.name,
-    host: CONFIG.SERVER.host,
-    port: CONFIG.SERVER.port
-  });
+    await server.run();
 
-  await server.run();
+    // TODO: Check that no routes have matching paths and aren't empty
 
-  // TODO: Single controller for logging/error messages better? how do we do path finding?
-  server.addEndpoints(apiRoutes);
+    // TODO: Single controller for logging/error messages better?
+    // how do we do path finding? https://github.com/pillarjs/path-to-regexp
+    server.addEndpoints(apiRoutes);
 
-  if (CONFIG.SERVER.docs) {
-    server.addEndpoints(docRoutes);
+    if (CONFIG.SERVER.docs) {
+      server.addEndpoints(docRoutes);
+    }
+
+    process.on('SIGTERM', () => {
+      attemptGracefulShutdown(server);
+    });
+    process.on('SIGUSR2', () => { // For nodemon?
+      attemptGracefulShutdown(server);
+    });
+
+    server.log({ tags: ['STARTUP'], data: 'server startup complete' });
+  } catch (err) {
+    // Likely caused by "bad" endpoint (empty/ duplicate paths/ no controller)
+    process.stdout.write('Server startup failed!  [Likely due to local changes or missing dependencies]\n\n');
+
+    process.exit(1);
   }
-
-  process.on('SIGTERM', () => {
-    attemptGracefulShutdown(server);
-  });
-  process.on('SIGUSR2', () => { // For nodemon?
-    attemptGracefulShutdown(server);
-  });
-
-  server.log({ tags: ['STARTUP'], data: 'server startup complete' });
 }
 main();
+
+
 
 /**
  * Attempt to shutdown the server and database connections
