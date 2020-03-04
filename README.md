@@ -127,6 +127,7 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (^) GoAccess log analyzer
     - https://goaccess.io/
     - [ ] webpage with log analysis
+ - [ ] (-) Use Hapi Error (in production? not dev?) https://www.npmjs.com/package/hapi-error
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
