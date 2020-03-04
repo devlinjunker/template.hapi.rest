@@ -20,7 +20,7 @@ import Inert from '@hapi/inert';
 export interface EndpointConfig {
   method: string;
   path: string;
-  controller?: any; // eslint-disable-line
+  controller: any; // eslint-disable-line
 }
 
 /**
