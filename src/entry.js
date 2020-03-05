@@ -24,7 +24,6 @@ apiRoutes.forEach((route: EndpointConfig) => {
 });
 routes = routes.concat(adminRoutes);
 
-
 const docRoutes: Array<EndpointConfig> = [
   {
     method: 'GET',
@@ -68,10 +67,6 @@ export default async function main() {
 
     await server.run();
 
-    // TODO: Check that no routes have matching paths and aren't empty
-
-    // TODO: Single controller for logging/error messages better?
-    // how do we do path finding? https://github.com/pillarjs/path-to-regexp
     server.addEndpoints(apiRoutes);
 
     if (CONFIG.SERVER.docs) {
@@ -116,6 +111,10 @@ function attemptGracefulShutdown(server: Server) {
 
 // What is this about again?
 process.on('unhandledRejection', (err) => { // eslint-disable-line
+  process.stdout.write(JSON.stringify(err));
+  process.exit(1);
+});
+process.on('unhandledException', (err) => { // eslint-disable-line
   process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });

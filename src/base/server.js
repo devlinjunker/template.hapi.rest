@@ -6,6 +6,9 @@ require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');
 
+import fs from 'fs';
+import path from 'path';
+import pino from 'pino';
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
@@ -73,6 +76,8 @@ export interface ServerParams {
   host: string;
 }
 
+const LOG_DIR: string = 'logs';
+
 /**
  * Abstraction to manage running the server.
  * Instantiates on application server start up inside `entry.js` file or wherever the intial "main" script is
@@ -92,7 +97,7 @@ export class Server {
       port,
       host,
       // Sets errors to print to console while running
-      debug: { request: ['error'] } // TODO: How do we get these to log to file
+      debug: { request: ['error'] } // TODO: How do we get these to log to file, should we just pipe them?
     });
   }
 
@@ -125,18 +130,17 @@ export class Server {
       plugin: Inert
     });
 
+    // Create `logs` directory (so we only see errors and console logs in process out)
+    if (!fs.existsSync(LOG_DIR)) {
+      fs.mkdirSync(LOG_DIR);
+    }
+
     await this.server.register({
       plugin: Pino,
       options: {
         prettyPrint: false,
-        logEvents: [
-          // 'onRequest',
-          'response',
-          // 'request-error'
-        ],
-        logRequestStart: true,
-        logRequestComple: true
-        // TODO: stream: file stream to output to
+        logEvents: ['response', 'request-error'],
+        stream: pino.destination(path.resolve(LOG_DIR, 'pino.log'))
       }
     });
 
@@ -160,7 +164,7 @@ export class Server {
    * @param {EndpointConfig} endpoint configuration
    * @return {undefined}
    */
-  addEndpoint({ method, path, controller }: EndpointConfig) {
+  addEndpoint({ method, path, controller }: EndpointConfig) { // eslint-disable-line no-shadow
     this.server.route({
       method,
       path,
