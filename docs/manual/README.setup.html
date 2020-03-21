@@ -80,6 +80,13 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#on-commit" data-ice="link">On commit</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.test.html"><a href="manual/README.test.html" data-ice="link">Test</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.test.html"><a href="manual/README.test.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
@@ -87,15 +94,18 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="setup">Setup</h1><p><strong>Requires Node 8+</strong> (prefer 10?). Please install this before attempting to run. The easiest way to install and
-manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>.</p>
-<p>Use <code>nvm use 8</code> to switch node versions after installing a new Node version. <strong>Then you should install all
-project dependencies with</strong> <code>npm install</code>. This should install the Hapi Server Framework, MariaDB and other
-libraries used in this project.</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="setup">Setup</h1><p><strong>Requires Node 10+</strong>. Please install this before attempting to run. The easiest way to install and
+manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. We define a .nvm file
+in the project to help reference this minimum node version.</p>
+<p>Use <code>nvm use 10</code> to switch node versions after installing a new Node version. <strong>Then you should install all
+project dependencies</strong>(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) 
+with <code>npm install</code> (or <code>npm install -D</code> if development work is planned). This should install the Hapi Server Framework,
+ MariaDB and other libraries used in this project.</p>
 <p>If you have cloned the master branch, then the build should compile and all tests should pass once the
 dependencies have been downloaded and installed. To only compile the server, use <code>npm run build</code>, or you can
 just run the tests with <code>npm run test</code>. <strong>To watch the files for changes and rebuild/retest the files
-on changes, you can use</strong> <code>npm run start-watch</code>.</p>
+on changes, you can use</strong> <code>npm run start-watch</code>. See the package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L17">github</a>)
+for all possibe npm commands.</p>
 <p>The Note Controller/Dataservice Endpoints require MariaDB installed to store the notes passed. After you
 have installed mariadb, you will need to set up the initial database using mariadb and a SQL program (or
 scripts if we get working). <strong>Once the db is set up, the configuration for the database name, user, password
@@ -107,7 +117,8 @@ developed. There is a Swagger application at the API link in the docs or can vie
 file(<a href="./manual/../swagger/openapi.yaml">source</a>) (Eventually we will autogenerate OpenAPI file from code annotations
 and create Postman test suites based on these files)</p>
 <h2 id="webpack">Webpack</h2><p>Webpack config file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">github</a>)
-is used to manage our webpack build to compile the application. In this file we:</p>
+is used to manage our webpack build to compile the application. </p>
+<p>In this file we:</p>
 <ul>
 <li>designate the files that will be created with the build</li>
 <li>define the source mapping that will be generated with the output (this should be changed in prod)</li>
