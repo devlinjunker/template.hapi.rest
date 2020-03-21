@@ -1,7 +1,7 @@
 {
-  "coverage": "86%",
-  "expectCount": 50,
-  "actualCount": 43,
+  "coverage": "86.27%",
+  "expectCount": 51,
+  "actualCount": 44,
   "files": {
     "src/base/server.js": {
       "expectCount": 11,
@@ -43,12 +43,12 @@
       "undocumentLines": []
     },
     "src/helpers/healthcheck.helper.js": {
-      "expectCount": 9,
-      "actualCount": 6,
+      "expectCount": 10,
+      "actualCount": 7,
       "undocumentLines": [
-        90,
-        91,
-        157
+        104,
+        105,
+        175
       ]
     },
     "src/helpers/mariadb.helper.js": {

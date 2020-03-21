@@ -111,12 +111,12 @@ How to use this template to create a quick HTTP REST server:
     - database
     - other services/apis later?
     - [ ] overrides
- - [..] (^) Healthcheck
+ - [x] (^) Healthcheck
     - Server status
     - MariaDB
     - External Service
-    - [ ] Link to in docs
-    - [ ] Version?
+    - [x] Link to in docs
+    - [x] Version?
  - [x] (^) cleanup old builds
  - [x] (-) Madge for Dependency graph
  - [ ] (-) Githooks for generating reports/linting  

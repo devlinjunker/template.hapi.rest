@@ -59,6 +59,9 @@ import _ from &apos;lodash&apos;;
 import http from &apos;http&apos;;
 import CONFIG, { DatabaseConfig, ExternalServiceConfig } from &apos;./config.helper.js&apos;;
 import { MariaDBHelper } from &apos;./mariadb.helper.js&apos;;
+import pack from &apos;../../package.json&apos;;
+import file from &apos;fs&apos;;
+import path from &apos;path&apos;;
 
 /**
  * Healthcheck Response Object containing the healthcheck name, status and if it errored or not
@@ -136,6 +139,17 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
 }
 
 /**
+ * Returns the current branch of the build (TODO: development vs production?)
+ * @return {string} information about the current branch and build
+ */
+function getBranch(): string {
+  const content: string = file.readFileSync(path.join(__dirname, &apos;../../.git/HEAD&apos;), { encoding: &apos;UTF-8&apos; });
+
+  const split: string[] = content.split(&apos;/&apos;);
+  return split[split.length - 1];
+}
+
+/**
  * Class to wrap the methods that are used for server healthcheck
  */
 class HealthcheckHelper {
@@ -196,10 +210,17 @@ class HealthcheckHelper {
     /* eslint-disable id-length */
     const status = {
       L1: [
-        // TODO: add version number to L1
         {
           name: &apos;SERVER&apos;,
           status: &apos;alive&apos;,
+        },
+        {
+          name: &apos;VERSION&apos;,
+          status: pack.version
+        },
+        {
+          name: &apos;BRANCH&apos;,
+          status: getBranch()
         }
       ],
       L2: await Promise.all(_.map(this.dbMap, _getDatabaseStatus)),
