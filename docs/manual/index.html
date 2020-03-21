@@ -102,6 +102,7 @@ production?)</li>
 <li><a href="manual/README.controllers.html">Controllers</a> - mappings from url endpoints to methods for handling requests</li>
 <li><a href="manual/README.dataservices.html">Dataservices</a> - classes/methods that connect to external services or datastores</li>
 <li><a href="manual/README.helpers.html">Helpers</a> - classes that are used frequently for interacting with other systems/tools</li>
+<li><a href="manual/README.hooks.html">Git Hooks</a> - Notes about workflow enforcements</li>
 <li><a href="manual/README.test.html">Test</a> - files used to run the unit tests (eventually automated tests)</li>
 </ul>
 <p>.</p>
@@ -249,8 +250,8 @@ so that we print the error to output before exiting (We may also want to log thi
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Git Hooks</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
-letting the commit go through:</p><p>Process: </p><ol>
+        <div data-ice="card"><h1>Git Hooks</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
+letting the commit go through:</p><p>Process:</p><ol>
 <li>Stash uncommited changes</li>
 <li>Run linting/flow/compliation and tests with npm/webpack</li>
 <li>Pop uncommitted changes</li>

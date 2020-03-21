@@ -94,11 +94,11 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="git-hooks">Git Hooks</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers.</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="git-hooks">Git Hooks</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p>
 <p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p>
 <h2 id="on-commit">On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
 letting the commit go through:</p>
-<p>Process: </p>
+<p>Process:</p>
 <ol>
 <li>Stash uncommited changes</li>
 <li>Run linting/flow/compliation and tests with npm/webpack</li>
