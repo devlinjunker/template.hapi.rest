@@ -18,6 +18,19 @@
   <a href="../source.html">Source</a>
   <a href="../test.html" data-ice="testLink">Test</a>
   <a href="index.html">API</a>
+  <a id='healthcheck' href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
+
   <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="../image/github.png"></a></header>
 
   <div class="search-box">
@@ -49,5 +62,6 @@
 <script src="../script/patch-for-local.js"></script>
 
 <script src="swagger.bundle.js"></script>
+
 </body>
 </html>

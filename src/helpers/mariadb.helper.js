@@ -86,6 +86,19 @@ export class MariaDBHelper {
   }
 
   /**
+   * Return the status of the database server (should be called on an instance with a pool, not connection)
+   * @return {String | boolean}     Either the current time, returned from database, or false if unable
+   * to connect
+   */
+  async getStatus(): Promise<string | boolean> {
+    if (this.dbPool) {
+      return await this.dbPool.query('SELECT NOW();');
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Execute a simple query on the entire database
    * @param  {string}  query Query string to be passed to DB for response
    *  see https://mariadb.com/kb/en/library/data-manipulation/ for reference
@@ -234,9 +247,9 @@ export class MariaDBHelper {
 
 const mariadbHelper = new MariaDBHelper({ config: {
   database: undefined,
-  host: CONFIG.DB.host,
-  user: CONFIG.DB.user,
-  password: CONFIG.DB.password,
+  host: CONFIG.DB.MARIADB.host,
+  user: CONFIG.DB.MARIADB.user,
+  password: CONFIG.DB.MARIADB.password,
   connectionLimit: 5
 } });
 

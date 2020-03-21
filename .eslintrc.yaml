@@ -118,6 +118,7 @@ rules:
       - id
       - i
       - it
+      - _
   new-cap:
     - error
   camelcase:

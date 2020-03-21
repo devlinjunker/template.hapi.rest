@@ -10,7 +10,7 @@ import CONFIG from './helpers/config.helper.js';
 
 // TODO: auto detect routes
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
-import infoRoutes from './controllers/info.controller.js';
+import adminRoutes from './controllers/admin.controller.js';
 import helloRoutes from './controllers/hello.controller.js';
 import noteRoutes from './controllers/note.controller.js';
 
@@ -18,10 +18,11 @@ import noteRoutes from './controllers/note.controller.js';
  * Build the routes from files and add docs if CONFIG set
  * @type {Array<EndpointConfig>}
  */
-const routes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
+let routes: Array<EndpointConfig> = helloRoutes.concat(noteRoutes);
 routes.forEach((route: EndpointConfig) => {
   route.path = CONFIG.PATHS.api + route.path;
 });
+routes = routes.concat(adminRoutes);
 
 if (CONFIG.SERVER.docs) {
   routes.push({
@@ -52,6 +53,7 @@ export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
+  console.log(process.env.NODE_ENV);
   const server: Server = new Server({
     name: CONFIG.SERVER.name,
     host: CONFIG.SERVER.host,

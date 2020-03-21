@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">Server | HapiServer</title>
+  <title data-ice="title">HealthcheckHelper | HapiServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -52,34 +52,37 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Server} from &apos;<span><a href="file/src/base/server.js.html#lineNumber56">HapiServer/src/base/server.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode"></code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/base/server.js.html#lineNumber56">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber95">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">Server</h1>
+  <h1 data-ice="name">HealthcheckHelper</h1>
 
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <div data-ice="instanceDocs" class="instance-docs">
+    <span>You can directly use an instance of this class.</span>
+    
+  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></span>
+</div>
 
   
   
-  <div class="description" data-ice="description"><p>Abstraction to manage running the server.
-Instantiates on application server start up inside <code>entry.js</code> file or wherever the intial &quot;main&quot; script is</p>
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <div class="description" data-ice="description"><p>Class to wrap the methods that are used for server healthcheck</p>
 </div>
   
 
@@ -112,13 +115,14 @@ Instantiates on application server start up inside <code>entry.js</code> file or
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Server Constructor</p>
+        <div data-ice="description"><p>Creates the Healthcheck helper by loading the configuration file and parsing the database and external
+service configurations</p>
 </div>
       </div>
     </td>
@@ -148,7 +152,7 @@ Instantiates on application server start up inside <code>entry.js</code> file or
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-member-name">name</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-member-dbMap">dbMap</a></span></span><span class="code" data-ice="signature">: {}</span>
         </p>
       </div>
       <div>
@@ -176,7 +180,7 @@ Instantiates on application server start up inside <code>entry.js</code> file or
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-member-server">server</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-member-serviceMap">serviceMap</a></span></span><span class="code" data-ice="signature">: {}</span>
         </p>
       </div>
       <div>
@@ -209,44 +213,15 @@ Instantiates on application server start up inside <code>entry.js</code> file or
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-addEndpoint">addEndpoint</a></span></span><span class="code" data-ice="signature">(endpoint: <span>EndpointConfig</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-getStatus">getStatus</a></span></span><span class="code" data-ice="signature">(level: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span>any</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Adds an endpoint at the path given handled by the controller</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-addEndpoints">addEndpoints</a></span></span><span class="code" data-ice="signature">(routes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>EndpointConfig</span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Adds the endpoints given to the server</p>
+        <div data-ice="description"><p>Returns the status</p>
 </div>
       </div>
     </td>
@@ -269,42 +244,13 @@ Instantiates on application server start up inside <code>entry.js</code> file or
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-run">run</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-isRunning">isRunning</a></span></span><span class="code" data-ice="signature">(serviceName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Starts the server and registers any plugins</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/base/server.js~Server.html#instance-method-shutdown">shutdown</a></span></span><span class="code" data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Shutdown the Hapi Server Properly</p>
+        <div data-ice="description"><p>Returns whether the service passed is running</p>
 </div>
       </div>
     </td>
@@ -335,14 +281,15 @@ Instantiates on application server start up inside <code>entry.js</code> file or
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber103">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Server Constructor</p>
+  <div data-ice="description"><p>Creates the Healthcheck helper by loading the configuration file and parsing the database and external
+service configurations</p>
 </div>
 
   
@@ -371,18 +318,18 @@ Instantiates on application server start up inside <code>entry.js</code> file or
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-name">
+  <h3 data-ice="anchor" id="instance-member-dbMap">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">name</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">dbMap</span><span class="code" data-ice="signature">: {}</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber105">source</a></span></span>
     </span>
   </h3>
 
@@ -414,18 +361,18 @@ Instantiates on application server start up inside <code>entry.js</code> file or
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-server">
+  <h3 data-ice="anchor" id="instance-member-serviceMap">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">server</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">serviceMap</span><span class="code" data-ice="signature">: {}</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber104">source</a></span></span>
     </span>
   </h3>
 
@@ -460,176 +407,50 @@ Instantiates on application server start up inside <code>entry.js</code> file or
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-addEndpoint">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">addEndpoint</span><span class="code" data-ice="signature">(endpoint: <span>EndpointConfig</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber114">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds an endpoint at the path given handled by the controller</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">endpoint</td>
-      <td data-ice="type" class="code"><span>EndpointConfig</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>configuration</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-addEndpoints">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">addEndpoints</span><span class="code" data-ice="signature">(routes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>EndpointConfig</span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber130">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds the endpoints given to the server</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">routes</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>EndpointConfig</span>&gt;</td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Routes to add to the server</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-run">
+  <h3 data-ice="anchor" id="instance-method-getStatus">
     <span class="access" data-ice="access">public</span>
     
     
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">run</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">getStatus</span><span class="code" data-ice="signature">(level: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber148">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Starts the server and registers any plugins</p>
+  <div data-ice="description"><p>Returns the status</p>
 </div>
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">level</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>of healthcheck status to view
+ L1: this server + version
+ L2: databases and other essential services we manage for the endpoints to work
+ L3: external services we don&apos;t have control over and hopefully we catch errors for to explain to user</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   <div class="return-params" data-ice="returnParams">
@@ -637,8 +458,8 @@ Instantiates on application server start up inside <code>entry.js</code> file or
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Resolves once server has started</p>
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>status of services in that level (or full status of server if no level provided)</p>
 </td>
         </tr>
       </tbody>
@@ -663,25 +484,25 @@ Instantiates on application server start up inside <code>entry.js</code> file or
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-shutdown">
+  <h3 data-ice="anchor" id="instance-method-isRunning">
     <span class="access" data-ice="access">public</span>
     
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">shutdown</span><span class="code" data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></span>
+    <span class="code" data-ice="name">isRunning</span><span class="code" data-ice="signature">(serviceName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/base/server.js.html#lineNumber75">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/healthcheck.helper.js.html#lineNumber126">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Shutdown the Hapi Server Properly</p>
+  <div data-ice="description"><p>Returns whether the service passed is running</p>
 </div>
 
   
@@ -695,10 +516,10 @@ Instantiates on application server start up inside <code>entry.js</code> file or
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">callback</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="name" class="code" data-depth="0">serviceName</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>callback to run after server has shutdown</p>
+      <td data-ice="description"><p>name of the service/database to check is running</p>
 </td>
     </tr>
 </tbody>
@@ -711,8 +532,8 @@ Instantiates on application server start up inside <code>entry.js</code> file or
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>no return</p>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>whether or not the service returns it is healthy</p>
 </td>
         </tr>
       </tbody>

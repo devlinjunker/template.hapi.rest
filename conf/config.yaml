@@ -11,15 +11,17 @@ SERVER:
   docs: true
 
 DB:
-  name: test
-  host: localhost
-  user: root
-  password: root
+  MARIADB:
+    name: test
+    host: localhost
+    user: root
+    password: root
 
-## TODO: Add Healthcheck
 PATHS:
   api: /api
+  info: /admin/info
   healthcheck: /admin/status
+  ## TODO: Add Log Output endpoint
   logs: /admin/logs
 
 ## TODO: Protect healthcheck and logs behind these?
@@ -32,7 +34,7 @@ AUTHORIZATION:
 
 ## TODO: Add controller/dataservice that uses one of these
 EXTERNAL_SERVICES:
-  EXAMPLE:
+  EXAMPLE_API:
     protocol: http
     host: example.com
     port: 4444

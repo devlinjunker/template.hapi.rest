@@ -19,6 +19,18 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -30,8 +42,10 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html">HealthcheckHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -207,6 +221,35 @@ constructor</p>
         
         
         <div data-ice="description"><p>Fetch the (first) row that matches a string</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-getStatus">getStatus</a></span></span><span class="code" data-ice="signature">(): <span>String </span> | <span> boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return the status of the database server (should be called on an instance with a pool, not connection)</p>
 </div>
       </div>
     </td>
@@ -446,7 +489,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber96">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber109">source</a></span></span>
     </span>
   </h3>
 
@@ -520,7 +563,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber112">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber125">source</a></span></span>
     </span>
   </h3>
 
@@ -583,6 +626,64 @@ constructor</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-getStatus">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">getStatus</span><span class="code" data-ice="signature">(): <span>String </span> | <span> boolean</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber79">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Return the status of the database server (should be called on an instance with a pool, not connection)</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>String </span> | <span> boolean</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Either the current time, returned from database, or false if unable
+to connect</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-insert">
     <span class="access" data-ice="access">public</span>
     
@@ -594,7 +695,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber128">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber141">source</a></span></span>
     </span>
   </h3>
 
@@ -675,7 +776,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber146">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber159">source</a></span></span>
     </span>
   </h3>
 
@@ -756,7 +857,7 @@ constructor</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber82">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/mariadb.helper.js.html#lineNumber95">source</a></span></span>
     </span>
   </h3>
 
@@ -915,5 +1016,6 @@ constructor</p>
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
 </body>
 </html>

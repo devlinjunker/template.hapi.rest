@@ -19,6 +19,18 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
@@ -59,6 +71,9 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -109,5 +124,6 @@
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
 </body>
 </html>

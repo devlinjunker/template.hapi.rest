@@ -111,12 +111,12 @@ How to use this template to create a quick HTTP REST server:
     - database
     - other services/apis later?
     - [ ] overrides
- - [..] (^) Healthcheck
-    - Link to in docs
+ - [x] (^) Healthcheck
     - Server status
     - MariaDB
     - External Service
-    - Version?
+    - [x] Link to in docs
+    - [x] Version?
  - [x] (^) cleanup old builds
  - [x] (-) Madge for Dependency graph
  - [ ] (-) Githooks for generating reports/linting  
@@ -208,6 +208,16 @@ How to use this template to create a quick HTTP REST server:
 
 ## Issues
 
+**Issues when properties missing/misnamed in controller route objects**
+TODO: add issues
+
+**Issues when controllers/routes being duplicated**
+TODO: add issues
+
+**Issues with wrong node version (<8)**
+TODO: add issues
+
+**Issues when not using babel/polyfill**
 ```
 events.js:183
       throw er; // Unhandled 'error' event

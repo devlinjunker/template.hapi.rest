@@ -19,6 +19,18 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -30,14 +42,16 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html">HealthcheckHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">35/39</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">44/51</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -59,7 +73,15 @@
       <td class="coverage"><span data-ice="coverage">72 %</span><span data-ice="coverageCount" class="coverage-count">8/11</span></td>
       <td style="display: none;" data-ice="size">4031 byte</td>
       <td style="display: none;" data-ice="lines">160</td>
-      <td style="display: none;" data-ice="updated">2020-03-07 19:26:24 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 19:46:53 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/controllers/admin.controller.js.html">src/controllers/admin.controller.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
+      <td style="display: none;" data-ice="size">1105 byte</td>
+      <td style="display: none;" data-ice="lines">39</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 20:28:28 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/controllers/hello.controller.js.html">src/controllers/hello.controller.js</a></span></td>
@@ -67,15 +89,7 @@
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">3/3</span></td>
       <td style="display: none;" data-ice="size">965 byte</td>
       <td style="display: none;" data-ice="lines">45</td>
-      <td style="display: none;" data-ice="updated">2020-03-07 19:26:24 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/controllers/info.controller.js.html">src/controllers/info.controller.js</a></span></td>
-      <td data-ice="identifier" class="identifiers">-</td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
-      <td style="display: none;" data-ice="size">523 byte</td>
-      <td style="display: none;" data-ice="lines">23</td>
-      <td style="display: none;" data-ice="updated">2020-03-04 00:45:08 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 19:46:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/controllers/note.controller.js.html">src/controllers/note.controller.js</a></span></td>
@@ -83,7 +97,7 @@
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">5/5</span></td>
       <td style="display: none;" data-ice="size">2366 byte</td>
       <td style="display: none;" data-ice="lines">91</td>
-      <td style="display: none;" data-ice="updated">2020-03-07 19:26:24 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 19:46:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/dataservices/note.service.js.html">src/dataservices/note.service.js</a></span></td>
@@ -91,32 +105,41 @@
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">4/4</span></td>
       <td style="display: none;" data-ice="size">2371 byte</td>
       <td style="display: none;" data-ice="lines">85</td>
-      <td style="display: none;" data-ice="updated">2020-03-07 19:26:24 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 19:46:53 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/entry.js.html">src/entry.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-main">main</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">3/3</span></td>
-      <td style="display: none;" data-ice="size">2519 byte</td>
-      <td style="display: none;" data-ice="lines">94</td>
-      <td style="display: none;" data-ice="updated">2020-03-07 19:26:24 (UTC)</td>
+      <td style="display: none;" data-ice="size">2581 byte</td>
+      <td style="display: none;" data-ice="lines">96</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 20:30:03 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/helpers/config.helper.js.html">src/helpers/config.helper.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">903 byte</td>
-      <td style="display: none;" data-ice="lines">48</td>
-      <td style="display: none;" data-ice="updated">2020-03-03 18:07:23 (UTC)</td>
+      <td style="display: none;" data-ice="size">1340 byte</td>
+      <td style="display: none;" data-ice="lines">72</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 20:28:28 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/helpers/healthcheck.helper.js.html#errorLines=104,105,175">src/helpers/healthcheck.helper.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html">HealthcheckHelper</a></span>
+<span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></td>
+      <td class="coverage"><span data-ice="coverage">70 %</span><span data-ice="coverageCount" class="coverage-count">7/10</span></td>
+      <td style="display: none;" data-ice="size">5819 byte</td>
+      <td style="display: none;" data-ice="lines">186</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 20:30:03 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/helpers/mariadb.helper.js.html#errorLines=48">src/helpers/mariadb.helper.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span>
 <span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></td>
-      <td class="coverage"><span data-ice="coverage">90 %</span><span data-ice="coverageCount" class="coverage-count">9/10</span></td>
-      <td style="display: none;" data-ice="size">7649 byte</td>
-      <td style="display: none;" data-ice="lines">247</td>
-      <td style="display: none;" data-ice="updated">2019-12-04 06:20:00 (UTC)</td>
+      <td class="coverage"><span data-ice="coverage">90 %</span><span data-ice="coverageCount" class="coverage-count">10/11</span></td>
+      <td style="display: none;" data-ice="size">8084 byte</td>
+      <td style="display: none;" data-ice="lines">260</td>
+      <td style="display: none;" data-ice="updated">2020-03-07 20:28:28 (UTC)</td>
     </tr>
 </tbody>
 </table>
@@ -135,5 +158,6 @@
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
 </body>
 </html>

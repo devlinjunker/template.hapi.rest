@@ -19,6 +19,18 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -30,8 +42,10 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html">HealthcheckHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -50,7 +64,7 @@ import CONFIG from &apos;./helpers/config.helper.js&apos;;
 
 // TODO: auto detect routes
 // https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express
-import infoRoutes from &apos;./controllers/info.controller.js&apos;;
+import adminRoutes from &apos;./controllers/admin.controller.js&apos;;
 import helloRoutes from &apos;./controllers/hello.controller.js&apos;;
 import noteRoutes from &apos;./controllers/note.controller.js&apos;;
 
@@ -58,10 +72,11 @@ import noteRoutes from &apos;./controllers/note.controller.js&apos;;
  * Build the routes from files and add docs if CONFIG set
  * @type {Array&lt;EndpointConfig&gt;}
  */
-const routes: Array&lt;EndpointConfig&gt; = infoRoutes.concat(helloRoutes, noteRoutes);
+let routes: Array&lt;EndpointConfig&gt; = helloRoutes.concat(noteRoutes);
 routes.forEach((route: EndpointConfig) =&gt; {
   route.path = CONFIG.PATHS.api + route.path;
 });
+routes = routes.concat(adminRoutes);
 
 if (CONFIG.SERVER.docs) {
   routes.push({
@@ -92,6 +107,7 @@ export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
 
+  console.log(process.env.NODE_ENV);
   const server: Server = new Server({
     name: CONFIG.SERVER.name,
     host: CONFIG.SERVER.host,
@@ -147,5 +163,6 @@ process.on(&apos;unhandledRejection&apos;, (err) =&gt; { // eslint-disable-line
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
 </body>
 </html>

@@ -19,6 +19,18 @@
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
   <a href="swagger/index.html">API</a>
+  <a id="healthcheck" href="">Healthcheck</a>
+
+  <script>
+    var el = document.getElementById('healthcheck')
+    if (window.location.href.indexOf('github') == -1) {
+      el.href = '../../admin/status';
+    } else {
+      el.style.color = 'grey';
+      el.style.cursor = 'not-allowed';
+      el.title = 'Unavailable on Github Hosting'
+    }
+  </script>
 <a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
@@ -30,8 +42,10 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html">HealthcheckHelper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/mariadb.helper.js~MariaDBHelper.html">MariaDBHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONFIG">CONFIG</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-healthcheckHelper">healthcheckHelper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mariadbHelper">mariadbHelper</a></span></span></li>
 </ul>
 </div>
@@ -150,12 +164,12 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] overrides</li>
 </ul>
 </li>
-<li>[..] (^) Healthcheck<ul>
-<li>Link to in docs</li>
+<li>[x] (^) Healthcheck<ul>
 <li>Server status</li>
 <li>MariaDB</li>
 <li>External Service</li>
-<li>Version?</li>
+<li>[x] Link to in docs</li>
+<li>[x] Version?</li>
 </ul>
 </li>
 <li>[x] (^) cleanup old builds</li>
@@ -283,7 +297,14 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] Authorized vs Unauthorized endpoints</li>
 <li>[ ] SSO Server</li>
 </ul>
-<h2 id="issues">Issues</h2><pre><code><code class="source-code prettyprint">events.js:183
+<h2 id="issues">Issues</h2><p><strong>Issues when properties missing/misnamed in controller route objects</strong>
+TODO: add issues</p>
+<p><strong>Issues when controllers/routes being duplicated</strong>
+TODO: add issues</p>
+<p><strong>Issues with wrong node version (&lt;8)</strong>
+TODO: add issues</p>
+<p><strong>Issues when not using babel/polyfill</strong></p>
+<pre><code><code class="source-code prettyprint">events.js:183
       throw er; // Unhandled &apos;error&apos; event
       ^
 
@@ -319,5 +340,6 @@ Error: Cannot find module &apos;babel-polyfill&apos;</code>
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
+
 </body>
 </html>

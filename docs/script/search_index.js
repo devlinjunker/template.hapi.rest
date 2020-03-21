@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "hapiserver/src/helpers/healthcheck.helper.js~healthcheckhelper",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html",
+    "<span>HealthcheckHelper</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/healthcheck.helper.js</span>",
+    "class"
+  ],
+  [
     "hapiserver/src/controllers/hello.controller.js~helloworld",
     "class/src/controllers/hello.controller.js~HelloWorld.html",
     "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiServer/src/controllers/hello.controller.js</span>",
@@ -40,6 +46,12 @@ window.esdocSearchIndex = [
     "class/src/base/server.js~Server.html",
     "<span>Server</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
     "class"
+  ],
+  [
+    "hapiserver/src/helpers/healthcheck.helper.js~healthcheckhelper",
+    "variable/index.html#static-variable-healthcheckHelper",
+    "<span>healthcheckHelper</span> <span class=\"search-result-import-path\">HapiServer/src/helpers/healthcheck.helper.js</span>",
+    "variable"
   ],
   [
     "hapiserver/src/entry.js~main",
@@ -606,6 +618,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/controllers/admin.controller.js",
+    "file/src/controllers/admin.controller.js.html",
+    "src/controllers/admin.controller.js",
+    "file"
+  ],
+  [
     "src/controllers/hello.controller.js",
     "file/src/controllers/hello.controller.js.html",
     "src/controllers/hello.controller.js",
@@ -622,12 +640,6 @@ window.esdocSearchIndex = [
     "class/src/controllers/hello.controller.js~HelloWorld.html#static-method-name",
     "src/controllers/hello.controller.js~HelloWorld.name",
     "method"
-  ],
-  [
-    "src/controllers/info.controller.js",
-    "file/src/controllers/info.controller.js.html",
-    "src/controllers/info.controller.js",
-    "file"
   ],
   [
     "src/controllers/note.controller.js",
@@ -696,6 +708,42 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/healthcheck.helper.js",
+    "file/src/helpers/healthcheck.helper.js.html",
+    "src/helpers/healthcheck.helper.js",
+    "file"
+  ],
+  [
+    "src/helpers/healthcheck.helper.js~healthcheckhelper#constructor",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-constructor-constructor",
+    "src/helpers/healthcheck.helper.js~HealthcheckHelper#constructor",
+    "method"
+  ],
+  [
+    "src/helpers/healthcheck.helper.js~healthcheckhelper#dbmap",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-member-dbMap",
+    "src/helpers/healthcheck.helper.js~HealthcheckHelper#dbMap",
+    "member"
+  ],
+  [
+    "src/helpers/healthcheck.helper.js~healthcheckhelper#getstatus",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-getStatus",
+    "src/helpers/healthcheck.helper.js~HealthcheckHelper#getStatus",
+    "method"
+  ],
+  [
+    "src/helpers/healthcheck.helper.js~healthcheckhelper#isrunning",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-method-isRunning",
+    "src/helpers/healthcheck.helper.js~HealthcheckHelper#isRunning",
+    "method"
+  ],
+  [
+    "src/helpers/healthcheck.helper.js~healthcheckhelper#servicemap",
+    "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html#instance-member-serviceMap",
+    "src/helpers/healthcheck.helper.js~HealthcheckHelper#serviceMap",
+    "member"
+  ],
+  [
     "src/helpers/mariadb.helper.js",
     "file/src/helpers/mariadb.helper.js.html",
     "src/helpers/mariadb.helper.js",
@@ -723,6 +771,12 @@ window.esdocSearchIndex = [
     "src/helpers/mariadb.helper.js~mariadbhelper#fetchone",
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-fetchOne",
     "src/helpers/mariadb.helper.js~MariaDBHelper#fetchOne",
+    "method"
+  ],
+  [
+    "src/helpers/mariadb.helper.js~mariadbhelper#getstatus",
+    "class/src/helpers/mariadb.helper.js~MariaDBHelper.html#instance-method-getStatus",
+    "src/helpers/mariadb.helper.js~MariaDBHelper#getStatus",
     "method"
   ],
   [
