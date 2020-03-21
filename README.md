@@ -119,8 +119,10 @@ How to use this template to create a quick HTTP REST server:
     - [x] Version?
  - [x] (^) cleanup old builds
  - [x] (-) Madge for Dependency graph
- - [..] (-) Githooks for generating reports/linting  
-    - [..] Run tests and cancel on tests fail
+ - [x] (-) Githooks for generating reports/linting  
+    - [x] Run tests and cancel on tests fail
+ - [..] Github actions
+    - [x] Run build and test
     - [ ] Run `doc` command before commit on develop branch
         - [ ] after merge
     - [ ] Check if READMEs exist at each directory level?
