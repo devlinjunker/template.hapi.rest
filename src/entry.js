@@ -18,11 +18,10 @@ import noteRoutes from './controllers/note.controller.js';
  * Build the routes from files and add docs if CONFIG set
  * @type {Array<EndpointConfig>}
  */
-const apiRoutes: Array<EndpointConfig> = infoRoutes.concat(helloRoutes, noteRoutes);
+const apiRoutes: Array<EndpointConfig> = helloRoutes.concat(noteRoutes);
 apiRoutes.forEach((route: EndpointConfig) => {
   route.path = CONFIG.PATHS.api + route.path;
 });
-routes = routes.concat(adminRoutes);
 
 const docRoutes: Array<EndpointConfig> = [
   {
@@ -68,6 +67,7 @@ export default async function main() {
     await server.run();
 
     server.addEndpoints(apiRoutes);
+    server.addEndpoints(adminRoutes);
 
     if (CONFIG.SERVER.docs) {
       server.addEndpoints(docRoutes);
