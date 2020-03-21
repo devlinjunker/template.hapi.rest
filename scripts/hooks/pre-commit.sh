@@ -9,7 +9,7 @@ CURRENT_BRANCH=`git branch | grep \* | cut -d' ' -f2`;
 ## All Branches
 
 # stash any unsaved changes and then pop after running all the tests. That way uncommited changes won't affect tests
-git stash save "githook uncommitted changes";
+git stash save -k "githook uncommitted changes";
 
 # Run linting tests
 npm run lint;

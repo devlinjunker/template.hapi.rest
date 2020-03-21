@@ -55,8 +55,8 @@
 with endpoints for managing requests and connections to other servers and/or database/storage tools.</p>
 <p>This example can also be used to quickly create a server with your own endpoints to do whatever you would like
 on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)</p>
-<h2 id="dependencies">Dependencies</h2><p>Node v8+ and npm
-  (tested with node v8.12.0 and v10.15.1)</p>
+<h2 id="dependencies">Dependencies</h2><p>Node v10+ and npm
+  (tested with v10.15.1)</p>
 <p>See <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json">package.json</a> for full list of current dependencies</p>
 <ul>
 <li>Hapi v18</li>
@@ -174,11 +174,14 @@ on any requests (either user/interaction based, or with a cron job to make it on
 </li>
 <li>[x] (^) cleanup old builds</li>
 <li>[x] (-) Madge for Dependency graph</li>
-<li>[ ] (-) Githooks for generating reports/linting  <ul>
-<li>Check if READMEs exist at each directory level?</li>
-<li>Run <code>doc</code> command before commit on develop branch</li>
-<li>Check if spec files exist (except where special comment in file header)</li>
-<li>Run tests and cancel on tests fail</li>
+<li>[..] (-) Githooks for generating reports/linting  <ul>
+<li>[..] Run tests and cancel on tests fail</li>
+<li>[ ] Run <code>doc</code> command before commit on develop branch<ul>
+<li>[ ] after merge</li>
+</ul>
+</li>
+<li>[ ] Check if READMEs exist at each directory level?</li>
+<li>[ ] Check if spec files exist (except where special comment in file header)</li>
 </ul>
 </li>
 <li>[ ] (^) GoAccess log analyzer<ul>
@@ -186,19 +189,19 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] webpage with log analysis</li>
 </ul>
 </li>
-<li>[ ] (-) Use Hapi Error (in production? not dev?) <a href="https://www.npmjs.com/package/hapi-error">https://www.npmjs.com/package/hapi-error</a></li>
-<li>[ ] (v) Test coverage saved in spec files  </li>
-<li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
-<li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  <ul>
-<li>Read test results report on webpage in docs site</li>
-</ul>
-</li>
 <li>[ ] (^) Hapi Improvements<ul>
+<li>[ ] (-) Use Hapi Error (in production? not dev?) <a href="https://www.npmjs.com/package/hapi-error">https://www.npmjs.com/package/hapi-error</a></li>
 <li>Dev Errors in log <a href="https://www.npmjs.com/package/hapi-dev-errors">https://www.npmjs.com/package/hapi-dev-errors</a></li>
 <li>Hapi Swagger <a href="https://github.com/glennjones/hapi-swagger">https://github.com/glennjones/hapi-swagger</a></li>
 <li>Joi object/param validation <a href="https://hapi.dev/family/joi/">https://hapi.dev/family/joi/</a></li>
 <li>Simple Authentication for Healthcheck/Logging <a href="https://hapi.dev/tutorials/auth/">https://hapi.dev/tutorials/auth/</a></li>
 <li>Advanced Authentication</li>
+</ul>
+</li>
+<li>[ ] (v) Test coverage saved in spec files  </li>
+<li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
+<li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  <ul>
+<li>Read test results report on webpage in docs site</li>
 </ul>
 </li>
 <li>[ ] (^) Typescript/(Express?) router<ul>
