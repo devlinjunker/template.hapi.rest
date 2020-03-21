@@ -121,6 +121,7 @@ How to use this template to create a quick HTTP REST server:
  - [x] (-) Madge for Dependency graph
  - [x] (-) Githooks for generating reports/linting  
     - [x] Run tests and cancel on tests fail
+    - [ ] Different actions on different branch names?
  - [..] Github actions
     - [x] Run build and test
     - [ ] Run `doc` command before commit on develop branch
