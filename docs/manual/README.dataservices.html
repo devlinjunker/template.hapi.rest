@@ -74,8 +74,8 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -83,17 +83,19 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks/Workflow</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#on-commit" data-ice="link">On commit</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#github-actions" data-ice="link">Github Actions</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -106,26 +108,20 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="dataservices">Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p>
-<h2 id="hello-world">Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p>
-<h2 id="note-dataservice">Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="dataservices">Dataservices</h1><p>Dataservices abstract the communication with storage systems or external APIs to fetch/store data related to a
+topic or for a specific UI component.</p>
+<h2 id="examples">Examples</h2><h3 id="note-dataservice">Note Dataservice</h3><p>Create/Read Note objects out of a mariadb/mysql database</p>
 <h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>RDBMS vs Document store<ul>
-<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
-<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
-<li>Document Store:<ul>
-<li>use for settings data and where schema will be changed often</li>
-<li>when changes are small crud, based on users interactions?</li>
-<li>when count and aggregate data is useful to end user</li>
+<li>Quick storage dataservice (abstracted away from specific object?)<ul>
+<li>takes object from post/put request and places in mongodb</li>
+<li>objects indexed by another param</li>
+<li>automatically assigned id</li>
+<li>retrieves with get request</li>
+<li>delete request<ul>
+<li>takes multiple object ids</li>
 </ul>
 </li>
-<li>RDBMS:<ul>
-<li>less duplicated data, normalized and stored in specific tables</li>
-<li>useful when data changes often</li>
-<li>seems like more useful for storing fact data in ETL processes?</li>
-<li>Q: phoenix?</li>
-</ul>
-</li>
+<li>search/or retrieve by property?</li>
 </ul>
 </li>
 </ul>

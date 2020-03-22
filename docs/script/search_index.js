@@ -36,9 +36,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "hapiserver/src/base/server.js~requesterror",
-    "class/src/base/server.js~RequestError.html",
-    "<span>RequestError</span> <span class=\"search-result-import-path\">HapiServer/src/base/server.js</span>",
+    "hapiserver/src/base/request/request-error.model.js~requesterror",
+    "class/src/base/request/request-error.model.js~RequestError.html",
+    "<span>RequestError</span> <span class=\"search-result-import-path\">HapiServer/src/base/request/request-error.model.js</span>",
     "class"
   ],
   [
@@ -558,22 +558,34 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/base/request/hapi-request.interface.js",
+    "file/src/base/request/hapi-request.interface.js.html",
+    "src/base/request/hapi-request.interface.js",
+    "file"
+  ],
+  [
+    "src/base/request/request-error.model.js",
+    "file/src/base/request/request-error.model.js.html",
+    "src/base/request/request-error.model.js",
+    "file"
+  ],
+  [
+    "src/base/request/request-error.model.js~requesterror#code",
+    "class/src/base/request/request-error.model.js~RequestError.html#instance-member-code",
+    "src/base/request/request-error.model.js~RequestError#code",
+    "member"
+  ],
+  [
+    "src/base/request/request-error.model.js~requesterror#constructor",
+    "class/src/base/request/request-error.model.js~RequestError.html#instance-constructor-constructor",
+    "src/base/request/request-error.model.js~RequestError#constructor",
+    "method"
+  ],
+  [
     "src/base/server.js",
     "file/src/base/server.js.html",
     "src/base/server.js",
     "file"
-  ],
-  [
-    "src/base/server.js~requesterror#code",
-    "class/src/base/server.js~RequestError.html#instance-member-code",
-    "src/base/server.js~RequestError#code",
-    "member"
-  ],
-  [
-    "src/base/server.js~requesterror#constructor",
-    "class/src/base/server.js~RequestError.html#instance-constructor-constructor",
-    "src/base/server.js~RequestError#constructor",
-    "method"
   ],
   [
     "src/base/server.js~server#addendpoint",
