@@ -64,6 +64,50 @@ paths:
           description: 'Note with specified id is not available'
         '500':
           description: Unexpected Error
+    put:
+      tags:
+        - Note
+      summary: Update a note, specified by id
+      description: Deletes a single note only
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the Note to update
+          schema:
+            type: integer
+            example: 1
+            minimum: 1
+      requestBody:
+        description: Note data to update to DB
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Success or error on delete
+    delete:
+      tags:
+        - Note
+      summary: Delete a note, specified by id
+      description: Deletes a single note only
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the Note to delete
+          schema:
+            type: integer
+            example: 1
+            minimum: 1
+      responses:
+        '200':
+          description: Success or error on delete
 
 
 components:

@@ -189,9 +189,11 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] Check if spec files exist (except where special comment in file header)</li>
 </ul>
 </li>
-<li>[ ] (^) GoAccess log analyzer<ul>
-<li><a href="https://goaccess.io/">https://goaccess.io/</a></li>
-<li>[ ] webpage with log analysis</li>
+<li>[..] (^) Improve logging<ul>
+<li>[x] configuration</li>
+<li>~rotate~</li>
+<li>[x] pino-pretty</li>
+<li>[ ] slack message on error?</li>
 </ul>
 </li>
 <li>[ ] (^) Hapi Improvements<ul>
@@ -203,31 +205,18 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>Advanced Authentication</li>
 </ul>
 </li>
+<li>[ ] (^) GoAccess log analyzer<ul>
+<li><a href="https://goaccess.io/">https://goaccess.io/</a></li>
+</ul>
+</li>
+<li>[ ] (-) Websocket Logging Endpoint<ul>
+<li>display logs and any new logs at endpoint</li>
+</ul>
+</li>
 <li>[ ] (v) Test coverage saved in spec files  </li>
 <li>[ ] (v) Babel Istanbul(NYC) plugin <a href="https://github.com/istanbuljs/babel-plugin-istanbul">https://github.com/istanbuljs/babel-plugin-istanbul</a>  </li>
 <li>[ ] (v) Istanbul (NYC) Reporters <a href="https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib">https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib</a>  <ul>
 <li>Read test results report on webpage in docs site</li>
-</ul>
-</li>
-<li>[ ] (^) Typescript/(Express?) router<ul>
-<li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
-<li>Headers</li>
-<li>Cookies?</li>
-</ul>
-</li>
-<li>[ ] OpenApi Decorators for openapi docs generation <a href="https://github.com/epiphone/routing-controllers-openapi">https://github.com/epiphone/routing-controllers-openapi</a><ul>
-<li>Newman (Postman) Auto Test Generation: <a href="https://github.com/dtzar/openapi-auto-test">https://github.com/dtzar/openapi-auto-test</a></li>
-</ul>
-</li>
-<li>[ ] Automatically find controller files in entry rather than need to reference  </li>
-<li>[ ] Proper error messages/codes from endpoints<ul>
-<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a></li>
-</ul>
-</li>
-<li>[ ] MongoDB<ul>
-<li>for quick development? (objects on the fly)</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>[ ] (-) Uptime Robot to check if app/website/api is alive or not</li>
@@ -250,11 +239,32 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>[ ] (-) Request Details Model attached to handler parameters</li>
 <li>[ ] (-) Compression of responses</li>
 <li>[ ] (-) Run only affected tests on file save  </li>
+<li>[ ] (-) Typescript/(Express?) router<ul>
+<li>[ ] Routing Decorators and Validation <a href="https://github.com/typestack/routing-controllers">https://github.com/typestack/routing-controllers</a><ul>
+<li>Headers</li>
+<li>Cookies?</li>
+</ul>
+</li>
+<li>[ ] OpenApi Decorators for openapi docs generation <a href="https://github.com/epiphone/routing-controllers-openapi">https://github.com/epiphone/routing-controllers-openapi</a><ul>
+<li>Newman (Postman) Auto Test Generation: <a href="https://github.com/dtzar/openapi-auto-test">https://github.com/dtzar/openapi-auto-test</a></li>
+</ul>
+</li>
+<li>[ ] Automatically find controller files in entry rather than need to reference  </li>
+<li>[ ] Proper error messages/codes from endpoints<ul>
+<li><a href="https://www.restapitutorial.com/httpstatuscodes.html">https://www.restapitutorial.com/httpstatuscodes.html</a></li>
+</ul>
+</li>
+<li>[ ] MongoDB<ul>
+<li>for quick development? (objects on the fly)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>[ ] (-) production vs dev<ul>
 <li>webpack/build</li>
 <li>pm2 for production</li>
 <li>config</li>
-<li>proper logging</li>
+<li>log rotation</li>
 </ul>
 </li>
 <li>[ ] (-) Require Node v8 and recommend v10 on build</li>

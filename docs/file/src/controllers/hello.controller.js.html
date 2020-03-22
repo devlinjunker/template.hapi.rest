@@ -95,6 +95,14 @@ export default [
     path: &apos;/{name}&apos;,
     method: &apos;GET&apos;,
     controller: HelloWorld.name
+  },
+  {
+    path: &apos;/error&apos;,
+    method: &apos;GET&apos;,
+    controller: (request: HapiRequest) =&gt; {
+      request.logger.error(&apos;Error Message!&apos;);
+      throw new Error(&apos;Intentional Error Thrown&apos;);
+    }
   }
 ];
 </code></pre>
