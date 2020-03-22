@@ -74,8 +74,8 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -83,17 +83,19 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks/Workflow</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#on-commit" data-ice="link">On commit</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#github-actions" data-ice="link">Github Actions</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -108,7 +110,7 @@
 
 <div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="logging">Logging</h1><p>We are currently using pino for logging. Pino logs objects/messages directly to streams so other processes can
 actually handle formatting or other log actions (this is because Node is single threaded, so smarter to create
-another process to manage the logs). We store all of these files in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p>
+another process to manage the logs). We store all of these logs in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p>
 <h2 id="configurations">Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12">github</a>) file:</p>
 <ul>
 <li>The <code>debug</code> property shows error messages and stack traces in the stdout of the server process (for
@@ -143,10 +145,10 @@ another process to manage the logs). We store all of these files in <code>&lt;CO
 
   ... return things?...
 }</code>
-</code></pre><h2 id="other-processes">Other processes</h2><p>Other node processes should be spawned (in production and development), here are some examples of processes
-we recommend:</p>
-<h3 id="logrotate">Logrotate</h3><p>By design, pino just outputs logs to be used by other &quot;transporters&quot;. Log Rotation should be handled via
-another service as described in the <a href="http://getpino.io/#/docs/help?id=log-rotation">pino documention</a></p>
+</code></pre><h2 id="other-processes">Other processes</h2><p>By design, pino just outputs logs to be used by other &quot;transporters&quot; (other node processes spawned in
+production and development) for reacting to, and viewing these logs. here are some examples of processes
+we recommend implementing:</p>
+<h3 id="logrotate">Logrotate</h3><p>Log Rotation on production servers should be handled via another service as described in the <a href="http://getpino.io/#/docs/help?id=log-rotation">pino documention</a></p>
 <h3 id="pino-pretty">Pino-Pretty</h3><p>Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
 To use, pipe the log file to pino-pretty executable:
 <code>tail -f logs/pino.log | ./node_modules/.bin/pino-pretty -t</code>  </p>
@@ -194,11 +196,13 @@ responseTime: 6</code>
 </code></pre></li>
 </ul>
 <h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>Log Helper for use in the dataservices</li>
+<li>Trace logging any external requests/responses</li>
+<li>Logger Helper for use in the dataservices</li>
 <li>goaccess?</li>
 <li>websocket? endpoint that shows logs in real time</li>
 <li>docs page for logs (searching?)</li>
 <li>Elasticsearch/Logstash/Kibana</li>
+<li>logrotate on production</li>
 </ul>
 </div>
 </div>

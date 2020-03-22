@@ -3,16 +3,22 @@
   "expectCount": 56,
   "actualCount": 45,
   "files": {
-    "src/base/server.js": {
-      "expectCount": 15,
-      "actualCount": 9,
+    "src/base/request/request-error.model.js": {
+      "expectCount": 3,
+      "actualCount": 2,
       "undocumentLines": [
-        14,
-        15,
-        45,
-        69,
-        70,
-        71
+        16
+      ]
+    },
+    "src/base/server.js": {
+      "expectCount": 12,
+      "actualCount": 7,
+      "undocumentLines": [
+        18,
+        19,
+        42,
+        43,
+        44
       ]
     },
     "src/controllers/admin.controller.js": {
@@ -39,7 +45,7 @@
       "expectCount": 4,
       "actualCount": 3,
       "undocumentLines": [
-        26
+        27
       ]
     },
     "src/helpers/config.helper.js": {
@@ -51,9 +57,9 @@
       "expectCount": 10,
       "actualCount": 7,
       "undocumentLines": [
-        104,
         105,
-        175
+        106,
+        180
       ]
     },
     "src/helpers/mariadb.helper.js": {

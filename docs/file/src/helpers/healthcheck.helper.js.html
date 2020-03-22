@@ -37,8 +37,8 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-main">main</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~RequestError.html">RequestError</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base">base</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#base-request">base/request</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base/request/request-error.model.js~RequestError.html">RequestError</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/hello.controller.js~HelloWorld.html">HelloWorld</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/note.controller.js~NoteController.html">NoteController</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#dataservices">dataservices</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/dataservices/note.service.js~NoteDataservice.html">NoteDataservice</a></span></span></li>
@@ -68,10 +68,16 @@ import path from &apos;path&apos;;
  * @type {HealthcheckResponse}
  */
 interface HealthcheckResponse {
-  name: string | typeof undefined;
-  status: any;
+  name: ?string;
+  status: ?string;
   error?: boolean;
 };
+
+interface FullResponse {
+  L1: Array&lt;HealthcheckResponse&gt;;
+  L2: Array&lt;HealthcheckResponse&gt;;
+  L3: Array&lt;HealthcheckResponse&gt;;
+}
 
 /**
  * Retrieves the status of a database, based on the config given
@@ -130,6 +136,7 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
     status: undefined
   };
   try {
+    // $FlowFixMe
     response.status += await promise;
   } catch (error) {
     response.error = true;
@@ -206,19 +213,23 @@ class HealthcheckHelper {
    *  L3: external services we don&apos;t have control over and hopefully we catch errors for to explain to user
    * @returns {any} status of services in that level (or full status of server if no level provided)
    */
-  async getStatus(level?: &apos;L1&apos; | &apos;L2&apos; | &apos;L3&apos;): any {
+  async getStatus(level?: &apos;L1&apos; | &apos;L2&apos; | &apos;L3&apos;): any { // eslint-disable-line flowtype/no-weak-types
     /* eslint-disable id-length */
-    const status = {
+    const status: FullResponse = {
       L1: [
         {
+          // $FlowFixMe
           name: &apos;SERVER&apos;,
+          // $FlowFixMe
           status: &apos;alive&apos;,
         },
         {
+          // $FlowFixMe
           name: &apos;VERSION&apos;,
           status: pack.version
         },
         {
+          // $FlowFixMe
           name: &apos;BRANCH&apos;,
           status: getBranch()
         }
@@ -228,7 +239,7 @@ class HealthcheckHelper {
     };
     /* eslint-enable id-length */
 
-    return level === undefined ? status : status[level];
+    return level === undefined ? status : (status: any)[level]; // eslint-disable-line flowtype/no-weak-types
   }
 }
 

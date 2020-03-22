@@ -4,32 +4,32 @@
     "filePath": "src/base/server.js",
     "lines": [
       {
-        "lineNumber": 126,
-        "line": "   * Starts the server and registers any plugins"
-      },
-      {
-        "lineNumber": 127,
-        "line": "   * @return {Promise} Resolves once server has started"
-      },
-      {
-        "lineNumber": 128,
-        "line": "   */"
-      },
-      {
-        "lineNumber": 129,
-        "line": "  async run() {"
-      },
-      {
-        "lineNumber": 130,
-        "line": "    await this.server.start();"
-      },
-      {
-        "lineNumber": 131,
-        "line": "    process.stdout.write('\\n\\n' + this.name + ' started on ' + this.server.info.port + '\\n\\n');"
-      },
-      {
-        "lineNumber": 132,
+        "lineNumber": 98,
         "line": ""
+      },
+      {
+        "lineNumber": 99,
+        "line": "    // Create `logs` directory (so we only see errors and console logs in process out)"
+      },
+      {
+        "lineNumber": 100,
+        "line": "    if (!fs.existsSync(this.logDir)) {"
+      },
+      {
+        "lineNumber": 101,
+        "line": "      fs.mkdirSync(this.logDir);"
+      },
+      {
+        "lineNumber": 102,
+        "line": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "line": ""
+      },
+      {
+        "lineNumber": 104,
+        "line": "    await this.server.register({"
       }
     ],
     "codeParams": [

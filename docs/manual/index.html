@@ -74,8 +74,8 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -83,17 +83,19 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks/Workflow</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#on-commit" data-ice="link">On commit</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#github-actions" data-ice="link">Github Actions</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -130,7 +132,7 @@ production?)</li>
         <div data-ice="card"><h1>Setup</h1><p><strong>Requires Node 10+</strong>. Please install this before attempting to run. The easiest way to install and
 manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. We define a .nvm file
 in the project to help reference this minimum node version.</p><p>Use <code>nvm use 10</code> to switch node versions after installing a new Node version. <strong>Then you should install all
-project dependencies</strong>(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) 
+project dependencies</strong>(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>)
 with <code>npm install</code> (or <code>npm install -D</code> if development work is planned). This should install the Hapi Server Framework,
  MariaDB and other libraries used in this project.</p><p>If you have cloned the master branch, then the build should compile and all tests should pass once the
 dependencies have been downloaded and installed. To only compile the server, use <code>npm run build</code>, or you can
@@ -145,7 +147,7 @@ used to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to hel
 developed. There is a Swagger application at the API link in the docs or can view the raw
 file(<a href="./manual/../swagger/openapi.yaml">source</a>) (Eventually we will autogenerate OpenAPI file from code annotations
 and create Postman test suites based on these files)</p><h2>Webpack</h2><p>Webpack config file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">github</a>)
-is used to manage our webpack build to compile the application. </p><p>In this file we:</p><ul>
+is used to manage our webpack build to compile the application.</p><p>In this file we:</p><ul>
 <li>designate the files that will be created with the build</li>
 <li>define the source mapping that will be generated with the output (this should be changed in prod)</li>
 <li>set the target environment and available globals</li>
@@ -160,9 +162,10 @@ is used to manage our webpack build to compile the application. </p><p>In this f
 </ul><h2>Documentation</h2><p>The <code>docs/</code> directory is created with <code>npm run doc</code>, this generates an esdoc webpage based on the modified
 template stored in <code>docs/template</code>.</p><p>The Dependency Graph is created with <a href="https://github.com/pahen/madge">Madge</a> and graphviz, you will need to
 install both in order to update the dependency graph. I didn&apos;t include these in the package.json dependencies
-because I felt this is more than is needed to develop a working app or even write basic documentation.</p><p>Install madge with <code>npm install madge</code> and install graphviz with <code>brew install graphviz</code> or
+because I felt this is more than is needed to develop a working app or even write basic documentation.</p><p>Install madge with <code>npm install -g madge</code> and install graphviz with <code>brew install graphviz</code> or
 <code>port install graphviz</code> (for OSX)</p><p>I split this out to a separate npm script: <code>npm run doc-image</code></p><h2>Notes/Ideas</h2><ul>
 <li><strong>IDEA:</strong>  init scripts with installation and SQL setup</li>
+<li>Explore madge options: <a href="https://www.npmjs.com/package/madge#configuration">https://www.npmjs.com/package/madge#configuration</a></li>
 </ul></div>
         <a data-ice="link" href="manual/README.setup.html"></a>
       </div>
@@ -183,7 +186,7 @@ so that we print the error to output before exiting (We may also want to log thi
       <div class="manual-card">
         <div data-ice="card"><h1>Logging</h1><p>We are currently using pino for logging. Pino logs objects/messages directly to streams so other processes can
 actually handle formatting or other log actions (this is because Node is single threaded, so smarter to create
-another process to manage the logs). We store all of these files in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p><h2>Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12">github</a>) file:</p><ul>
+another process to manage the logs). We store all of these logs in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p><h2>Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12">github</a>) file:</p><ul>
 <li>The <code>debug</code> property shows error messages and stack traces in the stdout of the server process (for
  development)</li>
 <li>The <code>dir</code> property defines the directory to save log files in</li>
@@ -213,9 +216,9 @@ another process to manage the logs). We store all of these files in <code>&lt;CO
 
   ... return things?...
 }</code>
-</code></pre><h2>Other processes</h2><p>Other node processes should be spawned (in production and development), here are some examples of processes
-we recommend:</p><h3>Logrotate</h3><p>By design, pino just outputs logs to be used by other &quot;transporters&quot;. Log Rotation should be handled via
-another service as described in the <a href="http://getpino.io/#/docs/help?id=log-rotation">pino documention</a></p><h3>Pino-Pretty</h3><p>Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
+</code></pre><h2>Other processes</h2><p>By design, pino just outputs logs to be used by other &quot;transporters&quot; (other node processes spawned in
+production and development) for reacting to, and viewing these logs. here are some examples of processes
+we recommend implementing:</p><h3>Logrotate</h3><p>Log Rotation on production servers should be handled via another service as described in the <a href="http://getpino.io/#/docs/help?id=log-rotation">pino documention</a></p><h3>Pino-Pretty</h3><p>Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
 To use, pipe the log file to pino-pretty executable:
 <code>tail -f logs/pino.log | ./node_modules/.bin/pino-pretty -t</code>  </p><p>See <a href="https://github.com/pinojs/pino-pretty#cli-arguments">CLI arguments</a> for more control of output:</p><ul>
 <li>remove <code>-t</code> for epoch</li>
@@ -259,11 +262,13 @@ res: {
 responseTime: 6</code>
 </code></pre></li>
 </ul><h2>Notes/Ideas</h2><ul>
-<li>Log Helper for use in the dataservices</li>
+<li>Trace logging any external requests/responses</li>
+<li>Logger Helper for use in the dataservices</li>
 <li>goaccess?</li>
 <li>websocket? endpoint that shows logs in real time</li>
 <li>docs page for logs (searching?)</li>
 <li>Elasticsearch/Logstash/Kibana</li>
+<li>logrotate on production</li>
 </ul></div>
         <a data-ice="link" href="manual/README.logging.html"></a>
       </div>
@@ -306,7 +311,38 @@ responseTime: 6</code>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices communicate with storage systems or external APIs to fetch/store data.</p><h2>Hello World</h2><p>Simple example of Hello World endpoint plus example with random value and input from path parameter</p><h2>Note Dataservice</h2><p>Create/Read Note objects out of a mariadb/mysql database</p><h2>Notes/Ideas</h2><ul>
+        <div data-ice="card"><h1>Dataservices</h1><p>Dataservices abstract the communication with storage systems or external APIs to fetch/store data related to a
+topic or for a specific UI component.</p><h2>Examples</h2><h3>Note Dataservice</h3><p>Create/Read Note objects out of a mariadb/mysql database</p><h2>Notes/Ideas</h2><ul>
+<li>Quick storage dataservice (abstracted away from specific object?)<ul>
+<li>takes object from post/put request and places in mongodb</li>
+<li>objects indexed by another param</li>
+<li>automatically assigned id</li>
+<li>retrieves with get request</li>
+<li>delete request<ul>
+<li>takes multiple object ids</li>
+</ul>
+</li>
+<li>search/or retrieve by property?</li>
+</ul>
+</li>
+</ul></div>
+        <a data-ice="link" href="manual/README.dataservices.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Helpers</h1><p>Helpers are classes that modularize some functionality that is useful in the server.</p><h2>Examples</h2><h3>MariaDB</h3><p>Helper class for connecting with mariadb server and saving/retrieving rows from tables</p><pre><code><code class="source-code prettyprint">- query
+- insert
+- fetch
+- fetchOne</code>
+</code></pre><h3>Config</h3><p>Helper class for reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></p><ul>
+<li>provides a typed interface of these properties</li>
+</ul><h3>Healthcheck</h3><p>Helper for building the healthcheck response that is displayed at <code>&lt;CONFIG.PATHS.healthceck&gt;</code> endpoint.</p><ul>
+<li>Determines version/branch and if the server is running properly</li>
+<li>Makes simple requests to configured dependency DB/External Services to see if they are available</li>
+</ul><h2>Notes/Ideas</h2><ul>
+<li><strong>IDEA:</strong> Should healthcheck read log file for past minute to see if any errors?</li>
+<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
 <li>RDBMS vs Document store<ul>
 <li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
 <li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
@@ -326,38 +362,18 @@ responseTime: 6</code>
 </ul>
 </li>
 </ul></div>
-        <a data-ice="link" href="manual/README.dataservices.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p><h2>MariaDB</h2><ul>
-<li>connecting with mariadb server<ul>
-<li>query</li>
-<li>insert</li>
-<li>fetch</li>
-<li>fetchOne</li>
-</ul>
-</li>
-</ul><h2>Config</h2><ul>
-<li>reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></li>
-</ul><h2>Healthcheck</h2><ul>
-<li>Make simple requests to configured DB/External Services to see if available</li>
-</ul><h2>Notes/Ideas</h2><ul>
-<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
-<li><strong>IDEA:</strong> Move Server into helpers as <code>server.helper.js</code>?</li>
-</ul></div>
         <a data-ice="link" href="manual/README.helpers.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Git Hooks</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
+        <div data-ice="card"><h1>Git Hooks/Workflow</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
 letting the commit go through:</p><p>Process:</p><ol>
 <li>Stash uncommited changes</li>
 <li>Run linting/flow/compliation and tests with npm/webpack</li>
 <li>Pop uncommitted changes</li>
-</ol></div>
+</ol><h2>Github Actions</h2><p>We setup github actions on this project so we can attempt to build and run the tests for every PR submitted
+against master.</p><p>More to come...</p></div>
         <a data-ice="link" href="manual/README.hooks.html"></a>
       </div>
     </div>

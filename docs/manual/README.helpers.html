@@ -74,8 +74,8 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html" data-ice="link">Dataservices</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#hello-world" data-ice="link">Hello World</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#note-dataservice" data-ice="link">Note Dataservice</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.dataservices.html"><a href="manual/README.dataservices.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -83,17 +83,19 @@
     <ul class="manual-toc">
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html" data-ice="link">Helpers</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#mariadb" data-ice="link">MariaDB</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#config" data-ice="link">Config</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#healthcheck" data-ice="link">Healthcheck</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.helpers.html"><a href="manual/README.helpers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html" data-ice="link">Git Hooks/Workflow</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#on-commit" data-ice="link">On commit</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.hooks.html"><a href="manual/README.hooks.html#github-actions" data-ice="link">Github Actions</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -106,25 +108,42 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="helpers">Helpers</h1><p>Helpers are classes that wrap some functionality not associated with an external service</p>
-<h2 id="mariadb">MariaDB</h2><ul>
-<li>connecting with mariadb server<ul>
-<li>query</li>
-<li>insert</li>
-<li>fetch</li>
-<li>fetchOne</li>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="helpers">Helpers</h1><p>Helpers are classes that modularize some functionality that is useful in the server.</p>
+<h2 id="examples">Examples</h2><h3 id="mariadb">MariaDB</h3><p>Helper class for connecting with mariadb server and saving/retrieving rows from tables</p>
+<pre><code><code class="source-code prettyprint">- query
+- insert
+- fetch
+- fetchOne</code>
+</code></pre><h3 id="config">Config</h3><p>Helper class for reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></p>
+<ul>
+<li>provides a typed interface of these properties</li>
+</ul>
+<h3 id="healthcheck">Healthcheck</h3><p>Helper for building the healthcheck response that is displayed at <code>&lt;CONFIG.PATHS.healthceck&gt;</code> endpoint.</p>
+<ul>
+<li>Determines version/branch and if the server is running properly</li>
+<li>Makes simple requests to configured dependency DB/External Services to see if they are available</li>
+</ul>
+<h2 id="notes-ideas">Notes/Ideas</h2><ul>
+<li><strong>IDEA:</strong> Should healthcheck read log file for past minute to see if any errors?</li>
+<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
+<li>RDBMS vs Document store<ul>
+<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
+<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
+<li>Document Store:<ul>
+<li>use for settings data and where schema will be changed often</li>
+<li>when changes are small crud, based on users interactions?</li>
+<li>when count and aggregate data is useful to end user</li>
+</ul>
+</li>
+<li>RDBMS:<ul>
+<li>less duplicated data, normalized and stored in specific tables</li>
+<li>useful when data changes often</li>
+<li>seems like more useful for storing fact data in ETL processes?</li>
+<li>Q: phoenix?</li>
 </ul>
 </li>
 </ul>
-<h2 id="config">Config</h2><ul>
-<li>reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></li>
-</ul>
-<h2 id="healthcheck">Healthcheck</h2><ul>
-<li>Make simple requests to configured DB/External Services to see if available</li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
-<li><strong>IDEA:</strong> Move Server into helpers as <code>server.helper.js</code>?</li>
+</li>
 </ul>
 </div>
 </div>
