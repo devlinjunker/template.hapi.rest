@@ -53,8 +53,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static updateNote({ payload, log }: HapiRequest) {
-    log({ data: payload });
+  static updateNote({ payload, logger }: HapiRequest) {
+    logger.trace({ data: payload });
+
+    return true;
   }
 
   /**
@@ -62,8 +64,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {boolean}        [description]
    */
-  static deleteNote({ params, log }: HapiRequest) {
-    log({ data: params });
+  static deleteNote({ params, logger }: HapiRequest): boolean {
+    logger.info({ data: params });
+
+    return true;
   }
 }
 
