@@ -2,7 +2,7 @@
 
 We are currently using pino for logging. Pino logs objects/messages directly to streams so other processes can
 actually handle formatting or other log actions (this is because Node is single threaded, so smarter to create
-another process to manage the logs). We store all of these files in `<CONFIG.LOG.dir>/pino.log`
+another process to manage the logs). We store all of these logs in `<CONFIG.LOG.dir>/pino.log`
 
 ## Configurations
 
@@ -39,12 +39,12 @@ controller({ params, logger }: HapiRequest) {
 
 
 ## Other processes
-Other node processes should be spawned (in production and development), here are some examples of processes
-we recommend:
+By design, pino just outputs logs to be used by other "transporters" (other node processes spawned in
+production and development) for reacting to, and viewing these logs. here are some examples of processes
+we recommend implementing:
 
 ### Logrotate
-By design, pino just outputs logs to be used by other "transporters". Log Rotation should be handled via
-another service as described in the [pino documention](http://getpino.io/#/docs/help?id=log-rotation)
+Log Rotation on production servers should be handled via another service as described in the [pino documention](http://getpino.io/#/docs/help?id=log-rotation)
 
 ### Pino-Pretty
 Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
@@ -97,8 +97,10 @@ e.g.
 
 
 ## Notes/Ideas
-- Log Helper for use in the dataservices
+- Trace logging any external requests/responses
+- Logger Helper for use in the dataservices
 - goaccess?
 - websocket? endpoint that shows logs in real time
 - docs page for logs (searching?)
 - Elasticsearch/Logstash/Kibana
+- logrotate on production
