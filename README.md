@@ -129,13 +129,10 @@ How to use this template to create a quick HTTP REST server:
     - [ ] Check if READMEs exist at each directory level?
     - [ ] Check if spec files exist (except where special comment in file header)
  - [..] (^) Improve logging
-    - [ ] configuration
+    - [x] configuration
     - ~rotate~
     - [x] pino-pretty
-    - [ ] webpage with log analysis
     - [ ] slack message on error?
- - [ ] (^) GoAccess log analyzer
-    - https://goaccess.io/
  - [ ] (^) Hapi Improvements
     - [ ] (-) Use Hapi Error (in production? not dev?) https://www.npmjs.com/package/hapi-error
     - Dev Errors in log https://www.npmjs.com/package/hapi-dev-errors
@@ -143,21 +140,14 @@ How to use this template to create a quick HTTP REST server:
     - Joi object/param validation https://hapi.dev/family/joi/
     - Simple Authentication for Healthcheck/Logging https://hapi.dev/tutorials/auth/
     - Advanced Authentication
+ - [ ] (^) GoAccess log analyzer
+    - https://goaccess.io/
+ - [ ] (-) Websocket Logging Endpoint
+    - display logs and any new logs at endpoint
  - [ ] (v) Test coverage saved in spec files  
  - [ ] (v) Babel Istanbul(NYC) plugin https://github.com/istanbuljs/babel-plugin-istanbul  
  - [ ] (v) Istanbul (NYC) Reporters https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-reports/lib  
    - Read test results report on webpage in docs site
- - [ ] (^) Typescript/(Express?) router
-    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
-      - Headers
-      - Cookies?
-    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
-      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
-    - [ ] Automatically find controller files in entry rather than need to reference  
-    - [ ] Proper error messages/codes from endpoints
-       - https://www.restapitutorial.com/httpstatuscodes.html
-    - [ ] MongoDB
-      - for quick development? (objects on the fly)
  - [ ] (-) Uptime Robot to check if app/website/api is alive or not
  - [ ] (-) Request Performance
  - [ ] (-) Helpers
@@ -174,11 +164,22 @@ How to use this template to create a quick HTTP REST server:
  - [ ] (-) Request Details Model attached to handler parameters
  - [ ] (-) Compression of responses
  - [ ] (-) Run only affected tests on file save  
+ - [ ] (-) Typescript/(Express?) router
+    - [ ] Routing Decorators and Validation https://github.com/typestack/routing-controllers
+      - Headers
+      - Cookies?
+    - [ ] OpenApi Decorators for openapi docs generation https://github.com/epiphone/routing-controllers-openapi
+      - Newman (Postman) Auto Test Generation: https://github.com/dtzar/openapi-auto-test
+    - [ ] Automatically find controller files in entry rather than need to reference  
+    - [ ] Proper error messages/codes from endpoints
+       - https://www.restapitutorial.com/httpstatuscodes.html
+    - [ ] MongoDB
+      - for quick development? (objects on the fly)
  - [ ] (-) production vs dev
       - webpack/build
       - pm2 for production
       - config
-      - proper logging
+      - log rotation
  - [ ] (-) Require Node v8 and recommend v10 on build
  - [ ] (-) `bin/` directory with script named `node.hapi` for starting/stopping prod
     - could be a javascript script file...

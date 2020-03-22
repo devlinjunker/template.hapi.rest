@@ -53,10 +53,12 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static updateNote({ payload, logger }: HapiRequest) {
+  static updateNote({ payload, logger }: HapiRequest): Promise<Note | HapiHandler> {
     logger.trace({ data: payload });
 
-    return true;
+    // TODO: Actually update / catch error on update
+
+    return NoteDataservice.getNote({ id: payload.id });
   }
 
   /**

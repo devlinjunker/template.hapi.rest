@@ -53,7 +53,8 @@ export default class NoteDataservice {
       name
     });
 
-    // TODO: Figure out how to debug with atom
+    // TODO: Debug with atom?
+    // TODO: Use Logger helper instead
     console.log(response);
 
     return await NoteDataservice.getNote({ id: response.insertId });
