@@ -10,15 +10,12 @@ if [[ "$CURRENT_BRANCH" == "master" ]]; then
 fi
 
 ## All Branches
-#   - Lint/Compile application to make sure we don't commit bad code
+#   - Compile application to make sure we don't commit bad code
 
 # stash any unsaved changes and then pop after running all the tests. That way uncommited changes won't affect tests
 git stash save -k "githook uncommitted changes";
 
-# Run linting tests
-npm run lint;
 # Compile application and check for errors (this also runs tests in server build)
 npm run build;
 
 git stash pop;
-
