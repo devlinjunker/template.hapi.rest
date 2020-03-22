@@ -1,13 +1,17 @@
 /**
  * @flow
  */
+
 /* eslint-disable import/first */
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable flowtype/no-weak-types */
+
 require('source-map-support/register');
 require('@babel/register');
 require('@babel/polyfill');
 
 import fs from 'fs';
-import path from 'path';
+import Path from 'path';
 import pino from 'pino';
 import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
@@ -28,52 +32,8 @@ const LOG_DIR_DEFAULT: string = 'logs';
 export interface EndpointConfig {
   method: string;
   path: string;
-  controller: any; // eslint-disable-line
+  controller: any;
 }
-
-/**
- * Hapi Handler for returning messages or setting error codes during requests
- * @type {HapiHandler}
- */
-export interface HapiHandler {
-  code: Function; // eslint-disable-line
-  response: Function; // eslint-disable-line
-  redirect: Function; //eslint-disable-line
-}
-
-/**
- * Request Error Class to help set a response code and message to display to the user
- * @type {RequestError}
- */
-export class RequestError extends Error {
-  code: number;
-
-  /**
-   * Create a new Request Error
-   * @param {string} msg  message to display when returned
-   * @param {number} code response status code to set in Hapi Response
-   */
-  constructor(msg: string, code: number) {
-    super(msg);
-    this.code = code;
-  }
-}
-
-/**
- * Request Object that is passed to the controller function as the first parameter
- * from https://github.com/hapijs/hapi/blob/master/API.md#request
- * @type {HapiRequest}
- */
-export interface HapiRequest {
-  server: any; // eslint-disable-line
-  headers: any; // eslint-disable-line
-  // from path
-  params: any; // eslint-disable-line
-  // Body of a POST request
-  payload: any; // eslint-disable-line
-  logger: any; // eslint-disable-line
-};
-
 
 export interface ServerParams {
   name: string;
@@ -90,7 +50,7 @@ export interface ServerParams {
  * @type {Server}
  */
 export class Server {
-  server: any; // eslint-disable-line
+  server: any;
   name: string;
   logDir: string;
 
@@ -113,7 +73,7 @@ export class Server {
    * @param  {Function} callback callback to run after server has shutdown
    * @return {undefined}            no return
    */
-  shutdown(callback: Function) { // eslint-disable-line flowtype/no-weak-types
+  shutdown(callback: Function) {
     // TODO: Set Shutdown Timeout from config
     this.server.stop({ timeout: 10000 }).then((err: Error) => {
       if (err) {
@@ -152,7 +112,7 @@ export class Server {
           'request-error'
         ],
         // Creates a log of all the requests made and info as well as response status error/success
-        stream: pino.destination(path.resolve(this.logDir, 'pino.log'))
+        stream: pino.destination(Path.resolve(this.logDir, 'pino.log'))
       }
     });
 
@@ -176,7 +136,7 @@ export class Server {
    * @param {EndpointConfig} endpoint configuration
    * @return {undefined}
    */
-  addEndpoint({ method, path, controller }: EndpointConfig) { // eslint-disable-line no-shadow
+  addEndpoint({ method, path, controller }: EndpointConfig) {
     this.server.route({
       method,
       path,

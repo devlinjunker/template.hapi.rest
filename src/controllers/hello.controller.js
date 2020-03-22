@@ -1,8 +1,7 @@
 /**
  * @flow
  */
-// For some reason this can't use the `app` alias but can do relative pathing here... :/
-import { HapiRequest } from '../base/server.js';
+import { HapiRequest } from '../base/request/hapi-request.interface.js';
 
 /**
  * Controllers for Basic "Hello World" Functions
