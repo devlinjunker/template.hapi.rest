@@ -3,7 +3,7 @@
  *
  * NOTE: This file will not be included in the esdoc list because it doesn't export any identifiers
  */
-import { HapiRequest } from '../base/server.js';
+import { HapiRequest } from '../base/request/hapi-request.interface.js';
 import CONFIG from '../helpers/config.helper.js';
 import healthcheckHelper from '../helpers/healthcheck.helper.js';
 

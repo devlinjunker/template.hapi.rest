@@ -4,7 +4,8 @@
  * Entry point that loads all routes for the server
  */
 import path from 'path';
-import { Server, EndpointConfig, HapiRequest, HapiHandler } from './base/server.js';
+import { Server, EndpointConfig } from './base/server.js';
+import { HapiRequest, HapiHandler } from './base/request/hapi-request.interface.js';
 import mariadb from './helpers/mariadb.helper.js';
 import CONFIG from './helpers/config.helper.js';
 

@@ -4,7 +4,7 @@
  * MariaDB Service Example
  */
 import mariadbHelper, { MariaDBInsertResponse } from '../helpers/mariadb.helper.js'; // eslint-disable-line
-import { RequestError } from '../base/server.js';
+import RequestError from '../base/request/request-error.model.js';
 import _ from 'lodash';
 
 /**

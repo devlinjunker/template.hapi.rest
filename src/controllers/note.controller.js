@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import { HapiRequest, HapiHandler } from '../base/server.js';
+import { HapiRequest, HapiHandler } from '../base/request/hapi-request.interface.js';
 import NoteDataservice, { Note } from '../dataservices/note.service.js';
 
 /**
