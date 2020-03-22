@@ -38,6 +38,7 @@
     "hapi-pino": "^6.1.0",
     "lodash": "^4.17.15",
     "mariadb": "^2.1.1",
+    "pino-pretty": "^3.6.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
@@ -76,6 +77,7 @@
     "mocha": "^6.2.0",
     "mocha-loader": "^3.0.0",
     "nodemon": "^1.19.2",
+    "pino-pretty": "^3.6.1",
     "prettier": "^1.18.2",
     "require-context": "^1.1.0",
     "sinon": "^7.4.2",
