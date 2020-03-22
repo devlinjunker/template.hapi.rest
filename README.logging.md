@@ -48,11 +48,16 @@ another service as described in [pino documention](http://getpino.io/#/docs/help
 
 ### Pino-Pretty
 Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
-To use, pipe the log file to pino-pretty executable: `tail -f logs/pino.log | ./node_modules/.bin/pino-pretty`
+To use, pipe the log file to pino-pretty executable:
+`tail -f logs/pino.log | ./node_modules/.bin/pino-pretty -t `  
 
+See CLI arguments for more control of output: https://github.com/pinojs/pino-pretty#cli-arguments
+  - remove `-t` for epoch
+  - `-s` for searching
+  - `-i` for ignoring properties
 e.g.
 ```
-[1584855457519] INFO  (72753 on Devlins-MacBook-Air.local): request completed
+[2020-03-22 05:58:27.175 +0000] INFO  (72753 on Devlins-MacBook-Air.local): request completed
     req: {
       "id": "1584855457513:Devlins-MacBook-Air.local:72753:k82m08u1:10001",
       "method": "put",
