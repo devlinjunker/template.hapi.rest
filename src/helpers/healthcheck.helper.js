@@ -14,10 +14,16 @@ import path from 'path';
  * @type {HealthcheckResponse}
  */
 interface HealthcheckResponse {
-  name: string | typeof undefined;
-  status: any;
+  name: ?string;
+  status: ?string;
   error?: boolean;
 };
+
+interface FullResponse {
+  L1: Array<HealthcheckResponse>;
+  L2: Array<HealthcheckResponse>;
+  L3: Array<HealthcheckResponse>;
+}
 
 /**
  * Retrieves the status of a database, based on the config given
@@ -76,6 +82,7 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
     status: undefined
   };
   try {
+    // $FlowFixMe
     response.status += await promise;
   } catch (error) {
     response.error = true;
@@ -152,19 +159,23 @@ class HealthcheckHelper {
    *  L3: external services we don't have control over and hopefully we catch errors for to explain to user
    * @returns {any} status of services in that level (or full status of server if no level provided)
    */
-  async getStatus(level?: 'L1' | 'L2' | 'L3'): any {
+  async getStatus(level?: 'L1' | 'L2' | 'L3'): any { // eslint-disable-line flowtype/no-weak-types
     /* eslint-disable id-length */
-    const status = {
+    const status: FullResponse = {
       L1: [
         {
+          // $FlowFixMe
           name: 'SERVER',
+          // $FlowFixMe
           status: 'alive',
         },
         {
+          // $FlowFixMe
           name: 'VERSION',
           status: pack.version
         },
         {
+          // $FlowFixMe
           name: 'BRANCH',
           status: getBranch()
         }
@@ -174,7 +185,7 @@ class HealthcheckHelper {
     };
     /* eslint-enable id-length */
 
-    return level === undefined ? status : status[level];
+    return level === undefined ? status : (status: any)[level]; // eslint-disable-line flowtype/no-weak-types
   }
 }
 
