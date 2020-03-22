@@ -13,6 +13,13 @@ import Pino from 'hapi-pino';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 
+
+
+const SERVER_NAME_DEFAULT: string = 'Template Server';
+
+const LOG_DIR_DEFAULT: string = 'logs';
+const LOG_LEVEL_DEFAULT: string = 'info';
+
 /**
  * Endpoint that can be created, should have a http method, path and controller that resolves when
  * the path is hit
@@ -66,17 +73,18 @@ export interface HapiRequest {
   params: any; // eslint-disable-line
   // Body of a POST request
   payload: any; // eslint-disable-line
-  log: Function; // eslint-disable-line
+  logger: any; // eslint-disable-line
 };
 
 
 export interface ServerParams {
-  name: string;
+  name?: string;
   port: number;
   host: string;
+  logDir: string;
+  debug?: boolean; // Should we show error messages in stdout of server process (for developer/debugging)
+  logLevel?: string;
 }
-
-const LOG_DIR: string = 'logs';
 
 /**
  * Abstraction to manage running the server.
@@ -88,16 +96,21 @@ export class Server {
   server: any; // eslint-disable-line
   name: string;
 
+  logDir: string;
+  logLevel: string;
+
   /**
    * Server Constructor
    */
-  constructor({ name, port, host }: ServerParams) {
-    this.name = name || 'Server';
+  constructor({ name, port, host, logDir, debug, logLevel }: ServerParams) {
+    this.name = name || SERVER_NAME_DEFAULT;
+    this.logDir = logDir || LOG_DIR_DEFAULT;
+    this.logLevel = logLevel || LOG_LEVEL_DEFAULT;
     this.server = Hapi.server({
       port,
       host,
       // Sets errors to print to console while running
-      debug: { request: ['error'] } // TODO: How do we get these to log to file, should we just pipe them?
+      debug: debug === true ? { request: ['error'] } : undefined
     });
   }
 
@@ -131,8 +144,8 @@ export class Server {
     });
 
     // Create `logs` directory (so we only see errors and console logs in process out)
-    if (!fs.existsSync(LOG_DIR)) {
-      fs.mkdirSync(LOG_DIR);
+    if (!fs.existsSync(this.logDir)) {
+      fs.mkdirSync(this.logDir);
     }
 
     await this.server.register({
@@ -140,7 +153,9 @@ export class Server {
       options: {
         prettyPrint: false,
         logEvents: ['response', 'request-error'],
-        stream: pino.destination(path.resolve(LOG_DIR, 'pino.log'))
+        level: this.logLevel,
+        // Creates a log of all the requests made and info as well as response status error/success
+        stream: pino.destination(path.resolve(this.logDir, 'pino.log'))
       }
     });
 

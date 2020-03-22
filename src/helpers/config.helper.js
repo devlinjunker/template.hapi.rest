@@ -35,6 +35,11 @@ export interface Config {
     tmpDir: string; // For generating files
     docs: boolean; // should display docs?
   };
+  LOGS: {
+    debug: boolean;
+    dir: string;
+    level: string;
+  };
   DB: {
     MARIADB: DatabaseConfig
   };

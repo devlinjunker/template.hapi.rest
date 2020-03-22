@@ -45,7 +45,7 @@ const docRoutes: Array<EndpointConfig> = [
   {
     method: 'GET',
     path: '/docs',
-    controller: (request: HapiRequest, handler: HapiHandler): any => {
+    controller: (request: HapiRequest, handler: HapiHandler): any => { // eslint-disable-line
       return handler.redirect('/docs/');
     }
   }
@@ -61,7 +61,10 @@ export default async function main() {
     const server: Server = new Server({
       name: CONFIG.SERVER.name,
       host: CONFIG.SERVER.host,
-      port: CONFIG.SERVER.port
+      port: CONFIG.SERVER.port,
+      debug: CONFIG.LOGS.debug,
+      logDir: CONFIG.LOGS.dir,
+      logLevel: CONFIG.LOGS.level
     });
 
     await server.run();

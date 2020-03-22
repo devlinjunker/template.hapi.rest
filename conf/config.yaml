@@ -1,14 +1,18 @@
 
-# Configuration for server
 SERVER:
   protocol: http
   host: localhost
   name: Simple Server Template
   port: 3333
-  # For file generation (todo)
-  tmpDir: /tmp
   # Should we display docs and swagger?
   docs: true
+  # TODO: For file/report/email generation
+  tmpDir: /tmp
+
+LOGS:
+  debug: true # Shows errors in console while running server
+  directory: logs/
+  level: info
 
 DB:
   MARIADB:

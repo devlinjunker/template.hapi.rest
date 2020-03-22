@@ -119,6 +119,7 @@ rules:
       - i
       - it
       - _
+      - fs
   new-cap:
     - error
   camelcase:
