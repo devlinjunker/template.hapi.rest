@@ -1,4 +1,4 @@
-# Git Hooks
+# Git Hooks/Workflow
 
 We use githooks([github](https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks)) to help clean up and enforce the workflow for developers. This is done with Husky.
 
@@ -12,3 +12,11 @@ Process:
 1. Stash uncommited changes
 2. Run linting/flow/compliation and tests with npm/webpack
 3. Pop uncommitted changes
+
+
+## Github Actions
+
+We setup github actions on this project so we can attempt to build and run the tests for every PR submitted
+against master.
+
+More to come...
