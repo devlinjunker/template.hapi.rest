@@ -128,9 +128,14 @@ How to use this template to create a quick HTTP REST server:
         - [ ] after merge
     - [ ] Check if READMEs exist at each directory level?
     - [ ] Check if spec files exist (except where special comment in file header)
+ - [..] (^) Improve logging
+    - [ ] configuration
+    - ~rotate~
+    - [x] pino-pretty
+    - [ ] webpage with log analysis
+    - [ ] slack message on error?
  - [ ] (^) GoAccess log analyzer
     - https://goaccess.io/
-    - [ ] webpage with log analysis
  - [ ] (^) Hapi Improvements
     - [ ] (-) Use Hapi Error (in production? not dev?) https://www.npmjs.com/package/hapi-error
     - Dev Errors in log https://www.npmjs.com/package/hapi-dev-errors

@@ -7,7 +7,7 @@ SERVER:
   # Should we display docs and swagger?
   docs: true
   # TODO: For file/report/email generation
-  tmpDir: /tmp
+  tmpDir: tmp
 
 LOGS:
   debug: true # Shows errors in console while running server
@@ -31,10 +31,11 @@ PATHS:
 ## TODO: Protect healthcheck and logs behind these?
 AUTHORIZATION:
   ADMIN:
+    enabled: false # set to true for production
     id: root
     password: root
-# OAUTH:
-# SSO:
+# OAUTH: (TODO: for connecting to other services)
+# SSO: (TODO: for external session management)
 
 ## TODO: Add controller/dataservice that uses one of these
 EXTERNAL_SERVICES:

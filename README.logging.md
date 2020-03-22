@@ -6,7 +6,7 @@ another process to manage the logs). We store all of these files in `<CONFIG.LOG
 
 ## Configurations
 
-Some settings can be configured in the config.yaml file:
+Some settings can be configured in the config.yaml([github](https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12)) file:
   - The `debug` property shows error messages and stack traces in the stdout of the server process (for
      development)
   - The `dir` property defines the directory to save log files in
@@ -44,14 +44,14 @@ we recommend:
 
 ### Logrotate
 By design, pino just outputs logs to be used by other "transporters". Log Rotation should be handled via
-another service as described in [pino documention](http://getpino.io/#/docs/help?id=log-rotation)
+another service as described in the [pino documention](http://getpino.io/#/docs/help?id=log-rotation)
 
 ### Pino-Pretty
 Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
 To use, pipe the log file to pino-pretty executable:
 `tail -f logs/pino.log | ./node_modules/.bin/pino-pretty -t `  
 
-See CLI arguments for more control of output: https://github.com/pinojs/pino-pretty#cli-arguments
+See [CLI arguments](https://github.com/pinojs/pino-pretty#cli-arguments) for more control of output:
   - remove `-t` for epoch
   - `-s` for searching
   - `-i` for ignoring properties
@@ -97,6 +97,7 @@ e.g.
 
 
 ## Notes/Ideas
+- Log Helper for use in the dataservices
 - goaccess?
 - websocket? endpoint that shows logs in real time
 - docs page for logs (searching?)
