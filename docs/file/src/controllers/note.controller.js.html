@@ -107,8 +107,12 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {Note}        [description]
    */
-  static updateNote({ payload }: HapiRequest) {
-    console.log(payload);
+  static updateNote({ payload, logger }: HapiRequest): Promise&lt;Note | HapiHandler&gt; {
+    logger.trace({ data: payload });
+
+    // TODO: Actually update / catch error on update
+
+    return NoteDataservice.getNote({ id: payload.id });
   }
 
   /**
@@ -116,8 +120,10 @@ export class NoteController {
    * @param  {HapiRequest} request RequestObject
    * @return {boolean}        [description]
    */
-  static deleteNote({ params }: HapiRequest) {
-    console.log(params);
+  static deleteNote({ params, logger }: HapiRequest): boolean {
+    logger.info({ data: params });
+
+    return true;
   }
 }
 

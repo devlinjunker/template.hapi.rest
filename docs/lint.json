@@ -1,1 +1,43 @@
-[]
+[
+  {
+    "name": "Server#log",
+    "filePath": "src/base/server.js",
+    "lines": [
+      {
+        "lineNumber": 126,
+        "line": "   * Starts the server and registers any plugins"
+      },
+      {
+        "lineNumber": 127,
+        "line": "   * @return {Promise} Resolves once server has started"
+      },
+      {
+        "lineNumber": 128,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 129,
+        "line": "  async run() {"
+      },
+      {
+        "lineNumber": 130,
+        "line": "    await this.server.start();"
+      },
+      {
+        "lineNumber": 131,
+        "line": "    process.stdout.write('\\n\\n' + this.name + ' started on ' + this.server.info.port + '\\n\\n');"
+      },
+      {
+        "lineNumber": 132,
+        "line": ""
+      }
+    ],
+    "codeParams": [
+      "*"
+    ],
+    "docParams": [
+      "tags",
+      "data"
+    ]
+  }
+]

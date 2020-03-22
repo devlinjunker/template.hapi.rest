@@ -58,7 +58,7 @@
  * Entry point that loads all routes for the server
  */
 import path from &apos;path&apos;;
-import { Server, EndpointConfig } from &apos;./base/server.js&apos;;
+import { Server, EndpointConfig, HapiRequest, HapiHandler } from &apos;./base/server.js&apos;;
 import mariadb from &apos;./helpers/mariadb.helper.js&apos;;
 import CONFIG from &apos;./helpers/config.helper.js&apos;;
 
@@ -72,22 +72,20 @@ import noteRoutes from &apos;./controllers/note.controller.js&apos;;
  * Build the routes from files and add docs if CONFIG set
  * @type {Array&lt;EndpointConfig&gt;}
  */
-let routes: Array&lt;EndpointConfig&gt; = helloRoutes.concat(noteRoutes);
-routes.forEach((route: EndpointConfig) =&gt; {
+const apiRoutes: Array&lt;EndpointConfig&gt; = helloRoutes.concat(noteRoutes);
+apiRoutes.forEach((route: EndpointConfig) =&gt; {
   route.path = CONFIG.PATHS.api + route.path;
 });
-routes = routes.concat(adminRoutes);
 
-if (CONFIG.SERVER.docs) {
-  routes.push({
+const docRoutes: Array&lt;EndpointConfig&gt; = [
+  {
     method: &apos;GET&apos;,
     path: CONFIG.PATHS.api,
     controller: {
       file: path.resolve(__dirname, &apos;../openapi.yaml&apos;)
     }
-  });
-
-  routes.push({
+  },
+  {
     method: &apos;GET&apos;,
     path: &apos;/docs/{param*}&apos;,
     controller: {
@@ -97,8 +95,15 @@ if (CONFIG.SERVER.docs) {
         redirectToSlash: true
       }
     }
-  });
-}
+  },
+  {
+    method: &apos;GET&apos;,
+    path: &apos;/docs&apos;,
+    controller: (request: HapiRequest, handler: HapiHandler): any =&gt; { // eslint-disable-line
+      return handler.redirect(&apos;/docs/&apos;);
+    }
+  }
+];
 /**
  * Entry point to run the server
  * @return {undefined} no return
@@ -106,26 +111,43 @@ if (CONFIG.SERVER.docs) {
 export default async function main() {
   // TODO: Check if mysql can be connected/db exists (use name in config file)
   // Only serve healthcheck if error (redirect all other pages to healtcheck?)
+  try {
+    const server: Server = new Server({
+      name: CONFIG.SERVER.name,
+      host: CONFIG.SERVER.host,
+      port: CONFIG.SERVER.port,
+      debug: CONFIG.LOGS.debug,
+      logDir: CONFIG.LOGS.dir,
+      logLevel: CONFIG.LOGS.level
+    });
 
-  console.log(process.env.NODE_ENV);
-  const server: Server = new Server({
-    name: CONFIG.SERVER.name,
-    host: CONFIG.SERVER.host,
-    port: CONFIG.SERVER.port
-  });
+    await server.run();
 
-  await server.run();
+    server.addEndpoints(apiRoutes);
+    server.addEndpoints(adminRoutes);
 
-  server.addEndpoints(routes);
+    if (CONFIG.SERVER.docs) {
+      server.addEndpoints(docRoutes);
+    }
 
-  process.on(&apos;SIGTERM&apos;, () =&gt; {
-    attemptGracefulShutdown(server);
-  });
-  process.on(&apos;SIGUSR2&apos;, () =&gt; { // For nodemon?
-    attemptGracefulShutdown(server);
-  });
+    process.on(&apos;SIGTERM&apos;, () =&gt; {
+      attemptGracefulShutdown(server);
+    });
+    process.on(&apos;SIGUSR2&apos;, () =&gt; { // For nodemon?
+      attemptGracefulShutdown(server);
+    });
+
+    server.log({ tags: [&apos;STARTUP&apos;], data: &apos;server startup complete&apos; });
+  } catch (err) {
+    // Likely caused by &quot;bad&quot; endpoint (empty/ duplicate paths/ no controller)
+    process.stdout.write(&apos;Server startup failed!  [Likely due to local changes or missing dependencies]\n\n&apos;);
+
+    process.exit(1);
+  }
 }
 main();
+
+
 
 /**
  * Attempt to shutdown the server and database connections
@@ -133,11 +155,12 @@ main();
  * @return {undefined}        undefined
  */
 function attemptGracefulShutdown(server: Server) {
-  console.log(&apos;shutdown signal&apos;);
+  server.log({ tags: [&apos;SHUTDOWN&apos;], data: &apos;shutdown signal&apos; });
   server.shutdown((hapiErr: Error) =&gt; {
-    console.log(&apos;hapi server shutdown&apos;);
+    server.log({ tags: [&apos;SHUTDOWN&apos;], data: &apos;hapi server shutdown&apos; });
     mariadb.shutdown((dbErr: Error) =&gt; {
-      console.log(&apos;mariadb shutdown&apos;);
+      server.log({ tags: [&apos;SHUTDOWN&apos;], data: &apos;mariadb shutdown&apos; });
+
       process.exit(hapiErr || dbErr ? 1 : 0);
     });
   });
@@ -145,6 +168,10 @@ function attemptGracefulShutdown(server: Server) {
 
 // What is this about again?
 process.on(&apos;unhandledRejection&apos;, (err) =&gt; { // eslint-disable-line
+  process.stdout.write(JSON.stringify(err));
+  process.exit(1);
+});
+process.on(&apos;unhandledException&apos;, (err) =&gt; { // eslint-disable-line
   process.stdout.write(JSON.stringify(err));
   process.exit(1);
 });

@@ -59,6 +59,7 @@
  */
 import mariadbHelper, { MariaDBInsertResponse } from &apos;../helpers/mariadb.helper.js&apos;; // eslint-disable-line
 import { RequestError } from &apos;../base/server.js&apos;;
+import _ from &apos;lodash&apos;;
 
 /**
  * Note object with name and id
@@ -82,18 +83,13 @@ export default class NoteDataservice {
     if (typeof(id) === &apos;string&apos; &amp;&amp; Number.isNaN(Number.parseInt((id: string)))) {
       throw new RequestError(&apos;Note Id must be an integer&apos;, 400);
     }
-    try {
-      const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
+    const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
 
-      if (row === undefined) {
-        throw new RequestError(&apos;Unrecognized Note Id&apos;, 404);
-      }
-
-      return row;
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (row === undefined) {
+      throw new RequestError(&apos;Unrecognized Note Id&apos;, 404);
     }
+
+    return row;
   }
 
   /**
@@ -103,19 +99,19 @@ export default class NoteDataservice {
    * @return {Note}      Note Object
    */
   static async createNote({ name }: { name: string }): Promise&lt;Note&gt; {
-    try {
-      const response: MariaDBInsertResponse = await mariadbHelper.insert(&apos;test.notes&apos;, {
-        name
-      });
-
-      // TODO: Figure out how to debug with atom
-      console.log(response);
-
-      return await NoteDataservice.getNote({ id: response.insertId });
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (name === &apos;&apos; || name === undefined) {
+      throw new RequestError(&apos;Name must be provided&apos;, 404);
     }
+
+    const response: MariaDBInsertResponse = await mariadbHelper.insert(&apos;test.notes&apos;, {
+      name
+    });
+
+    // TODO: Debug with atom?
+    // TODO: Use Logger helper instead
+    console.log(response);
+
+    return await NoteDataservice.getNote({ id: response.insertId });
   }
 
   /**
@@ -124,17 +120,19 @@ export default class NoteDataservice {
    * @return {Promise}       [description]
    */
   static async createNotes(notes: Array&lt;{name: string}&gt;): Promise&lt;Array&lt;Note&gt; | Note&gt; {
-    try {
-      const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple(&apos;test.notes&apos;, notes);
-
-      const endId: number = insert.insertId + insert.affectedRows;
-      const query: string = `SELECT * from test.notes WHERE id &gt;= ${insert.insertId} AND id &lt; ${endId}`;
-
-      return await mariadbHelper.fetch(query);
-    } catch (err) {
-      console.log(err);
-      throw err;
+    if (
+      _.find(({ name }: { name: string; }): boolean =&gt; {
+        return name === &apos;&apos; || name === undefined;
+      }) !== undefined
+    ) {
+      throw new RequestError(&apos;Name cannot be empty or undefined&apos;, 404);
     }
+    const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple(&apos;test.notes&apos;, notes);
+
+    const endId: number = insert.insertId + insert.affectedRows;
+    const query: string = `SELECT * from test.notes WHERE id &gt;= ${insert.insertId} AND id &lt; ${endId}`;
+
+    return await mariadbHelper.fetch(query);
   }
 }
 </code></pre>

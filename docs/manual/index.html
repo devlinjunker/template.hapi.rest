@@ -54,6 +54,18 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.logging.html"><a href="manual/README.logging.html" data-ice="link">Logging</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.logging.html"><a href="manual/README.logging.html#configurations" data-ice="link">Configurations</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.logging.html"><a href="manual/README.logging.html#what-we-log" data-ice="link">What we log</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.logging.html"><a href="manual/README.logging.html#other-processes" data-ice="link">Other processes</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.logging.html"><a href="manual/README.logging.html#logrotate" data-ice="link">Logrotate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.logging.html"><a href="manual/README.logging.html#pino-pretty" data-ice="link">Pino-Pretty</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.logging.html"><a href="manual/README.logging.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
     <li data-ice="manualNav" class="indent-h1" data-link="manual/README.controllers.html"><a href="manual/README.controllers.html" data-ice="link">Controllers</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.controllers.html"><a href="manual/README.controllers.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
@@ -99,6 +111,7 @@
 <li><a href="manual/README.setup.html">Setup</a> - dependencies and how to install and start development (eventually
 production?)</li>
 <li><a href="manual/README.entry.html">Entry Point</a></li>
+<li><a href="manual/README.logging.html">Logging</a> - Explains how logs works and how to add/view them as a developer</li>
 <li><a href="manual/README.controllers.html">Controllers</a> - mappings from url endpoints to methods for handling requests</li>
 <li><a href="manual/README.dataservices.html">Dataservices</a> - classes/methods that connect to external services or datastores</li>
 <li><a href="manual/README.helpers.html">Helpers</a> - classes that are used frequently for interacting with other systems/tools</li>
@@ -164,6 +177,95 @@ so that we print the error to output before exiting (We may also want to log thi
 <li><strong>IDEA:</strong> Generic Handler/Middleware that creates Request Details Object to pass to each controller</li>
 </ul></div>
         <a data-ice="link" href="manual/README.entry.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Logging</h1><p>We are currently using pino for logging. Pino logs objects/messages directly to streams so other processes can
+actually handle formatting or other log actions (this is because Node is single threaded, so smarter to create
+another process to manage the logs). We store all of these files in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p><h2>Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12">github</a>) file:</p><ul>
+<li>The <code>debug</code> property shows error messages and stack traces in the stdout of the server process (for
+ development)</li>
+<li>The <code>dir</code> property defines the directory to save log files in</li>
+<li>The <code>level</code> property defines the log level we show in pino.log</li>
+</ul><h2>What we log</h2><ul>
+<li>Request Log<ul>
+<li>We record all connections to endpoints with the request details</li>
+</ul>
+</li>
+<li>Errors<ul>
+<li>Any Errors during request execution will be recorded in the log</li>
+</ul>
+</li>
+<li>Developer Messages (via Logger provided methods in Route Controllers)<ul>
+<li>Messages added by developers inside the controller body</li>
+<li>different methods for levels: trace/debug/info/warn/error/fatal</li>
+</ul>
+</li>
+</ul><p><strong>Example:</strong>  </p><pre><code><code class="source-code prettyprint">controller({ params, logger }: HapiRequest) {
+  try {
+      logger.info({ data: params });
+
+      ...do stuff...
+  } catch(err) {
+    logger.error(&apos;Personalized Error Message&apos;);
+  }
+
+  ... return things?...
+}</code>
+</code></pre><h2>Other processes</h2><p>Other node processes should be spawned (in production and development), here are some examples of processes
+we recommend:</p><h3>Logrotate</h3><p>By design, pino just outputs logs to be used by other &quot;transporters&quot;. Log Rotation should be handled via
+another service as described in the <a href="http://getpino.io/#/docs/help?id=log-rotation">pino documention</a></p><h3>Pino-Pretty</h3><p>Displays the logs in a prettier format that makes it easier to see the data, however takes up more space.
+To use, pipe the log file to pino-pretty executable:
+<code>tail -f logs/pino.log | ./node_modules/.bin/pino-pretty -t</code>  </p><p>See <a href="https://github.com/pinojs/pino-pretty#cli-arguments">CLI arguments</a> for more control of output:</p><ul>
+<li>remove <code>-t</code> for epoch</li>
+<li><code>-s</code> for searching</li>
+<li><code>-i</code> for ignoring properties
+e.g.<pre><code><code class="source-code prettyprint">[2020-03-22 05:58:27.175 +0000] INFO  (72753 on Devlins-MacBook-Air.local): request completed
+req: {
+  &quot;id&quot;: &quot;1584855457513:Devlins-MacBook-Air.local:72753:k82m08u1:10001&quot;,
+  &quot;method&quot;: &quot;put&quot;,
+  &quot;url&quot;: &quot;http://localhost:3333/api/note/1&quot;,
+  &quot;headers&quot;: {
+    &quot;host&quot;: &quot;localhost:3333&quot;,
+    &quot;connection&quot;: &quot;keep-alive&quot;,
+    &quot;content-length&quot;: &quot;17&quot;,
+    &quot;accept&quot;: &quot;*/*&quot;,
+    &quot;sec-fetch-dest&quot;: &quot;empty&quot;,
+    &quot;user-agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36&quot;,
+    &quot;content-type&quot;: &quot;application/json&quot;,
+    &quot;origin&quot;: &quot;http://localhost:3333&quot;,
+    &quot;sec-fetch-site&quot;: &quot;same-origin&quot;,
+    &quot;sec-fetch-mode&quot;: &quot;cors&quot;,
+    &quot;referer&quot;: &quot;http://localhost:3333/docs/swagger/index.html&quot;,
+    &quot;accept-encoding&quot;: &quot;gzip, deflate, br&quot;,
+    &quot;accept-language&quot;: &quot;en-US,en;q=0.9&quot;,
+    &quot;cookie&quot;: &quot;SQLiteManager_currentLangue=2; _pk_id.2.1fff=e04c4083531e55a4.1584819760.6.1584855171.1584855171.; _pk_ses.2.1fff=1&quot;
+  },
+  &quot;remoteAddress&quot;: &quot;127.0.0.1&quot;,
+  &quot;remotePort&quot;: 64175
+}
+res: {
+  &quot;statusCode&quot;: 200,
+  &quot;headers&quot;: {
+    &quot;content-type&quot;: &quot;application/json; charset=utf-8&quot;,
+    &quot;vary&quot;: &quot;origin&quot;,
+    &quot;access-control-allow-origin&quot;: &quot;http://localhost:3333&quot;,
+    &quot;access-control-expose-headers&quot;: &quot;WWW-Authenticate,Server-Authorization&quot;,
+    &quot;cache-control&quot;: &quot;no-cache&quot;,
+    &quot;content-length&quot;: 4
+  }
+}
+responseTime: 6</code>
+</code></pre></li>
+</ul><h2>Notes/Ideas</h2><ul>
+<li>Log Helper for use in the dataservices</li>
+<li>goaccess?</li>
+<li>websocket? endpoint that shows logs in real time</li>
+<li>docs page for logs (searching?)</li>
+<li>Elasticsearch/Logstash/Kibana</li>
+</ul></div>
+        <a data-ice="link" href="manual/README.logging.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">

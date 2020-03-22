@@ -594,6 +594,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/base/server.js~server#log",
+    "class/src/base/server.js~Server.html#instance-method-log",
+    "src/base/server.js~Server#log",
+    "method"
+  ],
+  [
+    "src/base/server.js~server#logdir",
+    "class/src/base/server.js~Server.html#instance-member-logDir",
+    "src/base/server.js~Server#logDir",
+    "member"
+  ],
+  [
     "src/base/server.js~server#name",
     "class/src/base/server.js~Server.html#instance-member-name",
     "src/base/server.js~Server#name",
