@@ -46,7 +46,7 @@ export default [
     path: '/error',
     method: 'GET',
     controller: (request: HapiRequest) => {
-      request.logger.error('Error Message');
+      request.logger.error('Error Message!');
       throw new Error('Intentional Error Thrown');
     }
   }
