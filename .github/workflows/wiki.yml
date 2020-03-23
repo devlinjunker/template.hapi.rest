@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: READMEs on Wiki
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # from: https://github.com/marketplace/actions/wiki-page-creator-action
+    - name: Upload READMEs to Wiki
+      uses: docker://decathlon/wiki-page-creator-action:latest
+      env:
+        ACTION_MAIL: devlin.junker@gmail.com
+        ACTION_NAME: devlinjunker
+        GH_PAT: ef90db5cc6ca22d9162e783b005dbfa19798998b
+        MD_FOLDER: ./
+        OWNER: devlinjunker
+        REPO_NAME: template.node.hapi
+        SKIP_MD: README.md
