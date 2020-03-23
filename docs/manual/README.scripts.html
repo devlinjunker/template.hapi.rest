@@ -110,43 +110,29 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="helpers">Helpers</h1><p>Helpers are classes that modularize some functionality that is useful in the server.</p>
-<h2 id="examples">Examples</h2><h3 id="mariadb">MariaDB</h3><p>Helper class for connecting with mariadb server and saving/retrieving rows from tables</p>
-<pre><code><code class="source-code prettyprint">- query
-- insert
-- fetch
-- fetchOne</code>
-</code></pre><h3 id="config">Config</h3><p>Helper class for reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="git-hooks-workflow">Git Hooks/Workflow</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p>
+<p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p>
+<h2 id="on-commit">On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
+letting the commit go through:</p>
+<p>Process:</p>
+<ol>
+<li>Stash uncommited changes</li>
+<li>Run linting/flow/compliation and tests with npm/webpack</li>
+<li>Pop uncommitted changes</li>
+</ol>
+<h2 id="github-actions">Github Actions</h2><p>We setup github actions on this project so we can enforce actions/checks and workflow processes on github.</p>
+<h3 id="on-master-pr">On Master PR</h3><p>For every PR against master, we spin up a server to build the project via node/webpack. We also lint the
+project at this point (with more stringent error rules?). This will help us catch any errors in the code and
+prevent any merges to master that will break</p>
+<h3 id="on-merge-to-master">On Merge to Master</h3><p>Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
+the commits. We run a git action to handle this as well:</p>
 <ul>
-<li>provides a typed interface of these properties</li>
+<li>Collect README files and update wiki</li>
+<li><strong>TODO:</strong> Fix/remove links from wiki?</li>
+<li><strong>TODO:</strong> Build documentation and generate commit</li>
+<li><strong>IDEA:</strong> Version increase/changelog generation</li>
 </ul>
-<h3 id="healthcheck">Healthcheck</h3><p>Helper for building the healthcheck response that is displayed at <code>&lt;CONFIG.PATHS.healthceck&gt;</code> endpoint.</p>
-<ul>
-<li>Determines version/branch and if the server is running properly</li>
-<li>Makes simple requests to configured dependency DB/External Services to see if they are available</li>
-</ul>
-<h2 id="notes-ideas">Notes/Ideas</h2><ul>
-<li><strong>IDEA:</strong> Should healthcheck read log file for past minute to see if any errors?</li>
-<li>Do we want/need to worry about Dependency Injection/Singletons?</li>
-<li>RDBMS vs Document store<ul>
-<li>CAP theorem stands for C &#x2013; Consistency, A &#x2014; Availability, P &#x2014; Partitioning (or Scalability) and states that having all three properties at the same time is not possible,</li>
-<li><a href="https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8">https://medium.com/statuscode/three-reasons-to-use-a-nosql-document-store-for-your-next-web-application-6b9eabffc8d8</a></li>
-<li>Document Store:<ul>
-<li>use for settings data and where schema will be changed often</li>
-<li>when changes are small crud, based on users interactions?</li>
-<li>when count and aggregate data is useful to end user</li>
-</ul>
-</li>
-<li>RDBMS:<ul>
-<li>less duplicated data, normalized and stored in specific tables</li>
-<li>useful when data changes often</li>
-<li>seems like more useful for storing fact data in ETL processes?</li>
-<li>Q: phoenix?</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>More to come...</p>
 </div>
 </div>
 
