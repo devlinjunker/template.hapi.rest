@@ -1,6 +1,6 @@
 name: Merge to Master
 
-# Controls when the action will run. Triggers the workflow on push
+# Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       env:
         ACTION_MAIL: devlin.junker@gmail.com
         ACTION_NAME: devlinjunker
-        GH_PAT: ${{ secrets.GITHUB_TOKEN }}
+        GH_PAT: ${{ secrets.GH_PAT }}
         MD_FOLDER: ./
         OWNER: devlinjunker
         REPO_NAME: template.node.hapi
