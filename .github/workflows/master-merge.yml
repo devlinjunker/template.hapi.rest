@@ -21,7 +21,7 @@ jobs:
     - name: Upload READMEs to Wiki
       uses: docker://decathlon/wiki-page-creator-action:latest
       env:
-        ACTION_MAIL: devlin.junker@gmail.com
+        ACTION_MAIL: devlinjunker@users.noreply.github.com
         ACTION_NAME: devlinjunker
         GH_PAT: ef90db5cc6ca22d9162e783b005dbfa19798998b
         MD_FOLDER: ./
