@@ -4,6 +4,7 @@ We use githooks([github](https://github.com/devlinjunker/template.node.hapi/tree
 
 **NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)**. You may want to disable this for more rapid local development, you can just remove the configuration in package.json([github](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30)) that adds these hooks.
 
+
 ## On commit
 Before each commit, we want to verify that the build won't break. So we make sure to run the build process one more time with only the committed files before
 letting the commit go through:
@@ -16,7 +17,20 @@ Process:
 
 ## Github Actions
 
-We setup github actions on this project so we can attempt to build and run the tests for every PR submitted
-against master.
+We setup github actions on this project so we can enforce actions/checks and workflow processes on github.
+
+### On Master PR
+For every PR against master, we spin up a server to build the project via node/webpack. We also lint the
+project at this point (with more stringent error rules?). This will help us catch any errors in the code and
+prevent any merges to master that will break
+
+### On Merge to Master
+Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
+the commits. We run a git action to handle this as well:
+ - Collect README files and update wiki
+ - **TODO:** Fix/remove links from wiki?
+ - **TODO:** Build documentation and generate commit
+ - **IDEA:** Version increase/changelog generation
+
 
 More to come...
