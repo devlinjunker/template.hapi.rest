@@ -15,7 +15,7 @@
             "./src/controllers/README.controllers.md",
             "./src/dataservices/README.dataservices.md",
             "./src/helpers/README.helpers.md",
-            "./scripts/hooks/README.hooks.md",
+            "./scripts/README.scripts.md",
             "./test/README.test.md"
           ]
         },
