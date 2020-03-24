@@ -2,7 +2,7 @@
 
 How to run
 
-1. Ensure using Node v8+
+1. Ensure using Node v10+
 2. Install Development Dependencies:
     \033[1m npm install -D \033[0m
 3. Compile server files:
