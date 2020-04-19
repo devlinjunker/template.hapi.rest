@@ -58,8 +58,12 @@ async function _getDatabaseStatus(config: DatabaseConfig): Promise<HealthcheckRe
  * @return      {HealthcheckResponse}     Response from Database Healtcheck
  */
 async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise<HealthcheckResponse> {
-  const endpoint: string = config.protocol + '://' + config.host + ':' +
-    _.get(config.healthcheck, 'port', config.port) + _.get(config.healthcheck, 'path', config.path);
+  const protocol: string = config.protocol;
+  const host: string = config.host;
+  const port: string = _.get(config.healthcheck, 'port', config.port);
+  const apiPath: string = _.get(config.healthcheck, 'path', config.path);
+
+  const endpoint: string = `${protocol}://${host}:${port}/${apiPath}`;
 
   const promise = new Promise((resolve, reject) => { // eslint-disable-line
     const req = http.get(endpoint, (response) => { // eslint-disable-line
@@ -70,7 +74,7 @@ async function _getExternalServiceStatus(config: ExternalServiceConfig): Promise
     // TODO: Set Timeout length from Config (per service or have default?)
     req.setTimeout(5000, () => {
       req.destroy();
-      reject('Error: Timeout at ' + endpoint);
+      reject(`Error: Timeout at ${endpoint}`);
     });
     req.on('error', (error: Error) => {
       reject(error);
