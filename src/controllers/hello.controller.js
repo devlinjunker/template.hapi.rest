@@ -26,7 +26,7 @@ export class HelloWorld {
 
     const name: string = request.params.name;
 
-    return name + ' says: ' + Math.random() + '!!!!';
+    return `${name} says: ${Math.random()}!!!!`;
   }
 }
 

@@ -89,7 +89,7 @@ export class Server {
    */
   async run() {
     await this.server.start();
-    process.stdout.write('\n\n' + this.name + ' started on ' + this.server.info.port + '\n\n');
+    process.stdout.write(`\n\n ${this.name} started on ${this.server.info.port} \n\n`);
 
     // Serve Docs with OpenAPI and Swagger UI
     // visit at http://localhost:3333/docs/swagger/index.html

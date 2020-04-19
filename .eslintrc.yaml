@@ -189,17 +189,23 @@ rules:
   eqeqeq:
     - error
     - always
+  no-lonely-if: error
 
   indent:
     - error
     - 2
+    - ignoredNodes:
+      - TemplateLiteral
   quotes:
     - error
     - single
+  prefer-template:
+    - error
   semi:
     - error
     - always
-  no-lonely-if: error
+
+
 
   # Spacing
   no-trailing-spaces: error
