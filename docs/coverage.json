@@ -57,9 +57,9 @@
       "expectCount": 10,
       "actualCount": 7,
       "undocumentLines": [
-        105,
-        106,
-        180
+        110,
+        111,
+        185
       ]
     },
     "src/helpers/mariadb.helper.js": {

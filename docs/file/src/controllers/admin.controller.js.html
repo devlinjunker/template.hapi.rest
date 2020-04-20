@@ -81,7 +81,7 @@ function healthcheckController(request: HapiRequest): any { // eslint-disable-li
 
 export default [
   {
-    path: CONFIG.PATHS.healthcheck + &apos;/{level?}&apos;,
+    path: `${CONFIG.PATHS.healthcheck}/{level?}`,
     method: &apos;GET&apos;,
     controller: healthcheckController
   },

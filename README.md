@@ -218,6 +218,18 @@ How to use this template to create a quick HTTP REST server:
 
 ## Issues
 
+**Issues seeing endpiont**
+Error in Log:
+```
+Debug: handler, error
+    Error: Not Found
+    at internals.notFound
+```
+
+Occurs when you are using browser to hit endpoint that has not been registered with Server. Check:
+ - Spelling in browser url bar or controller file
+ - Recompiled after adding new endpoint
+
 **Issues when properties missing/misnamed in controller route objects**
 TODO: add issues
 
