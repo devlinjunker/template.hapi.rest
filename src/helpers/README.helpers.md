@@ -12,7 +12,7 @@ Helper class for connecting with mariadb server and saving/retrieving rows from 
     - fetchOne
 
 ### Config
-Helper class for reading properties from [config file](https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3)
+Helper class for reading properties from [config file](https://github.com/devlinjunker/template.hapi.rest/blob/master/conf/config.yaml#L3)
   - provides a typed interface of these properties
 
 ### Healthcheck

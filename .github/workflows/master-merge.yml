@@ -30,5 +30,5 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
         MD_FOLDER: ./wiki
         OWNER: devlinjunker
-        REPO_NAME: template.node.hapi
+        REPO_NAME: template.hapi.rest
         SKIP_MD: README.md

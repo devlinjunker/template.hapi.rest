@@ -1,15 +1,21 @@
 {
   "version": "0.1.0",
-  "name": "HapiServer",
-  "description": "Template for Hapi Server",
+  "name": "HapiRestServer",
+  "description": "Template for Hapi Rest Server",
   "keywords": [
+    "template",
+    "hapi",
+    "rest",
+    "server",
+    "webpack",
+    "babel",
     "flow",
     "eslint",
     "esdoc",
-    "template",
     "node",
-    "hapi",
-    "server"
+    "githooks",
+    "husky",
+    "openapi"
   ],
   "author": "djunker <devlin.junker@gmail.com>",
   "license": "ISC",

@@ -1,6 +1,6 @@
 # Test
 
-Testing bootstrap file([source](https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js))
+Testing bootstrap file([source](https://github.com/devlinjunker/template.hapi.rest/blob/master/test/test.bootstrap.js))
 finds all of the test files and imports global objects that can be used in all tests to simplify each test
 file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
 functions in the test context.

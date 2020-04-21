@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual | HapiServer</title>
+  <title data-ice="title">Manual | HapiRestServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
   <script src="script/matomo.js"></script>
-<meta name="description" content="Template for Hapi Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiServer"><meta property="twitter:description" content="Template for Hapi Server"></head>
+<meta name="description" content="Template for Hapi Rest Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiRestServer"><meta property="twitter:description" content="Template for Hapi Rest Server"></head>
 <body class="layout-container manual-root manual-index" data-ice="rootContainer">
 
 <header>
@@ -31,7 +31,7 @@
       el.title = 'Unavailable on Github Hosting'
     }
   </script>
-<a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.node.hapi"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/devlinjunker/template.hapi.rest"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
@@ -134,21 +134,21 @@ production?)</li>
         <div data-ice="card"><h1>Setup</h1><p><strong>Requires Node 10+</strong>. Please install this before attempting to run. The easiest way to install and
 manage node versions is by using the <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a>. We define a .nvm file
 in the project to help reference this minimum node version.</p><p>Use <code>nvm use 10</code> to switch node versions after installing a new Node version. <strong>Then you should install all
-project dependencies</strong>(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>)
+project dependencies</strong>(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/package.json#L30">github</a>)
 with <code>npm install</code> (or <code>npm install -D</code> if development work is planned). This should install the Hapi Server Framework,
  MariaDB and other libraries used in this project.</p><p>If you have cloned the master branch, then the build should compile and all tests should pass once the
 dependencies have been downloaded and installed. To only compile the server, use <code>npm run build</code>, or you can
 just run the tests with <code>npm run test</code>. <strong>To watch the files for changes and rebuild/retest the files
-on changes, you can use</strong> <code>npm run start-watch</code>. See the package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L17">github</a>)
+on changes, you can use</strong> <code>npm run start-watch</code>. See the package.json(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/package.json#L17">github</a>)
 for all possibe npm commands.</p><p>The Note Controller/Dataservice Endpoints require MariaDB installed to store the notes passed. After you
 have installed mariadb, you will need to set up the initial database using mariadb and a SQL program (or
 scripts if we get working). <strong>Once the db is set up, the configuration for the database name, user, password
 and port are set in</strong> <code>conf/config.yaml</code>
-(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml">github</a>).</p><p><strong>Each endpoint that is created should have an OpenAPI representation in</strong> <code>openapi.yaml</code>. This file can be
+(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/conf/config.yaml">github</a>).</p><p><strong>Each endpoint that is created should have an OpenAPI representation in</strong> <code>openapi.yaml</code>. This file can be
 used to run <a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a> to help with running/testing the processes
 developed. There is a Swagger application at the API link in the docs or can view the raw
-file(<a href="./manual/../swagger/openapi.yaml">source</a>) (Eventually we will autogenerate OpenAPI file from code annotations
-and create Postman test suites based on these files)</p><h2>Webpack</h2><p>Webpack config file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/webpack.config.js">github</a>)
+file(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/openapi.yaml">github</a>) (Eventually we will autogenerate OpenAPI file from code annotations
+and create Postman test suites based on these files)</p><h2>Webpack</h2><p>Webpack config file(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/webpack.config.js">github</a>)
 is used to manage our webpack build to compile the application.</p><p>In this file we:</p><ul>
 <li>designate the files that will be created with the build</li>
 <li>define the source mapping that will be generated with the output (this should be changed in prod)</li>
@@ -188,7 +188,7 @@ so that we print the error to output before exiting (We may also want to log thi
       <div class="manual-card">
         <div data-ice="card"><h1>Logging</h1><p>We are currently using pino for logging. Pino logs objects/messages directly to streams so other processes can
 actually handle formatting or other log actions (this is because Node is single threaded, so smarter to create
-another process to manage the logs). We store all of these logs in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p><h2>Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12">github</a>) file:</p><ul>
+another process to manage the logs). We store all of these logs in <code>&lt;CONFIG.LOG.dir&gt;/pino.log</code></p><h2>Configurations</h2><p>Some settings can be configured in the config.yaml(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/conf/config.yaml#L12">github</a>) file:</p><ul>
 <li>The <code>debug</code> property shows error messages and stack traces in the stdout of the server process (for
  development)</li>
 <li>The <code>dir</code> property defines the directory to save log files in</li>
@@ -337,7 +337,7 @@ topic or for a specific UI component.</p><h2>Examples</h2><h3>Note Dataservice</
 - insert
 - fetch
 - fetchOne</code>
-</code></pre><h3>Config</h3><p>Helper class for reading properties from <a href="https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L3">config file</a></p><ul>
+</code></pre><h3>Config</h3><p>Helper class for reading properties from <a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/conf/config.yaml#L3">config file</a></p><ul>
 <li>provides a typed interface of these properties</li>
 </ul><h3>Healthcheck</h3><p>Helper for building the healthcheck response that is displayed at <code>&lt;CONFIG.PATHS.healthceck&gt;</code> endpoint.</p><ul>
 <li>Determines version/branch and if the server is running properly</li>
@@ -369,7 +369,7 @@ topic or for a specific UI component.</p><h2>Examples</h2><h3>Note Dataservice</
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Git Hooks/Workflow</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
+        <div data-ice="card"><h1>Git Hooks/Workflow</h1><p>We use githooks(<a href="https://github.com/devlinjunker/template.hapi.rest/tree/master/scripts/hooks">github</a>) to help clean up and enforce the workflow for developers. This is done with Husky.</p><p><strong>NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)</strong>. You may want to disable this for more rapid local development, you can just remove the configuration in package.json(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/package.json#L30">github</a>) that adds these hooks.</p><h2>On commit</h2><p>Before each commit, we want to verify that the build won&apos;t break. So we make sure to run the build process one more time with only the committed files before
 letting the commit go through:</p><p>Process:</p><ol>
 <li>Stash uncommited changes</li>
 <li>Run linting/flow/compliation and tests with npm/webpack</li>
@@ -388,7 +388,7 @@ the commits. We run a git action to handle this as well:</p><ul>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.node.hapi/blob/master/test/test.bootstrap.js">source</a>)
+        <div data-ice="card"><h1>Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/test/test.bootstrap.js">source</a>)
 finds all of the test files and imports global objects that can be used in all tests to simplify each test
 file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
 functions in the test context.</p><p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the

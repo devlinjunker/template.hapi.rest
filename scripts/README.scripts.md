@@ -1,8 +1,8 @@
 # Git Hooks/Workflow
 
-We use githooks([github](https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/hooks)) to help clean up and enforce the workflow for developers. This is done with Husky.
+We use githooks([github](https://github.com/devlinjunker/template.hapi.rest/tree/master/scripts/hooks)) to help clean up and enforce the workflow for developers. This is done with Husky.
 
-**NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)**. You may want to disable this for more rapid local development, you can just remove the configuration in package.json([github](https://github.com/devlinjunker/template.node.hapi/blob/master/package.json#L30)) that adds these hooks.
+**NOTE: We prevent commits to master branch on local machine (so all changes to master are PRs on github)**. You may want to disable this for more rapid local development, you can just remove the configuration in package.json([github](https://github.com/devlinjunker/template.hapi.rest/blob/master/package.json#L30)) that adds these hooks.
 
 
 ## On commit
