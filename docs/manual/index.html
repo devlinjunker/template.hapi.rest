@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual | HapiRestServer</title>
+  <title data-ice="title">Manual | HapiRESTServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
   <script src="script/matomo.js"></script>
-<meta name="description" content="Template for Hapi Rest Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiRestServer"><meta property="twitter:description" content="Template for Hapi Rest Server"></head>
+<meta name="description" content="Template for Hapi Rest Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiRESTServer"><meta property="twitter:description" content="Template for Hapi Rest Server"></head>
 <body class="layout-container manual-root manual-index" data-ice="rootContainer">
 
 <header>
@@ -111,7 +111,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="github-markdown">
-  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="simple-template-api-docs">Simple Template API Docs</h1><ul>
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="template-rest-api-docs">Template REST API Docs</h1><ul>
 <li><a href="manual/README.setup.html">Setup</a> - dependencies and how to install and start development (eventually
 production?)</li>
 <li><a href="manual/README.entry.html">Entry Point</a></li>
@@ -174,10 +174,12 @@ because I felt this is more than is needed to develop a working app or even writ
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Application Entry Point</h1><p>The main method(<a href="./manual/../file/src/entry.js.html#lineNumber47">source</a>) is where we instantiate the server wrapper
-class, and set up the routes to be handled by our application. We also want to make ensure the application is
-closed down as calmly as possible when the user asks, so we make sure to nicely ask our server to shut itself
-down and then ask mariadb to close any open connections(<a href="./manual/../file/src/entry.js.html#lineNumber71">source</a>).</p><p>I think we also added the handler for <code>unhandledRejection</code> exceptions(<a href="./manual/../file/src/entry.js.html#lineNumber83">source</a>)
+        <div data-ice="card"><h1>Application Entry Point</h1><p>The main method(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/src/entry.js.html#L47">github</a>)
+is where we instantiate the server wrapper class, and set up the routes to be handled by our application. We
+also want to make ensure the application is closed down as calmly as possible when the user asks, so we make
+sure to nicely ask our server to shut itself down and then ask mariadb to close any open
+connections(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/src/entry.js.html#L71">github</a>).</p><p>I think we also added the handler for <code>unhandledRejection</code>
+exceptions(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/src/entry.js.html#L83">github</a>)
 so that we print the error to output before exiting (We may also want to log this to any notification system)</p><h2>Notes/Ideas</h2><ul>
 <li><strong>IDEA:</strong> Generic Handler/Middleware that creates Request Details Object to pass to each controller</li>
 </ul></div>
@@ -388,7 +390,7 @@ the commits. We run a git action to handle this as well:</p><ul>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/test/test.bootstrap.js">source</a>)
+        <div data-ice="card"><h1>Test</h1><p>Testing bootstrap file(<a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/test/test.bootstrap.js">github</a>)
 finds all of the test files and imports global objects that can be used in all tests to simplify each test
 file. Also creates a sinon Sandbox that is reset before each test for mocking/stubbing services and non-tested
 functions in the test context.</p><p>To run the tests with mocha, use <code>npm run test</code> to see the output from all tests in <code>.spec</code> files in the

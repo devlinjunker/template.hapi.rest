@@ -2,67 +2,67 @@ window.esdocSearchIndex = [
   [
     "hapirestserver/src/helpers/config.helper.js~config",
     "variable/index.html#static-variable-CONFIG",
-    "<span>CONFIG</span> <span class=\"search-result-import-path\">HapiRestServer/src/helpers/config.helper.js</span>",
+    "<span>CONFIG</span> <span class=\"search-result-import-path\">HapiRESTServer/src/helpers/config.helper.js</span>",
     "variable"
   ],
   [
     "hapirestserver/src/helpers/healthcheck.helper.js~healthcheckhelper",
     "class/src/helpers/healthcheck.helper.js~HealthcheckHelper.html",
-    "<span>HealthcheckHelper</span> <span class=\"search-result-import-path\">HapiRestServer/src/helpers/healthcheck.helper.js</span>",
+    "<span>HealthcheckHelper</span> <span class=\"search-result-import-path\">HapiRESTServer/src/helpers/healthcheck.helper.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/controllers/hello.controller.js~helloworld",
     "class/src/controllers/hello.controller.js~HelloWorld.html",
-    "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiRestServer/src/controllers/hello.controller.js</span>",
+    "<span>HelloWorld</span> <span class=\"search-result-import-path\">HapiRESTServer/src/controllers/hello.controller.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/helpers/mariadb.helper.js~mariadbhelper",
     "class/src/helpers/mariadb.helper.js~MariaDBHelper.html",
-    "<span>MariaDBHelper</span> <span class=\"search-result-import-path\">HapiRestServer/src/helpers/mariadb.helper.js</span>",
+    "<span>MariaDBHelper</span> <span class=\"search-result-import-path\">HapiRESTServer/src/helpers/mariadb.helper.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/controllers/note.controller.js~notecontroller",
     "class/src/controllers/note.controller.js~NoteController.html",
-    "<span>NoteController</span> <span class=\"search-result-import-path\">HapiRestServer/src/controllers/note.controller.js</span>",
+    "<span>NoteController</span> <span class=\"search-result-import-path\">HapiRESTServer/src/controllers/note.controller.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/dataservices/note.service.js~notedataservice",
     "class/src/dataservices/note.service.js~NoteDataservice.html",
-    "<span>NoteDataservice</span> <span class=\"search-result-import-path\">HapiRestServer/src/dataservices/note.service.js</span>",
+    "<span>NoteDataservice</span> <span class=\"search-result-import-path\">HapiRESTServer/src/dataservices/note.service.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/base/request/request-error.model.js~requesterror",
     "class/src/base/request/request-error.model.js~RequestError.html",
-    "<span>RequestError</span> <span class=\"search-result-import-path\">HapiRestServer/src/base/request/request-error.model.js</span>",
+    "<span>RequestError</span> <span class=\"search-result-import-path\">HapiRESTServer/src/base/request/request-error.model.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/base/server.js~server",
     "class/src/base/server.js~Server.html",
-    "<span>Server</span> <span class=\"search-result-import-path\">HapiRestServer/src/base/server.js</span>",
+    "<span>Server</span> <span class=\"search-result-import-path\">HapiRESTServer/src/base/server.js</span>",
     "class"
   ],
   [
     "hapirestserver/src/helpers/healthcheck.helper.js~healthcheckhelper",
     "variable/index.html#static-variable-healthcheckHelper",
-    "<span>healthcheckHelper</span> <span class=\"search-result-import-path\">HapiRestServer/src/helpers/healthcheck.helper.js</span>",
+    "<span>healthcheckHelper</span> <span class=\"search-result-import-path\">HapiRESTServer/src/helpers/healthcheck.helper.js</span>",
     "variable"
   ],
   [
     "hapirestserver/src/entry.js~main",
     "function/index.html#static-function-main",
-    "<span>main</span> <span class=\"search-result-import-path\">HapiRestServer/src/entry.js</span>",
+    "<span>main</span> <span class=\"search-result-import-path\">HapiRESTServer/src/entry.js</span>",
     "function"
   ],
   [
     "hapirestserver/src/helpers/mariadb.helper.js~mariadbhelper",
     "variable/index.html#static-variable-mariadbHelper",
-    "<span>mariadbHelper</span> <span class=\"search-result-import-path\">HapiRestServer/src/helpers/mariadb.helper.js</span>",
+    "<span>mariadbHelper</span> <span class=\"search-result-import-path\">HapiRESTServer/src/helpers/mariadb.helper.js</span>",
     "variable"
   ],
   [

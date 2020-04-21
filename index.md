@@ -1,4 +1,4 @@
-# Simple Template API Docs
+# Template REST API Docs
 
 - [Setup](manual/README.setup.html) - dependencies and how to install and start development (eventually
 production?)
