@@ -6,7 +6,7 @@ another process to manage the logs). We store all of these logs in `<CONFIG.LOG.
 
 ## Configurations
 
-Some settings can be configured in the config.yaml([github](https://github.com/devlinjunker/template.node.hapi/blob/master/conf/config.yaml#L12)) file:
+Some settings can be configured in the config.yaml([github](https://github.com/devlinjunker/template.hapi.rest/blob/master/conf/config.yaml#L12)) file:
   - The `debug` property shows error messages and stack traces in the stdout of the server process (for
      development)
   - The `dir` property defines the directory to save log files in

@@ -26,7 +26,7 @@
           "excludes": ["\\.config\\.js$", "node_modules"]
         },
         "brand": {
-          "repository": "https://github.com/devlinjunker/template.node.hapi"
+          "repository": "https://github.com/devlinjunker/template.hapi.rest"
         }
       }
     },

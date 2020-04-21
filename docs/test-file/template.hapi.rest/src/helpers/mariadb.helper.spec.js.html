@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/dataservices/note.service.js | HapiRestServer</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">template.hapi.rest/src/helpers/mariadb.helper.spec.js | HapiRestServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -51,90 +51,35 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/dataservices/note.service.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @flow
- *
- * MariaDB Service Example
- */
-import mariadbHelper, { MariaDBInsertResponse } from &apos;../helpers/mariadb.helper.js&apos;; // eslint-disable-line
-import RequestError from &apos;../base/request/request-error.model.js&apos;;
-import _ from &apos;lodash&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">template.hapi.rest/src/helpers/mariadb.helper.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import mariaDbHelper from &apos;mariadb.helper.js&apos;;
 
-/**
- * Note object with name and id
- * @type {Note}
- */
-export interface Note {
-  id: number;
-  name: string;
-};
+// Q: should we write this spec file? It seems like we&apos;re just testing things that won&apos;t be affected by
+// anything... and may just change later.
+//
+// Do we want to test that the correct query strings are sent to the mariadb library?
+// Seems like too much
+//
+// Seems like white box testing so I&apos;m not going to do it right now
 
-/**
- * Note Dataservice for interacting with the storage system for saving notes
- */
-export default class NoteDataservice {
-  /**
-   * Returns a note, specified by the caller by id
-   * @param  {number|string} id  `id` number of the Note to retrieve
-   * @return {Note}       Note object
-   */
-  static async getNote({ id }: { id: number }): Promise&lt;Note&gt; {
-    if (typeof(id) === &apos;string&apos; &amp;&amp; Number.isNaN(Number.parseInt((id: string)))) {
-      throw new RequestError(&apos;Note Id must be an integer&apos;, 400);
-    }
-    const row: Note = await mariadbHelper.fetchOne(`SELECT * FROM test.notes WHERE id=${id}`);
-
-    if (row === undefined) {
-      throw new RequestError(&apos;Unrecognized Note Id&apos;, 404);
-    }
-
-    return row;
-  }
-
-  /**
-   * Creates a new note with a name
-   * TODO: add (optional) content param and attribute
-   * @param  {String}  name name of note
-   * @return {Note}      Note Object
-   */
-  static async createNote({ name }: { name: string }): Promise&lt;Note&gt; {
-    if (name === &apos;&apos; || name === undefined) {
-      throw new RequestError(&apos;Name must be provided&apos;, 404);
-    }
-
-    const response: MariaDBInsertResponse = await mariadbHelper.insert(&apos;test.notes&apos;, {
-      name
-    });
-
-    // TODO: Debug with atom?
-    // TODO: Use Logger helper instead
-    console.log(response);
-
-    return await NoteDataservice.getNote({ id: response.insertId });
-  }
-
-  /**
-   * Create multiple notes
-   * @param  {Array}  notes Array of note objects with name parameter
-   * @return {Promise}       [description]
-   */
-  static async createNotes(notes: Array&lt;{name: string}&gt;): Promise&lt;Array&lt;Note&gt; | Note&gt; {
-    if (
-      _.find(({ name }: { name: string; }): boolean =&gt; {
-        return name === &apos;&apos; || name === undefined;
-      }) !== undefined
-    ) {
-      throw new RequestError(&apos;Name cannot be empty or undefined&apos;, 404);
-    }
-    const insert: MariaDBInsertResponse = await mariadbHelper.insertMultiple(&apos;test.notes&apos;, notes);
-
-    const endId: number = insert.insertId + insert.affectedRows;
-    const query: string = `SELECT * from test.notes WHERE id &gt;= ${insert.insertId} AND id &lt; ${endId}`;
-
-    return await mariadbHelper.fetch(query);
-  }
-}
+/* @test {MariaDBHelper} */
+// describe(&apos;MariaDBHelper&apos;, () =&gt; {
+//   describe(&apos;constructor&apos;, () =&gt; {
+//     it(&apos;should not do anything if in test mode&apos;);
+//
+//     it(&apos;should require a config or transactionConnection&apos;);
+//   });
+//
+//   describe(&apos;shutdown()&apos;);
+//
+//   describe(&apos;query()&apos;);
+//
+//   describe(&apos;fetch()&apos;);
+//
+//   describe(&apos;fetchOne()&apos;);
+//
+//   describe(&apos;insert()&apos;);
+// });
 </code></pre>
 
 </div>
