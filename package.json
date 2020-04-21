@@ -18,7 +18,7 @@
     "openapi"
   ],
   "author": "djunker <devlin.junker@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/server.bundle.js",
   "scripts": {
     "start-watch": "rm -rf ./dist/; ./node_modules/.bin/webpack --watch & (sleep 20s && nodemon dist/server.bundle.js)",
