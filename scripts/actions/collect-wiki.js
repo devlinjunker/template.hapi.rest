@@ -28,16 +28,18 @@ const home = esdocSettings['plugins'][0]['option']['manual']['index'];
 const homePath = `../.${home}`;
 let content = fs.readFileSync(path.resolve(__dirname, homePath)).toString();
 
+// Replace all links in index.md file so they work on github
 for (const oldName in map) {
-  // oldName: "README.controllers.md";
-  // become: newName
-  //
   // find (manual/README.controllers.html)
+  // become: newName without `.md` (e.g. "0-setup")
+  // oldName ex: "README.setup.md";
   const newName = map[oldName];
   const namePart = oldName.substring(0, oldName.length - 3);
 
   const regexp = new RegExp(`\\(manual\\/${namePart}\\.html\\)`);
-  content = content.replace(regexp, `(${newName})`);
+
+  const newLink = newName.substring(0, newName.length - 3);
+  content = content.replace(regexp, `(${newLink})`);
 }
 
 fs.writeFileSync(path.join(tmpPath, 'Home.md'), content);
