@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(issuesHref).then((response) => {
       return response.json();
     }).then((issues) => {
+      issues = issues.filter((issue) => {
+        return issue.pull_request === undefined;
+      });
       issuesNum.textContent = issues.length;
       issuesNum.style['visibility'] = 'inherit';
     });
