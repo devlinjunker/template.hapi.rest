@@ -28,7 +28,7 @@ prevent any merges to master that will break
 Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
 the commits. We run a git action to handle this as well:
  - Collect README files and update wiki
- - **TODO:** Fix/remove links from wiki?
+ - Fix/remove links in Wiki
  - **TODO:** Build documentation and generate commit
  - **IDEA:** Version increase/changelog generation
 
