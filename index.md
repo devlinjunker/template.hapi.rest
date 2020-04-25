@@ -1,4 +1,6 @@
 
+**NOTE: Any manual changes to Github Wiki will be overwritten by push (PR merged) to `master` branch**
+
 Welcome to the Manual/Wiki for the Hapi REST Server Template. These files should updated whenever we merge to master, and be in sync between:
  - The README files in the repo,
  - The Github Wiki, and
