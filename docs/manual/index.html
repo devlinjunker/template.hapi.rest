@@ -111,7 +111,9 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="github-markdown">
-  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="template-rest-api-docs">Template REST API Docs</h1><ul>
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="template-rest-api-docs">Template REST API Docs</h1><p>Welcome to the Manual/Wiki for the Hapi REST Server Template. These files should updated whenever we merge to master, and be in sync between the README files in the repo, the Github Wiki and the generated docs pages served when running the server. We use a Github Action to accomplish this.</p>
+<p>We define an action to execute on merge to the <code>master</code> branch inside of the <code>./.github/workflows/</code> <a href="https://github.com/devlinjunker/template.node.hapi/tree/master/.github/workflows">directory</a> (along with all other github actions) that calls a <a href="https://github.com/devlinjunker/template.node.hapi/tree/master/scripts/actions">script</a> in our <code>scripts/actions</code> directory. The script retrieves the following markdown files (defined in <code>./.esdoc.json</code>) and copies them to a temporary directory, then uses the <a href="https://github.com/marketplace/actions/wiki-page-creator-action">wiki-page-creator-action</a> to update the wiki.</p>
+<h3 id="table-of-contents">Table of Contents</h3><ul>
 <li><a href="manual/README.setup.html">Setup</a> - dependencies and how to install and start development (eventually
 production?)</li>
 <li><a href="manual/README.entry.html">Entry Point</a> - How we start and setup the server process to handle requests</li>
