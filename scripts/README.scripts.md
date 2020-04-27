@@ -33,8 +33,7 @@ Whenever we merge a PR to master, we want to update the documentation based on t
 the commits. We run a git action to handle this as well:
  - Collect README files and update wiki
  - Fix/remove links in Wiki
- - **TODO:** Build documentation and generate commit
+ - Build documentation and generate commit
+
+## Notes/Ideas
  - **IDEA:** Version increase/changelog generation
-
-
-More to come...
