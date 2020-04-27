@@ -46,16 +46,16 @@ In this file we:
 ## Documentation
 
 The `docs/` directory is created with `npm run doc`, this generates an esdoc webpage based on the modified
-template stored in `docs/template`.
+template stored in `docs/template` from the README files in the repo. These docs are also synced with the Github
+wiki page via a Github Action (see Github Actions/Scripts page for more details.
 
 The Dependency Graph is created with [Madge](https://github.com/pahen/madge) and graphviz, you will need to
 install both in order to update the dependency graph. I didn't include these in the package.json dependencies
-because I felt this is more than is needed to develop a working app or even write basic documentation.
+because I felt this is more than is needed to develop a working app or even write basic documentation. I also split this out to a separate npm script: `npm run doc-image` so it can be run when someone actually installs
+the dependencies
 
 Install madge with `npm install -g madge` and install graphviz with `brew install graphviz` or
-`port install graphviz` (for OSX)
-
-I split this out to a separate npm script: `npm run doc-image`
+`port install graphviz` (for OSX).
 
 
 ## Notes/Ideas
