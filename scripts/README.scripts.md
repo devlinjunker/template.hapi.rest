@@ -24,6 +24,10 @@ For every PR against master, we spin up a server to build the project via node/w
 project at this point (with more stringent error rules?). This will help us catch any errors in the code and
 prevent any merges to master that will break
 
+## Github Specific Files
+Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
+`.github/PULL_REQUEST_TEMPLATE.md`
+
 ### On Merge to Master
 Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
 the commits. We run a git action to handle this as well:
