@@ -16,7 +16,6 @@ Process:
 
 
 ## Github Actions
-
 We setup github actions on this project so we can enforce actions/checks and workflow processes on github.
 
 ### On Master PR

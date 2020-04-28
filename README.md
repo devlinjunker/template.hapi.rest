@@ -1,10 +1,8 @@
-# Basic Webpack Server App
+# Template Webpack REST Server
 
-This is meant to be an example of how to use Webpack in the Backend for rapid development of an API server
-with endpoints for managing requests and connections to other servers and/or database/storage tools.
+Template and Example using Webpack for rapid development of an REST API server with endpoints for managing requests and connections to other servers and/or database/storage tools.
 
-This example can also be used to quickly create a server with your own endpoints to do whatever you would like
-on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)
+This example can also be used to quickly create a server with your own endpoints to do whatever you would like on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)
 
 ## Dependencies
 Node v10+ and npm
