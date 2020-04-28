@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "name": "HapiRESTServer",
-  "description": "Template for Hapi Rest Server",
+  "name": "Template-HapiRESTServer",
+  "description": "Template for Hapi REST API Server",
   "keywords": [
     "template",
     "hapi",
