@@ -1,10 +1,20 @@
+---
+version: 0.1.0-SNAPSHOT
+---
+
 # Template Webpack REST Server
+
+[![GitHub License](https://img.shields.io/github/license/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/blob/master/LICENSE)
+[![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
+[![GitHub last commit](https://img.shields.io/github/last-commit/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/commits/master)
+
+## Intro
 
 Template and Example using Webpack for rapid development of an REST API server with endpoints for managing requests and connections to other servers and/or database/storage tools.
 
 This example can also be used to quickly create a server with your own endpoints to do whatever you would like on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)
 
-## Dependencies
+## Dependencies/Frameworks
 Node v10+ and npm
   (tested with v10.15.1)
 
@@ -20,7 +30,7 @@ for full list of current dependencies
  - [MariaDB](https://mariadb.org/) -- Connecting to mysql/mariadb server for storage
  - [YamlJS](https://openbase.io/js/yamljs) -- Parsing YAML files
 
-## Development
+## Quick Setup/Run
 
 How to use this template to create a quick HTTP REST server:
 
@@ -67,3 +77,20 @@ How to use this template to create a quick HTTP REST server:
 
 `npm restart` will restart once start/stop completed
 
+
+## Links
+
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Contribute](CONTRIBUTING.md)
+- [Wiki](wiki)
+
+## Contributors
+
+- [Devlin Junker (Me!)](mailto:devlinjunker@gmail.com)
+
+
+## TODO:
+   - Add Badges
+      - "Read the Docs"
+      - npm dependencies?
+   - Update Contributing File

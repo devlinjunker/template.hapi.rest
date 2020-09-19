@@ -1,6 +1,7 @@
 
 ## TODO
-
+ - [ ] Review and Update [Security Policy](SECURITY.md)
+    - Provide private way of reporting vulnerabilities?
  - [x] (^) Node 8
  - [x] (^) Webpack
     - https://medium.com/@christossotiriou/speed-up-nodejs-server-side-development-with-webpack-4-hmr-8b99a932bdda
