@@ -1,5 +1,5 @@
 ---
-version: 0.1.0-SNAPSHOT
+version: 0.7.0-SNAPSHOT
 ---
 
 # Template Webpack REST Server
@@ -34,16 +34,17 @@ for full list of current dependencies
 
 How to use this template to create a quick HTTP REST server:
 
-1. Download and update dependencies
+1. Download and update node + dependencies
+   - After [installing node](https://nodejs.org/en/download/package-manager/) run `npm install -D`
 2. Update `conf/config.yaml` with any changes to settings
-2. Add new OpenAPI endpoint to `./openapi.yaml`
+2. Add endpoint definitions to OpenAPI config in `./openapi.yaml`
 3. Add Unit tests in `src/controllers/` (Test Driven Development)
 4. Add Controller Files to `src/controllers/`
-  - For now, add reference to controller in `src/entry.js` (with other controllers)
-  - Controller endpoints will be served at `/api` (or whatever is set in config.yaml)
+   - For now, add reference to controller in `src/entry.js` (with other controllers)
+   - Controller endpoints will be served at `/api` (or whatever is set in config.yaml)
 5. Run `npm run doc` to update the documentation
 6. Run `npm run start-watch` to compile and run server + tests in watch mode
-  - Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint
+   - Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint
 
 ### Tests/Running
 
