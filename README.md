@@ -80,18 +80,12 @@ How to use this template to create a quick HTTP REST server:
 
 ## Links
 
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Contribute](CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/devlinjunker/template.hapi.rest/blob/master/CODE_OF_CONDUCT.md)
+- [Contribute](https://github.com/devlinjunker/template.hapi.rest/blob/master/CONTRIBUTING.md)
+- [Doc Site](https://devlinjunker.github.io/template.hapi.rest/)
 - [Wiki](https://github.com/devlinjunker/template.hapi.rest/wiki)
-- [Notes/Ideas](NOTES.md)
+- [Notes/Ideas](https://github.com/devlinjunker/template.hapi.rest/blob/master/NOTES.md)
 
 ## Contributors
 
 - [Devlin Junker (Me!)](mailto:devlinjunker@gmail.com)
-
-
-## TODO:
-   - Add Badges
-      - "Read the Docs"
-      - npm dependencies?
-   - Update Contributing File
