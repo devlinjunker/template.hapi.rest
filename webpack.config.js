@@ -78,6 +78,20 @@ const config =  {
       //    how is output of this when exceptions thrown vs if we run the test files indidually? (mocha.opts)
       onBuildExit: 'mocha --env.unit_test ./dist/test.bundle.js'
     }),
+
+    // TODO: look into this vs other way
+
+    // Custom Script on end of Build process (this works in watch mode too)
+    // {
+    //   apply: (compiler) => {
+    //     compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
+    //       exec('./node_modules/.bin/htmlhint public', (err, stdout, stderr) => {
+    //         if (stdout) process.stdout.write(stdout);
+    //         if (stderr) process.stderr.write(stderr);
+    //       });
+    //     });
+    //   }
+    // }
   ]
 };
 
