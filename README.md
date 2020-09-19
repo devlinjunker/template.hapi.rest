@@ -82,7 +82,8 @@ How to use this template to create a quick HTTP REST server:
 
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Contribute](CONTRIBUTING.md)
-- [Wiki](wiki)
+- [Wiki](https://github.com/devlinjunker/template.hapi.rest/wiki)
+- [Notes/Ideas](NOTES.md)
 
 ## Contributors
 
