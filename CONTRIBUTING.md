@@ -12,7 +12,9 @@ This section details the steps to setup the project for development.
 ### Environment Setup and Tools
 Cloning this repo requires the use of Git, or you can use the template feature provided by Github. You can also download an archive of the repository contents using the Github "Download" link and extract this to access all of the files and create a new Git repository with them.
 
-Once you have a framework and development environment chosen for your project you should update your repo with specifics about how to install the tools and dependencies needed to run/debug/develop the application.
+This project is a node based project, so you will need to install [Node](https://nodejs.org/en/download/) and NPM to update the dependences. After you have installed the dependencies with `npm install -D`, you should be able to start the development server and watch for any changes to the files (and restart the server on changes) using `npm run start-watch`.
+
+After the server has started, navigate to http://localhost:3333/docs/swagger/index.html to view the OpenAPI Swagger page that lists the endpoints available.
 
 ### Folder Structure
 Break down how each folder is used in the repo and how different code file types should be organized.
@@ -24,7 +26,30 @@ Break down how each folder is used in the repo and how different code file types
 |-- workflows/
 |---- (Github workflow .yaml files)
 |-- (other github specific files)
-- (project config files and READMEs)
+- conf/
+|-- config.yaml (configuration file for server process)
+- docs/
+|-- swagger/
+|---- (OpenAPI Swagger UI files)
+|-- template/
+|---- (documentation template files)
+|-- (generated documentation files)
+- scripts/
+|-- actions/
+|---- (github action definitions)
+|-- hooks/
+|---- (husky githook scripts)
+- src/
+|-- base/
+|-- controllers/
+|-- dataservices/
+|-- helpers/
+|-- entry.js (Entry file for server process i.e. "main" method)
+- test/
+|-- test.bootstrap.js (Entry file for test process)
+|-- (mocha and other test configuration files)
+- webpack.config.js (Webpack build process configuration file)
+- (other project config files and READMEs)
 ```
 
 ### Scripts
@@ -47,7 +72,7 @@ Any labels that are not defined in this file will be removed every time this act
 
 
 #### Shell scripts
-Shell scripts can be created to help with deployment/installation or running the software.  
+TBD
 
 
 ### Style Guide
