@@ -61,6 +61,9 @@ Git Hooks can be added in the `.git/hooks` directory (I prefer to create symboli
 
 To create a hook, you'll need to add a script file to the directory with the name of the hook from [this list](https://git-scm.com/docs/githooks#_hooks). (e.g. to run a script before a commit is saved -- to verify the contents of the commit, verify the app builds, etc -- you would create `./.git/hooks/pre-commit.sh`)
 
+**[Pre-Commit Hook](./scripts/hooks/pre-commit/sh)**
+This project has a hook that runs before each commit. This hook will prevent any commits to the master branch locally, it will also run the build process and tests on all files added to be committed and will only commit the changes after it has built sucessfully and passed all tests.
+
 #### Workflows
 [Git Workflows/Actions](https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) are added in `.github/workflows`. 
 These are created with YAML files that define when the workflow should run and the steps it should take. 
@@ -70,6 +73,11 @@ Github can then enforce that these workflows are successful before Pull Requests
 This project defines the Github Labels in a [YAML file](./.github/labels.yaml) that is managed by the [Github Labeler Action](https://github.com/marketplace/actions/github-labeler). 
 Any labels that are not defined in this file will be removed every time this action is run. **This does not affect PRs**
 
+**[Build Documentation](./.github/workflows/master-merge.yml)**
+This action will update the documentation files on merge to master (and after PRs are merged). This process will generate a demo application and the doc files with esdoc. It then will collect all README files defined in the esdoc "manual" section and synchronize them with the Github Wiki pages.
+
+**[Verify Build Pass](./.github/workflows/master-build.yml)**
+This action will verify that the build process succeeds on branches that are going to be merged into the `master` branch. It will also verify that the build is successful after a branch has been merged.
 
 #### Shell scripts
 TBD
