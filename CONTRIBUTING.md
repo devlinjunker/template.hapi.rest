@@ -84,7 +84,7 @@ TBD
 
 
 ### Style Guide
-Make sure to only include basic documentation and Github setup files in this Template!
+This project uses ESLint to ensure consistent code style. See the [configuration file](./.eslintrc.yaml) for the rule definitions.
 
 ### Branching and Pull Requests
 
