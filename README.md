@@ -5,8 +5,10 @@ version: 0.7.0-SNAPSHOT
 # Template Webpack REST Server
 
 [![GitHub License](https://img.shields.io/github/license/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/blob/master/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest?ref=badge_shield)
 [![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
 [![GitHub last commit](https://img.shields.io/github/last-commit/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/commits/master)
+
 
 ## Intro
 
