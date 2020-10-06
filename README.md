@@ -6,8 +6,11 @@ version: 0.7.0-SNAPSHOT
 
 [![GitHub License](https://img.shields.io/github/license/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/blob/master/LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest?ref=badge_shield)
-[![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
 [![GitHub last commit](https://img.shields.io/github/last-commit/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/commits/master)
+[![OpenAPI/Swagger Validator](https://img.shields.io/swagger/valid/3.0?label=openapi&specUrl=https%3A%2F%2Fdevlinjunker.github.io%2Ftemplate.hapi.rest%2Fswagger%2Fopenapi.yaml)](https://devlinjunker.github.io/template.hapi.rest/swagger/openapi.yaml)
+![Dependency Check by David](https://img.shields.io/david/devlinjunker/template.hapi.rest)
+[![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
+
 
 
 ## Intro
@@ -48,7 +51,7 @@ How to use this template to create a quick HTTP REST server:
 6. Run `npm run start-watch` to compile and run server + tests in watch mode
    - Navigate to http://localhost:3333/docs/swagger/index.html to see swagger-ui with your new endpoint
 
-### Tests/Running
+### NPM Commands for Testing/Running
 
 `npm run start-watch` to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done
 
