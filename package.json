@@ -3,7 +3,7 @@
   "name": "Template-HapiRESTServer",
   "description": "Template for Hapi REST API Server",
   "engines" : { 
-    "node": ">=10.0.0", 
+    "node": ">=10.0.0"
   },
   "keywords": [
     "template",
