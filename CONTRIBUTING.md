@@ -41,9 +41,13 @@ Break down how each folder is used in the repo and how different code file types
 |---- (husky githook scripts)
 - src/
 |-- base/
+|---- (server process files -- startup and while running)
 |-- controllers/
+|---- (endpoint routing files -- should export an array of objects mapping routes and options to controller methods)
 |-- dataservices/
+|---- (classes that provide interfaces to connect to other services -- databases or other services/APIs)
 |-- helpers/
+|---- (helper classes that should handle logic for transforming data or requests)
 |-- entry.js (Entry file for server process i.e. "main" method)
 - test/
 |-- test.bootstrap.js (Entry file for test process)
