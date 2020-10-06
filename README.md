@@ -7,8 +7,9 @@ version: 0.7.0-SNAPSHOT
 [![GitHub License](https://img.shields.io/github/license/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/blob/master/LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest?ref=badge_shield)
 [![GitHub last commit](https://img.shields.io/github/last-commit/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/commits/master)
-[![OpenAPI/Swagger Validator](https://img.shields.io/swagger/valid/3.0?label=openapi&specUrl=https%3A%2F%2Fdevlinjunker.github.io%2Ftemplate.hapi.rest%2Fswagger%2Fopenapi.yaml)](https://devlinjunker.github.io/template.hapi.rest/swagger/openapi.yaml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/devlinjunker/template.hapi.rest/Doc%20Build%20and%20Wiki%20Sync%20on%20Merge%20to%20%60master%60)](https://github.com/devlinjunker/template.hapi.rest/actions)
 ![Dependency Check by David](https://img.shields.io/david/devlinjunker/template.hapi.rest)
+[![OpenAPI/Swagger Validator](https://img.shields.io/swagger/valid/3.0?label=openapi&specUrl=https%3A%2F%2Fdevlinjunker.github.io%2Ftemplate.hapi.rest%2Fswagger%2Fopenapi.yaml)](https://devlinjunker.github.io/template.hapi.rest/swagger/openapi.yaml)
 [![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
 
 
