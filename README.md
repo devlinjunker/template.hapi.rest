@@ -1,4 +1,6 @@
 # Template Webpack REST Server
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest?ref=badge_shield)
+
 
 Template and Example using Webpack for rapid development of an REST API server with endpoints for managing requests and connections to other servers and/or database/storage tools.
 
@@ -266,3 +268,7 @@ Error: Cannot find module 'babel-polyfill'
 - Commented out line `polyfill: "@babel/polyfill",` in webpack.config.js
 - re-ran webpack `npm run build`
 - then uncommented line and ran `npm run start-watch`
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdevlinjunker%2Ftemplate.hapi.rest?ref=badge_large)
