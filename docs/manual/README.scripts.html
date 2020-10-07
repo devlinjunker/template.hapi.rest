@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual | HapiRESTServer</title>
+  <title data-ice="title">Manual | Template-HapiRESTServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
   <script src="script/matomo.js"></script>
-<meta name="description" content="Template for Hapi Rest Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiRESTServer"><meta property="twitter:description" content="Template for Hapi Rest Server"></head>
+<meta name="description" content="Template for Hapi REST API Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Template-HapiRESTServer"><meta property="twitter:description" content="Template for Hapi REST API Server"></head>
 <body class="layout-container manual-root" data-ice="rootContainer">
 
 <header>
@@ -97,7 +97,9 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-commit" data-ice="link">On commit</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#github-actions" data-ice="link">Github Actions</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-master-pr" data-ice="link">On Master PR</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#github-specific-files" data-ice="link">Github Specific Files</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-merge-to-master" data-ice="link">On Merge to Master</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -124,15 +126,18 @@ letting the commit go through:</p>
 <h3 id="on-master-pr">On Master PR</h3><p>For every PR against master, we spin up a server to build the project via node/webpack. We also lint the
 project at this point (with more stringent error rules?). This will help us catch any errors in the code and
 prevent any merges to master that will break</p>
+<h2 id="github-specific-files">Github Specific Files</h2><p>Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
+<code>.github/PULL_REQUEST_TEMPLATE.md</code></p>
 <h3 id="on-merge-to-master">On Merge to Master</h3><p>Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
 the commits. We run a git action to handle this as well:</p>
 <ul>
 <li>Collect README files and update wiki</li>
 <li>Fix/remove links in Wiki</li>
-<li><strong>TODO:</strong> Build documentation and generate commit</li>
+<li>Build documentation and generate commit</li>
+</ul>
+<h2 id="notes-ideas">Notes/Ideas</h2><ul>
 <li><strong>IDEA:</strong> Version increase/changelog generation</li>
 </ul>
-<p>More to come...</p>
 </div>
 </div>
 

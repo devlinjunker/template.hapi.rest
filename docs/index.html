@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl">
-  <title data-ice="title">Home | HapiRESTServer</title>
+  <title data-ice="title">Home | Template-HapiRESTServer</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
   <script src="script/matomo.js"></script>
-<meta name="description" content="Template for Hapi Rest Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="HapiRESTServer"><meta property="twitter:description" content="Template for Hapi Rest Server"></head>
+<meta name="description" content="Template for Hapi REST API Server"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Template-HapiRESTServer"><meta property="twitter:description" content="Template for Hapi REST API Server"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -51,23 +51,22 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="basic-webpack-server-app">Basic Webpack Server App</h1><p>This is meant to be an example of how to use Webpack in the Backend for rapid development of an API server
-with endpoints for managing requests and connections to other servers and/or database/storage tools.</p>
-<p>This example can also be used to quickly create a server with your own endpoints to do whatever you would like
-on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="template-webpack-rest-server">Template Webpack REST Server</h1><p>Template and Example using Webpack for rapid development of an REST API server with endpoints for managing requests and connections to other servers and/or database/storage tools.</p>
+<p>This example can also be used to quickly create a server with your own endpoints to do whatever you would like on any requests (either user/interaction based, or with a cron job to make it on a scheduled basis)</p>
 <h2 id="dependencies">Dependencies</h2><p>Node v10+ and npm
   (tested with v10.15.1)</p>
-<p>See <a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/package.json">package.json</a> for full list of current dependencies</p>
+<p>See package.json(<a href="https://github.com/devlinjunker/template.webpack.fend/blob/master/package.json">github</a>)
+for full list of current dependencies</p>
 <ul>
-<li>Hapi v18</li>
-<li>Webpack + Loaders</li>
-<li>Babel</li>
-<li>FlowJS</li>
-<li>ESLint</li>
-<li>Mocha, Chai, Sinon</li>
-<li>EsDoc</li>
-<li>MariaDB</li>
-<li>YamlJS</li>
+<li><a href="https://hapi.dev/">Hapi v18</a> -- Server Library</li>
+<li><a href="https://webpack.js.org/">Webpack</a> + <a href="https://webpack.js.org/concepts/loaders/">Loaders </a>-- managing the build process</li>
+<li><a href="https://babeljs.io/">Babel</a> -- compiling newer ECMA2016+ into browser-capable javascript</li>
+<li><a href="https://flow.org/">FlowJS</a> -- adding types to javascript</li>
+<li><a href="http://eslint.org/">ESLint</a> -- enforcing javascript code style</li>
+<li><a href="https://mochajs.org/">Mocha</a>, <a href="https://www.chaijs.com/">Chai</a>, and <a href="https://sinonjs.org/">Sinon</a> -- unit testing</li>
+<li><a href="https://esdoc.org/">EsDoc</a> -- creating easy javascript documentation</li>
+<li><a href="https://mariadb.org/">MariaDB</a> -- Connecting to mysql/mariadb server for storage</li>
+<li><a href="https://openbase.io/js/yamljs">YamlJS</a> -- Parsing YAML files</li>
 </ul>
 <h2 id="development">Development</h2><p>How to use this template to create a quick HTTP REST server:</p>
 <ol>
@@ -80,8 +79,11 @@ on any requests (either user/interaction based, or with a cron job to make it on
 <li>Controller endpoints will be served at <code>/api</code> (or whatever is set in config.yaml)</li>
 </ul>
 </li>
-<li>Run <code>npm run start-watch</code> to compile and run server + tests in watch mode</li>
+<li>Run <code>npm run doc</code> to update the documentation</li>
+<li>Run <code>npm run start-watch</code> to compile and run server + tests in watch mode<ul>
 <li>Navigate to <a href="http://localhost:3333/docs/swagger/index.html">http://localhost:3333/docs/swagger/index.html</a> to see swagger-ui with your new endpoint</li>
+</ul>
+</li>
 </ol>
 <h3 id="tests-running">Tests/Running</h3><p><code>npm run start-watch</code> to run open the server and run Webpack to watch for changes, recompiling, running the tests and restarting the server when it is done</p>
 <p><code>npm run test-watch</code> to run Mocha and with all tests associated with the project, watch for changes on the files to re-run the tests</p>
