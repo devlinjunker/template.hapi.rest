@@ -10,9 +10,11 @@ version: 0.7.0-SNAPSHOT
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/devlinjunker/template.hapi.rest/Doc%20Build%20and%20Wiki%20Sync%20on%20Merge%20to%20%60master%60)](https://github.com/devlinjunker/template.hapi.rest/actions)  
 ![Dependency Check by David](https://img.shields.io/david/devlinjunker/template.hapi.rest)
 ![Dev Dependency Check by David](https://img.shields.io/david/dev/devlinjunker/template.hapi.rest)   
-[![OpenAPI/Swagger Validator](https://img.shields.io/swagger/valid/3.0?label=openapi&specUrl=https%3A%2F%2Fdevlinjunker.github.io%2Ftemplate.hapi.rest%2Fswagger%2Fopenapi.yaml)](https://devlinjunker.github.io/template.hapi.rest/swagger/)
-[![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
 [![ESDoc Status](https://raw.githubusercontent.com/devlinjunker/template.hapi.rest/master/docs/badge.svg)](https://devlinjunker.github.io/template.hapi.rest/source.html)
+[![CII Best Practices Summary](https://img.shields.io/cii/summary/4288?label=core-infrastructure)](https://bestpractices.coreinfrastructure.org/en/projects/4288)
+[![OpenAPI/Swagger Validator](https://img.shields.io/swagger/valid/3.0?label=openapi&specUrl=https%3A%2F%2Fdevlinjunker.github.io%2Ftemplate.hapi.rest%2Fswagger%2Fopenapi.yaml)](https://devlinjunker.github.io/template.hapi.rest/swagger/)  
+[![GitHub issues](https://img.shields.io/github/issues/devlinjunker/template.hapi.rest)](https://github.com/devlinjunker/template.hapi.rest/issues)
+[![GitHub issues by-label](https://img.shields.io/github/issues/devlinjunker/template.hapi.rest/-priority?color=red&label=priority%20issues)](https://github.com/devlinjunker/template.hapi.rest/issues?q=is%3Aopen+is%3Aissue+label%3A-priority)
 
 
 ## Intro
