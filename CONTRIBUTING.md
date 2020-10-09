@@ -36,7 +36,7 @@ Break down how each folder is used in the repo and how different code file types
 |-- (generated documentation files)
 - scripts/
 |-- actions/
-|---- (github action definitions)
+|---- (github action script files - run during actions)
 |-- hooks/
 |---- (husky githook scripts)
 - src/
