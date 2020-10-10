@@ -23,9 +23,9 @@ For every PR against master, we spin up a server to build the project via node/w
 project at this point (with more stringent error rules?). This will help us catch any errors in the code and
 prevent any merges to master that will break
 
-## Github Specific Files
-Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
-`.github/PULL_REQUEST_TEMPLATE.md`
+### Label Manager
+This project defines the Github Labels in a [YAML file](https://github.com/devlinjunker/template.hapi.rest/blob/master/.github/labels.yaml) that is managed by the [Github Labeler Action](https://github.com/marketplace/actions/github-labeler). 
+Any labels that are not defined in this file will be removed every time this action is run. **This does not affect PRs**
 
 ### On Merge to Master
 Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
@@ -33,6 +33,12 @@ the commits. We run a git action to handle this as well:
  - Collect README files and update wiki
  - Fix/remove links in Wiki
  - Build documentation and generate commit
+ 
+
+## Github Specific Files
+Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
+`.github/PULL_REQUEST_TEMPLATE.md`
+
 
 ## Notes/Ideas
  - **IDEA:** Version increase/changelog generation
