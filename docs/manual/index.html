@@ -97,8 +97,9 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-commit" data-ice="link">On commit</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#github-actions" data-ice="link">Github Actions</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-master-pr" data-ice="link">On Master PR</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#github-specific-files" data-ice="link">Github Specific Files</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#label-manager" data-ice="link">Label Manager</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#on-merge-to-master" data-ice="link">On Merge to Master</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#github-specific-files" data-ice="link">Github Specific Files</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/README.scripts.html"><a href="manual/README.scripts.html#notes-ideas" data-ice="link">Notes/Ideas</a></li>
 </ul>
   </div>
@@ -385,13 +386,14 @@ letting the commit go through:</p><p>Process:</p><ol>
 <li>Pop uncommitted changes</li>
 </ol><h2>Github Actions</h2><p>We setup github actions on this project so we can enforce actions/checks and workflow processes on github.</p><h3>On Master PR</h3><p>For every PR against master, we spin up a server to build the project via node/webpack. We also lint the
 project at this point (with more stringent error rules?). This will help us catch any errors in the code and
-prevent any merges to master that will break</p><h2>Github Specific Files</h2><p>Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
-<code>.github/PULL_REQUEST_TEMPLATE.md</code></p><h3>On Merge to Master</h3><p>Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
+prevent any merges to master that will break</p><h3>Label Manager</h3><p>This project defines the Github Labels in a <a href="https://github.com/devlinjunker/template.hapi.rest/blob/master/.github/labels.yaml">YAML file</a> that is managed by the <a href="https://github.com/marketplace/actions/github-labeler">Github Labeler Action</a>. 
+Any labels that are not defined in this file will be removed every time this action is run. <strong>This does not affect PRs</strong></p><h3>On Merge to Master</h3><p>Whenever we merge a PR to master, we want to update the documentation based on the changes the user made in
 the commits. We run a git action to handle this as well:</p><ul>
 <li>Collect README files and update wiki</li>
 <li>Fix/remove links in Wiki</li>
 <li>Build documentation and generate commit</li>
-</ul><h2>Notes/Ideas</h2><ul>
+</ul><h2>Github Specific Files</h2><p>Whenever a PR is made on Github, the body/description will be pre-populated with the contents in
+<code>.github/PULL_REQUEST_TEMPLATE.md</code></p><h2>Notes/Ideas</h2><ul>
 <li><strong>IDEA:</strong> Version increase/changelog generation</li>
 </ul></div>
         <a data-ice="link" href="manual/README.scripts.html"></a>
