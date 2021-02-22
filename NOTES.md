@@ -123,6 +123,7 @@
     - Technical Process (reviews, issue management, story lifecycle)
     - Domain Specific Language (Jargon)
     - Roles and Responsibilities
+ - [ ] (?) REST API Best Practices: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
  - [ ] (?) Absolute Paths:
     - maybe: https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
     - or: https://www.npmjs.com/package/app-module-path
